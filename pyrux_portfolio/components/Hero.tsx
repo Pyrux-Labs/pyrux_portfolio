@@ -2,7 +2,7 @@ export default function Hero() {
 	return (
 		<header className="text-center mb-14 animate-fade-in-up">
 			<div
-				className="group w-20 h-20 min-[481px]:w-[100px] min-[481px]:h-[100px] mx-auto mb-6 animate-float cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110 hover:[animation:none]"
+				className="group w-20 h-20 min-[481px]:w-25 min-[481px]:h-25 mx-auto mb-6 animate-float cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110 hover:animate-none"
 				aria-hidden="true">
 				<svg
 					viewBox="0 0 120 120"
@@ -80,17 +80,18 @@ export default function Hero() {
 							"linear-gradient(135deg, var(--hero-title-start) 0%, var(--coral-bright) 52%, var(--hero-title-end) 100%)",
 						backgroundSize: "200% 200%",
 					}}>
-					OpenClaw
+					Pyrox
 				</span>
 			</h1>
 			<p className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5 animate-fade-in-up [animation-delay:0.15s]">
-				The AI that actually does things.
+				Desarrollo web y soluciones digitales.
 			</p>
-			<p className="text-[1.1rem] text-secondary max-w-[780px] mx-auto leading-[1.7] animate-fade-in-up [animation-delay:0.3s]">
-				Clears your inbox, sends emails, manages your calendar, checks you in
-				for flights.
+			<p className="text-[1.1rem] text-secondary max-w-195 mx-auto leading-[1.7] animate-fade-in-up [animation-delay:0.3s]">
+				Creamos páginas web modernas, sistemas a medida y automatizaciones que
+				ayudan a tu negocio a crecer.
 				<br />
-				All from WhatsApp, Telegram, or any chat app you already use.
+				Tecnología pensada para atraer clientes, optimizar procesos y generar
+				resultados reales.
 			</p>
 		</header>
 	);
