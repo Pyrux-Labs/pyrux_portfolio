@@ -2,7 +2,9 @@ const ctaItems = [
 	{
 		label: "Discord",
 		sublabel: "Join the community",
-		hoverClass: "cta-discord",
+		hoverBorder: "#5865f2",
+		hoverShadow: "rgba(88, 101, 242, 0.2)",
+		hoverIcon: "#5865f2",
 		icon: (
 			<svg
 				viewBox="0 0 24 24"
@@ -17,7 +19,9 @@ const ctaItems = [
 	{
 		label: "Documentation",
 		sublabel: "Read the docs",
-		hoverClass: "cta-docs",
+		hoverBorder: "var(--cyan-bright)",
+		hoverShadow: "var(--shadow-cyan-soft)",
+		hoverIcon: "var(--cyan-bright)",
 		icon: (
 			<svg
 				viewBox="0 0 24 24"
@@ -36,7 +40,9 @@ const ctaItems = [
 	{
 		label: "GitHub",
 		sublabel: "View source code",
-		hoverClass: "cta-github",
+		hoverBorder: "var(--github-hover-color)",
+		hoverShadow: "var(--shadow-github-soft)",
+		hoverIcon: "var(--github-hover-color)",
 		icon: (
 			<svg
 				viewBox="0 0 24 24"
@@ -51,7 +57,9 @@ const ctaItems = [
 	{
 		label: "ClawHub",
 		sublabel: "Explore community skills",
-		hoverClass: "cta-clawhub",
+		hoverBorder: "#fbbf24",
+		hoverShadow: "rgba(251, 191, 36, 0.15)",
+		hoverIcon: "#fbbf24",
 		icon: (
 			<svg
 				viewBox="0 0 24 24"
@@ -71,12 +79,26 @@ const ctaItems = [
 
 export default function CtaGrid() {
 	return (
-		<section className="cta-grid">
+		<section className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-14 animate-fade-in-up [animation-delay:0.45s]">
 			{ctaItems.map((item) => (
-				<a key={item.label} href="#" className={`cta-card ${item.hoverClass}`}>
-					<div className="cta-icon">{item.icon}</div>
-					<span className="cta-label">{item.label}</span>
-					<span className="cta-sublabel">{item.sublabel}</span>
+				<a
+					key={item.label}
+					href="#"
+					className="group flex flex-col items-center gap-2 py-6 px-4 max-[480px]:py-5 max-[480px]:px-3 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline text-primary transition-all duration-250 ease-in-out hover:-translate-y-1 hover:border-(--cta-border) hover:shadow-[0_12px_40px_var(--cta-shadow)]"
+					style={
+						{
+							"--cta-border": item.hoverBorder,
+							"--cta-shadow": item.hoverShadow,
+							"--cta-icon": item.hoverIcon,
+						} as React.CSSProperties
+					}>
+					<div className="w-7 h-7 text-coral transition-transform duration-250 ease-in-out group-hover:scale-110 group-hover:text-(--cta-icon)">
+						{item.icon}
+					</div>
+					<span className="font-display font-semibold text-base max-[480px]:text-[0.9rem]">
+						{item.label}
+					</span>
+					<span className="text-[0.8rem] text-muted">{item.sublabel}</span>
 				</a>
 			))}
 		</section>

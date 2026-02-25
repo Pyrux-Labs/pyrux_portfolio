@@ -86,17 +86,21 @@ function TestimonialCard({
 	avatar: string;
 }) {
 	return (
-		<div className="testimonial-card" tabIndex={-1}>
+		<div
+			className="flex items-start gap-3 p-4 min-w-80 max-w-100 max-[480px]:min-w-70 max-[480px]:max-w-80 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary transition-all duration-250 ease-in-out shrink-0 hover:border-coral hover:-translate-y-0.5 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+			tabIndex={-1}>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img
 				src={`https://unavatar.io/x/${avatar}`}
 				alt={avatar}
-				className="testimonial-avatar"
+				className="w-11 h-11 max-[480px]:w-9 max-[480px]:h-9 rounded-full shrink-0 border-2 border-border bg-elevated object-cover"
 				loading="lazy"
 			/>
-			<div className="testimonial-content">
-				<p className="testimonial-quote">&ldquo;{quote}&rdquo;</p>
-				<span className="testimonial-author">{author}</span>
+			<div className="flex flex-col gap-1.5 min-w-0">
+				<p className="text-[0.9rem] max-[480px]:text-[0.85rem] leading-normal text-secondary line-clamp-3">
+					&ldquo;{quote}&rdquo;
+				</p>
+				<span className="text-[0.8rem] font-semibold text-coral">{author}</span>
 			</div>
 		</div>
 	);
@@ -108,26 +112,35 @@ export default function Testimonials() {
 	const row2Cards = [...testimonialsRow2, ...testimonialsRow2];
 
 	return (
-		<section className="testimonials">
-			<div className="section-header">
-				<h2 className="section-title">
-					<span className="claw-accent">⟩</span> What People Say
+		<section className="mb-14 animate-fade-in-up [animation-delay:0.75s] overflow-hidden -mx-6 px-6 max-[480px]:-mx-4 max-[480px]:px-4">
+			<div className="flex justify-between items-center mb-5 max-[480px]:pl-4">
+				<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
+					<span className="text-coral font-bold">⟩</span> What People Say
 				</h2>
-				<a href="#" className="section-link">
+				<a
+					href="#"
+					className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 					View all <span className="sr-only">community shoutouts</span>
 					<span aria-hidden="true">→</span>
 				</a>
 			</div>
-			<div className="testimonials-track">
+			<div
+				className="testimonials-track flex flex-col gap-2 -mx-6 max-[480px]:-mx-4 overflow-hidden"
+				style={{
+					maskImage:
+						"linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+					WebkitMaskImage:
+						"linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+				}}>
 				<div
-					className="testimonials-row row-1"
+					className="testimonials-row flex gap-4 w-max py-2 animate-scroll-left hover:[animation-play-state:paused]"
 					style={{ "--duration": "120s" } as React.CSSProperties}>
 					{row1Cards.map((t, i) => (
 						<TestimonialCard key={`r1-${i}`} {...t} />
 					))}
 				</div>
 				<div
-					className="testimonials-row row-2"
+					className="testimonials-row flex gap-4 w-max py-2 animate-scroll-right hover:[animation-play-state:paused]"
 					style={{ "--duration": "130s" } as React.CSSProperties}>
 					{row2Cards.map((t, i) => (
 						<TestimonialCard key={`r2-${i}`} {...t} />

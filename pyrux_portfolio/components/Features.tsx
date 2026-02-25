@@ -122,16 +122,23 @@ const features = [
 
 export default function Features() {
 	return (
-		<section className="features">
-			<h2 className="section-title">
-				<span className="claw-accent">⟩</span> What It Does
+		<section className="mb-14 animate-fade-in-up [animation-delay:0.55s]">
+			<h2 className="font-display text-[1.4rem] font-semibold mb-5 flex items-center gap-2.5">
+				<span className="text-coral font-bold">⟩</span> What It Does
 			</h2>
-			<div className="features-grid">
+			<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
 				{features.map((f) => (
-					<a key={f.title} href="#" className="feature-card">
-						<div className="feature-icon">{f.icon}</div>
-						<h3 className="feature-title">{f.title}</h3>
-						<p className="feature-desc">{f.desc}</p>
+					<a
+						key={f.title}
+						href="#"
+						className="block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-all duration-250 ease-in-out no-underline text-inherit cursor-pointer hover:-translate-y-1 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]">
+						<div className="flex items-center justify-center mb-3">
+							{f.icon}
+						</div>
+						<h3 className="font-display text-base font-semibold text-primary mb-1.5">
+							{f.title}
+						</h3>
+						<p className="text-[0.85rem] text-muted leading-[1.5]">{f.desc}</p>
 					</a>
 				))}
 			</div>

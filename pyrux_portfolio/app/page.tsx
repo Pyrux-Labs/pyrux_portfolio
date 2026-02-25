@@ -17,7 +17,7 @@ export default function Index() {
 		<>
 			<ThemeToggle />
 			<StarBackground />
-			<main className="oc-container">
+			<main className="relative z-1 max-w-[860px] mx-auto min-h-screen flex flex-col px-4 pt-10 pb-8 min-[481px]:px-6 min-[481px]:pt-15 min-[481px]:pb-10">
 				<Hero />
 				<LatestPost />
 				<Testimonials />

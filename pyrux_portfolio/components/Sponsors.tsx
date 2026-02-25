@@ -1,9 +1,13 @@
 export default function Sponsors() {
 	return (
-		<section className="sponsors">
-			<p className="sponsors-label">Supported by</p>
-			<div className="sponsors-row">
-				<a href="#" className="sponsor-card">
+		<section className="mb-14 animate-fade-in-up [animation-delay:0.72s]">
+			<p className="font-display text-[1.4rem] font-semibold mb-6 text-center">
+				Supported by
+			</p>
+			<div className="flex items-center justify-center gap-10 max-[480px]:gap-4 flex-wrap">
+				<a
+					href="#"
+					className="flex items-center justify-center px-8 max-[480px]:px-6 py-5 max-[480px]:py-4 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline transition-all duration-250 ease-in-out hover:-translate-y-1 hover:border-border-accent hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]">
 					<svg
 						width="100"
 						height="24"
@@ -33,7 +37,9 @@ export default function Sponsors() {
 						</text>
 					</svg>
 				</a>
-				<a href="#" className="sponsor-card">
+				<a
+					href="#"
+					className="flex items-center justify-center px-8 max-[480px]:px-6 py-5 max-[480px]:py-4 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline transition-all duration-250 ease-in-out hover:-translate-y-1 hover:border-border-accent hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]">
 					<svg
 						width="120"
 						height="24"

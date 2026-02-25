@@ -82,17 +82,18 @@ const integrations = [
 
 export default function IntegrationsPreview() {
 	return (
-		<section className="integrations-preview">
-			<h2 className="section-title">
-				<span className="claw-accent">⟩</span> Works With Everything
+		<section className="mb-14 animate-fade-in-up [animation-delay:0.6s]">
+			<h2 className="font-display text-[1.4rem] font-semibold mb-5 flex items-center gap-2.5">
+				<span className="text-coral font-bold">⟩</span> Works With Everything
 			</h2>
-			<div className="integrations-row">
+			<div className="flex flex-wrap gap-2.5 justify-center mb-4">
 				{integrations.map((item) => (
-					<span key={item.name} className="integration-pill">
+					<span
+						key={item.name}
+						className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary transition-all duration-250 ease-in-out cursor-default hover:border-coral hover:-translate-y-1 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]">
 						<svg
 							viewBox="0 0 24 24"
-							width="16"
-							height="16"
+							className="w-4 h-4 shrink-0 transition-all duration-200 ease-in-out"
 							fill={item.isStroke ? "none" : item.color}
 							stroke={item.isStroke ? item.color : undefined}
 							strokeWidth={item.isStroke ? "2" : undefined}
@@ -105,12 +106,16 @@ export default function IntegrationsPreview() {
 					</span>
 				))}
 			</div>
-			<div className="integrations-links">
-				<a href="#" className="integrations-link">
+			<div className="flex justify-center items-center gap-3 flex-wrap">
+				<a
+					href="#"
+					className="text-coral no-underline text-[0.9rem] font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 					View all 50+ integrations →
 				</a>
-				<span className="link-separator">·</span>
-				<a href="#" className="integrations-link">
+				<span className="text-muted text-[0.9rem]">·</span>
+				<a
+					href="#"
+					className="text-coral no-underline text-[0.9rem] font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 					See what people built →
 				</a>
 			</div>
