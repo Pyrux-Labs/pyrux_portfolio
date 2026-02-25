@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	title: "OpenClaw — Personal AI Assistant",
-	description:
-		"OpenClaw — The AI that actually does things. Your personal assistant on any platform.",
+	title: "Pyrux — Desarrollo web y soluciones digitales.",
+	description: "Pyrux — Desarrollo web y soluciones digitales.",
+	icons: {
+		icon: "/favicon.ico",
+		shortcut: "/favicon.ico",
+		apple: "/logo.png",
+	},
 };
 
 export default function RootLayout({
