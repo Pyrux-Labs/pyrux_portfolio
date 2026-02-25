@@ -5,41 +5,35 @@ export default function Footer() {
 				<a
 					href="#"
 					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Blog
+					Linkedin
 				</a>
 				<a
 					href="#"
 					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Showcase
+					Email
 				</a>
 				<a
 					href="#"
 					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Shoutouts
+					Whatsapp
 				</a>
 				<a
 					href="#"
 					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Integrations
+					Github
 				</a>
 				<a
 					href="#"
 					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Trust
+					Instagram
 				</a>
 			</nav>
-			<p>
-				Built by{" "}
-				<a
-					href="#"
-					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Peter Steinberger
-				</a>{" "}
-				and the community.
-			</p>
+
 			<p className="mt-3 text-[0.8rem] text-muted opacity-70">
-				OpenClaw is an independent project. Not affiliated with any company
-				mentioned on this page.
+				© Copyright Pyrux Todos los derechos reservados
+			</p>
+			<p className="mt-3 text-[0.7rem] text-muted opacity-70">
+				Designed by Pyrux
 			</p>
 		</footer>
 	);
