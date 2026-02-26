@@ -50,6 +50,21 @@
 	--logo-gradient-end: #991b1b;
 	--logo-glow: rgba(255, 77, 77, 0.4);
 	--logo-glow-hover: rgba(0, 229, 204, 0.6);
+
+	/* Social Media Brand Colors */
+	--linkedin-color: #0a66c2;
+	--linkedin-shadow: rgba(10, 102, 194, 0.2);
+	--whatsapp-color: #25d366;
+	--whatsapp-shadow: rgba(37, 211, 102, 0.2);
+	--instagram-color: #e4405f;
+	--instagram-shadow: linear-gradient(
+		45deg,
+		#e4405f,
+		#833ab4,
+		#c13584,
+		#f77737,
+		#fcaf45
+	);
 }
 
 /* ── Light theme ───────────────────────────── */
@@ -99,6 +114,21 @@ html[data-theme="light"] {
 	--logo-gradient-end: #ea4c59;
 	--logo-glow: rgba(239, 75, 88, 0.2);
 	--logo-glow-hover: rgba(0, 143, 135, 0.35);
+
+	/* Social Media Brand Colors */
+	--linkedin-color: #0a66c2;
+	--linkedin-shadow: rgba(10, 102, 194, 0.2);
+	--whatsapp-color: #25d366;
+	--whatsapp-shadow: rgba(37, 211, 102, 0.2);
+	--instagram-color: #e4405f;
+	--instagram-shadow: linear-gradient(
+		45deg,
+		#e4405f,
+		#833ab4,
+		#c13584,
+		#f77737,
+		#fcaf45
+	);
 }
 
 /* ── Tailwind theme tokens ─────────────────── */

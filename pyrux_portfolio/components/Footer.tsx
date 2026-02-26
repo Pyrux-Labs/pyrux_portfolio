@@ -20,11 +20,6 @@ export default function Footer() {
 				<a
 					href="#"
 					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
-					Github
-				</a>
-				<a
-					href="#"
-					className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan">
 					Instagram
 				</a>
 			</nav>

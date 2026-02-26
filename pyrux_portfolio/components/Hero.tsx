@@ -11,7 +11,7 @@ export default function Hero() {
 									"linear-gradient(135deg, var(--hero-title-start) 0%, var(--coral-bright) 52%, var(--hero-title-end) 100%)",
 								backgroundSize: "200% 200%",
 							}}>
-							Pyrox
+							Pyrux
 						</span>
 					</h1>
 					<p className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5 animate-fade-in-up [animation-delay:0.15s]">
