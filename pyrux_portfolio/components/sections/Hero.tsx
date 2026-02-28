@@ -1,9 +1,47 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+// Variantes de animación para el Hero
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+	},
+};
+
+const textVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.6, ease: "easeOut" as const },
+	},
+};
+
+const iconVariants = {
+	hidden: { opacity: 0, scale: 0.5, rotate: -15 },
+	visible: {
+		opacity: 1,
+		scale: 1,
+		rotate: 0,
+		transition: { type: "spring" as const, damping: 12, stiffness: 100 },
+	},
+};
+
 export default function Hero() {
 	return (
-		<header className="mb-14 animate-fade-in-up">
+		<motion.header
+			className="mb-14"
+			variants={containerVariants}
+			initial="hidden"
+			animate="visible">
 			<div className="flex items-center justify-between gap-8">
 				<div className="flex-1 text-left">
-					<h1 className="font-display text-[clamp(5rem,10vw,6rem)] font-bold leading-none mb-3">
+					<motion.h1
+						className="font-display text-[clamp(5rem,10vw,6rem)] font-bold leading-none mb-3"
+						variants={textVariants}>
 						<span
 							className="bg-clip-text text-transparent animate-gradient-shift"
 							style={{
@@ -13,17 +51,23 @@ export default function Hero() {
 							}}>
 							Pyrux
 						</span>
-					</h1>
-					<p className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5 animate-fade-in-up [animation-delay:0.15s]">
+					</motion.h1>
+					<motion.p
+						className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5"
+						variants={textVariants}>
 						Desarrollo web y soluciones digitales.
-					</p>
-					<p className="text-[1.1rem] text-secondary max-w-120 leading-[1.7] animate-fade-in-up [animation-delay:0.3s]">
+					</motion.p>
+					<motion.p
+						className="text-[1.1rem] text-secondary max-w-120 leading-[1.7]"
+						variants={textVariants}>
 						Creamos páginas web modernas y sistemas a medida para llevar tu
 						negocio al siguiente nivel.
-					</p>
+					</motion.p>
 				</div>
-				<div
-					className="group w-20 h-20 min-[481px]:w-25 min-[481px]:h-25 animate-float cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110 hover:animate-none shrink-0"
+				<motion.div
+					className="group w-20 h-20 min-[481px]:w-25 min-[481px]:h-25 animate-float cursor-pointer shrink-0"
+					variants={iconVariants}
+					whileHover={{ scale: 1.12, animationPlayState: "paused" }}
 					aria-hidden="true">
 					<svg
 						viewBox="0 0 120 120"
@@ -92,8 +136,8 @@ export default function Hero() {
 							</linearGradient>
 						</defs>
 					</svg>
-				</div>
+				</motion.div>
 			</div>
-		</header>
+		</motion.header>
 	);
 }

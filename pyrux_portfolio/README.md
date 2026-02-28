@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pyrux Portfolio
 
-## Getting Started
+Portfolio web para **Pyrux**, un estudio de desarrollo de dos creadores. Muestra proyectos, clientes, stack tecnológico y perfiles de los fundadores.
 
-First, run the development server:
+## Stack Tecnológico
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16** — App Router, exportación estática
+- **React 19** — Con React Compiler habilitado
+- **TypeScript** — Modo strict
+- **Tailwind CSS v4** — Sistema de diseño con variables CSS
+- **Framer Motion** — Animaciones de entrada, hover y transiciones
+- **Lucide React** — Iconografía consistente
+- **React Icons** — Iconos de tecnologías (Simple Icons)
+- **Sonner** — Notificaciones toast
+
+## Estructura del Proyecto
+
+```
+app/
+  page.tsx              → Homepage (Hero, proyectos, servicios, stack, equipo, valores, contacto)
+  layout.tsx            → Layout raíz con SEO metadata
+  not-found.tsx         → Página 404 personalizada
+  projects/             → /projects — Todos los proyectos con filtros
+  clients/              → /clients — Todas las empresas/clientes
+  creator/[id]/         → /creator/juan, /creator/gino — Proyectos por creador
+components/             → Componentes reutilizables (Section, Modal, Badge, Cards, etc.)
+data/                   → Datos locales (projects, companies, technologies, creators, values)
+types/                  → Interfaces TypeScript globales
+hooks/                  → Hooks personalizados (useCopyToClipboard)
+lib/                    → Utilidades (cn)
+public/                 → Assets estáticos, robots.txt, sitemap.xml
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Desarrollo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Instalar dependencias
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Servidor de desarrollo
+npm run dev
 
-## Learn More
+# Build de producción (exportación estática)
+npm run build
 
-To learn more about Next.js, take a look at the following resources:
+# Lint
+npm run lint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Páginas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Ruta            | Descripción                                                       |
+| --------------- | ----------------------------------------------------------------- |
+| `/`             | Homepage con todas las secciones                                  |
+| `/projects`     | Grid de todos los proyectos con búsqueda y filtros por tecnología |
+| `/clients`      | Grid de todas las empresas/clientes con modales de detalle        |
+| `/creator/[id]` | Perfil del creador con sus proyectos                              |
 
-## Deploy on Vercel
+## Diseño
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Tema oscuro con acentos coral (#ff4d4d) y cyan (#00e5cc)
+- Tipografías: Clash Display (headings) y Satoshi (body) via FontShare
+- Glassmorphism, backdrop blur, glow effects
+- Animaciones Framer Motion con stagger en listas
+- Responsive: mobile (<640px), tablet (640-1024px), desktop (>1024px)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy
+
+Configurado para exportación estática (`output: 'export'`). Compatible con cualquier hosting estático (Vercel, Netlify, GitHub Pages, etc.).
+
+```bash
+npm run build
+# Los archivos estáticos se generan en /out
+```
