@@ -5,9 +5,9 @@ export const metadata: Metadata = {
 	title: "Pyrux — Desarrollo web y soluciones digitales.",
 	description: "Pyrux — Desarrollo web y soluciones digitales.",
 	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon.ico",
-		apple: "/logo.png",
+		icon: "/Pyrux-logo.svg",
+		shortcut: "/Pyrux-logo.svg",
+		apple: "/Pyrux-logo.svg",
 	},
 };
 
