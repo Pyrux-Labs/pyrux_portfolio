@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Cliente de /projects — con filtros y modales
+// Client component /projects - with filters and modals
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -15,7 +15,7 @@ import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import type { Project } from "@/types";
 
-// Variantes de animación
+// Animation variants
 const gridVariants = {
 	hidden: {},
 	visible: { transition: { staggerChildren: 0.06 } },
@@ -35,13 +35,13 @@ export default function ProjectsPageClient() {
 	const [selectedTech, setSelectedTech] = useState<string | null>(null);
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-	// Tecnologías usadas en proyectos (para filtros)
+	// Technologies used in projects (for filters)
 	const usedTechs = useMemo(() => {
 		const techIds = new Set(projects.flatMap((p) => p.technologies));
 		return technologies.filter((t) => techIds.has(t.id));
 	}, []);
 
-	// Filtrar proyectos
+	// Filter projects
 	const filtered = useMemo(() => {
 		return projects.filter((p) => {
 			const matchesSearch =
@@ -58,7 +58,7 @@ export default function ProjectsPageClient() {
 		<>
 			<StarBackground />
 			<main className="relative z-1 max-w-215 mx-auto min-h-screen flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
-				{/* Header de página */}
+				{/* Page header */}
 				<motion.div
 					className="mb-8"
 					initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export default function ProjectsPageClient() {
 					</p>
 				</motion.div>
 
-				{/* Barra de búsqueda */}
+				{/* Search bar */}
 				<motion.div
 					className="mb-6"
 					initial={{ opacity: 0, y: 10 }}
@@ -94,12 +94,12 @@ export default function ProjectsPageClient() {
 							placeholder="Buscar proyectos..."
 							value={search}
 							onChange={(e) => setSearch(e.target.value)}
-							className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-card text-primary text-[0.9rem] placeholder:text-muted outline-none transition-all duration-200 focus:border-coral focus:shadow-[0_0_0_3px_var(--shadow-coral-soft)]"
+							className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-border bg-card text-primary text-[0.9rem] placeholder:text-muted outline-none transition-[border-color,box-shadow] duration-200 focus:border-coral focus:shadow-[0_0_0_3px_var(--shadow-coral-soft)]"
 						/>
 					</div>
 				</motion.div>
 
-				{/* Filtros por tecnología */}
+				{/* Technology filters */}
 				<motion.div
 					className="flex flex-wrap gap-2 mb-8"
 					initial={{ opacity: 0 }}
@@ -107,7 +107,7 @@ export default function ProjectsPageClient() {
 					transition={{ delay: 0.3, duration: 0.4 }}>
 					<button
 						onClick={() => setSelectedTech(null)}
-						className={`px-3 py-1.5 rounded-full text-[0.8rem] font-medium border transition-all duration-200 cursor-pointer ${
+						className={`px-3 py-1.5 rounded-full text-[0.8rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
 							!selectedTech
 								? "border-coral bg-coral-soft-bg text-coral"
 								: "border-border bg-card text-secondary hover:border-coral"
@@ -120,7 +120,7 @@ export default function ProjectsPageClient() {
 							onClick={() =>
 								setSelectedTech(selectedTech === tech.id ? null : tech.id)
 							}
-							className={`px-3 py-1.5 rounded-full text-[0.8rem] font-medium border transition-all duration-200 cursor-pointer ${
+							className={`px-3 py-1.5 rounded-full text-[0.8rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
 								selectedTech === tech.id
 									? "border-coral bg-coral-soft-bg text-coral"
 									: "border-border bg-card text-secondary hover:border-coral"
@@ -130,7 +130,7 @@ export default function ProjectsPageClient() {
 					))}
 				</motion.div>
 
-				{/* Grid de proyectos */}
+				{/* Project grid */}
 				<motion.div
 					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
 					variants={gridVariants}
@@ -139,9 +139,8 @@ export default function ProjectsPageClient() {
 					{filtered.map((project) => (
 						<motion.div
 							key={project.id}
-							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer transition-all duration-250 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer transition-all hover:-translate-y-1 duration-200 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
-							whileHover={{ y: -4 }}
 							onClick={() => setSelectedProject(project)}
 							role="button"
 							tabIndex={0}
@@ -180,7 +179,7 @@ export default function ProjectsPageClient() {
 					))}
 				</motion.div>
 
-				{/* Sin resultados */}
+				{/* No results */}
 				{filtered.length === 0 && (
 					<div className="text-center py-16">
 						<p className="text-secondary text-lg">

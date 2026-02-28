@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Modal de Proyecto — detalle completo
+// Project Modal - base modal component
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -25,12 +25,12 @@ export default function ProjectModal({
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} title={project.title}>
-			{/* Descripción */}
+			{/* Description */}
 			<p className="text-secondary leading-relaxed mb-5">
 				{project.description}
 			</p>
 
-			{/* Tecnologías */}
+			{/* Technologies */}
 			<div className="flex flex-wrap gap-2 mb-6">
 				{project.technologies.map((techId) => {
 					const tech = getTechnologyById(techId);
@@ -40,7 +40,7 @@ export default function ProjectModal({
 				})}
 			</div>
 
-			{/* Fecha */}
+			{/* Date */}
 			<p className="text-[0.8rem] text-muted mb-6">
 				{new Date(project.date).toLocaleDateString("es-AR", {
 					year: "numeric",

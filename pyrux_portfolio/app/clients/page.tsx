@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Página /clients — todas las empresas
+// Clients page client component
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";

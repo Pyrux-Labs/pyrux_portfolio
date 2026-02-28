@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   output: 'export',
   
   // Si tu repositorio se llama "pyrux_portfolio", descomenta la siguiente línea:
-  // basePath: '/pyrux_portfolio',
+  //basePath: '/pyrux_portfolio',
   
   // Si es tu repositorio de usuario (username.github.io), deja basePath comentado
   

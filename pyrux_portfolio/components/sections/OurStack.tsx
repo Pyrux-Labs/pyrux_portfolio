@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Sección Nuestro Stack — tecnologías con tabs
+// OurStack component
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -15,7 +15,7 @@ import {
 } from "@/data/technologies";
 import type { TechnologyCategory } from "@/types";
 
-// Variantes de animación
+// Animation variants
 const gridVariants = {
 	hidden: {},
 	visible: { transition: { staggerChildren: 0.04 } },
@@ -64,7 +64,7 @@ export default function OurStack() {
 				))}
 			</div>
 
-			{/* Grid de tecnologías */}
+			{/* Technologies grid */}
 			<AnimatePresence mode="wait">
 				<motion.div
 					key={activeTab}

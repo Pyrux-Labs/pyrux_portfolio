@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Página /projects — todos los proyectos
+// Page /projects - all projects
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";

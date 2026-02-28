@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Cliente de /clients — con modales
+// Clients page client component
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -12,7 +12,7 @@ import CompanyModal from "@/components/modals/CompanyModal";
 import StarBackground from "@/components/ui/StarBackground";
 import type { Company } from "@/types";
 
-// Variantes de animación
+// Animation variants
 const gridVariants = {
 	hidden: {},
 	visible: { transition: { staggerChildren: 0.08 } },
@@ -54,7 +54,7 @@ export default function ClientsPageClient() {
 					</p>
 				</motion.div>
 
-				{/* Grid de empresas */}
+				{/* Company grid */}
 				<motion.div
 					className="grid grid-cols-1 sm:grid-cols-2 gap-5"
 					variants={gridVariants}
@@ -63,7 +63,7 @@ export default function ClientsPageClient() {
 					{companies.map((company) => (
 						<motion.div
 							key={company.id}
-							className="flex flex-col gap-4 p-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl cursor-pointer transition-all duration-250 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+							className="flex flex-col gap-4 p-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl cursor-pointer transition-all hover:-translate-y-1 duration-200 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
 							whileHover={{ y: -4 }}
 							onClick={() => setSelectedCompany(company)}

@@ -73,7 +73,7 @@ const iconColors: Record<string, string> = {
 	SiDocker: "#2496ED",
 	SiGit: "#F05032",
 	SiGithub: "var(--text-primary)",
-	SiLinux: "#FCC624",
+	SiLinux: "#var(--bg-deep)",
 	SiVercel: "var(--text-primary)",
 	SiNginx: "#009639",
 	SiStripe: "#635BFF",

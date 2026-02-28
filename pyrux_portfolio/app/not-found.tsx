@@ -25,7 +25,7 @@ export default function NotFound() {
 					</p>
 					<a
 						href="/"
-						className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-lg bg-coral text-white text-sm font-semibold hover:bg-coral/90 transition-colors">
+						className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-lg bg-coral text-primary text-sm font-semibold hover:bg-coral/90 transition-colors">
 						<ArrowLeft size={16} />
 						Volver al inicio
 					</a>
