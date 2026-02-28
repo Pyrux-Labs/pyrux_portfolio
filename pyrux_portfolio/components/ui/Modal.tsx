@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Componente Modal — base reutilizable
+// Modal — base modal component
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -15,7 +15,7 @@ interface ModalProps {
 	title?: string;
 }
 
-// Variantes de animación
+// Animation variants
 const overlayVariants = {
 	hidden: { opacity: 0 },
 	visible: { opacity: 1 },
@@ -43,7 +43,7 @@ export default function Modal({
 	children,
 	title,
 }: ModalProps) {
-	// Cerrar con Escape
+	// Close with Escape
 	const handleKeyDown = useCallback(
 		(e: KeyboardEvent) => {
 			if (e.key === "Escape") onClose();
@@ -78,7 +78,7 @@ export default function Modal({
 						aria-hidden="true"
 					/>
 
-					{/* Contenido del modal */}
+					{/* Modal content*/}
 					<motion.div
 						className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-2xl"
 						variants={modalVariants}
@@ -88,10 +88,10 @@ export default function Modal({
 						role="dialog"
 						aria-modal="true"
 						aria-label={title}>
-						{/* Botón cerrar */}
+						{/* Close button */}
 						<button
 							onClick={onClose}
-							className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
+							className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color] duration-200 hover:border-coral hover:text-coral cursor-pointer"
 							aria-label="Cerrar modal">
 							<X size={18} />
 						</button>

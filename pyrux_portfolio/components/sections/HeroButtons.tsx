@@ -21,12 +21,11 @@ export default function HeroButtons() {
 			<div className="flex justify-center gap-4">
 				<motion.a
 					href="#contacto"
-					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-all duration-300 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
+					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={0}
-					whileHover={{ y: -2 }}
 					whileTap={{ scale: 0.97 }}>
 					<span className="text-[0.9rem] text-primary">
 						Contacta con nosotros
@@ -38,12 +37,11 @@ export default function HeroButtons() {
 
 				<motion.a
 					href="#proyectos"
-					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-all duration-300 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
+					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={1}
-					whileHover={{ y: -2 }}
 					whileTap={{ scale: 0.97 }}>
 					<span className="text-[0.9rem] text-primary">Nuestros Proyectos</span>
 					<span className="text-muted transition-colors duration-200 group-hover:text-coral">

@@ -1,4 +1,5 @@
 // ═══════════════════════════════════════════════
+//
 // Sección Nuestro Equipo — cards de creadores
 // ═══════════════════════════════════════════════
 
@@ -32,13 +33,12 @@ export default function OurTeam() {
 					{creators.map((creator, i) => (
 						<motion.div
 							key={creator.id}
-							className="group flex flex-col items-center gap-4 px-7 py-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl text-primary transition-all duration-250 ease-in-out text-center cursor-pointer hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+							className="group flex flex-col items-center gap-4 px-7 py-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl text-primary text-center cursor-pointer transition-all duration-200 ease-in-out hover:-translate-y-1 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
 							initial="hidden"
 							whileInView="visible"
 							viewport={{ once: true }}
 							custom={i}
-							whileHover={{ y: -6 }}
 							onClick={() => setSelectedCreator(creator)}
 							role="button"
 							tabIndex={0}
@@ -53,7 +53,7 @@ export default function OurTeam() {
 							<div className="relative">
 								<FolderOpen
 									size={32}
-									className="text-coral transition-transform duration-300 group-hover:scale-110"
+									className="text-coral transition-transform duration-200 group-hover:scale-110"
 								/>
 							</div>
 

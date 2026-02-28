@@ -82,7 +82,7 @@ export default function OurServices() {
 				{features.map((f) => (
 					<motion.div
 						key={f.title}
-						className="block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-all duration-250 ease-in-out cursor-default hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+						className="block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-[border-color,box-shadow] duration-200 ease-in-out cursor-default hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 						variants={cardVariants}
 						whileHover={{ y: -6 }}>
 						<div className="flex items-center justify-center mb-3">

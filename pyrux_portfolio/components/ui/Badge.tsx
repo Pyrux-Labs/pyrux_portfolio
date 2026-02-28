@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Componente Badge — etiqueta de tecnología
+// Badge — tech badge
 // ═══════════════════════════════════════════════
 
 import { cn } from "@/lib/utils";

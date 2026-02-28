@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Sección de Contacto — links sociales con copy email
+// Contact us section — social links with copy email
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -103,7 +103,7 @@ const ctaItems: ContactItem[] = [
 	},
 ];
 
-// Variantes de animación
+// Animation variants
 const gridVariants = {
 	hidden: {},
 	visible: { transition: { staggerChildren: 0.08 } },
@@ -126,7 +126,7 @@ export default function ContactUs() {
 			await copy(CONTACT_EMAIL);
 			toast.success("Email copiado al portapapeles", {
 				description: CONTACT_EMAIL,
-				duration: 3000,
+				duration: 2500,
 			});
 		}
 	};
@@ -165,7 +165,7 @@ export default function ContactUs() {
 							<Component
 								{...extraProps}
 								onClick={() => handleClick(item)}
-								className="group w-full flex flex-col items-center gap-2 py-6 px-4 max-[480px]:py-5 max-[480px]:px-3 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline text-primary transition-all duration-250 ease-in-out cursor-pointer hover:-translate-y-1 hover:border-(--cta-border) hover:shadow-[0_12px_40px_var(--cta-shadow)]"
+								className="group w-full flex flex-col items-center gap-2 py-6 px-4 max-[480px]:py-5 max-[480px]:px-3 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out cursor-pointer hover:-translate-y-1 hover:border-(--cta-border) hover:shadow-[0_12px_40px_var(--cta-shadow)]"
 								style={
 									{
 										"--cta-border": item.hoverBorder,
@@ -174,7 +174,7 @@ export default function ContactUs() {
 									} as React.CSSProperties
 								}
 								aria-label={item.label}>
-								<div className="w-7 h-7 text-coral transition-transform duration-250 ease-in-out group-hover:scale-110 group-hover:text-(--cta-icon) flex items-center justify-center">
+								<div className="w-7 h-7 text-coral transition-transform duration-200 ease-in-out group-hover:scale-110 group-hover:text-(--cta-icon) flex items-center justify-center">
 									{item.icon}
 								</div>
 								<span className="font-display font-semibold text-base max-[480px]:text-[0.9rem]">

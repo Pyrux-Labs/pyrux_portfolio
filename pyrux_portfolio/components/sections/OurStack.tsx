@@ -43,7 +43,7 @@ export default function OurStack() {
 			<div className="flex flex-wrap gap-2 mb-6 justify-center">
 				<button
 					onClick={() => setActiveTab("all")}
-					className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-all duration-200 cursor-pointer ${
+					className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
 						activeTab === "all"
 							? "border-coral bg-coral-soft-bg text-coral"
 							: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
@@ -54,7 +54,7 @@ export default function OurStack() {
 					<button
 						key={cat.id}
 						onClick={() => setActiveTab(cat.id)}
-						className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-all duration-200 cursor-pointer ${
+						className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
 							activeTab === cat.id
 								? "border-coral bg-coral-soft-bg text-coral"
 								: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
@@ -76,7 +76,7 @@ export default function OurStack() {
 					{displayedTechs.map((tech) => (
 						<motion.span
 							key={tech.id}
-							className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary transition-all duration-250 ease-in-out cursor-default hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+							className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary transition-[border-color,box-shadow] duration-250 ease-in-out cursor-default hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 							variants={itemVariants}
 							whileHover={{ y: -3, scale: 1.03 }}>
 							<TechIcon iconName={tech.icon} size={16} />

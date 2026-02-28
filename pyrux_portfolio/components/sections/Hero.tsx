@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-// Variantes de animación para el Hero
+// Animations variants
 const containerVariants = {
 	hidden: { opacity: 0 },
 	visible: {
@@ -92,7 +92,7 @@ export default function Hero() {
 							className="origin-left animate-claw-snap"
 							style={{ animationDelay: "0.2s" }}
 						/>
-						{/* Antenna */}
+						{/* Ants */}
 						<path
 							d="M45 15 Q35 5 30 8"
 							stroke="var(--coral-bright)"

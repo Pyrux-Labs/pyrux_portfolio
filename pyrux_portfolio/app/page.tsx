@@ -21,13 +21,14 @@ export default function Index() {
 				<div id="servicios">
 					<OurServices />
 				</div>
-				<div id="stack">
-					<OurStack />
-				</div>
+
 				<div id="equipo">
 					<OurTeam />
 				</div>
 				<ContactUs />
+				<div id="stack">
+					<OurStack />
+				</div>
 				<Footer />
 			</main>
 		</>
