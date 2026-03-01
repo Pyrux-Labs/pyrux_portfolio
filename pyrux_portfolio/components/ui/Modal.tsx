@@ -66,7 +66,7 @@ export default function Modal({
 		<AnimatePresence>
 			{isOpen && (
 				<motion.div
-					className="fixed inset-0 z-50 flex items-center justify-center p-4"
+					className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
 					variants={overlayVariants}
 					initial="hidden"
 					animate="visible"
@@ -80,7 +80,7 @@ export default function Modal({
 
 					{/* Modal content*/}
 					<motion.div
-						className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl border border-border bg-surface p-6 sm:p-8 shadow-2xl"
+						className="relative w-full h-full overflow-y-auto bg-surface p-5 shadow-2xl sm:h-auto sm:max-w-2xl sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-border sm:p-8"
 						variants={modalVariants}
 						initial="hidden"
 						animate="visible"

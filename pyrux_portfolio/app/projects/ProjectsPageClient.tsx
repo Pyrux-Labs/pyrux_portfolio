@@ -5,7 +5,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Search } from "lucide-react";
 import { projects } from "@/data/projects";
 import { technologies } from "@/data/technologies";
@@ -131,53 +131,57 @@ export default function ProjectsPageClient() {
 				</motion.div>
 
 				{/* Project grid */}
-				<motion.div
-					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-					variants={gridVariants}
-					initial="hidden"
-					animate="visible">
-					{filtered.map((project) => (
-						<motion.div
-							key={project.id}
-							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer transition-all hover:-translate-y-1 duration-200 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
-							variants={cardVariants}
-							onClick={() => setSelectedProject(project)}
-							role="button"
-							tabIndex={0}
-							aria-label={`Ver detalles de ${project.title}`}
-							onKeyDown={(e) => {
-								if (e.key === "Enter" || e.key === " ") {
-									e.preventDefault();
-									setSelectedProject(project);
-								}
-							}}>
-							<h3 className="font-display text-[1.05rem] font-semibold text-primary">
-								{project.title}
-							</h3>
-							<p className="text-[0.85rem] text-secondary leading-normal line-clamp-2">
-								{project.shortDescription}
-							</p>
-							<div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-								{project.technologies.slice(0, 4).map((techId) => {
-									const tech = getTechnologyById(techId);
-									return (
-										<Badge
-											key={techId}
-											label={tech?.name ?? techId}
-											className="text-[0.7rem] px-2 py-0.5"
-										/>
-									);
-								})}
-							</div>
-							<span className="text-[0.75rem] text-muted">
-								{new Date(project.date).toLocaleDateString("es-AR", {
-									year: "numeric",
-									month: "short",
-								})}
-							</span>
-						</motion.div>
-					))}
-				</motion.div>
+				<AnimatePresence mode="wait">
+					<motion.div
+						key={`${search}-${selectedTech ?? "all"}`}
+						className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+						variants={gridVariants}
+						initial="hidden"
+						animate="visible"
+						exit="hidden">
+						{filtered.map((project) => (
+							<motion.div
+								key={project.id}
+								className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer transition-all hover:-translate-y-1 duration-200 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+								variants={cardVariants}
+								onClick={() => setSelectedProject(project)}
+								role="button"
+								tabIndex={0}
+								aria-label={`Ver detalles de ${project.title}`}
+								onKeyDown={(e) => {
+									if (e.key === "Enter" || e.key === " ") {
+										e.preventDefault();
+										setSelectedProject(project);
+									}
+								}}>
+								<h3 className="font-display text-[1.05rem] font-semibold text-primary">
+									{project.title}
+								</h3>
+								<p className="text-[0.85rem] text-secondary leading-normal line-clamp-2">
+									{project.shortDescription}
+								</p>
+								<div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+									{project.technologies.slice(0, 4).map((techId) => {
+										const tech = getTechnologyById(techId);
+										return (
+											<Badge
+												key={techId}
+												label={tech?.name ?? techId}
+												className="text-[0.7rem] px-2 py-0.5"
+											/>
+										);
+									})}
+								</div>
+								<span className="text-[0.75rem] text-muted">
+									{new Date(project.date).toLocaleDateString("es-AR", {
+										year: "numeric",
+										month: "short",
+									})}
+								</span>
+							</motion.div>
+						))}
+					</motion.div>
+				</AnimatePresence>
 
 				{/* No results */}
 				{filtered.length === 0 && (

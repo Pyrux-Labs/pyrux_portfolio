@@ -37,10 +37,10 @@ export default function Hero() {
 			variants={containerVariants}
 			initial="hidden"
 			animate="visible">
-			<div className="flex items-center justify-between gap-8">
-				<div className="flex-1 text-left">
+			<div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between sm:gap-8">
+				<div className="flex-1 text-center sm:text-left">
 					<motion.h1
-						className="font-display text-[clamp(5rem,10vw,6rem)] font-bold leading-none mb-3"
+						className="font-display text-[clamp(2.8rem,8vw,6rem)] font-bold leading-none mb-3"
 						variants={textVariants}>
 						<span
 							className="bg-clip-text text-transparent animate-gradient-shift"
@@ -58,14 +58,14 @@ export default function Hero() {
 						Desarrollo web y soluciones digitales.
 					</motion.p>
 					<motion.p
-						className="text-[1.1rem] text-secondary max-w-120 leading-[1.7]"
+						className="text-[1rem] sm:text-[1.1rem] text-secondary max-w-120 leading-[1.7] mx-auto sm:mx-0"
 						variants={textVariants}>
 						Creamos páginas web modernas y sistemas a medida para llevar tu
 						negocio al siguiente nivel.
 					</motion.p>
 				</div>
 				<motion.div
-					className="group w-20 h-20 min-[481px]:w-25 min-[481px]:h-25 animate-float cursor-pointer shrink-0"
+					className="group w-16 h-16 min-[481px]:w-20 min-[481px]:h-20 sm:w-25 sm:h-25 animate-float cursor-pointer shrink-0"
 					variants={iconVariants}
 					whileHover={{ scale: 1.12, animationPlayState: "paused" }}
 					aria-hidden="true">

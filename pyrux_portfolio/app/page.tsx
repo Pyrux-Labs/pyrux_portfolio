@@ -1,4 +1,3 @@
-import ThemeToggle from "@/components/ui/ThemeToggle";
 import StarBackground from "@/components/ui/StarBackground";
 import Hero from "@/components/sections/Hero";
 import HeroButtons from "@/components/sections/HeroButtons";
@@ -8,27 +7,21 @@ import OurStack from "@/components/sections/OurStack";
 import OurTeam from "@/components/sections/OurTeam";
 import ContactUs from "@/components/sections/ContactUs";
 import Footer from "@/components/layout/Footer";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Index() {
 	return (
 		<>
 			<ThemeToggle />
 			<StarBackground />
-			<main className="relative z-1 max-w-215 mx-auto min-h-screen flex flex-col px-4 pt-8 pb-8 min-[481px]:px-6 min-[481px]:pt-10 min-[481px]:pb-10">
+			<main className="relative z-1 max-w-215 mx-auto min-h-screen flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pt-22 min-[481px]:pb-10">
 				<Hero />
 				<HeroButtons />
 				<OurProjects />
-				<div id="servicios">
-					<OurServices />
-				</div>
-
-				<div id="equipo">
-					<OurTeam />
-				</div>
+				<OurServices />
+				<OurTeam />
+				<OurStack />
 				<ContactUs />
-				<div id="stack">
-					<OurStack />
-				</div>
 				<Footer />
 			</main>
 		</>

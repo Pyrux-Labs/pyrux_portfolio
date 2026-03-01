@@ -24,7 +24,7 @@ export default function Footer() {
 			viewport={{ once: true }}
 			transition={{ duration: 0.6 }}>
 			<nav
-				className="flex justify-center items-center gap-3 mb-4 text-[0.95rem]"
+				className="flex flex-wrap justify-center items-center gap-3 mb-4 text-[0.95rem]"
 				aria-label="Redes sociales">
 				{socialLinks.map((link) => (
 					<a
