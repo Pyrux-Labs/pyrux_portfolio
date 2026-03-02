@@ -49,14 +49,14 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-theme="dark" suppressHydrationWarning>
 			<head>
-				<link rel="preconnect" href="https://api.fontshare.com" />
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
 					rel="preconnect"
-					href="https://cdn.fontshare.com"
+					href="https://fonts.gstatic.com"
 					crossOrigin="anonymous"
 				/>
 				<link
-					href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600,500&f[]=satoshi@400,500,700&display=swap"
+					href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
 					rel="stylesheet"
 				/>
 			</head>

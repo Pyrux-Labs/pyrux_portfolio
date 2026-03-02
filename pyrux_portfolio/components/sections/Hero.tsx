@@ -40,7 +40,7 @@ export default function Hero() {
 			<div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between sm:gap-8">
 				<div className="flex-1 text-center sm:text-left">
 					<motion.h1
-						className="font-display text-[clamp(2.8rem,8vw,6rem)] font-bold leading-none mb-3"
+						className="font-display text-[clamp(2.8rem,8vw,6rem)] font-bold leading-none mb-4"
 						variants={textVariants}>
 						<span
 							className="bg-clip-text text-transparent animate-gradient-shift"
