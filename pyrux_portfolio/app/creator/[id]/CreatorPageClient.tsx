@@ -6,7 +6,7 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, Github, Linkedin, Mail, Instagram } from "lucide-react";
+import { ArrowLeft, Github, Linkedin, Mail } from "lucide-react";
 import { getCreatorById } from "@/data/creators";
 import { getProjectsByCreator } from "@/data/projects";
 import { getTechnologyById } from "@/data/technologies";
@@ -120,16 +120,6 @@ export default function CreatorPageClient({
 										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
 										aria-label="Email">
 										<Mail size={16} />
-									</a>
-								)}
-								{creator.socialLinks.instagram && (
-									<a
-										href={creator.socialLinks.instagram}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
-										aria-label="Instagram">
-										<Instagram size={16} />
 									</a>
 								)}
 							</div>

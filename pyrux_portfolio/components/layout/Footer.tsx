@@ -10,7 +10,7 @@ const currentYear = new Date().getFullYear();
 
 const socialLinks = [
 	{ label: "LinkedIn", href: "https://linkedin.com/company/pyrux" },
-	{ label: "Email", href: "mailto:contacto@pyrux.dev" },
+	{ label: "Email", href: "pyrux@pyrux.com.ar" },
 	{ label: "WhatsApp", href: "https://wa.me/5491112345678" },
 	{ label: "Instagram", href: "https://instagram.com/pyrux.dev" },
 ];

@@ -21,7 +21,7 @@ interface ContactItem {
 	hoverIcon: string;
 }
 
-const CONTACT_EMAIL = "contacto@pyrux.dev";
+const CONTACT_EMAIL = "pyrux@pyrux.com.ar";
 
 const ctaItems: ContactItem[] = [
 	{

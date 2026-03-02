@@ -8,7 +8,7 @@ export const creators: Creator[] = [
 	{
 		id: "juan",
 		name: "Juan Manuel García",
-		bio: "Desarrollador full-stack apasionado por la tecnología y la innovación. Con experiencia en desarrollo web moderno, sistemas a medida y automatización de procesos. Siempre buscando aprender y aplicar nuevas herramientas para crear soluciones eficientes y de calidad.",
+		bio: "Desarrollador full-stack. Con experiencia en desarrollo web moderno, sistemas a medida y automatización de procesos. Siempre buscando aprender y aplicar nuevas herramientas para crear soluciones eficientes y de calidad.",
 		image: "/creators/juan.webp",
 		photos: [
 			"/creators/juan-1.webp",
@@ -17,10 +17,9 @@ export const creators: Creator[] = [
 		],
 		role: "Full-Stack Developer",
 		socialLinks: {
-			linkedin: "https://linkedin.com/in/juanmanuelgarcia",
-			github: "https://github.com/juanmanuelgarcia",
-			email: "juan@pyrux.dev",
-			instagram: "https://instagram.com/juanmanuelgarcia",
+			linkedin: "https://www.linkedin.com/in/juan-manuel-garcia-99952b270/",
+			github: "https://github.com/LittleBigPants",
+			email: "juanmanuelgarcia@pyrux.com.ar",
 		},
 		featuredProjects: [
 			"ecommerce-moderno",
@@ -41,10 +40,9 @@ export const creators: Creator[] = [
 		],
 		role: "Frontend Developer & UI Designer",
 		socialLinks: {
-			linkedin: "https://linkedin.com/in/ginogiorgi",
+			linkedin: "https://www.linkedin.com/in/ginorubengiorgi/",
 			github: "https://github.com/ginogiorgi",
-			email: "gino@pyrux.dev",
-			instagram: "https://instagram.com/ginogiorgi",
+			email: "ginorubengiorgi@pyrux.com.ar",
 		},
 		featuredProjects: [
 			"dashboard-analytics",
