@@ -292,24 +292,28 @@ import { AnimatePresence } from "framer-motion";
 **Componentes base**
 
 - Card, Modal, Tab, Carousel, Badge, Icon wrapper
+- Button component reutilizable (primary, secondary, outline) — `components/ui/Button.tsx`
 
 **Layout**
 
 - Header/Navigation, Footer, 404 page
+- ThemeToggle global en `layout.tsx` (visible en todas las páginas)
+- Script anti-FOUC para tema persistente
 
 **Secciones principales**
 
-- Hero Section con animación del icono
+- Hero Section con animaciones duales (float + gradient shift simultáneos)
+- Hero SVG con glow animado, gradient rotation y Framer Motion float
 - Contact Button flotante
 - Carousels de proyectos y empresas
 - Modals (ProjectModal, CompanyModal)
-- Tecnologías Section con tabs (muestra todas las tecnologías actualmente)
+- Tecnologías Section expandible (featured por defecto, View More/Less inline)
 - Quiénes Somos con modal de creador
 - Contact Section con copy-to-clipboard
 
 **Páginas secundarias**
 
-- `/projects` con filtros y búsqueda (⚠️ filtrado con bug)
+- `/projects` con filtros y búsqueda (corregido: AnimatePresence con popLayout)
 - `/clients` con filtros
 - `/creator/[id]` con grid de proyectos
 
@@ -321,6 +325,12 @@ import { AnimatePresence } from "framer-motion";
 **SEO básico**
 
 - Metadata, OG tags, sitemap.xml, robots.txt
+
+**Arreglos recientes**
+
+- Logo SVG (`public/Pyrux-logo.svg`) actualizado con gradient y glow (igual al hero)
+- Bug de filtrado en `/projects` corregido (re-mount por AnimatePresence)
+- Tema global aplicado en todas las páginas via layout.tsx
 
 ---
 
@@ -336,29 +346,23 @@ import { AnimatePresence } from "framer-motion";
    - Testear cada componente en diferentes viewports
    - Navigation adaptativa (hamburger en mobile)
 
-2. **Fix bug de filtrado en Projects Page**
-   - Archivo: `app/projects/ProjectPageClient.tsx`
-   - Problema: El filtrado por tecnología no funciona correctamente
-   - Revisar lógica de filtros
-   - Revisar cómo se combinan búsqueda + filtros
+2. ~~**Fix bug de filtrado en Projects Page**~~ ✅ COMPLETADO
+   - Corregido: `AnimatePresence mode="wait"` con key causaba re-mount en cada keystroke
+   - Solución: `AnimatePresence mode="popLayout"` con layout animations por item
 
 #### 🟡 PRIORIDAD ALTA
 
-3. **Refactor de Tecnologías Section (expandir/colapsar)**
-   - Mostrar solo tecnologías featured (~13) por defecto
-   - Botón "View More" que expande inline
-   - Al expandir: muestra TODAS las tecnologías
-   - Al expandir: botón cambia a "View Less"
-   - NO crear página separada `/stack`
-   - Animación smooth con Framer Motion (height: 0 → auto)
-   - Mantener tabs de categorías en ambos estados
-   - El contenido expandido debe estar en el mismo componente
+3. ~~**Refactor de Tecnologías Section (expandir/colapsar)**~~ ✅ COMPLETADO
+   - Implementado en `components/sections/OurStack.tsx`
+   - Featured por defecto, botón View More/View Less con ChevronDown
+   - AnimatePresence con tabs de categorías en ambos estados
+   - Inline en la homepage, sin página separada
 
-4. **Button Component reutilizable**
+4. ~~**Button Component reutilizable**~~ ✅ COMPLETADO
+   - Creado en `components/ui/Button.tsx`
    - Variantes: primary, secondary, outline
-   - Usar el mismo estilo de los botones de Hero Section
-   - Props: variant, size, onClick, disabled, children
-   - Reutilizar en toda la app (reemplazar botones hardcodeados)
+   - Tamaños: sm, md, lg
+   - Framer Motion hover/tap, disabled state, focus-visible
 
 #### 🟢 PRIORIDAD MEDIA
 
@@ -375,125 +379,40 @@ import { AnimatePresence } from "framer-motion";
 
 ---
 
-## 🎯 Especificaciones de Features Pendientes
+## 🎯 Especificaciones de Features Completadas
 
-### Feature: Tecnologías Section Expandible
+### ✅ Feature: Tecnologías Section Expandible — COMPLETADO
 
-**Comportamiento actual (❌):**
+Implementado en `components/sections/OurStack.tsx`:
 
-- Muestra TODAS las tecnologías en la homepage
-- No hay opción de ver menos
-
-**Comportamiento deseado (✅):**
-
-- Por defecto: muestra solo tecnologías con `featured: true` (~13 tecnologías)
-- Botón "View More" al final de la sección
-- Al hacer click en "View More":
-  - El contenido se expande con animación
-  - Muestra TODAS las tecnologías (featured + no featured)
-  - El botón cambia a "View Less"
-- Al hacer click en "View Less":
-  - El contenido se colapsa con animación
-  - Vuelve a mostrar solo las featured
-  - El botón vuelve a "View More"
-
-**Implementación técnica:**
-
-```tsx
-// Estado
-const [isExpanded, setIsExpanded] = useState(false);
-
-// Filtrar tecnologías
-const featuredTechs = technologies.filter(t => t.featured);
-const displayedTechs = isExpanded ? technologies : featuredTechs;
-
-// Botón
-<button onClick={() => setIsExpanded(!isExpanded)}>
-  {isExpanded ? "View Less" : "View More"}
-</button>
-
-// Grid con AnimatePresence
-<AnimatePresence>
-  <motion.div
-    initial={{ height: "auto" }}
-    animate={{ height: "auto" }}
-    exit={{ height: 0 }}
-    transition={{ duration: 0.3 }}
-  >
-    {displayedTechs.map(tech => <TechCard />)}
-  </motion.div>
-</AnimatePresence>
-```
-
-**Ubicación:**
-
-- En la homepage, sección "Our Stack"
-- NO crear página separada
+- Estado `isExpanded` controla featured vs todas
+- Tabs de categorías funcionan en ambos estados
+- Botón "View More (N+)" / "View Less" con ChevronDown animado
+- AnimatePresence con stagger para animaciones suaves
 
 ---
 
-### Bug: Filtrado en Projects Page
+### ✅ Bug: Filtrado en Projects Page — CORREGIDO
 
-**Archivo afectado:**
+**Archivo:** `app/projects/ProjectsPageClient.tsx`
 
-- `app/projects/ProjectPageClient.tsx`
+**Problema:** `AnimatePresence mode="wait"` con `key={search-selectedTech}` causaba que el grid completo se desmontara y remontara en cada keystroke, generando un efecto de flickering.
 
-**Síntomas:**
-
-- Los filtros por tecnología no funcionan bien
-- Posible problema con la lógica de combinación de búsqueda + filtros
-- Revisar cómo se filtran los proyectos cuando hay múltiples filtros activos
-
-**Debugging sugerido:**
-
-```tsx
-// Verificar que los filtros se apliquen correctamente
-const filteredProjects = projects.filter((project) => {
-	// 1. Filtro de búsqueda
-	const matchesSearch =
-		searchQuery === "" ||
-		project.title.toLowerCase().includes(searchQuery.toLowerCase());
-
-	// 2. Filtro de tecnología
-	const matchesTech =
-		selectedTech === "all" || project.technologies.includes(selectedTech);
-
-	// Ambos filtros deben cumplirse
-	return matchesSearch && matchesTech;
-});
-```
+**Solución:** Cambiar a `AnimatePresence mode="popLayout"` envolviendo los items individuales con `layout` prop, animando entrada/salida por item sin re-montar el grid completo.
 
 ---
 
-### Feature: Button Component
+### ✅ Feature: Button Component — COMPLETADO
 
-**Props interface:**
-
-```tsx
-interface ButtonProps {
-	variant: "primary" | "secondary" | "outline";
-	size?: "sm" | "md" | "lg";
-	onClick?: () => void;
-	disabled?: boolean;
-	children: React.ReactNode;
-	className?: string; // Para overrides específicos
-}
-```
-
-**Estilos base (igual a botones de Hero):**
-
-- Primary: fondo con color principal, hover con glow
-- Secondary: fondo semi-transparente, hover con scale
-- Outline: borde con color, hover con fill
-- Todos con Framer Motion para hover effects
-
-**Uso:**
+Creado en `components/ui/Button.tsx`:
 
 ```tsx
 <Button variant="primary" size="md" onClick={handleClick}>
 	View More
 </Button>
 ```
+
+Props: variant (primary/secondary/outline), size (sm/md/lg), onClick, disabled, className, aria-label.
 
 ---
 

@@ -131,19 +131,25 @@ export default function ProjectsPageClient() {
 				</motion.div>
 
 				{/* Project grid */}
-				<AnimatePresence mode="wait">
-					<motion.div
-						key={`${search}-${selectedTech ?? "all"}`}
-						className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-						variants={gridVariants}
-						initial="hidden"
-						animate="visible"
-						exit="hidden">
+				<motion.div
+					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+					variants={gridVariants}
+					initial="hidden"
+					animate="visible">
+					<AnimatePresence mode="popLayout">
 						{filtered.map((project) => (
 							<motion.div
 								key={project.id}
 								className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer transition-all hover:-translate-y-1 duration-200 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 								variants={cardVariants}
+								initial="hidden"
+								animate="visible"
+								exit={{
+									opacity: 0,
+									scale: 0.95,
+									transition: { duration: 0.2 },
+								}}
+								layout
 								onClick={() => setSelectedProject(project)}
 								role="button"
 								tabIndex={0}
@@ -180,8 +186,8 @@ export default function ProjectsPageClient() {
 								</span>
 							</motion.div>
 						))}
-					</motion.div>
-				</AnimatePresence>
+					</AnimatePresence>
+				</motion.div>
 
 				{/* No results */}
 				{filtered.length === 0 && (

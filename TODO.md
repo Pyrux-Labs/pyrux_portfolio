@@ -40,7 +40,7 @@
 
 ### Componentes Reutilizables
 
-- [x] Button component (variantes: primary, secondary, outline)
+- [x] Button component (variantes: primary, secondary, outline) — `components/ui/Button.tsx`
 - [x] Card component (variantes: project, company, value, profile)
 - [x] Modal component (base reutilizable)
 - [x] Tab component (para tecnologías)
@@ -73,6 +73,8 @@
 - [x] Smooth scroll al footer
 - [x] Animación del botón
 - [x] Estado hover y active
+- [x] ThemeToggle visible en todas las páginas (movido a layout.tsx)
+- [x] Tema aplicado globalmente con prevención de FOUC
 
 ### 3. Content Carousel (Proyectos y Empresas)
 
@@ -383,7 +385,10 @@
 - [x] Texto alineado a la derecha (título, subtítulo, descripción)
 - [x] Icon/logo columna izquierda
 - [x] Framer Motion para animación de entrada del icono
-- [x] Hover state interactivo (scale, rotate, glow)
+- [x] Dual animation: float + gradient shift simultáneos
+- [x] SVG glow animation con filter drop-shadow
+- [x] SVG gradient rotation con animateTransform
+- [x] Hover state interactivo (scale, glow intensificado)
 - [x] Responsive: stack vertical en mobile
 - [x] Gradient background o efectos visuales
 

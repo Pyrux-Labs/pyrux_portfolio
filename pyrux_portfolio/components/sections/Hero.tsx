@@ -65,74 +65,33 @@ export default function Hero() {
 					</motion.p>
 				</div>
 				<motion.div
-					className="group w-16 h-16 min-[481px]:w-20 min-[481px]:h-20 sm:w-25 sm:h-25 animate-float cursor-pointer shrink-0"
+					className="shrink-0 w-48 h-48 sm:w-64 sm:h-64 "
 					variants={iconVariants}
-					whileHover={{ scale: 1.12, animationPlayState: "paused" }}
-					aria-hidden="true">
+					whileHover={{ scale: 1.1 }}>
 					<svg
-						viewBox="0 0 120 120"
-						fill="none"
-						xmlns="http://www.w3.org/2000/svg"
-						className="w-full h-full drop-shadow-[0_0_20px_var(--logo-glow)] transition-[filter] duration-300 ease-in-out group-hover:drop-shadow-[0_0_30px_var(--logo-glow-hover)]">
-						{/* Lobster Body */}
+						viewBox="0 0 768 768"
+						className="w-full h-full animate-float transition-all duration-30 hover:animate-gradient-shift"
+						xmlns="http://www.w3.org/2000/svg">
 						<path
-							d="M60 10 C30 10 15 35 15 55 C15 75 30 95 45 100 L45 110 L55 110 L55 100 C55 100 60 102 65 100 L65 110 L75 110 L75 100 C90 95 105 75 105 55 C105 35 90 10 60 10Z"
-							fill="url(#lobster-gradient)"
-						/>
-						{/* Left Claw */}
-						<path
-							d="M20 45 C5 40 0 50 5 60 C10 70 20 65 25 55 C28 48 25 45 20 45Z"
-							fill="url(#lobster-gradient)"
-							className="origin-right animate-claw-snap"
-						/>
-						{/* Right Claw */}
-						<path
-							d="M100 45 C115 40 120 50 115 60 C110 70 100 65 95 55 C92 48 95 45 100 45Z"
-							fill="url(#lobster-gradient)"
-							className="origin-left animate-claw-snap"
-							style={{ animationDelay: "0.2s" }}
-						/>
-						{/* Ants */}
-						<path
-							d="M45 15 Q35 5 30 8"
-							stroke="var(--coral-bright)"
-							strokeWidth="2"
-							strokeLinecap="round"
-							className="origin-center animate-wiggle"
-						/>
-						<path
-							d="M75 15 Q85 5 90 8"
-							stroke="var(--coral-bright)"
-							strokeWidth="2"
-							strokeLinecap="round"
-							className="origin-center animate-wiggle"
-						/>
-						{/* Eyes */}
-						<circle cx="45" cy="35" r="6" fill="var(--bg-deep)" />
-						<circle cx="75" cy="35" r="6" fill="var(--bg-deep)" />
-						<circle
-							cx="46"
-							cy="34"
-							r="2"
-							fill="var(--cyan-bright)"
-							className="animate-blink"
-						/>
-						<circle
-							cx="76"
-							cy="34"
-							r="2"
-							fill="var(--cyan-bright)"
-							className="animate-blink"
+							d="M 384,84 A 300,300 0 0 0 84,384 300,300 0 0 0 384,684 300,300 0 0 0 593.6568,598.57868 l 35.70034,45.54406 h 27.0368 L 608.37223,583.14343 A 300,300 0 0 0 684,384 300,300 0 0 0 636.6144,222.1808 l 16.89171,-21.55411 h -26.75223 l -2.70365,3.44028 A 300,300 0 0 0 384,84 Z m 0,25.714291 a 274.28571,274.28571 0 0 1 223.5268,115.32925 l -44.83263,56.93634 -97.24052,122.72046 -28.04125,-35.20651 c 1.70725,-8.3744 2.56137,-17.09246 2.56137,-26.15789 0,-18.72 -3.64354,-35.8788 -10.92354,-51.4788 -7.10669,-15.77331 -17.33132,-28.77165 -30.678,-38.99834 -13.17332,-10.4 -28.77303,-16.98954 -46.79972,-19.76286 -4.68,-0.86668 -8.92663,-1.38377 -12.73994,-1.55691 -3.81332,-0.34686 -7.54303,-0.51886 -11.18303,-0.51886 H 189.85377 V 577.75291 A 274.28571,274.28571 0 0 1 109.71428,384 274.28571,274.28571 0 0 1 384,109.71429 Z M 619.71428,243.73491 A 274.28571,274.28571 0 0 1 658.28571,384 274.28571,274.28571 0 0 1 592.1836,562.58537 L 477.93417,421.39114 589.73103,281.97988 Z m -408.02177,9.12389 h 115.95703 c 2.94669,0 6.41789,0.172 10.40457,0.51886 4.16,0.17314 8.32046,0.69023 12.48046,1.55691 14.38668,2.77332 26.42891,8.49292 36.1356,17.1596 9.88,8.66669 17.33103,19.24434 22.35771,31.72434 5.02669,12.30669 7.54189,25.47732 7.54189,39.51732 l -48.8756,-61.35606 h -27.0452 l 72.22937,89.69029 c -1.05571,3.88531 -2.34211,7.70605 -3.85046,11.45091 -5.02668,12.30669 -12.47771,22.78977 -22.35771,31.45646 -9.70669,8.66668 -21.74892,14.38628 -36.1356,17.1596 -4.16,0.69331 -8.32046,1.21005 -12.48046,1.55691 -3.98668,0.34686 -7.45788,0.52743 -10.40457,0.52743 H 211.69251 Z m 218.31194,140.08931 22.44978,27.86549 -114.40012,141.96428 h 27.55583 l 99.84371,-125.84262 99.3164,125.84262 h 0.81195 l 12.10383,15.43526 A 274.28571,274.28571 0 0 1 384,658.28571 274.28571,274.28571 0 0 1 211.69251,597.4068 V 455.66017 h 115.95703 c 3.64,0 7.36971,-0.172 11.18303,-0.51886 3.81331,-0.34685 8.05994,-0.87194 12.73994,-1.56525 18.02669,-2.77332 33.6264,-9.26829 46.79972,-19.49498 13.34668,-10.4 23.57131,-23.40668 30.678,-39.00668 0.32628,-0.70726 0.64245,-1.41297 0.95422,-2.12612 z"
+							style={{
+								fill: "url(#logoGradient)",
+								stroke: "url(#logoGradient)",
+								strokeWidth: 8,
+								strokeLinejoin: "round",
+								strokeLinecap: "round",
+							}}
 						/>
 						<defs>
 							<linearGradient
-								id="lobster-gradient"
+								id="logoGradient"
 								x1="0%"
 								y1="0%"
 								x2="100%"
 								y2="100%">
-								<stop offset="0%" stopColor="var(--logo-gradient-start)" />
-								<stop offset="100%" stopColor="var(--logo-gradient-end)" />
+								<stop offset="0%" stopColor="var(--hero-title-start)" />
+								<stop offset="52%" stopColor="var(--coral-bright)" />
+								<stop offset="100%" stopColor="var(--hero-title-end)" />
 							</linearGradient>
 						</defs>
 					</svg>

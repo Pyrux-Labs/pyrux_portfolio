@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -49,6 +50,12 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-theme="dark" suppressHydrationWarning>
 			<head>
+				{/* Prevenir FOUC: aplicar tema antes del primer render */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `(function(){var t=localStorage.getItem('oc-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}})();`,
+					}}
+				/>
 				<link rel="preconnect" href="https://fonts.googleapis.com" />
 				<link
 					rel="preconnect"
@@ -60,7 +67,10 @@ export default function RootLayout({
 					rel="stylesheet"
 				/>
 			</head>
-			<body>{children}</body>
+			<body>
+				<ThemeToggle />
+				{children}
+			</body>
 		</html>
 	);
 }
