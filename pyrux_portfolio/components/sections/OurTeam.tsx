@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════
 //
-// Sección Nuestro Equipo — cards de creadores
+// Seccion our team
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -11,6 +11,7 @@ import Section from "@/components/ui/Section";
 import CreatorModal from "@/components/modals/CreatorModal";
 import { creators } from "@/data/creators";
 import { FolderOpen } from "lucide-react";
+import Image from "next/image";
 import type { Creator } from "@/types";
 
 // Variantes de animación
@@ -51,30 +52,33 @@ export default function OurTeam() {
 							}}>
 							{/* Icono de carpeta */}
 							<div className="relative">
-								<FolderOpen
-									size={32}
-									className="text-coral transition-transform duration-200 group-hover:scale-110"
+								<Image
+									src={creator.image}
+									alt={creator.name}
+									width={64}
+									height={64}
+									className="w-16 h-16 rounded-full"
 								/>
 							</div>
 
-							{/* Nombre */}
+							{/* Name */}
 							<span className="font-display text-[1.1rem] font-semibold text-primary tracking-[0.02em]">
 								{creator.name}
 							</span>
 
-							{/* Rol */}
+							{/* Role */}
 							<span className="text-[0.85rem] text-coral font-medium">
 								{creator.role}
 							</span>
 
-							{/* Bio corta */}
+							{/* Bio short */}
 							<p className="text-[0.85rem] text-secondary leading-normal line-clamp-3">
 								{creator.bio}
 							</p>
 
-							{/* Indicador de click */}
+							{/* Click indicator */}
 							<span className="text-[0.8rem] text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-								Click para ver perfil →
+								Click to view profile →
 							</span>
 						</motion.div>
 					))}

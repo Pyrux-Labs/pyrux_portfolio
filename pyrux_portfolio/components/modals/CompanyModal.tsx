@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Modal de Empresa — detalle completo
+// Company Modal
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -23,10 +23,10 @@ export default function CompanyModal({
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} title={company.name}>
-			{/* Resumen */}
+			{/* Summary */}
 			<p className="text-secondary leading-relaxed mb-4">{company.summary}</p>
 
-			{/* Trabajo realizado */}
+			{/* Work done */}
 			<div className="mb-6">
 				<h4 className="font-display text-[0.95rem] font-semibold text-primary mb-2">
 					Trabajo realizado

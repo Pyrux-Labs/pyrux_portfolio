@@ -338,14 +338,6 @@ import { AnimatePresence } from "framer-motion";
 
 #### 🔴 PRIORIDAD MÁXIMA - URGENTE
 
-1. **Responsive Design en TODOS los componentes**
-   - ⚠️ Muchos componentes NO son responsive actualmente
-   - Mobile (<640px): 1 columna, touch targets 44px mínimo, hamburger menu
-   - Tablet (640-1024px): 2 columnas, layout intermedio
-   - Desktop (>1024px): 3+ columnas, layout completo
-   - Testear cada componente en diferentes viewports
-   - Navigation adaptativa (hamburger en mobile)
-
 2. ~~**Fix bug de filtrado en Projects Page**~~ ✅ COMPLETADO
    - Corregido: `AnimatePresence mode="wait"` con key causaba re-mount en cada keystroke
    - Solución: `AnimatePresence mode="popLayout"` con layout animations por item
@@ -366,16 +358,14 @@ import { AnimatePresence } from "framer-motion";
 
 #### 🟢 PRIORIDAD MEDIA
 
-5. **Performance**
-   - Code splitting
-   - Lazy load de componentes pesados
-   - Lighthouse score > 90
-
 6. **Pre-deployment**
    - Cross-browser testing (Chrome, Firefox, Safari, Edge)
    - Mobile testing (iOS y Android)
    - Limpiar console.logs
    - Build de producción sin errores
+   - Eliminar codigo inservible
+   - Eliminar comentarios de debug
+   - Eliminar estilos no usados
 
 ---
 

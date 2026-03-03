@@ -270,11 +270,11 @@
 - [ ] Configurar caching headers
 - [ ] Minificar CSS y JS
 - [ ] Eliminar código no usado
-- [ ] Lighthouse score > 90 en todas las categorías
+- [x] Lighthouse score > 90 en todas las categorías
 
 ### UX/UI Polish
 
-- [ ] Revisar spacing y alineación en todas las secciones
+- [x] Revisar spacing y alineación en todas las secciones
 - [x] 404 page personalizada
 - [x] Ajustes finales de responsive
 
@@ -284,11 +284,11 @@
 
 ### Pre-deployment
 
-- [ ] Configurar variables de entorno para producción
+- [x] Configurar variables de entorno para producción
 - [x] Remover console.logs y código de debug
-- [ ] Build de producción local (npm run build)
-- [ ] Verificar que no hay errores en build
-- [ ] Test de producción local (npm start)
+- [x] Build de producción local (npm run build)
+- [x] Verificar que no hay errores en build
+- [x] Test de producción local (npm start)
 
 ### Hosting Setup
 
@@ -651,13 +651,13 @@
 
 ### Performance
 
-- [ ] Lighthouse Performance > 90
-- [ ] Lighthouse Accessibility > 90
-- [ ] Lighthouse Best Practices > 90
-- [ ] Lighthouse SEO > 90
-- [ ] First Contentful Paint < 1.5s
-- [ ] Time to Interactive < 3.5s
-- [ ] Cumulative Layout Shift < 0.1
+- [x] Lighthouse Performance > 90
+- [x] Lighthouse Accessibility > 90
+- [x] Lighthouse Best Practices > 90
+- [x] Lighthouse SEO > 90
+- [x] First Contentful Paint < 1.5s
+- [x] Time to Interactive < 3.5s
+- [x] Cumulative Layout Shift < 0.1
 
 ### SEO
 

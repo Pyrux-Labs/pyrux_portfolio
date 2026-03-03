@@ -8,7 +8,7 @@ export const companies: Company[] = [
 	{
 		id: "techflow",
 		name: "TechFlow Solutions",
-		logo: "/companies/techflow.svg",
+		logo: "",
 		summary:
 			"Startup de tecnología enfocada en soluciones SaaS para empresas medianas.",
 		workDescription:
@@ -20,7 +20,7 @@ export const companies: Company[] = [
 	{
 		id: "greenmarket",
 		name: "GreenMarket",
-		logo: "/companies/greenmarket.svg",
+		logo: "",
 		summary:
 			"Cadena de tiendas orgánicas con presencia en varias ciudades.",
 		workDescription:
@@ -32,7 +32,7 @@ export const companies: Company[] = [
 	{
 		id: "medicore",
 		name: "MediCore",
-		logo: "/companies/medicore.svg",
+		logo: "",
 		summary:
 			"Clínica médica con múltiples especialidades y sistema de turnos.",
 		workDescription:
@@ -42,7 +42,7 @@ export const companies: Company[] = [
 	{
 		id: "urbanfit",
 		name: "UrbanFit Gym",
-		logo: "/companies/urbanfit.svg",
+		logo: "",
 		summary:
 			"Cadena de gimnasios con modelo de suscripción y clases online.",
 		workDescription:
@@ -54,7 +54,7 @@ export const companies: Company[] = [
 	{
 		id: "logistica-express",
 		name: "Logística Express",
-		logo: "/companies/logistica.svg",
+		logo: "",
 		summary:
 			"Empresa de logística y distribución con operaciones nacionales.",
 		workDescription:
@@ -64,7 +64,7 @@ export const companies: Company[] = [
 	{
 		id: "estudio-legal",
 		name: "Estudio Legal Martínez",
-		logo: "/companies/legal.svg",
+		logo: "",
 		summary:
 			"Estudio jurídico especializado en derecho comercial y corporativo.",
 		workDescription:
@@ -73,7 +73,20 @@ export const companies: Company[] = [
 		testimonial:
 			"Profesionales serios y comprometidos. El sitio nos genera consultas todos los días.",
 	},
-];
+		{
+		id: "medmind",
+		name: "MedMind",
+		logo: "/companies/medmind.svg",
+		summary:
+			"Empresa de servicios de traducción profesional.",
+		workDescription:
+			"Creación de una landing page moderna y responsive para promocionar los servicios de traducción de MedMind.",
+		websiteUrl: "https://medmind.com.ar",
+		testimonial:
+			"Profesionales serios y comprometidos. El sitio nos genera consultas todos los días.",
+	},
+	
+	];
 
 // Funciones auxiliares
 export function getCompanyById(id: string): Company | undefined {

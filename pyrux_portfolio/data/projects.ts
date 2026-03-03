@@ -121,6 +121,22 @@ export const projects: Project[] = [
 		featured: false,
 		date: "2025-05-14",
 	},
+		{
+		id: "landing-page-medmind",
+		title: "Landing Page MedMind",
+		description:
+			"Landing page para la empresa MedMind, una startup de servicios de traducción profesional.",
+		shortDescription:
+			"Landing page para la empresa de traducción MedMind.",
+		technologies: ["react", "typescript", "stripe", "nextjs", "tailwindcss", "framer-motion"],
+		images: ["/projects/medmind-1.webp", "/projects/medmind-2.webp"],
+		liveUrl: "https://medmind.com.ar",
+		githubUrl: "https://github.com/pyrux/medmind",
+		creatorId: "gino",
+		featured: false,
+		date: "2025-05-14",
+	},
+	
 ];
 
 // Funciones auxiliares para filtrar proyectos

@@ -9,7 +9,7 @@ export const creators: Creator[] = [
 		id: "juan",
 		name: "Juan Manuel García",
 		bio: "Desarrollador full-stack. Con experiencia en desarrollo web moderno, sistemas a medida y automatización de procesos. Siempre buscando aprender y aplicar nuevas herramientas para crear soluciones eficientes y de calidad.",
-		image: "/creators/juan.webp",
+		image: "/creators/Juan-Manuel-Garcia.webp",
 		photos: [
 			"/creators/juan-1.webp",
 			"/creators/juan-2.webp",
@@ -32,7 +32,7 @@ export const creators: Creator[] = [
 		id: "gino",
 		name: "Gino Ruben Giorgi",
 		bio: "Desarrollador creativo con enfoque en experiencias de usuario excepcionales. Especializado en frontend moderno, diseño de interfaces y optimización de rendimiento. Combina diseño y código para crear productos digitales que destacan.",
-		image: "/creators/gino.webp",
+		image: "/creators/Gino-Ruben-Giorgi.webp",
 		photos: [
 			"/creators/gino-1.webp",
 			"/creators/gino-2.webp",

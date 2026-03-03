@@ -32,7 +32,7 @@ const cardVariants = {
 
 export default function ProjectsPageClient() {
 	const [search, setSearch] = useState("");
-	const [selectedTech, setSelectedTech] = useState<string | null>(null);
+	const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
 	// Technologies used in projects (for filters)
@@ -49,10 +49,11 @@ export default function ProjectsPageClient() {
 				p.title.toLowerCase().includes(search.toLowerCase()) ||
 				p.shortDescription.toLowerCase().includes(search.toLowerCase());
 			const matchesTech =
-				!selectedTech || p.technologies.includes(selectedTech);
+				selectedTechs.length === 0 ||
+				selectedTechs.every((tech) => p.technologies.includes(tech));
 			return matchesSearch && matchesTech;
 		});
-	}, [search, selectedTech]);
+	}, [search, selectedTechs]);
 
 	return (
 		<>
@@ -106,9 +107,9 @@ export default function ProjectsPageClient() {
 					animate={{ opacity: 1 }}
 					transition={{ delay: 0.3, duration: 0.4 }}>
 					<button
-						onClick={() => setSelectedTech(null)}
+						onClick={() => setSelectedTechs([])}
 						className={`px-3 py-1.5 rounded-full text-[0.8rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-							!selectedTech
+							selectedTechs.length === 0
 								? "border-coral bg-coral-soft-bg text-coral"
 								: "border-border bg-card text-secondary hover:border-coral"
 						}`}>
@@ -117,11 +118,15 @@ export default function ProjectsPageClient() {
 					{usedTechs.map((tech) => (
 						<button
 							key={tech.id}
-							onClick={() =>
-								setSelectedTech(selectedTech === tech.id ? null : tech.id)
-							}
+							onClick={() => {
+								setSelectedTechs((prev) =>
+									prev.includes(tech.id)
+										? prev.filter((t) => t !== tech.id)
+										: [...prev, tech.id],
+								);
+							}}
 							className={`px-3 py-1.5 rounded-full text-[0.8rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-								selectedTech === tech.id
+								selectedTechs.includes(tech.id)
 									? "border-coral bg-coral-soft-bg text-coral"
 									: "border-border bg-card text-secondary hover:border-coral"
 							}`}>
