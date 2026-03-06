@@ -50,6 +50,20 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-theme="dark" suppressHydrationWarning>
 			<head>
+				{/* Google tag (gtag.js) */}
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-XD1K5TMVZ9"></script>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							window.dataLayer = window.dataLayer || [];
+							function gtag(){dataLayer.push(arguments);}
+							gtag('js', new Date());
+							gtag('config', 'G-XD1K5TMVZ9');
+						`,
+					}}
+				/>
 				{/* Prevenir FOUC: aplicar tema antes del primer render */}
 				<script
 					dangerouslySetInnerHTML={{
