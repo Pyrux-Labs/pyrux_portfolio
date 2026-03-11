@@ -72,7 +72,10 @@ const cardVariants = {
 
 export default function OurServices() {
 	return (
-		<Section title="Qué hacemos">
+		<Section
+			title="Qué hacemos"
+			viewAllHref="/prices"
+			viewAllLabel="Ver paquetes y precios">
 			<motion.div
 				className="grid grid-cols-1 min-[481px]:grid-cols-2 sm:grid-cols-3 gap-4"
 				variants={gridVariants}

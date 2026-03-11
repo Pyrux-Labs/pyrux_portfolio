@@ -49,30 +49,32 @@ export default function OurStack() {
 
 	return (
 		<Section title="Nuestro Stack">
-			{/* Tabs */}
-			<div className="flex flex-wrap gap-2 mb-6 justify-center">
-				<button
-					onClick={() => setActiveTab("all")}
-					className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-						activeTab === "all"
-							? "border-coral bg-coral-soft-bg text-coral"
-							: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
-					}`}>
-					Todas
-				</button>
-				{technologyCategories.map((cat) => (
+			{/* Tabs — only visible when expanded */}
+			{isExpanded && (
+				<div className="flex flex-wrap gap-2 mb-6 justify-center">
 					<button
-						key={cat.id}
-						onClick={() => setActiveTab(cat.id)}
+						onClick={() => setActiveTab("all")}
 						className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-							activeTab === cat.id
+							activeTab === "all"
 								? "border-coral bg-coral-soft-bg text-coral"
 								: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
 						}`}>
-						{cat.label}
+						Todas
 					</button>
-				))}
-			</div>
+					{technologyCategories.map((cat) => (
+						<button
+							key={cat.id}
+							onClick={() => setActiveTab(cat.id)}
+							className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
+								activeTab === cat.id
+									? "border-coral bg-coral-soft-bg text-coral"
+									: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
+							}`}>
+							{cat.label}
+						</button>
+					))}
+				</div>
+			)}
 
 			{/* Technologies grid */}
 			<AnimatePresence mode="wait">
@@ -114,8 +116,8 @@ export default function OurStack() {
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}>
 					{isExpanded
-						? "View Less"
-						: `View More (${totalCount - featuredCount}+)`}
+						? "Ver menos"
+						: `Ver más (${totalCount - featuredCount}+)`}
 					<motion.span
 						className="inline-flex"
 						animate={{ rotate: isExpanded ? 180 : 0 }}

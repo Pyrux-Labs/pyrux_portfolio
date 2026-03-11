@@ -31,7 +31,7 @@ export default function OurProjects() {
 				id="proyectos"
 				title="Nuestros proyectos"
 				viewAllHref="/projects"
-				viewAllLabel="View all">
+				viewAllLabel="Ver todos">
 				<div
 					className="flex flex-col gap-2 -mx-6 max-[480px]:-mx-4 overflow-hidden"
 					style={{
@@ -85,7 +85,7 @@ export default function OurProjects() {
 					<a
 						href="/clients"
 						className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
-						View all <span aria-hidden="true">→</span>
+						Ver todos <span aria-hidden="true">→</span>
 					</a>
 					<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
 						Nuestros clientes <span className="text-coral font-bold">⟨</span>
