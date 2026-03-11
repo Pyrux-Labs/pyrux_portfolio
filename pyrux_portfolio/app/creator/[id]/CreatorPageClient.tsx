@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Cliente de /creator/[id] — proyectos del creador
+// creator/[id] —  creator page client
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -13,13 +13,23 @@ import { getTechnologyById } from "@/data/technologies";
 import Badge from "@/components/ui/Badge";
 import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
+import Footer from "@/components/layout/Footer";
 import type { Project } from "@/types";
+import Link from "next/link";
 
 interface CreatorPageClientProps {
 	creatorId: string;
 }
 
-// Variantes de animación
+const headerVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.5, ease: "easeOut" as const },
+	},
+};
+
 const gridVariants = {
 	hidden: {},
 	visible: { transition: { staggerChildren: 0.06 } },
@@ -52,11 +62,11 @@ export default function CreatorPageClient({
 					<h1 className="font-display text-2xl font-bold text-primary mb-4">
 						Creador no encontrado
 					</h1>
-					<a
+					<Link
 						href="/"
 						className="text-coral no-underline hover:text-cyan transition-colors">
 						← Volver al inicio
-					</a>
+					</Link>
 				</main>
 			</>
 		);
@@ -69,17 +79,17 @@ export default function CreatorPageClient({
 				{/* Header */}
 				<motion.div
 					className="mb-8"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}>
-					<a
+					variants={headerVariants}
+					initial="hidden"
+					animate="visible">
+					<Link
 						href="/"
-						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 transition-colors duration-200 hover:text-coral">
+						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 hover:text-coral">
 						<ArrowLeft size={16} />
 						Volver al inicio
-					</a>
+					</Link>
 
-					{/* Info del creador */}
+					{/* Creator info */}
 					<div className="flex items-start gap-5 mb-6">
 						<div>
 							<h1 className="font-display text-3xl font-bold text-primary mb-1">
@@ -92,7 +102,7 @@ export default function CreatorPageClient({
 								{creator.bio}
 							</p>
 
-							{/* Links sociales */}
+							{/* Social links */}
 							<div className="flex gap-3 mt-4">
 								{creator.socialLinks.github && (
 									<a
@@ -131,7 +141,7 @@ export default function CreatorPageClient({
 					</h2>
 				</motion.div>
 
-				{/* Grid de proyectos */}
+				{/* Projects grid */}
 				<motion.div
 					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
 					variants={gridVariants}
@@ -140,9 +150,10 @@ export default function CreatorPageClient({
 					{creatorProjects.map((project) => (
 						<motion.div
 							key={project.id}
-							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer transition-all duration-250 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
 							whileHover={{ y: -4 }}
+							whileTap={{ scale: 0.98 }}
 							onClick={() => setSelectedProject(project)}
 							role="button"
 							tabIndex={0}
@@ -189,6 +200,7 @@ export default function CreatorPageClient({
 						</motion.div>
 					))}
 				</motion.div>
+				<Footer />
 			</main>
 
 			<ProjectModal

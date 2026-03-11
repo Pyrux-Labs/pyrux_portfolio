@@ -18,8 +18,8 @@ export default function Index() {
 				<OurProjects />
 				<OurServices />
 				<OurTeam />
-				<OurStack />
 				<ContactUs />
+				<OurStack />
 				<Footer />
 			</main>
 		</>

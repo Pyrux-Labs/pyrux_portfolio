@@ -1,18 +1,26 @@
 // ═══════════════════════════════════════════════
 // Clients page client component
 // ═══════════════════════════════════════════════
-
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Building2, Quote } from "lucide-react";
 import { companies } from "@/data/companies";
 import CompanyModal from "@/components/modals/CompanyModal";
 import StarBackground from "@/components/ui/StarBackground";
+import Footer from "@/components/layout/Footer";
 import type { Company } from "@/types";
+import Link from "next/link";
 
-// Animation variants
+const headerVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.5, ease: "easeOut" as const },
+	},
+};
+
 const gridVariants = {
 	hidden: {},
 	visible: { transition: { staggerChildren: 0.08 } },
@@ -37,15 +45,15 @@ export default function ClientsPageClient() {
 				{/* Header */}
 				<motion.div
 					className="mb-8"
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5 }}>
-					<a
+					variants={headerVariants}
+					initial="hidden"
+					animate="visible">
+					<Link
 						href="/"
-						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 transition-colors duration-200 hover:text-coral">
+						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 hover:text-coral">
 						<ArrowLeft size={16} />
 						Volver al inicio
-					</a>
+					</Link>
 					<h1 className="font-display text-3xl font-bold text-primary mb-2">
 						Nuestros Clientes
 					</h1>
@@ -63,9 +71,10 @@ export default function ClientsPageClient() {
 					{companies.map((company) => (
 						<motion.div
 							key={company.id}
-							className="flex flex-col gap-4 p-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl cursor-pointer transition-all hover:-translate-y-1 duration-200 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+							className="flex flex-col gap-4 p-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl cursor-pointer hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
 							whileHover={{ y: -4 }}
+							whileTap={{ scale: 0.98 }}
 							onClick={() => setSelectedCompany(company)}
 							role="button"
 							tabIndex={0}
@@ -86,15 +95,12 @@ export default function ClientsPageClient() {
 									</h3>
 								</div>
 							</div>
-
 							<p className="text-[0.9rem] text-secondary leading-relaxed">
 								{company.summary}
 							</p>
-
 							<p className="text-[0.85rem] text-muted leading-relaxed">
 								{company.workDescription}
 							</p>
-
 							{company.testimonial && (
 								<div className="flex items-start gap-2 pt-2 border-t border-border">
 									<Quote size={14} className="text-coral shrink-0 mt-0.5" />
@@ -106,6 +112,8 @@ export default function ClientsPageClient() {
 						</motion.div>
 					))}
 				</motion.div>
+
+				<Footer />
 			</main>
 
 			<CompanyModal
