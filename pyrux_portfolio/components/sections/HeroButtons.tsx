@@ -1,5 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
+
+const MotionLink = motion.create(Link);
 
 const buttonVariants = {
 	hidden: { opacity: 0, y: 15 },
@@ -18,7 +21,7 @@ export default function HeroButtons() {
 	return (
 		<section className="mb-10 text-center">
 			<div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
-				<motion.a
+				<MotionLink
 					href="#contacto"
 					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
@@ -32,20 +35,20 @@ export default function HeroButtons() {
 					<span className="text-muted transition-colors duration-200 group-hover:text-coral">
 						→
 					</span>
-				</motion.a>
-				<motion.a
-					href="/precios"
+				</MotionLink>
+				<MotionLink
+					href="/prices"
 					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={1}
 					whileTap={{ scale: 0.97 }}>
-					<span className="text-[0.9rem] text-primary">Precios</span>
+					<span className="text-[0.9rem] text-primary">Precios y Paquetes</span>
 					<span className="text-muted transition-colors duration-200 group-hover:text-coral">
 						→
 					</span>
-				</motion.a>
+				</MotionLink>
 			</div>
 		</section>
 	);
