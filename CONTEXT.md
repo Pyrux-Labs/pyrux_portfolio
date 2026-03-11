@@ -1,116 +1,212 @@
-# Contexto del Proyecto — Pyrux Portfolio
+# Contexto del Proyecto — Pyrux Portfolio (v2)
 
 ## Qué es esto
 
-Portfolio web para Pyrux, una empresa/estudio de dos creadores. Muestra proyectos, empresas/clientes, tecnologías y los perfiles de los creadores.
+Portfolio web para Pyrux, una empresa/estudio de dos creadores. Muestra proyectos, empresas/clientes, tecnologías, perfiles de los creadores, y una página de precios y paquetes de servicios. Toda la UI está en español.
 
 ---
 
-## Stack Tecnológico
+## Stack Técnico
 
-- **Next.js 14+** con App Router
-- **TypeScript** en modo strict (nunca usar `any`)
-- **Tailwind CSS** para estilos
-- **Framer Motion** para animaciones
-- **React Icons** / Lucide Icons
+| Categoría   | Tecnología                                     |
+| ----------- | ---------------------------------------------- |
+| Framework   | Next.js 16.1.6 (App Router, Turbopack)         |
+| React       | 19.2.3                                         |
+| Lenguaje    | TypeScript 5                                   |
+| Estilos     | Tailwind CSS v4 (`@tailwindcss/postcss`)       |
+| Animaciones | Framer Motion 12.34.3                          |
+| Iconos      | Lucide React + React Icons (tech icons)        |
+| Toasts      | Sonner 2.0.7                                   |
+| Fuente      | Manrope (Google Fonts)                         |
+| Deploy      | Exportación estática (`output: 'export'`)      |
+| Analytics   | Google Analytics (G-XD1K5TMVZ9)                |
+| Compilador  | React Compiler (`babel-plugin-react-compiler`) |
 
 ---
 
-## Estructura de carpetas
+## Estructura de Carpetas
 
 ```
-src/
-  app/                    → rutas (App Router)
-    page.tsx              → homepage
-    projects/             → página todos los proyectos
-      ProjectPageClient.tsx  → ⚠️ TIENE BUG EN FILTRADO
-    clients/              → página todas las empresas
-    creator/[id]/         → página proyectos por creador
-    not-found.tsx         → página 404 personalizada
-  components/             → componentes reutilizables
-  data/                   → archivos de datos locales (.ts)
-    projects.ts
-    companies.ts
-    technologies.ts
-    creators.ts
-    values.ts
+pyrux_portfolio/
+├── app/
+│   ├── globals.css          # Variables CSS, temas dark/light
+│   ├── layout.tsx           # Layout global (ThemeToggle, GA, anti-FOUC, Manrope)
+│   ├── not-found.tsx        # Página 404
+│   ├── page.tsx             # Landing principal (Server Component)
+│   ├── clients/
+│   │   ├── page.tsx         # Server Component con metadata
+│   │   └── ClientsPageClient.tsx
+│   ├── creator/
+│   │   └── [id]/
+│   │       ├── page.tsx     # SSG con generateStaticParams (juan, gino)
+│   │       └── CreatorPageClient.tsx
+│   ├── prices/
+│   │   ├── page.tsx         # Server Component con metadata
+│   │   └── PreciosPageClient.tsx  # Página de precios y paquetes
+│   └── projects/
+│       ├── page.tsx         # Server Component con metadata
+│       └── ProjectsPageClient.tsx
+├── components/
+│   ├── cards/
+│   │   ├── CompanyCard.tsx
+│   │   └── ProjectCard.tsx  # Max 3 techs visibles + "+N"
+│   ├── layout/
+│   │   └── Footer.tsx       # Footer compartido (LinkedIn, email, WhatsApp, Instagram)
+│   ├── modals/
+│   │   ├── CompanyModal.tsx
+│   │   ├── CreatorModal.tsx
+│   │   └── ProjectModal.tsx # Sin GitHub link, "Ver en vivo" alineado derecha, ImageCarousel
+│   ├── sections/
+│   │   ├── ContactUs.tsx
+│   │   ├── Hero.tsx
+│   │   ├── HeroButtons.tsx  # Botones: "Contacta con nosotros" + "Precios"
+│   │   ├── OurProjects.tsx  # "Ver todos" (traducido)
+│   │   ├── OurServices.tsx  # Link a /precios
+│   │   ├── OurStack.tsx     # Tabs ocultos cuando colapsado
+│   │   └── OurTeam.tsx
+│   └── ui/
+│       ├── Badge.tsx
+│       ├── Modal.tsx
+│       ├── Section.tsx      # viewAllLabel default: "Ver todos"
+│       ├── StarBackground.tsx
+│       ├── TechIcon.tsx
+│       └── ThemeToggle.tsx  # Mobile: top-left, Desktop: top-right
+├── data/
+│   ├── companies.ts
+│   ├── creators.ts
+│   ├── projects.ts
+│   └── technologies.ts
+├── hooks/
+│   └── useCopyToClipboard.ts
+├── lib/
+│   └── utils.ts
+├── public/
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   ├── companies/           # Logos de empresas
+│   └── creators/            # Fotos de creadores
+└── types/
+    └── index.ts
 ```
+
+---
+
+## Rutas de la Aplicación
+
+| Ruta            | Tipo   | Descripción                               |
+| --------------- | ------ | ----------------------------------------- |
+| `/`             | Static | Landing principal con todas las secciones |
+| `/projects`     | Static | Grid de todos los proyectos               |
+| `/clients`      | Static | Grid de todas las empresas/clientes       |
+| `/creator/[id]` | SSG    | Perfil de creador (juan, gino)            |
+| `/prices`       | Static | Paquetes y precios de servicios           |
+| `/_not-found`   | Static | Página 404                                |
 
 ---
 
 ## Arquitectura de Componentes
 
-### Jerarquía
+### Patrón Server/Client Component
+
+Cada ruta con interactividad sigue el patrón:
 
 ```
-Page (Server Component)
-  └─> Section (Server Component)
-      └─> ComponentWrapper (Server Component)
-          └─> InteractiveComponent (Client Component)
+app/ruta/page.tsx          → Server Component (metadata, imports)
+app/ruta/RutaPageClient.tsx → Client Component ("use client", lógica, UI)
 ```
 
-### Regla de oro
+### Landing Page — Composición de Secciones
 
-- Mantené Server Components lo más arriba posible
-- Solo usá `"use client"` en el componente más pequeño que necesite interactividad
-- Si un componente usa hooks, eventos, o Framer Motion → necesita `"use client"`
+```tsx
+// app/page.tsx
+<StarBackground />
+<Hero />
+<HeroButtons />       // "Contacta con nosotros" + "Precios"
+<OurProjects />       // Proyectos destacados + empresas/clientes
+<OurServices />       // 6 servicios, link a /precios
+<OurTeam />           // Creadores con modals
+<OurStack />          // Tecnologías expandibles con tabs
+<ContactUs />         // Formulario/info de contacto
+<Footer />            // Links sociales
+```
+
+### Navegación
+
+No hay navbar. La navegación se hace a través de:
+
+- Botones en HeroButtons (landing → contacto, landing → precios)
+- Links "Ver todos" en secciones (→ /projects, → /clients, → /precios)
+- Botones "Volver al inicio" (← /) en páginas internas
 
 ---
 
-## Datos y Tipos
-
-### Origen de datos
-
-Todo el contenido viene de archivos locales en `data/`. **No hay backend ni base de datos**.
-
-### Tipos principales
+## Tipos Principales
 
 ```typescript
-// Project
+// types/index.ts
 interface Project {
-	id: string;
-	title: string;
-	description: string;
-	shortDescription: string;
-	technologies: string[];
-	images: string[];
-	liveUrl?: string;
-	githubUrl?: string;
-	creatorId: string;
+	id;
+	title;
+	description;
+	shortDescription;
+	technologies: string[]; // IDs de Technology
+	images: string[]; // URLs de imágenes
+	liveUrl?;
+	githubUrl?;
 	featured: boolean;
-	date: string;
+	creators: string[]; // IDs de Creator
 }
 
-// Company
 interface Company {
-	id: string;
-	name: string;
-	logo: string;
-	summary: string;
-	workDescription: string;
-	websiteUrl: string;
-	testimonial?: string;
-}
-
-// Technology
-interface Technology {
-	id: string;
-	name: string;
-	icon: string;
-	category: "frontend" | "backend" | "database" | "devops" | "mobile" | "other";
+	id;
+	name;
+	logo;
+	description;
+	testimonial?;
+	website?;
 	featured: boolean;
 }
 
-// Creator
+type TechnologyCategory =
+	| "frontend"
+	| "backend"
+	| "database"
+	| "devops"
+	| "mobile"
+	| "other";
+
+interface Technology {
+	id;
+	name;
+	icon: string; // Nombre del icono de react-icons
+	category: TechnologyCategory;
+	featured: boolean;
+}
+
 interface Creator {
-	id: string;
-	name: string;
-	bio: string;
-	image: string;
-	photos: string[];
-	role: string;
+	id;
+	name;
+	role;
+	bio;
+	shortBio;
+	photo;
 	socialLinks: SocialLinks;
-	featuredProjects: string[]; // IDs de proyectos
+	featuredProjects: string[];
+}
+
+interface SocialLinks {
+	linkedin?;
+	github?;
+	email?;
+	whatsapp?;
+	instagram?;
+	website?;
+}
+
+interface Value {
+	title;
+	description;
+	icon: string;
 }
 ```
 
@@ -118,291 +214,138 @@ interface Creator {
 
 ## Convenciones de Código
 
-### Naming
+### General
 
-- **Componentes**: PascalCase → `ProjectCard.tsx`
-- **Funciones/variables**: camelCase → `getProjectById()`
-- **Archivos de datos**: camelCase → `projects.ts`
-- **Comentarios**: en español
+- TypeScript estricto — nunca `any`, `as any`, ni `@ts-ignore`
+- Props siempre tipadas con interfaces
+- Tailwind CSS para todos los estilos — nunca CSS inline
+- Mobile first (responsive design)
+- Framer Motion para animaciones — nunca `useEffect` para animar
+- Datos desde `data/` — nunca fetch ni backend
+- `"use client"` solo cuando se necesita interactividad
 
-### TypeScript
-
-- Siempre tipar todo, **sin `any`**
-- Usar interfaces para props de componentes
-- Exportar tipos desde los archivos de datos
-
-### Estilos
-
-- Solo Tailwind CSS, no CSS inline
-- Classes ordenadas: layout → spacing → colors → effects
-- Usar las clases del tema personalizado
-
-### Componentes
+### Patrones de Animación
 
 ```tsx
-// ✅ Estructura correcta de un Client Component
-"use client";
-import { motion } from "framer-motion";
+// Stagger con whileInView
+const containerVariants = {
+	hidden: { opacity: 0 },
+	visible: {
+		opacity: 1,
+		transition: { staggerChildren: 0.1 },
+	},
+};
 
-interface ProjectCardProps {
-	title: string;
-	description: string;
-	technologies: string[];
-	onClick: () => void;
-}
+const itemVariants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: { opacity: 1, y: 0 },
+};
 
-export function ProjectCard({
-	title,
-	description,
-	technologies,
-	onClick,
-}: ProjectCardProps) {
-	return (
-		<motion.div
-			whileHover={{ scale: 1.05 }}
-			transition={{ duration: 0.2 }}
-			onClick={onClick}
-			className="rounded-lg bg-gray-800 p-6">
-			<h3 className="text-xl font-bold">{title}</h3>
-			<p className="text-gray-400">{description}</p>
-		</motion.div>
-	);
-}
+<motion.div
+	variants={containerVariants}
+	initial="hidden"
+	whileInView="visible"
+	viewport={{ once: true }}>
+	{items.map((item) => (
+		<motion.div key={item.id} variants={itemVariants} />
+	))}
+</motion.div>;
 ```
 
-### Importar datos
+### Tema Dark/Light
 
-```tsx
-import { projects } from "@/data/projects";
-import { creators } from "@/data/creators";
-
-// Filtrar datos
-const featuredProjects = projects.filter((p) => p.featured);
-const projectsByCreator = projects.filter((p) => p.creatorId === creatorId);
-```
+- Variables CSS en `globals.css` (`--color-bg`, `--color-text`, etc.)
+- Script anti-FOUC en `layout.tsx` (lee localStorage antes del render)
+- `ThemeToggle` en layout global — mobile top-left, desktop top-right
 
 ---
 
-## Animaciones con Framer Motion
+## Datos de Contacto (hardcoded)
 
-### Principios
-
-- Transiciones menores a 300ms
-- Stagger en listas/grids
-- Animaciones de entrada en scroll con `whileInView`
-- Hover effects con `whileHover`
-
-### Ejemplos comunes
-
-```tsx
-// Fade in
-<motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.3 }}
->
-
-// Slide up
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.3 }}
->
-
-// Stagger children
-<motion.div
-  variants={{
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  }}
-  initial="hidden"
-  animate="show"
->
-  {items.map(item => (
-    <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}>
-      {item}
-    </motion.div>
-  ))}
-</motion.div>
-
-// Scroll trigger
-<motion.div
-  initial={{ opacity: 0, y: 50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5 }}
->
-
-// Expand/Collapse con AnimatePresence
-import { AnimatePresence } from "framer-motion";
-
-{isExpanded && (
-  <motion.div
-    initial={{ height: 0, opacity: 0 }}
-    animate={{ height: "auto", opacity: 1 }}
-    exit={{ height: 0, opacity: 0 }}
-    transition={{ duration: 0.3 }}
-  >
-    {/* contenido colapsable */}
-  </motion.div>
-)}
-```
+| Canal     | Valor                                    |
+| --------- | ---------------------------------------- |
+| LinkedIn  | `https://linkedin.com/company/pyrux`     |
+| Email     | `pyrux@pyrux.com.ar` (copy-to-clipboard) |
+| WhatsApp  | `https://wa.me/5491112345678`            |
+| Instagram | `https://instagram.com/pyrux.dev`        |
 
 ---
 
-## Diseño y UX
+## Estado Actual — Cambios Recientes
 
-### Theme
+### Traducciones a español
 
-- **Dark theme** principal
-- Inspirado en openclaw.ai
-- Glassmorphism y blur effects
-- Glow effects en hover
-- Gradient backgrounds
+- "View all" → "Ver todos" (Section, OurProjects)
+- "View More" / "View Less" → "Ver más" / "Ver menos" (OurStack)
+- Toda la UI pública en español
 
-### Responsive (CRÍTICO)
+### ProjectModal — Cambios
 
-- **Mobile**: < 640px → 1 columna, touch targets 44px mínimo
-- **Tablet**: 640px - 1024px → 2 columnas
-- **Desktop**: > 1024px → 3+ columnas
-- **Todos los componentes DEBEN ser responsive**
-- Hamburger menu en mobile si es necesario
+- Link a GitHub **eliminado** (no se muestra más)
+- "Ver en vivo" alineado a la derecha
+- **ImageCarousel** agregado entre descripción y tecnologías (carousel de imágenes del proyecto)
 
-### Accesibilidad
+### ProjectCard — Tech badges
 
-- Aria labels en elementos interactivos
-- Keyboard navigation funcional
-- Focus visible
-- Semantic HTML
+- Máximo 3 tecnologías visibles
+- Texto más pequeño (`0.6rem`) con `opacity-70`
+- Sin wrap, indicador `+N` si hay más de 3
 
----
+### OurStack — Tabs
 
-## Estado Actual del Proyecto
+- Tabs de categorías **ocultos** cuando la sección está colapsada
+- Se muestran solo al expandir
 
-### ✅ Completado
+### ProjectsPageClient — Filtros eliminados
 
-**Setup y configuración**
+- Search bar eliminado
+- Filtros de tecnología eliminados
+- Se muestran todos los proyectos directamente
 
-- Next.js, TypeScript, Tailwind, ESLint configurados
-- Sistema de colores, tipografía y spacing definidos
+### ThemeToggle — Posición mobile
 
-**Componentes base**
+- Mobile: esquina superior izquierda (`left-2.5`)
+- Desktop: esquina superior derecha (`sm:right-4 sm:left-auto`)
 
-- Card, Modal, Tab, Carousel, Badge, Icon wrapper
-- Button component reutilizable (primary, secondary, outline) — `components/ui/Button.tsx`
+### HeroButtons — Botón de precios
 
-**Layout**
+- Segundo botón "Precios" que enlaza a `/precios`
 
-- Header/Navigation, Footer, 404 page
-- ThemeToggle global en `layout.tsx` (visible en todas las páginas)
-- Script anti-FOUC para tema persistente
+### OurServices — Link a precios
 
-**Secciones principales**
+- `viewAllHref="/precios"` con label "Ver paquetes y precios"
 
-- Hero Section con animaciones duales (float + gradient shift simultáneos)
-- Hero SVG con glow animado, gradient rotation y Framer Motion float
-- Contact Button flotante
-- Carousels de proyectos y empresas
-- Modals (ProjectModal, CompanyModal)
-- Tecnologías Section expandible (featured por defecto, View More/Less inline)
-- Quiénes Somos con modal de creador
-- Contact Section con copy-to-clipboard
+### Página de Precios (`/prices`)
 
-**Páginas secundarias**
+- Página completa con 11 secciones: header, trust bar, propuesta de valor, 3 paquetes de servicio, proyectos especiales, mantenimiento, proceso de trabajo, stack tecnológico, FAQ con acordeones, CTA
+- Server Component (`page.tsx`) + Client Component (`PreciosPageClient.tsx`)
 
-- `/projects` con filtros y búsqueda (corregido: AnimatePresence con popLayout)
-- `/clients` con filtros
-- `/creator/[id]` con grid de proyectos
+### Footer en todas las páginas
 
-**Datos y contenido**
-
-- Todos los archivos de datos creados y poblados
-- Types definidos
-
-**SEO básico**
-
-- Metadata, OG tags, sitemap.xml, robots.txt
-
-**Arreglos recientes**
-
-- Logo SVG (`public/Pyrux-logo.svg`) actualizado con gradient y glow (igual al hero)
-- Bug de filtrado en `/projects` corregido (re-mount por AnimatePresence)
-- Tema global aplicado en todas las páginas via layout.tsx
+- Footer compartido presente en: landing, projects, clients, creator/[id], prices
 
 ---
 
-### 🚧 Próximos pasos (PRIORIDADES)
+## 🐛 Bugs Conocidos
 
-#### 🔴 PRIORIDAD MÁXIMA - URGENTE
+### Ruta de precios desalineada
 
-2. ~~**Fix bug de filtrado en Projects Page**~~ ✅ COMPLETADO
-   - Corregido: `AnimatePresence mode="wait"` con key causaba re-mount en cada keystroke
-   - Solución: `AnimatePresence mode="popLayout"` con layout animations por item
-
-#### 🟡 PRIORIDAD ALTA
-
-3. ~~**Refactor de Tecnologías Section (expandir/colapsar)**~~ ✅ COMPLETADO
-   - Implementado en `components/sections/OurStack.tsx`
-   - Featured por defecto, botón View More/View Less con ChevronDown
-   - AnimatePresence con tabs de categorías en ambos estados
-   - Inline en la homepage, sin página separada
-
-4. ~~**Button Component reutilizable**~~ ✅ COMPLETADO
-   - Creado en `components/ui/Button.tsx`
-   - Variantes: primary, secondary, outline
-   - Tamaños: sm, md, lg
-   - Framer Motion hover/tap, disabled state, focus-visible
-
-#### 🟢 PRIORIDAD MEDIA
-
-6. **Pre-deployment**
-   - Cross-browser testing (Chrome, Firefox, Safari, Edge)
-   - Mobile testing (iOS y Android)
-   - Limpiar console.logs
-   - Build de producción sin errores
-   - Eliminar codigo inservible
-   - Eliminar comentarios de debug
-   - Eliminar estilos no usados
+- **Problema:** Los links en `HeroButtons` y `OurServices` apuntan a `/precios`, pero la carpeta real es `app/prices/` (ruta `/prices`).
+- **Solución pendiente:** Renombrar `app/prices/` a `app/precios/` para que coincida con los links, O actualizar los links a `/prices`.
 
 ---
 
-## 🎯 Especificaciones de Features Completadas
+## Tareas Pendientes
 
-### ✅ Feature: Tecnologías Section Expandible — COMPLETADO
+### 🟢 Pre-deployment
 
-Implementado en `components/sections/OurStack.tsx`:
-
-- Estado `isExpanded` controla featured vs todas
-- Tabs de categorías funcionan en ambos estados
-- Botón "View More (N+)" / "View Less" con ChevronDown animado
-- AnimatePresence con stagger para animaciones suaves
-
----
-
-### ✅ Bug: Filtrado en Projects Page — CORREGIDO
-
-**Archivo:** `app/projects/ProjectsPageClient.tsx`
-
-**Problema:** `AnimatePresence mode="wait"` con `key={search-selectedTech}` causaba que el grid completo se desmontara y remontara en cada keystroke, generando un efecto de flickering.
-
-**Solución:** Cambiar a `AnimatePresence mode="popLayout"` envolviendo los items individuales con `layout` prop, animando entrada/salida por item sin re-montar el grid completo.
-
----
-
-### ✅ Feature: Button Component — COMPLETADO
-
-Creado en `components/ui/Button.tsx`:
-
-```tsx
-<Button variant="primary" size="md" onClick={handleClick}>
-	View More
-</Button>
-```
-
-Props: variant (primary/secondary/outline), size (sm/md/lg), onClick, disabled, className, aria-label.
+- Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- Mobile testing (iOS y Android)
+- Limpiar console.logs
+- Eliminar código inservible
+- Eliminar comentarios de debug
+- Eliminar estilos no usados
+- Corregir bug de ruta `/precios` vs `/prices`
 
 ---
 
@@ -421,18 +364,17 @@ Props: variant (primary/secondary/outline), size (sm/md/lg), onClick, disabled, 
 
 ---
 
-## Decisiones de Diseño (Por qué)
+## Decisiones de Diseño
 
 ### Por qué no hay backend
 
 - MVP rápido con contenido estático
-- Fácil de deployar en Vercel
+- Deploy en Vercel/GitHub Pages (`output: 'export'`)
 - Performance óptimo (todo pre-renderizado)
 
 ### Por qué Framer Motion
 
-- Animaciones complejas más fáciles de implementar
-- Mejor control sobre orchestration
+- Animaciones complejas más fáciles
 - Stagger animations out-of-the-box
 - API declarativa más mantenible
 
@@ -440,134 +382,57 @@ Props: variant (primary/secondary/outline), size (sm/md/lg), onClick, disabled, 
 
 - Inspiración en OpenClaw
 - Mejor para portfolios tech
-- Los highlights de color son más impactantes
+- Highlights de color más impactantes
 
 ### Por qué App Router
 
 - Futuro de Next.js
-- Server Components por defecto (mejor performance)
+- Server Components por defecto
 - Layouts compartidos más simples
 
-### Por qué expandir inline en lugar de página separada
+### Por qué no hay navbar
 
-- Menos clicks para el usuario
-- Mantiene el contexto de la homepage
-- Más rápido (no hay navegación)
-- Consistente con UX modernas (acordeones, expand/collapse)
-
----
-
-## 📊 Ejemplos de Estructura de Datos
-
-### Technology con featured flag
-
-```typescript
-// technologies.ts
-export const technologies: Technology[] = [
-	{
-		id: "react",
-		name: "React",
-		icon: "/icons/react.svg",
-		category: "frontend",
-		featured: true, // ← Se muestra por defecto
-	},
-	{
-		id: "angular",
-		name: "Angular",
-		icon: "/icons/angular.svg",
-		category: "frontend",
-		featured: false, // ← Solo se ve al expandir
-	},
-	// ...
-];
-
-// Homepage - mostrar solo featured
-const featuredTechs = technologies.filter((t) => t.featured);
-
-// Al expandir - mostrar todas
-const allTechs = technologies;
-```
-
-### Flujo de usuario (actualizado)
-
-```
-Usuario en Homepage
-  ↓
-Ve sección "Our Stack" con 13 tecnologías featured
-  ↓
-Click en "View More"
-  ↓
-Sección se expande inline con animación
-  ↓
-Ve TODAS las 50+ tecnologías
-  ↓
-Filtra por categoría "Backend" (tabs)
-  ↓
-Click en "View Less"
-  ↓
-Sección se colapsa, vuelve a mostrar solo featured
-```
+- Navegación integrada en secciones (links "Ver todos", botones "Volver al inicio")
+- La landing es el hub principal — se accede a todo desde ahí
+- Menos complejidad UI
 
 ---
 
 ## Workflow de trabajo con IA
 
-### 1. Antes de pedir código
+### Antes de pedir código
 
 - Describir qué necesito en lenguaje natural
-- Mencionar si tiene dependencias con otros componentes
-- Aclarar si necesito variantes o es un componente simple
+- Mencionar dependencias con otros componentes
 - Indicar dónde va a vivir en la estructura
-- **Mencionar si necesita ser responsive**
+- Mencionar si necesita ser responsive
 
-### 2. Al recibir código
+### Al recibir código
 
-- Revisar que siga las convenciones de este documento
+- Verificar que siga las convenciones de este documento
 - Verificar que no use librerías no listadas
-- Checkear que los tipos estén correctos
-- Confirmar que use Server/Client Component apropiadamente
-- **Verificar que sea responsive**
+- Checkear tipos correctos
+- Confirmar Server/Client Component apropiado
+- Verificar que sea responsive
 
-### 3. Para debugging
+### Para debugging
 
 - Compartir el error completo
-- Mencionar qué ya intenté
 - Indicar en qué navegador/dispositivo ocurre
-- Adjuntar código relevante
-
-### 4. Para refactoring
-
-- Explicar qué no me gusta del código actual
-- Dar contexto de por qué necesito cambiarlo
-- Indicar restricciones (performance, accesibilidad, etc.)
 
 ---
 
-## Glosario de términos
+## Instrucciones para la IA
 
-- **Featured**: Proyectos/tecnologías que se muestran por defecto (sin expandir)
-- **Creator**: Los dos fundadores de Pyrux
-- **Modal expandida**: Modal con toda la información vs card preview en carousel
-- **Hero icon**: El logo/icono animado en la sección Hero
-- **View More/Less**: Botón que expande/colapsa contenido inline
-- **Glassmorphism**: Efecto visual con backdrop-blur y transparencia
-- **Responsive**: Componente que funciona bien en mobile, tablet y desktop
-
----
-
-## Instrucciones finales para la IA
-
-1. **Seguí siempre las convenciones de este archivo**
-2. **Usá los tipos ya definidos**, no los redefinas sin razón
-3. **Si el componente usa datos**, importalos desde `data/`
-4. **Si necesitás un componente que no existe**, avisame antes de asumirlo
-5. **Marcá con `// TODO:`** lo que queda pendiente dentro del código
-6. **Nunca uses `any`**
-7. **Framer Motion** para todas las animaciones complejas
-8. **Verificá que el componente sea Server o Client apropiadamente**
-9. **Al crear componentes nuevos**, verificá primero si ya existe uno similar
-10. **TODOS los componentes deben ser responsive** (mobile, tablet, desktop)
-11. **Priorizá las tareas marcadas como 🔴 URGENTE** antes que nada
+1. Seguí siempre las convenciones de este archivo
+2. Usá los tipos ya definidos, no los redefinas sin razón
+3. Si el componente usa datos, importalos desde `data/`
+4. Si necesitás un componente que no existe, avisame antes
+5. Nunca uses `any`
+6. Framer Motion para todas las animaciones complejas
+7. Verificá Server o Client Component apropiadamente
+8. Al crear componentes nuevos, verificá si ya existe uno similar
+9. TODOS los componentes deben ser responsive (mobile, tablet, desktop)
 
 ---
 
@@ -576,5 +441,4 @@ Sección se colapsa, vuelve a mostrar solo featured
 - [Next.js App Router Docs](https://nextjs.org/docs/app)
 - [Framer Motion Docs](https://www.framer.com/motion/)
 - [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Tailwind Responsive Design](https://tailwindcss.com/docs/responsive-design)
 - [OpenClaw (inspiración)](https://openclaw.ai)
