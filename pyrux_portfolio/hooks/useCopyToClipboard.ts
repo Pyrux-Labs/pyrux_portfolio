@@ -1,14 +1,10 @@
-// ═══════════════════════════════════════════════
-// Hook para copy to clipboard — Pyrux Portfolio
-// ═══════════════════════════════════════════════
-
 "use client";
 
 import { useState, useCallback } from "react";
 
 /**
- * Hook que copia texto al portapapeles y muestra estado temporal.
- * @param duration Duración en ms del estado "copiado" (default: 2000)
+ * Hook that copies text to clipboard and shows temporary state.
+ * @param duration Duration in ms of the "copied" state (default: 2000)
  */
 export function useCopyToClipboard(duration = 2000) {
 	const [copied, setCopied] = useState(false);
@@ -21,7 +17,7 @@ export function useCopyToClipboard(duration = 2000) {
 				setTimeout(() => setCopied(false), duration);
 				return true;
 			} catch {
-				// Fallback para navegadores más viejos
+				// Fallback for older browsers
 				const textarea = document.createElement("textarea");
 				textarea.value = text;
 				textarea.style.position = "fixed";
