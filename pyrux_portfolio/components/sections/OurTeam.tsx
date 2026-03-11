@@ -1,6 +1,6 @@
 // ═══════════════════════════════════════════════
 //
-// Seccion our team
+// Our team section
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -10,11 +10,10 @@ import { motion } from "framer-motion";
 import Section from "@/components/ui/Section";
 import CreatorModal from "@/components/modals/CreatorModal";
 import { creators } from "@/data/creators";
-import { FolderOpen } from "lucide-react";
 import Image from "next/image";
 import type { Creator } from "@/types";
 
-// Variantes de animación
+// Animation variants
 const cardVariants = {
 	hidden: { opacity: 0, y: 20 },
 	visible: (i: number) => ({
@@ -50,7 +49,7 @@ export default function OurTeam() {
 									setSelectedCreator(creator);
 								}
 							}}>
-							{/* Icono de carpeta */}
+							{/* Profile image */}
 							<div className="relative">
 								<Image
 									src={creator.image}

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-// Animations variants
 const containerVariants = {
 	hidden: { opacity: 0 },
 	visible: {

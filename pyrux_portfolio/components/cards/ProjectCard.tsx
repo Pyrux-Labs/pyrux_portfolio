@@ -15,11 +15,7 @@ interface ProjectCardProps {
 	index?: number;
 }
 
-export default function ProjectCard({
-	project,
-	onClick,
-	index = 0,
-}: ProjectCardProps) {
+export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 	return (
 		<motion.div
 			className="flex flex-col gap-3 p-4 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary cursor-pointer transition-[border-color,box-shadow] duration-200 ease-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
@@ -47,23 +43,23 @@ export default function ProjectCard({
 				{project.shortDescription}
 			</p>
 
-			{/* Technologies (max 4) */}
-			<div className="flex flex-wrap gap-1.5 mt-auto">
-				{project.technologies.slice(0, 4).map((techId) => {
+			{/* Technologies (max 3, single line) */}
+			<div className="flex gap-1 mt-auto overflow-hidden">
+				{project.technologies.slice(0, 3).map((techId) => {
 					const tech = getTechnologyById(techId);
 					return (
 						<Badge
 							key={techId}
 							label={tech?.name ?? techId}
-							className="text-[0.7rem] px-2 py-0.5"
+							className="text-[0.6rem] px-1.5 py-0.5 opacity-70 shrink-0"
 						/>
 					);
 				})}
-				{project.technologies.length > 4 && (
+				{project.technologies.length > 3 && (
 					<Badge
-						label={`+${project.technologies.length - 4}`}
+						label={`+${project.technologies.length - 3}`}
 						variant="coral"
-						className="text-[0.7rem] px-2 py-0.5"
+						className="text-[0.6rem] px-1.5 py-0.5 opacity-70 shrink-0"
 					/>
 				)}
 			</div>

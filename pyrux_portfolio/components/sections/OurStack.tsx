@@ -12,44 +12,35 @@ import TechIcon from "@/components/ui/TechIcon";
 import { technologies, technologyCategories } from "@/data/technologies";
 import type { TechnologyCategory } from "@/types";
 
-// Animation variants
-const gridVariants = {
-	hidden: {},
-	visible: { transition: { staggerChildren: 0.04 } },
-};
-
 const itemVariants = {
-	hidden: { opacity: 0, scale: 0.9 },
+	hidden: { opacity: 0, scale: 0.95 },
 	visible: {
 		opacity: 1,
 		scale: 1,
-		transition: { duration: 0.3, ease: "easeOut" as const },
+		transition: { duration: 0.2, ease: "easeOut" as const },
 	},
-	exit: { opacity: 0, scale: 0.9, transition: { duration: 0.15 } },
+	exit: { opacity: 0, scale: 0.95, transition: { duration: 0.1 } },
 };
 
 export default function OurStack() {
 	const [activeTab, setActiveTab] = useState<TechnologyCategory | "all">("all");
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	// Base: solo featured o todas según el estado expandido
 	const baseTechs = isExpanded
 		? technologies
 		: technologies.filter((t) => t.featured);
 
-	// Aplicar filtro de categoría sobre la base
 	const displayedTechs =
 		activeTab === "all"
 			? baseTechs
 			: baseTechs.filter((t) => t.category === activeTab);
 
-	// Cantidad total vs featured para mostrar en el botón
 	const totalCount = technologies.length;
 	const featuredCount = technologies.filter((t) => t.featured).length;
 
 	return (
 		<Section title="Nuestro Stack">
-			{/* Tabs — only visible when expanded */}
+			{/* Tabs */}
 			{isExpanded && (
 				<div className="flex flex-wrap gap-2 mb-6 justify-center">
 					<button
@@ -77,42 +68,41 @@ export default function OurStack() {
 			)}
 
 			{/* Technologies grid */}
-			<AnimatePresence mode="wait">
-				<motion.div
-					key={`${activeTab}-${isExpanded}`}
-					className="flex flex-wrap gap-2.5 justify-center"
-					variants={gridVariants}
-					initial="hidden"
-					animate="visible"
-					exit="hidden">
+			<div className="flex flex-wrap gap-2.5 justify-center">
+				<AnimatePresence mode="popLayout">
 					{displayedTechs.map((tech) => (
 						<motion.span
 							key={tech.id}
-							className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary transition-[border-color,box-shadow] duration-250 ease-in-out cursor-default hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+							className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary cursor-default hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 							variants={itemVariants}
+							initial="hidden"
+							animate="visible"
+							exit="exit"
 							whileHover={{ y: -3, scale: 1.03 }}>
 							<TechIcon iconName={tech.icon} size={16} />
 							<span>{tech.name}</span>
 						</motion.span>
 					))}
+				</AnimatePresence>
 
-					{/* Mensaje si no hay para la categoría seleccionada */}
-					{displayedTechs.length === 0 && (
-						<motion.p
-							className="text-[0.85rem] text-muted py-4"
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}>
-							Expandí para ver más tecnologías en esta categoría.
-						</motion.p>
-					)}
-				</motion.div>
-			</AnimatePresence>
+				{displayedTechs.length === 0 && (
+					<motion.p
+						className="text-[0.85rem] text-muted py-4"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}>
+						Expandí para ver más tecnologías en esta categoría.
+					</motion.p>
+				)}
+			</div>
 
-			{/* Botón View More / View Less */}
+			{/* Botón Ver más / Ver menos */}
 			<div className="flex justify-center mt-6">
 				<motion.button
-					onClick={() => setIsExpanded(!isExpanded)}
-					className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-secondary text-[0.9rem] font-medium transition-all duration-200 hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] cursor-pointer"
+					onClick={() => {
+						setIsExpanded(!isExpanded);
+						setActiveTab("all");
+					}}
+					className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-secondary text-[0.9rem] font-medium hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] cursor-pointer"
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}>
 					{isExpanded
