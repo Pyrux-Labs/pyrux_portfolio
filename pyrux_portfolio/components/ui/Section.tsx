@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Componente Section — wrapper reutilizable
+// Component section — wrapper reutilizable
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -17,7 +17,7 @@ interface SectionProps {
 	className?: string;
 }
 
-// Variantes de animación para la sección
+// Animation variants for the section
 const sectionVariants = {
 	hidden: { opacity: 0, y: 30 },
 	visible: {
@@ -32,7 +32,7 @@ export default function Section({
 	title,
 	titleRight,
 	viewAllHref,
-	viewAllLabel = "View all",
+	viewAllLabel = "Ver todos",
 	children,
 	className = "",
 }: SectionProps) {
