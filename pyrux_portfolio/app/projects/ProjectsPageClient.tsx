@@ -3,8 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data/projects";
-import { getTechnologyById } from "@/data/technologies";
-import Badge from "@/components/ui/Badge";
+import Image from "next/image";
 import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
@@ -91,19 +90,13 @@ export default function ProjectsPageClient() {
 							<p className="text-[0.85rem] text-secondary leading-normal line-clamp-3">
 								{project.shortDescription}
 							</p>
-							<div
-								className="flex gap-1.5 mt-auto pt-2 overflow-x-auto"
-								style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-								{project.technologies.map((techId) => {
-									const tech = getTechnologyById(techId);
-									return (
-										<Badge
-											key={techId}
-											label={tech?.name ?? techId}
-											className="text-[0.7rem] px-2 py-0.5 shrink-0"
-										/>
-									);
-								})}
+							<div className="relative w-full h-40 rounded-lg overflow-hidden mb-3">
+								<Image
+									src={project.images[0]}
+									alt={project.title + " project image"}
+									fill
+									className="object-cover"
+								/>
 							</div>
 							<span className="text-[0.75rem] text-muted">
 								{new Date(project.date).toLocaleDateString("es-AR", {
