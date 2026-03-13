@@ -58,9 +58,9 @@ export default function CreatorModal({
 				<Image
 					src={creator.image}
 					alt={creator.name}
-					width={48}
-					height={48}
-					className="w-12 h-12 rounded-full object-cover shrink-0"
+					width={80}
+					height={80}
+					className="rounded-full object-cover shrink-0"
 				/>
 			</div>
 
