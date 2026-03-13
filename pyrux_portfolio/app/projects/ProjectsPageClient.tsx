@@ -88,17 +88,19 @@ export default function ProjectsPageClient() {
 							<h3 className="font-display text-[1.05rem] font-semibold text-primary">
 								{project.title}
 							</h3>
-							<p className="text-[0.85rem] text-secondary leading-normal line-clamp-2">
+							<p className="text-[0.85rem] text-secondary leading-normal line-clamp-3">
 								{project.shortDescription}
 							</p>
-							<div className="flex flex-wrap gap-1.5 mt-auto pt-2">
-								{project.technologies.slice(0, 4).map((techId) => {
+							<div
+								className="flex gap-1.5 mt-auto pt-2 overflow-x-auto"
+								style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+								{project.technologies.map((techId) => {
 									const tech = getTechnologyById(techId);
 									return (
 										<Badge
 											key={techId}
 											label={tech?.name ?? techId}
-											className="text-[0.7rem] px-2 py-0.5"
+											className="text-[0.7rem] px-2 py-0.5 shrink-0"
 										/>
 									);
 								})}

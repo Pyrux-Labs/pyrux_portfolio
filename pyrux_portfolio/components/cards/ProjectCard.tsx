@@ -18,7 +18,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 	return (
 		<motion.div
-			className="flex flex-col gap-3 p-4 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary cursor-pointer transition-[border-color,box-shadow] duration-200 ease-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+			className="flex flex-col gap-3 p-4 min-w-72 max-w-80 h-40 overflow-hidden max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary cursor-pointer transition-[border-color,box-shadow] duration-200 ease-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 			onClick={onClick}
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 			</h3>
 
 			{/* Short description */}
-			<p className="text-[0.85rem] text-secondary leading-normal line-clamp-2">
+			<p className="text-[0.85rem] text-secondary leading-normal line-clamp-3">
 				{project.shortDescription}
 			</p>
 

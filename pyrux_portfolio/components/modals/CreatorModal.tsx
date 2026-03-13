@@ -9,6 +9,9 @@ import Badge from "@/components/ui/Badge";
 import { getProjectById } from "@/data/projects";
 import { getTechnologyById } from "@/data/technologies";
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { toast } from "sonner";
+import Image from "next/image";
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import type { Creator } from "@/types";
 
 interface CreatorModalProps {
@@ -22,6 +25,8 @@ export default function CreatorModal({
 	isOpen,
 	onClose,
 }: CreatorModalProps) {
+	const { copy } = useCopyToClipboard();
+
 	if (!creator) return null;
 
 	// Get featured projects for the creator
@@ -29,12 +34,35 @@ export default function CreatorModal({
 		.map((id) => getProjectById(id))
 		.filter(Boolean);
 
+	const handleEmailCopy = async () => {
+		if (!creator.socialLinks.email) return;
+		await copy(creator.socialLinks.email);
+		toast.success("Email copiado al portapapeles", {
+			description: creator.socialLinks.email,
+			duration: 2500,
+		});
+	};
+
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} title={creator.name}>
-			{/* Role */}
-			<p className="text-coral text-[0.9rem] font-medium -mt-2 mb-4">
-				{creator.role}
-			</p>
+		<Modal isOpen={isOpen} onClose={onClose}>
+			{/* Header: name + role (left) / photo (right) */}
+			<div className="flex items-center justify-between gap-4 mb-4 pr-10">
+				<div>
+					<h3 className="font-display text-xl font-bold text-primary">
+						{creator.name}
+					</h3>
+					<p className="text-coral text-[0.9rem] font-medium mt-0.5">
+						{creator.role}
+					</p>
+				</div>
+				<Image
+					src={creator.image}
+					alt={creator.name}
+					width={48}
+					height={48}
+					className="w-12 h-12 rounded-full object-cover shrink-0"
+				/>
+			</div>
 
 			{/* Bio */}
 			<p className="text-secondary leading-relaxed mb-6">{creator.bio}</p>
@@ -62,12 +90,12 @@ export default function CreatorModal({
 					</a>
 				)}
 				{creator.socialLinks.email && (
-					<a
-						href={`mailto:${creator.socialLinks.email}`}
-						className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral"
-						aria-label="Email">
+					<button
+						onClick={handleEmailCopy}
+						className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
+						aria-label="Copiar email">
 						<Mail size={16} />
-					</a>
+					</button>
 				)}
 			</div>
 

@@ -13,13 +13,14 @@ import { technologies, technologyCategories } from "@/data/technologies";
 import type { TechnologyCategory } from "@/types";
 
 const itemVariants = {
-	hidden: { opacity: 0, scale: 0.95 },
+	hidden: { opacity: 0, scale: 0.88, y: 10 },
 	visible: {
 		opacity: 1,
 		scale: 1,
-		transition: { duration: 0.2, ease: "easeOut" as const },
+		y: 0,
+		transition: { duration: 0.35, ease: "easeOut" as const },
 	},
-	exit: { opacity: 0, scale: 0.95, transition: { duration: 0.1 } },
+	exit: { opacity: 0, scale: 0.88, y: 10, transition: { duration: 0.15 } },
 };
 
 export default function OurStack() {

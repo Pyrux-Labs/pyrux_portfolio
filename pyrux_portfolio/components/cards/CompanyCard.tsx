@@ -16,7 +16,7 @@ interface CompanyCardProps {
 export default function CompanyCard({ company, onClick }: CompanyCardProps) {
 	return (
 		<motion.div
-			className="flex items-start gap-3 p-4 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out shrink-0 cursor-pointer hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+			className="flex items-start gap-3 p-4 min-w-72 max-w-80 h-40 overflow-hidden max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out shrink-0 cursor-pointer hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 			onClick={onClick}
 			initial={{ opacity: 0, y: 20 }}
 			whileInView={{ opacity: 1, y: 0 }}

@@ -16,6 +16,7 @@ import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import type { Project } from "@/types";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CreatorPageClientProps {
 	creatorId: string;
@@ -91,6 +92,13 @@ export default function CreatorPageClient({
 
 					{/* Creator info */}
 					<div className="flex items-start gap-5 mb-6">
+						<Image
+							src={creator.image}
+							alt={creator.name}
+							width={80}
+							height={80}
+							className="w-20 h-20 rounded-full object-cover shrink-0"
+						/>
 						<div>
 							<h1 className="font-display text-3xl font-bold text-primary mb-1">
 								{creator.name}
@@ -135,10 +143,6 @@ export default function CreatorPageClient({
 							</div>
 						</div>
 					</div>
-
-					<h2 className="font-display text-xl font-semibold text-primary">
-						Proyectos ({creatorProjects.length})
-					</h2>
 				</motion.div>
 
 				{/* Projects grid */}

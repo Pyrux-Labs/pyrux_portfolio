@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Toaster } from "sonner";
 import Section from "@/components/ui/Section";
 import CreatorModal from "@/components/modals/CreatorModal";
 import { creators } from "@/data/creators";
@@ -88,6 +89,16 @@ export default function OurTeam() {
 				creator={selectedCreator}
 				isOpen={selectedCreator !== null}
 				onClose={() => setSelectedCreator(null)}
+			/>
+			<Toaster
+				position="bottom-center"
+				toastOptions={{
+					style: {
+						background: "var(--bg-elevated)",
+						color: "var(--text-primary)",
+						border: "1px solid var(--border-subtle)",
+					},
+				}}
 			/>
 		</>
 	);
