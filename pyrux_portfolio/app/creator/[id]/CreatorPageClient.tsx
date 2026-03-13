@@ -7,6 +7,8 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Github, Linkedin, Mail } from "lucide-react";
+import { toast } from "sonner";
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getCreatorById } from "@/data/creators";
 import { getProjectsByCreator } from "@/data/projects";
 import { getTechnologyById } from "@/data/technologies";
@@ -49,6 +51,7 @@ export default function CreatorPageClient({
 	creatorId,
 }: CreatorPageClientProps) {
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+	const { copy } = useCopyToClipboard();
 	const creator = getCreatorById(creatorId);
 	const creatorProjects = useMemo(
 		() => getProjectsByCreator(creatorId),
@@ -73,6 +76,15 @@ export default function CreatorPageClient({
 		);
 	}
 
+	const handleEmailCopy = async () => {
+		if (!creator.socialLinks.email) return;
+		await copy(creator.socialLinks.email);
+		toast.success("Email copiado al portapapeles", {
+			description: creator.socialLinks.email,
+			duration: 2500,
+		});
+	};
+
 	return (
 		<>
 			<StarBackground />
@@ -91,27 +103,20 @@ export default function CreatorPageClient({
 					</Link>
 
 					{/* Creator info */}
-					<div className="flex items-start gap-5 mb-6">
-						<Image
-							src={creator.image}
-							alt={creator.name}
-							width={80}
-							height={80}
-							className="w-20 h-20 rounded-full object-cover shrink-0"
-						/>
-						<div>
+					<div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 sm:items-start mb-6">
+						<div className="flex-1 text-center sm:text-left">
 							<h1 className="font-display text-3xl font-bold text-primary mb-1">
 								{creator.name}
 							</h1>
 							<p className="text-coral text-[0.95rem] font-medium mb-3">
 								{creator.role}
 							</p>
-							<p className="text-secondary leading-relaxed max-w-xl">
+							<p className="text-secondary leading-relaxed max-w-xl mx-auto sm:mx-0">
 								{creator.bio}
 							</p>
 
 							{/* Social links */}
-							<div className="flex gap-3 mt-4">
+							<div className="flex gap-3 mt-4 justify-center sm:justify-start">
 								{creator.socialLinks.github && (
 									<a
 										href={creator.socialLinks.github}
@@ -133,15 +138,22 @@ export default function CreatorPageClient({
 									</a>
 								)}
 								{creator.socialLinks.email && (
-									<a
-										href={`mailto:${creator.socialLinks.email}`}
-										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
-										aria-label="Email">
+									<button
+										onClick={handleEmailCopy}
+										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
+										aria-label="Copiar email">
 										<Mail size={16} />
-									</a>
+									</button>
 								)}
 							</div>
 						</div>
+						<Image
+							src={creator.image}
+							alt={creator.name}
+							width={160}
+							height={160}
+							className="shrink-0 rounded-full object-cover"
+						/>
 					</div>
 				</motion.div>
 

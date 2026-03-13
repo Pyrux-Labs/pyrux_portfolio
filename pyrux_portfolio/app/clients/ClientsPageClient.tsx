@@ -103,10 +103,14 @@ export default function ClientsPageClient() {
 							</p>
 							{company.testimonial && (
 								<div className="flex items-start gap-2 pt-2 border-t border-border">
-									<Quote size={14} className="text-coral shrink-0 mt-0.5" />
+									<Quote
+										size={14}
+										className="text-coral shrink-0 mt-0.5 rotate-180"
+									/>
 									<p className="text-[0.8rem] text-muted italic line-clamp-2">
 										{company.testimonial}
 									</p>
+									<Quote size={14} className="text-coral shrink-0 mt-0.5" />
 								</div>
 							)}
 						</motion.div>
