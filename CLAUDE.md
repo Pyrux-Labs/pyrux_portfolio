@@ -139,12 +139,12 @@ Implementá todas las siguientes mejoras en orden. Agrupá los cambios por secci
 17. En la card "Copias semanales, contenido siempre a salvo", cambiá el texto por: "Intervalo de copias dependiente de tu plan."
 </grupo>
 
-<grupo id="6" nombre="Sección Proyectos y Empresas">
-18. Igualá el tamaño de las cards de proyectos y de empresas/clientes para que tengan la misma altura y ancho.
+<grupo id="6" nombre="Sección Proyectos y Empresas ">
+18. Igualá el tamaño de las cards de proyectos y de empresas/clientes para que tengan la misma altura y ancho(esto en el carroucel).
 19. En las cards de proyectos, limitá la descripción a exactamente 3 líneas usando CSS (`-webkit-line-clamp: 3`).
 20. En "Ver todos los proyectos", las tecnologías de cada proyecto deben mostrarse en una sola línea (sin wrap), con overflow hidden y scroll horizontal si es necesario.
 21. Cuando abrís el modal de un proyecto desde "Ver todos", mostrá todas las tecnologías directamente en el modal sin truncar.
-22. Agregá una animación mínima (fade-in o scale suave) a los badges de tecnologías cuando el usuario hace click en "Ver más".
+22. Agregá una animación mínima (fade-in o scale suave) a los badges de tecnologías cuando el usuario hace click en "Ver más"(ourstack section).
 </grupo>
 
 <grupo id="7" nombre="Cards de empresas/clientes">
@@ -154,9 +154,9 @@ Implementá todas las siguientes mejoras en orden. Agrupá los cambios por secci
 
 <grupo id="8" nombre="Modal de integrantes">
 25. En el modal de integrante, mostrá la foto en formato circular (border-radius: 50%) posicionada a la derecha del nombre, en la misma línea.
-26. En el modal de integrante, cuando el usuario toca el email, mostrá un Toast component con el mensaje "Email copiado al portapapeles" y copiá el email al clipboard automáticamente.
-27. En "Ver todos los proyectos de un integrante", eliminá el número de proyectos del título o encabezado.
-28. En "Ver todos los proyectos de un integrante", mostrá la foto del integrante también en esa vista.
+26. En el modal de integrante, cuando el usuario toca el email, mostrá un Toast component con el mensaje "Email copiado al portapapeles" y copiá el email al clipboard automáticamente.(logica en la carpeta hooks/useClipboard)
+27. En "Ver todos los proyectos de un integrante", eliminá el número de proyectos del título o encabezado.(ya implementado)
+28. En "Ver todos los proyectos de un integrante", mostrá la foto del integrante también en esa vista.(A la derecha del titulo tenes de referencia el hero.tsx cuyo svg esta igual)
 </grupo>
 
 <grupo id="9" nombre="Sección Proceso">
@@ -167,12 +167,40 @@ Implementá todas las siguientes mejoras en orden. Agrupá los cambios por secci
 30. Agregá una venda (banner strip) de color naranja en la parte superior de la landing page, antes del header. El banner debe tener texto breve centrado (por ejemplo, un mensaje promocional o de urgencia), fondo naranja (#F97316 o similar), texto blanco, y ser responsive.
 </grupo>
 
-<grupo id="11" nombre="Modales mobile">
-31. En mobile, mejorá el modal de proyecto: usá bottom sheet pattern (slide desde abajo), con handle bar visible, scroll interno, y padding adecuado para pantallas pequeñas.
-32. En mobile, aplicá el mismo tratamiento de bottom sheet al modal de "Nuestros clientes".
-33. En mobile, aplicá el mismo tratamiento de bottom sheet al modal de "Integrante".
+<grupo id="11" nombre="Modales mobile">/ 31. En mobile, mejorá el modal de proyecto: usá bottom sheet pattern (slide desde abajo), con handle bar visible, scroll interno, y padding adecuado para pantallas pequeñas. 32. En mobile, aplicá el mismo tratamiento de bottom sheet al modal de "Nuestros clientes". 33. En mobile, aplicá el mismo tratamiento de bottom sheet al modal de "Integrante".
 </grupo>
-</instructions>
+
+<grupo id="12" nombre="Refactorización arquitectura Pricing">
+Refactorizá el archivo de la página de precios dividiéndolo en una estructura modular. Antes de crear cualquier archivo, leé la estructura de carpetas existente para respetar las convenciones del proyecto.
+
+<estructura_objetivo>
+Dentro de la carpeta actual de la página de precios, creá:
+\app\pricing\PreciosPageClient.tsx ← componente principal, orquesta el layout y mantiene el estado
+/components
+/cards/PackageCard.tsx ← card de cada paquete
+/cards/MaintenanceGrid.tsx ← grid de cards de mantenimiento incluido
+/cards/MaintenanceCard.tsx ← card individual de mantenimiento
+/sections/ProcessSection.tsx ← sección "Nuestro proceso"
+/sections/FAQSection.tsx ← sección FAQ completa
+/sections/FAQAccordion.tsx ← ítem individual del acordeón
+\_types/
+pricing.types.ts ← todas las interfaces y types con named exports
+\_data/
+packages.data.tsx ← array packages[] (extensión .tsx por JSX en íconos)
+steps.data.ts ← array steps[]
+faq.data.ts ← array faqItems[]
+</estructura_objetivo>
+
+Reglas:
+
+- No cambies ninguna lógica, className, variante de animación ni texto. Refactorización pura.
+- Creá los archivos en este orden: types → data → componentes hijos → PreciosPageClient → page.
+- Los componentes hijos reciben datos por props, no importan los arrays directamente.
+- Conservá "use client" solo donde haya useState, motion, AnimatePresence o event handlers.
+- page.tsx debe quedar como Server Component (sin "use client").
+- packages.data.tsx usa .tsx porque contiene JSX (íconos de Lucide).
+  </grupo>
+  </instructions>
 
 <workflow>
 Para cada grupo:
