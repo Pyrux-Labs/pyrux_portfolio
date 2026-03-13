@@ -40,10 +40,14 @@ export default function CompanyModal({
 			{company.testimonial && (
 				<div className="p-4 rounded-xl border border-border bg-card mb-6">
 					<div className="flex items-start gap-3">
-						<Quote size={20} className="text-coral shrink-0 mt-0.5" />
+						<Quote
+							size={20}
+							className="text-coral shrink-0 mt-0.5 rotate-180"
+						/>
 						<blockquote className="text-[0.9rem] text-secondary italic leading-relaxed">
 							&ldquo;{company.testimonial}&rdquo;
 						</blockquote>
+						<Quote size={20} className="text-coral shrink-0 mt-0.5" />
 					</div>
 				</div>
 			)}
