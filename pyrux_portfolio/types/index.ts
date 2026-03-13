@@ -68,3 +68,20 @@ export interface Value {
 	description: string;
 	icon: string;
 }
+
+export interface ServiceItem {
+	title: string;
+	desc: string;
+	icon: string;
+}
+
+export interface ContactItem {
+	label: string;
+	sublabel: string;
+	icon: string;
+	href?: string;
+	action?: "copy-email";
+	hoverBorder: string;
+	hoverShadow: string;
+	hoverIcon: string;
+}
