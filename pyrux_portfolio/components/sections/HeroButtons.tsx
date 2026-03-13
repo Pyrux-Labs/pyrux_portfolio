@@ -19,7 +19,7 @@ const buttonVariants = {
 
 export default function HeroButtons() {
 	return (
-		<section className="mb-10 text-center">
+		<section className="mb-14 text-center">
 			<div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
 				<MotionLink
 					href="#contacto"

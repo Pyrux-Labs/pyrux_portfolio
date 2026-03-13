@@ -82,7 +82,9 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<ThemeToggle />
+				<div className="relative z-50">
+					<ThemeToggle />
+				</div>
 				{children}
 			</body>
 		</html>
