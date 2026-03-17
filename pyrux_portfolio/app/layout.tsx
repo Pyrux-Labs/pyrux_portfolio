@@ -1,8 +1,49 @@
 import type { Metadata } from "next";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import { faqItems } from "@/data/faq";
 import "./globals.css";
 
+const BASE_URL = "https://www.pyrux.com.ar";
+
+const organizationSchema = {
+	"@context": "https://schema.org",
+	"@type": ["Organization", "LocalBusiness"],
+	name: "Pyrux",
+	url: BASE_URL,
+	logo: `${BASE_URL}/Pyrux-logo.svg`,
+	image: `${BASE_URL}/og-image.png`,
+	description:
+		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+	address: {
+		"@type": "PostalAddress",
+		addressCountry: "AR",
+	},
+	areaServed: {
+		"@type": "Country",
+		name: "Argentina",
+	},
+	sameAs: [
+		"https://www.instagram.com/pyrux.dev",
+	],
+	priceRange: "$$",
+	knowsAbout: ["desarrollo web", "diseño web", "software a medida", "Next.js", "React"],
+};
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqItems.map((item) => ({
+		"@type": "Question",
+		name: item.question,
+		acceptedAnswer: {
+			"@type": "Answer",
+			text: item.answer,
+		},
+	})),
+};
+
 export const metadata: Metadata = {
+	metadataBase: new URL(BASE_URL),
 	title: "Pyrux — Desarrollo web y soluciones digitales",
 	description:
 		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel. Portfolio de Pyrux.",
@@ -15,21 +56,36 @@ export const metadata: Metadata = {
 		"React",
 		"TypeScript",
 		"Pyrux",
+		"agencia web Argentina",
+		"páginas web profesionales",
 	],
-	authors: [{ name: "Pyrux" }],
+	authors: [{ name: "Pyrux", url: BASE_URL }],
+	alternates: {
+		canonical: BASE_URL,
+	},
 	openGraph: {
 		title: "Pyrux — Desarrollo web y soluciones digitales",
 		description:
 			"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
 		type: "website",
+		url: BASE_URL,
 		locale: "es_AR",
 		siteName: "Pyrux",
+		images: [
+			{
+				url: "/og-image.png",
+				width: 1200,
+				height: 630,
+				alt: "Pyrux — Desarrollo web y soluciones digitales",
+			},
+		],
 	},
 	twitter: {
 		card: "summary_large_image",
 		title: "Pyrux — Desarrollo web y soluciones digitales",
 		description:
 			"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+		images: ["/og-image.png"],
 	},
 	icons: {
 		icon: "/Pyrux-logo.svg",
@@ -39,6 +95,11 @@ export const metadata: Metadata = {
 	robots: {
 		index: true,
 		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-image-preview": "large",
+		},
 	},
 };
 
@@ -48,7 +109,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" data-theme="dark" suppressHydrationWarning>
+		<html lang="es" data-theme="dark" suppressHydrationWarning>
 			<head>
 				{/* Google tag (gtag.js) */}
 				<script
@@ -79,6 +140,15 @@ export default function RootLayout({
 				<link
 					href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
 					rel="stylesheet"
+				/>
+				{/* JSON-LD structured data */}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
 				/>
 			</head>
 			<body>
