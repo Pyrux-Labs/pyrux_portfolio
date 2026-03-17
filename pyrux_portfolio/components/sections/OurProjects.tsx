@@ -75,7 +75,6 @@ export default function OurProjects() {
 					</div>
 				</div>
 
-				{/* Clients title (below projects carousel) */}
 				<motion.div
 					className="flex justify-between items-center mb-5 mt-5 max-[480px]:pl-4"
 					initial={{ opacity: 0 }}

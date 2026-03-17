@@ -6,6 +6,7 @@
 
 import { motion } from "framer-motion";
 import { Building2 } from "lucide-react";
+import Image from "next/image";
 import type { Company } from "@/types";
 
 interface CompanyCardProps {
@@ -31,9 +32,21 @@ export default function CompanyCard({ company, onClick }: CompanyCardProps) {
 					onClick?.();
 				}
 			}}>
-			{/* Company icon */}
-			<div className="w-11 h-11 max-[480px]:w-9 max-[480px]:h-9 rounded-full shrink-0 border-2 border-border bg-elevated flex items-center justify-center">
-				<Building2 size={20} className="text-coral" />
+			{/* Company icon/logo */}
+			<div className="w-11 h-11 max-[480px]:w-9 max-[480px]:h-9 rounded-full shrink-0 border-2 border-border bg-elevated flex items-center justify-center overflow-hidden">
+				<Image
+					src={company.logo}
+					alt={`${company.name} logo`}
+					width={44}
+					height={44}
+					className="w-full h-full object-contain"
+					onError={(e) => {
+						// Fallback to Building2 icon if logo fails to load
+						e.currentTarget.style.display = "none";
+						e.currentTarget.nextElementSibling?.classList.remove("hidden");
+					}}
+				/>
+				<Building2 size={20} className="text-coral hidden" />
 			</div>
 
 			<div className="flex flex-col gap-1.5 min-w-0">
