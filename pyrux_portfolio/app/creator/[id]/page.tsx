@@ -21,11 +21,25 @@ export async function generateMetadata({
 }: CreatorPageProps): Promise<Metadata> {
 	const { id } = await params;
 	const creator = creators.find((c) => c.id === id);
+	const title = creator ? `${creator.name} — Pyrux` : "Creador no encontrado — Pyrux";
+	const description = creator?.bio ?? "Perfil de creador en Pyrux";
+	const url = `https://www.pyrux.com.ar/creator/${id}`;
 	return {
-		title: creator
-			? `${creator.name} — Pyrux`
-			: "Creador no encontrado — Pyrux",
-		description: creator?.bio ?? "Perfil de creador en Pyrux",
+		title,
+		description,
+		alternates: { canonical: url },
+		openGraph: {
+			title,
+			description,
+			url,
+			images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title,
+			description,
+			images: ["/og-image.png"],
+		},
 	};
 }
 
