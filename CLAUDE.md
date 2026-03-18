@@ -50,13 +50,9 @@ All content is static — imported from `data/` files (`projects.ts`, `companies
 
 No navbar. Navigation happens through:
 
-- `HeroButtons` on landing → `/contacto`, `/precios`
-- "Ver todos" links in sections → `/projects`, `/clients`, `/precios`
+- `HeroButtons` on landing → `/contacto`, `/pricing`
+- "Ver todos" links in sections → `/projects`, `/clients`, `/pricing`
 - "Volver al inicio" buttons on inner pages → `/`
-
-### Known Bug
-
-Links in `HeroButtons` and `OurServices` point to `/precios`, but the route folder is `app/prices/` (→ `/prices`). The `app/pricing/` directory also exists in the working tree (untracked). This needs resolution before deployment.
 
 ## Code Conventions
 
