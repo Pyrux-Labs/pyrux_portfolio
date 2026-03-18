@@ -28,6 +28,20 @@ export const metadata: Metadata = {
 	},
 };
 
+const breadcrumb = JSON.stringify({
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{ "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.pyrux.com.ar" },
+		{ "@type": "ListItem", position: 2, name: "Clientes", item: "https://www.pyrux.com.ar/clients" },
+	],
+});
+
 export default function ClientsPage() {
-	return <ClientsPageClient />;
+	return (
+		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
+			<ClientsPageClient />
+		</>
+	);
 }

@@ -38,6 +38,13 @@ const organizationSchema = {
 	knowsAbout: ["desarrollo web", "diseño web", "software a medida", "Next.js", "React"],
 };
 
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	name: "Pyrux",
+	url: BASE_URL,
+};
+
 const faqSchema = {
 	"@context": "https://schema.org",
 	"@type": "FAQPage",
@@ -147,6 +154,10 @@ export default function RootLayout({
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+				/>
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
 				/>
 				<script
 					type="application/ld+json"

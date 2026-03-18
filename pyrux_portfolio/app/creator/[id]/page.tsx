@@ -45,5 +45,24 @@ export async function generateMetadata({
 
 export default async function CreatorPage({ params }: CreatorPageProps) {
 	const { id } = await params;
-	return <CreatorPageClient creatorId={id} />;
+	const creator = creators.find((c) => c.id === id);
+	const breadcrumb = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		itemListElement: [
+			{ "@type": "ListItem", position: 1, name: "Inicio", item: "https://www.pyrux.com.ar" },
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: creator?.name ?? id,
+				item: `https://www.pyrux.com.ar/creator/${id}`,
+			},
+		],
+	});
+	return (
+		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
+			<CreatorPageClient creatorId={id} />
+		</>
+	);
 }
