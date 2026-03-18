@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { faqItems } from "@/data/faq";
 import "./globals.css";
+
+const manrope = Manrope({
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
+	variable: "--font-manrope",
+	display: "swap",
+});
 
 const BASE_URL = "https://www.pyrux.com.ar";
 
@@ -113,7 +121,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="es" data-theme="dark" suppressHydrationWarning>
+		<html lang="es" data-theme="dark" suppressHydrationWarning className={manrope.variable}>
 			<head>
 				{/* Google tag (gtag.js) */}
 				<script
@@ -135,17 +143,7 @@ export default function RootLayout({
 						__html: `(function(){var t=localStorage.getItem('oc-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}})();`,
 					}}
 				/>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link
-					rel="preconnect"
-					href="https://fonts.gstatic.com"
-					crossOrigin="anonymous"
-				/>
-				<link
-					href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
-					rel="stylesheet"
-				/>
-				{/* JSON-LD structured data */}
+	{/* JSON-LD structured data */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

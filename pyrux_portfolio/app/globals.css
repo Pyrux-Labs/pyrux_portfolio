@@ -200,8 +200,8 @@ html[data-theme="light"] {
 	--color-cyan-soft-bg: var(--surface-cyan-soft);
 	--color-inset-highlight: var(--surface-inset-highlight);
 
-	--font-display: "Manrope", system-ui, sans-serif;
-	--font-body: "Manrope", system-ui, sans-serif;
+	--font-display: var(--font-manrope), system-ui, sans-serif;
+	--font-body: var(--font-manrope), system-ui, sans-serif;
 	--font-mono: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
 
 	--animate-fade-in-up: fadeInUp 0.8s ease-out both;
