@@ -7,21 +7,14 @@
 import { motion } from "framer-motion";
 import { toast, Toaster } from "sonner";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
+import { CONTACT_EMAIL, contactItems } from "@/data/contacts";
 
 const currentYear = new Date().getFullYear();
-const CONTACT_EMAIL = "pyrux@pyrux.com.ar";
-
-const socialLinks = [
-	{ label: "LinkedIn", href: "https://linkedin.com/company/pyrux" },
-	{ label: "Email", action: "copy-email" as const },
-	{ label: "WhatsApp", href: "https://wa.me/5491112345678" },
-	{ label: "Instagram", href: "https://instagram.com/pyrux.dev" },
-];
 
 export default function Footer() {
 	const { copy } = useCopyToClipboard();
 
-	const handleClick = async (link: (typeof socialLinks)[0]) => {
+	const handleClick = async (link: (typeof contactItems)[0]) => {
 		if (link.action === "copy-email") {
 			await copy(CONTACT_EMAIL);
 			toast.success("Email copiado al portapapeles", {
@@ -42,7 +35,7 @@ export default function Footer() {
 				<nav
 					className="flex flex-wrap justify-center items-center gap-3 mb-4 text-[0.95rem]"
 					aria-label="Redes sociales">
-					{socialLinks.map((link) => {
+					{contactItems.map((link) => {
 						const isLink = !!link.href;
 						const Component = isLink ? "a" : "button";
 						const extraProps = isLink

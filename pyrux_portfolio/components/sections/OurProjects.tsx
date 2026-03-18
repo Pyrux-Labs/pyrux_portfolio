@@ -21,8 +21,12 @@ export default function OurProjects() {
 	const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
 	// Duplicate cards for infinite scroll effect
-	const projectCards = [...projects, ...projects];
-	const companyCards = [...companies, ...companies];
+	// Projects: 4x copies so total width matches companies (12 cards each) → same 110s duration = same speed
+	const projectCards = [...projects, ...projects, ...projects, ...projects];
+	// 12x copies to maintain carousel density while companies.ts has only real entries
+	const companyCards = Array(12)
+		.fill(null)
+		.flatMap(() => companies);
 
 	return (
 		<>
@@ -36,13 +40,13 @@ export default function OurProjects() {
 					className="flex flex-col gap-2 -mx-6 max-[480px]:-mx-4 overflow-hidden"
 					style={{
 						maskImage:
-							"linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+							"linear-gradient(to right, transparent, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 16%, black 24%, black 86%, rgba(0,0,0,0.7) 92%, rgba(0,0,0,0.3) 96%, transparent)",
 						WebkitMaskImage:
-							"linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+							"linear-gradient(to right, transparent, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 16%, black 24%, black 86%, rgba(0,0,0,0.7) 92%, rgba(0,0,0,0.3) 96%, transparent)",
 					}}>
 					<div
 						className="flex gap-4 w-max py-2 animate-scroll-right hover:[animation-play-state:paused]"
-						style={{ "--duration": "100s" } as React.CSSProperties}>
+						style={{ "--duration": "110s" } as React.CSSProperties}>
 						{projectCards.map((project, i) => (
 							<ProjectCard
 								key={`p-${i}`}

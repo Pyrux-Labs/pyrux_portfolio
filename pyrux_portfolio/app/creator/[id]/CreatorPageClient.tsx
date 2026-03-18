@@ -10,13 +10,13 @@ import { ArrowLeft, Github, Linkedin, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getCreatorById } from "@/data/creators";
-import { getProjectsByCreator } from "@/data/projects";
+import { getPersonalProjectsByCreator } from "@/data/personalProjects";
 import { getTechnologyById } from "@/data/technologies";
 import Badge from "@/components/ui/Badge";
 import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
-import type { Project } from "@/types";
+import type { PersonalProject } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -50,11 +50,11 @@ const cardVariants = {
 export default function CreatorPageClient({
 	creatorId,
 }: CreatorPageClientProps) {
-	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+	const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(null);
 	const { copy } = useCopyToClipboard();
 	const creator = getCreatorById(creatorId);
 	const creatorProjects = useMemo(
-		() => getProjectsByCreator(creatorId),
+		() => getPersonalProjectsByCreator(creatorId),
 		[creatorId],
 	);
 
@@ -62,7 +62,7 @@ export default function CreatorPageClient({
 		return (
 			<>
 				<StarBackground />
-				<main className="relative z-1 max-w-215 mx-auto min-h-screen flex flex-col items-center justify-center px-4">
+				<main className="relative z-1 max-w-content mx-auto min-h-screen flex flex-col items-center justify-center px-4">
 					<h1 className="font-display text-2xl font-bold text-primary mb-4">
 						Creador no encontrado
 					</h1>
@@ -88,7 +88,7 @@ export default function CreatorPageClient({
 	return (
 		<>
 			<StarBackground />
-			<main className="relative z-1 max-w-215 mx-auto min-h-screen flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+			<main className="relative z-1 max-w-content mx-auto min-h-screen flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 				{/* Header */}
 				<motion.div
 					className="mb-8"

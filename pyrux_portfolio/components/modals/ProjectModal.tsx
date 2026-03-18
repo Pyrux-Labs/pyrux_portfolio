@@ -18,10 +18,11 @@ interface ProjectModalProps {
 	onClose: () => void;
 }
 
-function ImageCarousel({ images }: { images: string[] }) {
+function ImageCarousel({ images, projectTitle }: { images: string[]; projectTitle: string }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
-	const [canScrollRight, setCanScrollRight] = useState(images.length > 4);
+	const hasArrows = images.length >= 4;
+	const [canScrollRight, setCanScrollRight] = useState(hasArrows);
 
 	const updateScrollState = () => {
 		const el = scrollRef.current;
@@ -55,7 +56,7 @@ function ImageCarousel({ images }: { images: string[] }) {
 						className="shrink-0 w-40 h-28 rounded-lg overflow-hidden border border-border bg-elevated">
 						<Img
 							src={img}
-							alt={`Imagen ${i + 1}`}
+							alt={`${projectTitle} — captura ${i + 1}`}
 							className="w-full h-full object-cover"
 							loading="lazy"
 							width={160}
@@ -64,18 +65,18 @@ function ImageCarousel({ images }: { images: string[] }) {
 					</div>
 				))}
 			</div>
-			{canScrollLeft && (
+			{hasArrows && canScrollLeft && (
 				<button
 					onClick={() => scroll("left")}
-					className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-border bg-card-strong text-secondary cursor-pointer transition-colors duration-200 hover:border-coral hover:text-coral"
+					className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-card-strong text-coral cursor-pointer transition-colors duration-200 hover:bg-coral hover:text-white"
 					aria-label="Anterior">
 					<ChevronLeft size={14} />
 				</button>
 			)}
-			{canScrollRight && (
+			{hasArrows && canScrollRight && (
 				<button
 					onClick={() => scroll("right")}
-					className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-border bg-card-strong text-secondary cursor-pointer transition-colors duration-200 hover:border-coral hover:text-coral"
+					className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-card-strong text-coral cursor-pointer transition-colors duration-200 hover:bg-coral hover:text-white"
 					aria-label="Siguiente">
 					<ChevronRight size={14} />
 				</button>
@@ -99,7 +100,7 @@ export default function ProjectModal({
 			</p>
 
 			{/* Image carousel */}
-			{project.images.length > 0 && <ImageCarousel images={project.images} />}
+			{project.images.length > 0 && <ImageCarousel images={project.images} projectTitle={project.title} />}
 
 			{/* Technologies */}
 			<div className="flex flex-wrap gap-2 mb-6">

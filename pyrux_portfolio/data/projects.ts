@@ -6,137 +6,70 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
 	{
-		id: "ecommerce-moderno",
-		title: "E-Commerce Moderno",
-		description:
-			"Tienda online completa con carrito de compras, pasarela de pagos, panel de administración y sistema de inventario en tiempo real. Diseñada para ofrecer una experiencia de compra fluida y moderna.",
-		shortDescription:
-			"Tienda online con carrito, pagos y panel de administración.",
-		technologies: ["react", "nextjs", "typescript", "tailwindcss", "postgresql", "stripe"],
-		images: ["/projects/ecommerce-1.webp", "/projects/ecommerce-2.webp"],
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com/pyrux/ecommerce",
-		creatorId: "juan",
-		featured: true,
-		date: "2025-12-15",
-	},
-	{
-		id: "dashboard-analytics",
-		title: "Dashboard de Analytics",
-		description:
-			"Panel de control con visualización de datos en tiempo real, gráficos interactivos, reportes exportables y sistema de alertas. Ideal para monitorear métricas clave del negocio.",
-		shortDescription:
-			"Panel de métricas en tiempo real con gráficos interactivos.",
-		technologies: ["react", "typescript", "nodejs", "express", "postgresql", "docker"],
-		images: ["/projects/dashboard-1.webp", "/projects/dashboard-2.webp"],
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com/pyrux/dashboard",
-		creatorId: "gino",
-		featured: true,
-		date: "2025-11-20",
-	},
-	{
-		id: "app-gestion-inventario",
-		title: "Sistema de Gestión de Inventario",
-		description:
-			"Aplicación web para gestionar inventarios, proveedores y órdenes de compra. Incluye sistema de alertas por stock bajo, reportes automáticos y trazabilidad completa de productos.",
-		shortDescription:
-			"Gestión de inventarios con alertas y reportes automáticos.",
-		technologies: ["nextjs", "typescript", "nodejs", "postgresql", "tailwindcss"],
-		images: ["/projects/inventario-1.webp", "/projects/inventario-2.webp"],
-		githubUrl: "https://github.com/pyrux/inventario",
-		creatorId: "juan",
-		featured: true,
-		date: "2025-10-05",
-	},
-	{
-		id: "landing-corporativa",
-		title: "Landing Page Corporativa",
-		description:
-			"Sitio web corporativo con diseño moderno, animaciones fluidas, formulario de contacto y optimización SEO completa. Pensada para generar confianza y convertir visitantes en clientes.",
-		shortDescription:
-			"Landing corporativa con animaciones y SEO optimizado.",
-		technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
-		images: ["/projects/landing-1.webp", "/projects/landing-2.webp"],
-		liveUrl: "https://example.com",
-		creatorId: "gino",
-		featured: true,
-		date: "2025-09-18",
-	},
-	{
-		id: "sistema-reservas",
-		title: "Sistema de Reservas Online",
-		description:
-			"Plataforma de reservas con calendario interactivo, notificaciones por email, panel de administración y sistema de pagos. Perfecto para restaurantes, consultorios y servicios.",
-		shortDescription:
-			"Plataforma de reservas con calendario y notificaciones.",
-		technologies: ["react", "nodejs", "express", "postgresql", "docker"],
-		images: ["/projects/reservas-1.webp", "/projects/reservas-2.webp"],
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com/pyrux/reservas",
-		creatorId: "juan",
-		featured: false,
-		date: "2025-08-10",
-	},
-	{
-		id: "chatbot-ia",
-		title: "Chatbot con IA",
-		description:
-			"Chatbot inteligente integrado con modelos de lenguaje, capaz de responder consultas de clientes, agendar citas y escalar tickets. Reduce tiempos de respuesta y mejora la atención.",
-		shortDescription:
-			"Chatbot inteligente para atención al cliente automatizada.",
-		technologies: ["typescript", "nodejs", "react", "tailwindcss", "docker"],
-		images: ["/projects/chatbot-1.webp", "/projects/chatbot-2.webp"],
-		githubUrl: "https://github.com/pyrux/chatbot",
-		creatorId: "gino",
-		featured: false,
-		date: "2025-07-22",
-	},
-	{
-		id: "portal-educativo",
-		title: "Portal Educativo",
-		description:
-			"Plataforma de cursos online con sistema de progreso, evaluaciones interactivas, certificados automáticos y foro de discusión. Diseñada para instituciones educativas.",
-		shortDescription:
-			"Plataforma de cursos con evaluaciones y certificados.",
-		technologies: ["nextjs", "typescript", "postgresql", "tailwindcss", "nodejs"],
-		images: ["/projects/educativo-1.webp", "/projects/educativo-2.webp"],
-		liveUrl: "https://example.com",
-		creatorId: "juan",
-		featured: false,
-		date: "2025-06-30",
-	},
-	{
-		id: "crm-ventas",
-		title: "CRM de Ventas",
-		description:
-			"Sistema CRM completo para gestión de clientes, pipeline de ventas, reportes de rendimiento y automatización de seguimientos. Mejora la productividad del equipo comercial.",
-		shortDescription:
-			"CRM para gestión de clientes y pipeline de ventas.",
-		technologies: ["react", "typescript", "nodejs", "express", "postgresql"],
-		images: ["/projects/crm-1.webp", "/projects/crm-2.webp"],
-		liveUrl: "https://example.com",
-		githubUrl: "https://github.com/pyrux/crm",
-		creatorId: "gino",
-		featured: false,
-		date: "2025-05-14",
-	},
-		{
 		id: "landing-page-medmind",
 		title: "Landing Page MedMind",
 		description:
-			"Landing page para la empresa MedMind, una startup de servicios de traducción profesional.",
+			"Landing page moderna y responsive para MedMind, una empresa de servicios de traducción profesional. Diseñada para comunicar confianza y generar consultas de clientes de forma efectiva, con animaciones fluidas y optimización SEO completa.",
 		shortDescription:
-			"Landing page para la empresa de traducción MedMind.",
-		technologies: ["react", "typescript", "stripe", "nextjs", "tailwindcss", "framer-motion"],
-		images: ["/projects/medmind-1.webp", "/projects/medmind-2.webp"],
+			"Landing page moderna para empresa de traducción profesional.",
+		technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
+		images: [
+			"/projects/medmind/1.webp",
+			"/projects/medmind/2.webp",
+			"/projects/medmind/3.webp",
+			"/projects/medmind/4.webp",
+			"/projects/medmind/5.webp",
+		],
 		liveUrl: "https://medmind.com.ar",
-		githubUrl: "https://github.com/pyrux/medmind",
-		creatorId: "gino",
-		featured: false,
-		date: "2025-05-14",
+		featured: true,
+		date: "2026-1-01",
 	},
-	
+	{
+		id: "cms-medmind",
+		title: "CMS MedMind",
+		description:
+			"Aplicación web de gestión de contenido desarrollada a medida para MedMind. Permite al equipo administrar traducciones, clientes y facturación desde un panel privado. Incluye integración con Stripe para la gestión de pagos y se despliega en contenedores Docker para máxima portabilidad.",
+		shortDescription:
+			"Panel de administración con pagos Stripe y despliegue en Docker.",
+		technologies: ["nodejs", "express", "stripe", "postgresql", "docker"],
+		images: [
+			"/projects/cms-medmind/1.webp",
+			"/projects/cms-medmind/2.webp",
+			"/projects/cms-medmind/3.webp",
+			"/projects/cms-medmind/4.webp",
+		],
+		featured: true,
+		date: "2026-1-01",
+	},
+	{
+		id: "pyrux-portfolio",
+		title: "Portfolio Pyrux",
+		description:
+			"Este mismo sitio. Portfolio web de Pyrux diseñado y desarrollado íntegramente por el estudio. Muestra proyectos, clientes, integrantes y planes de precios. Construido con Next.js App Router, Tailwind CSS v4 y Framer Motion, con exportación estática y deploy automático en GitHub Pages.",
+		shortDescription:
+			"Portfolio web del estudio, con animaciones y deploy estático.",
+		technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
+		images: ["/projects/pyrux-portfolio/1.webp"],
+		featured: true,
+		date: "2026-2-01",
+	},
+	{
+		id: "goal-planner",
+		title: "Goal Planner",
+		description:
+			"Aplicación web de calendario de metas personales. Permite a los usuarios crear objetivos, organizarlos en un calendario interactivo y hacer seguimiento de su progreso semana a semana. Construida con Next.js y Supabase para persistencia en tiempo real.",
+		shortDescription:
+			"Calendario de metas con seguimiento semanal y persistencia en tiempo real.",
+		technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion", "supabase"],
+		images: [
+			"/projects/goal-planner/1.webp",
+			"/projects/goal-planner/2.webp",
+			"/projects/goal-planner/3.webp",
+			"/projects/goal-planner/4.webp",
+		],
+		featured: true,
+		date: "2026-1-01",
+	},
 ];
 
 // Funciones auxiliares para filtrar proyectos
@@ -146,10 +79,6 @@ export function getProjectById(id: string): Project | undefined {
 
 export function getFeaturedProjects(): Project[] {
 	return projects.filter((p) => p.featured);
-}
-
-export function getProjectsByCreator(creatorId: string): Project[] {
-	return projects.filter((p) => p.creatorId === creatorId);
 }
 
 export function getProjectsByTechnology(techId: string): Project[] {

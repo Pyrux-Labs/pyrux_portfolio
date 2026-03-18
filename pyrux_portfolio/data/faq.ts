@@ -2,6 +2,21 @@ import type { FAQItem } from "../types/pricing.types";
 
 export const faqItems: FAQItem[] = [
 	{
+		question: "¿Por qué Pyrux y no una agencia?",
+		answer:
+			"Las agencias cobran un 200% más que nuestros precios, y tercerizan tu proyecto a un programador inexperto. En Pyrux, asegurás que hablás directamente con los profesionales que realizarán tu proyecto, manteniendo una calidad y personalización que no vas a tener en ninguna otra empresa.",
+	},
+	{
+		question: "¿Hay garantía de satisfacción?",
+		answer:
+			"Sí. Incluimos rondas de revisiones sin costo adicional hasta que el resultado te convenza. No lanzamos nada que no te represente.",
+	},
+	{
+		question: "¿Cuál es el tiempo de respuesta?",
+		answer:
+			"Plan Growth: respuesta en menos de 48hs. Plan Pro: menos de 24hs. Plan Business y E-Commerce: soporte prioritario con respuesta en menos de 12hs.",
+	},
+	{
 		question: "¿Los precios son en dólares o en pesos?",
 		answer:
 			"Se cotizan en USD, se pueden pagar en pesos al tipo de cambio del día.",
@@ -25,10 +40,5 @@ export const faqItems: FAQItem[] = [
 		question: "¿Cuánto tarda realmente un proyecto?",
 		answer:
 			"Los tiempos son desde que tenemos todo el contenido. Si hay demoras del cliente, el plazo se extiende. Cronograma acordado desde el inicio.",
-	},
-	{
-		question: "¿Por qué Pyrux y no una agencia?",
-		answer:
-			"Las agencias cobran un 200% más que nuestros precios, y tercerizan tu proyecto a un programador inexperto. En Pyrux, asegurás que hablás directamente con los profesionales que realizarán tu proyecto, manteniendo una calidad y personalización que no vas a tener en ninguna otra empresa.",
 	},
 ];

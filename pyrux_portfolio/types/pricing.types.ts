@@ -9,6 +9,9 @@ export interface MaintenanceItem {
 	description: string;
 }
 
+export type PlanColor = "growth" | "pro" | "business" | "custom";
+export type PlanCategory = "estandar" | "ecommerce" | "personalizado";
+
 export interface ServicePackage {
 	number: string;
 	name: string;
@@ -16,6 +19,8 @@ export interface ServicePackage {
 	maintenancePrice: string;
 	deliveryTime: string;
 	popular: boolean;
+	category: PlanCategory;
+	planColor: PlanColor;
 	features: PackageFeature[];
 	maintenanceCards: MaintenanceItem[];
 }

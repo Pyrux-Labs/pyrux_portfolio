@@ -23,7 +23,8 @@ const organizationSchema = {
 		name: "Argentina",
 	},
 	sameAs: [
-		"https://www.instagram.com/pyrux.dev",
+		"https://www.instagram.com/pyrux_labs",
+		"https://linkedin.com/company/pyrux",
 	],
 	priceRange: "$$",
 	knowsAbout: ["desarrollo web", "diseño web", "software a medida", "Next.js", "React"],
@@ -100,6 +101,9 @@ export const metadata: Metadata = {
 			follow: true,
 			"max-image-preview": "large",
 		},
+	},
+	other: {
+		"theme-color": "#F97316",
 	},
 };
 

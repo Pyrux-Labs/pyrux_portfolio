@@ -2,16 +2,18 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import MaintenanceCard from "./MaintenanceCard";
-import type { MaintenanceItem } from "@/types/pricing.types";
+import type { MaintenanceItem, PlanColor } from "@/types/pricing.types";
 
 interface MaintenanceGridProps {
 	cards: MaintenanceItem[];
 	animKey: number;
+	planColor: PlanColor;
 }
 
 export default function MaintenanceGrid({
 	cards,
 	animKey,
+	planColor,
 }: MaintenanceGridProps) {
 	return (
 		<AnimatePresence mode="wait">
@@ -30,7 +32,7 @@ export default function MaintenanceGrid({
 					},
 				}}>
 				{cards.map((item) => (
-					<MaintenanceCard key={item.title} item={item} />
+					<MaintenanceCard key={item.title} item={item} planColor={planColor} />
 				))}
 			</motion.div>
 		</AnimatePresence>

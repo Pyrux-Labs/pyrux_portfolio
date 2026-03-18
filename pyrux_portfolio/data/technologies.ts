@@ -168,6 +168,13 @@ export const technologies: Technology[] = [
 		category: "other",
 		featured: false,
 	},
+	{
+		id: "supabase",
+		name: "Supabase",
+		icon: "SiSupabase",
+		category: "database",
+		featured: false,
+	},
 ];
 
 // Funciones auxiliares

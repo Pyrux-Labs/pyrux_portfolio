@@ -2,16 +2,42 @@
 
 import { motion } from "framer-motion";
 import MaintenanceIcon from "@/components/ui/MaintenanceIcon";
-import type { MaintenanceItem } from "@/types/pricing.types";
+import type { MaintenanceItem, PlanColor } from "@/types/pricing.types";
+
+const colorTokens: Record<PlanColor, { text: string; border: string; shadow: string }> = {
+	growth: {
+		text:   "text-[var(--pkg-growth)]",
+		border: "hover:border-[var(--pkg-growth)]",
+		shadow: "hover:shadow-[0_12px_40px_var(--pkg-growth-soft)]",
+	},
+	pro: {
+		text:   "text-coral",
+		border: "hover:border-coral",
+		shadow: "hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]",
+	},
+	business: {
+		text:   "text-[var(--pkg-business)]",
+		border: "hover:border-[var(--pkg-business)]",
+		shadow: "hover:shadow-[0_12px_40px_var(--pkg-business-soft)]",
+	},
+	custom: {
+		text:   "text-[var(--pkg-custom)]",
+		border: "hover:border-[var(--pkg-custom)]",
+		shadow: "hover:shadow-[0_12px_40px_var(--pkg-custom-soft)]",
+	},
+};
 
 interface MaintenanceCardProps {
 	item: MaintenanceItem;
+	planColor: PlanColor;
 }
 
-export default function MaintenanceCard({ item }: MaintenanceCardProps) {
+export default function MaintenanceCard({ item, planColor }: MaintenanceCardProps) {
+	const c = colorTokens[planColor];
+
 	return (
 		<motion.div
-			className="block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)] cursor-default group"
+			className={`block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-[border-color,box-shadow] duration-200 ease-in-out ${c.border} ${c.shadow} cursor-default group`}
 			variants={{
 				hidden: { opacity: 0, y: 16 },
 				visible: {
@@ -22,7 +48,7 @@ export default function MaintenanceCard({ item }: MaintenanceCardProps) {
 			}}
 			whileHover={{ y: -6 }}>
 			<div className="flex items-center justify-center mb-3 transition-transform duration-200 ease-in-out group-hover:scale-110">
-				<MaintenanceIcon iconName={item.icon} className="text-coral" />
+				<MaintenanceIcon iconName={item.icon} className={c.text} />
 			</div>
 			<h3 className="font-display text-base font-semibold text-primary mb-1.5 text-center">
 				{item.title}

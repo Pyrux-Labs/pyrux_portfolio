@@ -10,11 +10,7 @@ export const creators: Creator[] = [
 		name: "Juan Manuel García",
 		bio: "Desarrollador full-stack. Con experiencia en desarrollo web moderno, sistemas a medida y automatización de procesos. Siempre buscando aprender y aplicar nuevas herramientas para crear soluciones eficientes y de calidad.",
 		image: "/creators/Juan-Manuel-Garcia.webp",
-		photos: [
-			"/creators/juan-1.webp",
-			"/creators/juan-2.webp",
-			"/creators/juan-3.webp",
-		],
+		photos: ["/creators/Juan-Manuel-Garcia.webp"],
 		role: "Full-Stack Developer",
 		socialLinks: {
 			linkedin: "https://www.linkedin.com/in/juan-manuel-garcia-99952b270/",
@@ -22,10 +18,9 @@ export const creators: Creator[] = [
 			email: "juanmanuelgarcia@pyrux.com.ar",
 		},
 		featuredProjects: [
-			"ecommerce-moderno",
-			"app-gestion-inventario",
-			"sistema-reservas",
-			"portal-educativo",
+			"cms-medmind",
+			"landing-page-medmind",
+			"pyrux-portfolio",
 		],
 	},
 	{
@@ -33,11 +28,7 @@ export const creators: Creator[] = [
 		name: "Gino Ruben Giorgi",
 		bio: "Desarrollador creativo con enfoque en experiencias de usuario excepcionales. Especializado en frontend moderno, diseño de interfaces y optimización de rendimiento. Combina diseño y código para crear productos digitales que destacan.",
 		image: "/creators/Gino-Ruben-Giorgi.webp",
-		photos: [
-			"/creators/gino-1.webp",
-			"/creators/gino-2.webp",
-			"/creators/gino-3.webp",
-		],
+		photos: ["/creators/Gino-Ruben-Giorgi.webp"],
 		role: "Frontend Developer & UI Designer",
 		socialLinks: {
 			linkedin: "https://www.linkedin.com/in/ginorubengiorgi/",
@@ -45,10 +36,9 @@ export const creators: Creator[] = [
 			email: "ginorubengiorgi@pyrux.com.ar",
 		},
 		featuredProjects: [
-			"dashboard-analytics",
-			"landing-corporativa",
-			"chatbot-ia",
-			"crm-ventas",
+			"landing-page-medmind",
+			"pyrux-portfolio",
+			"cms-medmind",
 		],
 	},
 ];

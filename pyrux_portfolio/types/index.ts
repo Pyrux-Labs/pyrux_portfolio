@@ -11,15 +11,19 @@ export interface Project {
 	images: string[];
 	liveUrl?: string;
 	githubUrl?: string;
-	creatorId: string;
 	featured: boolean;
 	date: string;
+}
+
+export interface PersonalProject extends Project {
+	creatorId: string;
 }
 
 export interface Company {
 	id: string;
 	name: string;
 	logo: string;
+	logoDark?: string;
 	summary: string;
 	workDescription: string;
 	websiteUrl: string;

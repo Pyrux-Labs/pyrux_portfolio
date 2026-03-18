@@ -10,6 +10,8 @@ import type { ReactNode } from "react";
 interface SectionProps {
 	id?: string;
 	title?: string;
+	titleNode?: ReactNode;
+	accentClassName?: string;
 	titleRight?: boolean;
 	viewAllHref?: string;
 	viewAllLabel?: string;
@@ -30,12 +32,16 @@ const sectionVariants = {
 export default function Section({
 	id,
 	title,
+	titleNode,
+	accentClassName = "text-coral font-bold",
 	titleRight,
 	viewAllHref,
 	viewAllLabel = "Ver todos",
 	children,
 	className = "",
 }: SectionProps) {
+	const hasTitle = title || titleNode;
+
 	return (
 		<motion.section
 			id={id}
@@ -44,14 +50,14 @@ export default function Section({
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.15 }}
 			className={`mb-14 scroll-mt-[30vh] ${className}`}>
-			{title && (
+			{hasTitle && (
 				<div
 					className={`flex items-center mb-5 gap-2.5 ${
 						titleRight ? "justify-end" : "justify-between"
 					}`}>
 					{!titleRight && (
 						<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
-							<span className="text-coral font-bold">⟩</span> {title}
+							<span className={accentClassName}>⟩</span> {titleNode ?? title}
 						</h2>
 					)}
 					{viewAllHref && !titleRight && (
@@ -70,7 +76,7 @@ export default function Section({
 					)}
 					{titleRight && (
 						<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
-							{title} <span className="text-coral font-bold">⟨</span>
+							{titleNode ?? title} <span className={accentClassName}>⟨</span>
 						</h2>
 					)}
 				</div>

@@ -253,6 +253,20 @@ html[data-theme="light"] body {
 	color: var(--bg-deep);
 }
 
+/* ── Theme-aware logo visibility ───────────── */
+.logo-for-dark {
+	display: block;
+}
+.logo-for-light {
+	display: none;
+}
+html[data-theme="light"] .logo-for-dark {
+	display: none;
+}
+html[data-theme="light"] .logo-for-light {
+	display: block;
+}
+
 /* ── Light theme background adjustments ────── */
 html[data-theme="light"] .stars {
 	opacity: 0.28;
@@ -332,4 +346,69 @@ html[data-theme="light"] .nebula {
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
+}
+
+/* ── Responsive content max-width ─────────── */
+@layer utilities {
+	.max-w-content {
+		max-width: 53.75rem; /* 215 units — up to 1366px */
+	}
+	@media (min-width: 1536px) {
+		.max-w-content {
+			max-width: 60rem; /* ~1366–1920px range */
+		}
+	}
+	@media (min-width: 1920px) {
+		.max-w-content {
+			max-width: 65rem; /* 250 units — 1920px */
+		}
+	}
+	@media (min-width: 2560px) {
+		.max-w-content {
+			max-width: 80rem; /* 300 units — 2560px */
+		}
+	}
+}
+
+/* ── Package plan rarity colors ──────────── */
+:root {
+	/* Growth — Básico (Common) */
+	--pkg-growth: #22c55e;
+	--pkg-growth-soft: rgba(34, 197, 94, 0.08);
+	--pkg-growth-mid: rgba(34, 197, 94, 0.3);
+
+	/* Pro — Raro (Rare) */
+	--pkg-pro: var(--color-coral);
+	--pkg-pro-soft: var(--shadow-coral-soft);
+	--pkg-pro-mid: var(--shadow-coral-mid);
+
+	/* Business — Épico (Epic) */
+	--pkg-business: #a855f7;
+	--pkg-business-soft: rgba(168, 85, 247, 0.08);
+	--pkg-business-mid: rgba(168, 85, 247, 0.3);
+
+	/* Personalizado — Legendario (Legendary) */
+	--pkg-custom: #f59e0b;
+	--pkg-custom-soft: rgba(245, 158, 11, 0.08);
+	--pkg-custom-mid: rgba(245, 158, 11, 0.3);
+}
+
+/* ── Legendary card glow pulse ───────────── */
+@keyframes pkg-legendary-pulse {
+	0%,
+	100% {
+		box-shadow:
+			0 0 20px var(--pkg-custom-soft),
+			0 0 50px var(--pkg-custom-soft),
+			inset 0 0 20px var(--pkg-custom-soft);
+	}
+	50% {
+		box-shadow:
+			0 0 35px var(--pkg-custom-mid),
+			0 0 80px var(--pkg-custom-soft),
+			inset 0 0 30px var(--pkg-custom-soft);
+	}
+}
+.animate-legendary-pulse {
+	animation: pkg-legendary-pulse 3s ease-in-out infinite;
 }
