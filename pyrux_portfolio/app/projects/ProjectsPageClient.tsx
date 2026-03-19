@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import { ArrowLeft } from "lucide-react";
 import { projects } from "@/data/projects";
 import Image from "next/image";
@@ -34,7 +36,10 @@ const cardVariants = {
 };
 
 export default function ProjectsPageClient() {
+	const t = useTranslations("ProjectsPage");
+	const { locale } = useLocale();
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+	const localeProjects = projects[locale];
 
 	return (
 		<>
@@ -51,13 +56,13 @@ export default function ProjectsPageClient() {
 						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 hover:text-coral" // ← sin transition-* aquí
 					>
 						<ArrowLeft size={16} />
-						Volver al inicio
+						{t("backToHome")}
 					</Link>
 					<h1 className="font-display text-3xl font-bold text-primary mb-2">
-						Nuestros Proyectos
+						{t("title")}
 					</h1>
 					<p className="text-secondary">
-						Todos los proyectos desarrollados por Pyrux
+						{t("subtitle")}
 					</p>
 				</motion.div>
 
@@ -67,7 +72,7 @@ export default function ProjectsPageClient() {
 					variants={gridVariants}
 					initial="hidden"
 					animate="visible">
-					{projects.map((project) => (
+					{localeProjects.map((project) => (
 						<motion.div
 							key={project.id}
 							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer hover:-translate-y-1 hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]" // ← sin transition-* ni duration-*
@@ -77,7 +82,7 @@ export default function ProjectsPageClient() {
 							onClick={() => setSelectedProject(project)}
 							role="button"
 							tabIndex={0}
-							aria-label={`Ver detalles de ${project.title}`}
+							aria-label={t("viewDetailsAria", { title: project.title })}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" || e.key === " ") {
 									e.preventDefault();
@@ -99,7 +104,7 @@ export default function ProjectsPageClient() {
 								/>
 							</div>
 							<span className="text-[0.75rem] text-muted">
-								{new Date(project.date).toLocaleDateString("es-AR", {
+								{new Date(project.date).toLocaleDateString(locale === "es" ? "es-AR" : "en-US", {
 									year: "numeric",
 									month: "short",
 								})}

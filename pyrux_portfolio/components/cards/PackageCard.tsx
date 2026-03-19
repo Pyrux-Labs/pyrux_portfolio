@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { X, ArrowRight } from "lucide-react";
 import type { PlanColor, ServicePackage } from "@/types/pricing.types";
 
@@ -60,6 +61,7 @@ interface PackageCardProps {
 }
 
 function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
+	const t = useTranslations("PackageCard");
 	return (
 		<motion.div
 			variants={cardVariants}
@@ -73,7 +75,7 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 				{pkg.name}
 			</h3>
 			<p className="text-[0.9rem] text-secondary mb-5 leading-snug">
-				Para proyectos sin límites — sistemas, IA, plataformas a medida.
+				{t("customTagline")}
 			</p>
 
 			<div className="border-t border-(--pkg-custom)/20" />
@@ -94,7 +96,7 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 
 			{/* Delivery */}
 			<p className="text-[0.8rem] text-muted mb-5">
-				Tiempo de entrega:{" "}
+				{t("customDeliveryLabel")}{" "}
 				<span className="text-(--pkg-custom) font-semibold">
 					{pkg.deliveryTime}
 				</span>
@@ -107,7 +109,7 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 				rel="noopener noreferrer"
 				onClick={(e) => e.stopPropagation()}
 				className="inline-flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl border border-(--pkg-custom) bg-(--pkg-custom-soft) text-(--pkg-custom) font-semibold text-[0.95rem] hover:bg-(--pkg-custom) hover:text-white transition-all duration-200 no-underline group">
-				Consultar ahora
+				{t("customCta")}
 				<ArrowRight
 					size={16}
 					className="transition-transform duration-200 group-hover:translate-x-1"
@@ -122,6 +124,7 @@ export default function PackageCard({
 	isSelected,
 	onClick,
 }: PackageCardProps) {
+	const t = useTranslations("PackageCard");
 	if (pkg.planColor === "custom") {
 		return <LegendaryCard pkg={pkg} />;
 	}
@@ -140,7 +143,7 @@ export default function PackageCard({
 				{isSelected && (
 					<span
 						className={`text-[0.65rem] font-mono border rounded-full px-2 py-0.5 ${c.text} ${c.bg} border-current/30`}>
-						seleccionado
+						{t("selected")}
 					</span>
 				)}
 			</div>
@@ -157,7 +160,7 @@ export default function PackageCard({
 
 			{/* Delivery time */}
 			<div className="text-[0.8rem] text-muted mb-2">
-				Entrega:{" "}
+				{t("deliveryLabel")}{" "}
 				<span className={`font-semibold ${c.text}`}>{pkg.deliveryTime}</span>
 			</div>
 
@@ -165,7 +168,7 @@ export default function PackageCard({
 			{pkg.maintenancePrice && (
 				<span
 					className={`inline-flex self-start px-2.5 py-1 rounded-full border text-[0.7rem] font-medium mb-4 ${c.text} ${c.bg} border-current/30`}>
-					Mant. {pkg.maintenancePrice}
+					{t("maintenancePrefix")} {pkg.maintenancePrice}
 				</span>
 			)}
 

@@ -4,13 +4,14 @@
 
 import type { MetadataRoute } from "next";
 import { creators } from "@/data/creators";
+import { defaultLocale } from "@/i18n/config";
 
 export const dynamic = "force-static";
 
 const BASE_URL = "https://www.pyrux.com.ar";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const creatorRoutes = creators.map((creator) => ({
+	const creatorRoutes = creators[defaultLocale].map((creator) => ({
 		url: `${BASE_URL}/creator/${creator.id}`,
 		lastModified: new Date(),
 		changeFrequency: "monthly" as const,

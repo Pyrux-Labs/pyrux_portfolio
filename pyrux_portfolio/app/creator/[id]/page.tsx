@@ -4,6 +4,7 @@
 
 import type { Metadata } from "next";
 import { creators } from "@/data/creators";
+import { defaultLocale } from "@/i18n/config";
 import CreatorPageClient from "./CreatorPageClient";
 
 interface CreatorPageProps {
@@ -12,7 +13,7 @@ interface CreatorPageProps {
 
 // Generar rutas estáticas para cada creador
 export function generateStaticParams() {
-	return creators.map((c) => ({ id: c.id }));
+	return creators[defaultLocale].map((c) => ({ id: c.id }));
 }
 
 // Metadata dinámica
@@ -20,7 +21,7 @@ export async function generateMetadata({
 	params,
 }: CreatorPageProps): Promise<Metadata> {
 	const { id } = await params;
-	const creator = creators.find((c) => c.id === id);
+	const creator = creators[defaultLocale].find((c) => c.id === id);
 	const title = creator ? `${creator.name} — Pyrux` : "Creador no encontrado — Pyrux";
 	const description = creator?.bio ?? "Perfil de creador en Pyrux";
 	const url = `https://www.pyrux.com.ar/creator/${id}`;
@@ -45,7 +46,7 @@ export async function generateMetadata({
 
 export default async function CreatorPage({ params }: CreatorPageProps) {
 	const { id } = await params;
-	const creator = creators.find((c) => c.id === id);
+	const creator = creators[defaultLocale].find((c) => c.id === id);
 	const breadcrumb = JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",

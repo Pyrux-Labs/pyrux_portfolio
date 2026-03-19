@@ -4,6 +4,7 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import { faqItems } from "@/data/faq";
+import { defaultLocale } from "@/i18n/config";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -52,7 +53,7 @@ const websiteSchema = {
 const faqSchema = {
 	"@context": "https://schema.org",
 	"@type": "FAQPage",
-	mainEntity: faqItems.map((item) => ({
+	mainEntity: faqItems[defaultLocale].map((item) => ({
 		"@type": "Question",
 		name: item.question,
 		acceptedAnswer: {

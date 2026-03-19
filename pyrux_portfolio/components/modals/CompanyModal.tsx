@@ -4,6 +4,7 @@
 
 "use client";
 
+import { useTranslations } from "next-intl";
 import Modal from "@/components/ui/Modal";
 import { ExternalLink, Quote } from "lucide-react";
 import type { Company } from "@/types";
@@ -19,6 +20,7 @@ export default function CompanyModal({
 	isOpen,
 	onClose,
 }: CompanyModalProps) {
+	const t = useTranslations("CompanyModal");
 	if (!company) return null;
 
 	return (
@@ -29,7 +31,7 @@ export default function CompanyModal({
 			{/* Work done */}
 			<div className="mb-6">
 				<h4 className="font-display text-[0.95rem] font-semibold text-primary mb-2">
-					Trabajo realizado
+					{t("workDone")}
 				</h4>
 				<p className="text-secondary text-[0.9rem] leading-relaxed">
 					{company.workDescription}
@@ -59,7 +61,7 @@ export default function CompanyModal({
 				rel="noopener noreferrer"
 				className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5">
 				<ExternalLink size={16} />
-				Visitar sitio web
+				{t("visitWebsite")}
 			</a>
 		</Modal>
 	);

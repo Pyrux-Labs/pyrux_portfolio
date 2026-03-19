@@ -4,6 +4,8 @@
 
 "use client";
 
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import Modal from "@/components/ui/Modal";
 import Badge from "@/components/ui/Badge";
 import { getProjectById } from "@/data/projects";
@@ -25,19 +27,21 @@ export default function CreatorModal({
 	isOpen,
 	onClose,
 }: CreatorModalProps) {
+	const t = useTranslations("CreatorModal");
+	const { locale } = useLocale();
 	const { copy } = useCopyToClipboard();
 
 	if (!creator) return null;
 
 	// Get featured projects for the creator
 	const featuredProjects = creator.featuredProjects
-		.map((id) => getProjectById(id))
+		.map((id) => getProjectById(id, locale))
 		.filter(Boolean);
 
 	const handleEmailCopy = async () => {
 		if (!creator.socialLinks.email) return;
 		await copy(creator.socialLinks.email);
-		toast.success("Email copiado al portapapeles", {
+		toast.success(t("toastSuccess"), {
 			description: creator.socialLinks.email,
 			duration: 2500,
 		});
@@ -75,7 +79,7 @@ export default function CreatorModal({
 						target="_blank"
 						rel="noopener noreferrer"
 						className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral"
-						aria-label="GitHub">
+						aria-label={t("githubAria")}>
 						<Github size={16} />
 					</a>
 				)}
@@ -85,7 +89,7 @@ export default function CreatorModal({
 						target="_blank"
 						rel="noopener noreferrer"
 						className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral"
-						aria-label="LinkedIn">
+						aria-label={t("linkedinAria")}>
 						<Linkedin size={16} />
 					</a>
 				)}
@@ -93,7 +97,7 @@ export default function CreatorModal({
 					<button
 						onClick={handleEmailCopy}
 						className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
-						aria-label="Copiar email">
+						aria-label={t("emailAria")}>
 						<Mail size={16} />
 					</button>
 				)}
@@ -103,7 +107,7 @@ export default function CreatorModal({
 			{featuredProjects.length > 0 && (
 				<div>
 					<h4 className="font-display text-[0.95rem] font-semibold text-primary mb-3">
-						Proyectos destacados
+						{t("featuredProjects")}
 					</h4>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 						{featuredProjects.map((project) => {
@@ -140,7 +144,7 @@ export default function CreatorModal({
 						href={`/creator/${creator.id}`}
 						className="inline-flex items-center gap-2 mt-4 text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 hover:text-cyan">
 						<ExternalLink size={14} />
-						Ver todos los proyectos
+						{t("viewAllProjects")}
 					</a>
 				</div>
 			)}

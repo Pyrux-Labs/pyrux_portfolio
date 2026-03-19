@@ -4,6 +4,8 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import { ArrowLeft, Building2, Quote } from "lucide-react";
 import { companies } from "@/data/companies";
 import CompanyModal from "@/components/modals/CompanyModal";
@@ -37,7 +39,10 @@ const cardVariants = {
 };
 
 export default function ClientsPageClient() {
+	const t = useTranslations("ClientsPage");
+	const { locale } = useLocale();
 	const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+	const localeCompanies = companies[locale];
 
 	return (
 		<>
@@ -53,13 +58,13 @@ export default function ClientsPageClient() {
 						href="/"
 						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 hover:text-coral">
 						<ArrowLeft size={16} />
-						Volver al inicio
+						{t("backToHome")}
 					</Link>
 					<h1 className="font-display text-3xl font-bold text-primary mb-2">
-						Nuestros Clientes
+						{t("title")}
 					</h1>
 					<p className="text-secondary">
-						Empresas que confiaron en Pyrux para sus proyectos digitales
+						{t("subtitle")}
 					</p>
 				</motion.div>
 
@@ -69,7 +74,7 @@ export default function ClientsPageClient() {
 					variants={gridVariants}
 					initial="hidden"
 					animate="visible">
-					{companies.map((company) => (
+					{localeCompanies.map((company) => (
 						<motion.div
 							key={company.id}
 							className="flex flex-col gap-4 p-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl cursor-pointer hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
@@ -79,7 +84,7 @@ export default function ClientsPageClient() {
 							onClick={() => setSelectedCompany(company)}
 							role="button"
 							tabIndex={0}
-							aria-label={`Ver detalles de ${company.name}`}
+							aria-label={t("viewDetailsAria", { name: company.name })}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" || e.key === " ") {
 									e.preventDefault();

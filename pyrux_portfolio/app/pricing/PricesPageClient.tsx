@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import { ArrowLeft, MessageCircle } from "lucide-react";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
@@ -60,19 +62,26 @@ const gridVariants = {
 	visible: { transition: { staggerChildren: 0.06 } },
 };
 
-const TABS: { id: PlanCategory; label: string }[] = [
-	{ id: "estandar", label: "Estándar" },
-	{ id: "ecommerce", label: "E-Commerce" },
-	{ id: "personalizado", label: "Personalizado" },
-];
-
 export default function PreciosPageClient() {
+	const t = useTranslations("PricingPage");
+	const tMaint = useTranslations("MaintenanceGrid");
+	const { locale } = useLocale();
 	const [selectedCategory, setSelectedCategory] =
 		useState<PlanCategory>("estandar");
 	const [selectedPkg, setSelectedPkg] = useState<number>(0);
 	const carouselRef = useRef<HTMLDivElement>(null);
 
-	const visiblePackages = packages.filter(
+	const localePackages = packages[locale];
+	const localeSteps = steps[locale];
+	const localeFaqItems = faqItems[locale];
+
+	const TABS: { id: PlanCategory; label: string }[] = [
+		{ id: "estandar", label: t("tabStandard") },
+		{ id: "ecommerce", label: t("tabEcommerce") },
+		{ id: "personalizado", label: t("tabCustom") },
+	];
+
+	const visiblePackages = localePackages.filter(
 		(p) => p.category === selectedCategory,
 	);
 	const activePkg = visiblePackages[selectedPkg] ?? visiblePackages[0];
@@ -129,19 +138,18 @@ export default function PreciosPageClient() {
 						href="/"
 						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-6 hover:text-coral">
 						<ArrowLeft size={16} />
-						Volver al inicio
+						{t("backToHome")}
 					</Link>
 
 					<h1 className="font-display text-3xl font-bold text-primary mb-4">
-						Tu negocio merece una <br />
-						<span className="text-coral">presencia digital que venda.</span>
+						{t("heading")} <br />
+						<span className="text-coral">{t("headingAccent")}</span>
 					</h1>
 					<p className="text-[0.8rem] text-muted font-mono tracking-wider uppercase mb-3">
-						Desarrollo Web Profesional — Rosario, Argentina
+						{t("tagline")}
 					</p>
 					<p className="text-[1rem] text-secondary max-w-140 leading-relaxed mb-6">
-						Diseñamos y desarrollamos sitios web a medida que posicionan tu
-						marca, generan confianza y convierten visitantes en clientes.
+						{t("description")}
 					</p>
 				</motion.div>
 
@@ -167,7 +175,7 @@ export default function PreciosPageClient() {
 				</motion.div>
 
 				{/* Paquetes */}
-				<Section id="paquetes" className="mb-6" title="Nuestros paquetes">
+				<Section id="paquetes" className="mb-6" title={t("packagesTitle")}>
 					{/* Mobile — carrusel horizontal */}
 					{selectedCategory !== "personalizado" && (
 						<div className="sm:hidden">
@@ -236,7 +244,7 @@ export default function PreciosPageClient() {
 						className={`flex flex-wrap items-center justify-between gap-4 mb-10 px-5 py-4 rounded-xl border backdrop-blur-sm ${ctaColorTokens[activePkg.planColor].border} ${ctaColorTokens[activePkg.planColor].bg}`}>
 						<div className="flex flex-col min-[481px]:flex-row min-[481px]:items-center gap-1 min-[481px]:gap-3">
 							<span className="text-[0.8rem] text-muted">
-								Plan seleccionado
+								{t("selectedPlan")}
 							</span>
 							<span
 								className={`font-display font-bold text-[1rem] ${ctaColorTokens[activePkg.planColor].text}`}>
@@ -244,7 +252,7 @@ export default function PreciosPageClient() {
 							</span>
 						</div>
 						<a
-							href={`https://wa.me/5493416941225?text=${encodeURIComponent(`Hola! Me interesa el plan ${activePkg.name}`)}`}
+							href={`https://wa.me/5493416941225?text=${encodeURIComponent(t("whatsAppMessage", { name: activePkg.name }))}`}
 							target="_blank"
 							rel="noopener noreferrer"
 							className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border text-[0.85rem] font-semibold transition-all duration-200 shrink-0 w-full min-[400px]:w-auto no-underline hover:brightness-110 hover:scale-[1.02]
@@ -252,7 +260,7 @@ export default function PreciosPageClient() {
 									${ctaColorTokens[activePkg.planColor].border}
 									${ctaColorTokens[activePkg.planColor].bg}`}>
 							<MessageCircle size={15} />
-							Consultar por WhatsApp
+							{t("ctaWhatsApp")}
 						</a>
 					</motion.div>
 				)}
@@ -264,7 +272,7 @@ export default function PreciosPageClient() {
 						accentClassName={`${ctaColorTokens[activePkg.planColor].text} font-bold`}
 						titleNode={
 							<span className="flex flex-col leading-tight">
-								<span>Mantenimiento incluido</span>
+								<span>{tMaint("heading")}</span>
 								<span
 									className={`text-[1rem] font-normal ${ctaColorTokens[activePkg.planColor].text}`}>
 									{activePkg.name}
@@ -280,10 +288,10 @@ export default function PreciosPageClient() {
 				)}
 
 				{/* Proceso */}
-				<ProcessSection steps={steps} />
+				<ProcessSection steps={localeSteps} />
 
 				{/* FAQ */}
-				<FAQSection items={faqItems} />
+				<FAQSection items={localeFaqItems} />
 
 				<Footer />
 			</main>

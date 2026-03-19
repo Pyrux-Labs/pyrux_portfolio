@@ -6,6 +6,8 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import { ArrowLeft, Github, Linkedin, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
@@ -50,12 +52,14 @@ const cardVariants = {
 export default function CreatorPageClient({
 	creatorId,
 }: CreatorPageClientProps) {
+	const t = useTranslations("CreatorPage");
+	const { locale } = useLocale();
 	const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(null);
 	const { copy } = useCopyToClipboard();
-	const creator = getCreatorById(creatorId);
+	const creator = getCreatorById(creatorId, locale);
 	const creatorProjects = useMemo(
-		() => getPersonalProjectsByCreator(creatorId),
-		[creatorId],
+		() => getPersonalProjectsByCreator(creatorId, locale),
+		[creatorId, locale],
 	);
 
 	if (!creator) {
@@ -64,12 +68,12 @@ export default function CreatorPageClient({
 				<StarBackground />
 				<main className="relative z-1 max-w-content mx-auto min-h-screen flex flex-col items-center justify-center px-4">
 					<h1 className="font-display text-2xl font-bold text-primary mb-4">
-						Creador no encontrado
+						{t("notFoundTitle")}
 					</h1>
 					<Link
 						href="/"
 						className="text-coral no-underline hover:text-cyan transition-colors">
-						← Volver al inicio
+						{t("backToHomeAlt")}
 					</Link>
 				</main>
 			</>
@@ -79,7 +83,7 @@ export default function CreatorPageClient({
 	const handleEmailCopy = async () => {
 		if (!creator.socialLinks.email) return;
 		await copy(creator.socialLinks.email);
-		toast.success("Email copiado al portapapeles", {
+		toast.success(t("toastSuccess"), {
 			description: creator.socialLinks.email,
 			duration: 2500,
 		});
@@ -99,7 +103,7 @@ export default function CreatorPageClient({
 						href="/"
 						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-4 hover:text-coral">
 						<ArrowLeft size={16} />
-						Volver al inicio
+						{t("backToHome")}
 					</Link>
 
 					{/* Creator info */}
@@ -123,7 +127,7 @@ export default function CreatorPageClient({
 										target="_blank"
 										rel="noopener noreferrer"
 										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
-										aria-label="GitHub">
+										aria-label={t("githubAria")}>
 										<Github size={16} />
 									</a>
 								)}
@@ -133,7 +137,7 @@ export default function CreatorPageClient({
 										target="_blank"
 										rel="noopener noreferrer"
 										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
-										aria-label="LinkedIn">
+										aria-label={t("linkedinAria")}>
 										<Linkedin size={16} />
 									</a>
 								)}
@@ -141,7 +145,7 @@ export default function CreatorPageClient({
 									<button
 										onClick={handleEmailCopy}
 										className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
-										aria-label="Copiar email">
+										aria-label={t("emailAria")}>
 										<Mail size={16} />
 									</button>
 								)}
@@ -173,7 +177,7 @@ export default function CreatorPageClient({
 							onClick={() => setSelectedProject(project)}
 							role="button"
 							tabIndex={0}
-							aria-label={`Ver detalles de ${project.title}`}
+							aria-label={t("viewDetailsAria", { title: project.title })}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" || e.key === " ") {
 									e.preventDefault();
@@ -200,14 +204,14 @@ export default function CreatorPageClient({
 							</div>
 							<div className="flex items-center justify-between">
 								<span className="text-[0.75rem] text-muted">
-									{new Date(project.date).toLocaleDateString("es-AR", {
+									{new Date(project.date).toLocaleDateString(locale === "es" ? "es-AR" : "en-US", {
 										year: "numeric",
 										month: "short",
 									})}
 								</span>
 								{project.featured && (
 									<Badge
-										label="Destacado"
+										label={t("featured")}
 										variant="coral"
 										className="text-[0.65rem]"
 									/>

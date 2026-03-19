@@ -5,6 +5,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import Modal from "@/components/ui/Modal";
 import Badge from "@/components/ui/Badge";
 import { getTechnologyById } from "@/data/technologies";
@@ -18,7 +20,7 @@ interface ProjectModalProps {
 	onClose: () => void;
 }
 
-function ImageCarousel({ images, projectTitle }: { images: string[]; projectTitle: string }) {
+function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn }: { images: string[]; projectTitle: string; prevLabel: string; nextLabel: string; imageAltFn: (index: number) => string }) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const hasArrows = images.length >= 4;
@@ -56,7 +58,7 @@ function ImageCarousel({ images, projectTitle }: { images: string[]; projectTitl
 						className="shrink-0 w-40 h-28 rounded-lg overflow-hidden border border-border bg-elevated">
 						<Img
 							src={img}
-							alt={`${projectTitle} — captura ${i + 1}`}
+							alt={imageAltFn(i + 1)}
 							className="w-full h-full object-cover"
 							loading="lazy"
 							width={160}
@@ -69,7 +71,7 @@ function ImageCarousel({ images, projectTitle }: { images: string[]; projectTitl
 				<button
 					onClick={() => scroll("left")}
 					className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-card-strong text-coral cursor-pointer transition-colors duration-200 hover:bg-coral hover:text-white"
-					aria-label="Anterior">
+					aria-label={prevLabel}>
 					<ChevronLeft size={14} />
 				</button>
 			)}
@@ -77,7 +79,7 @@ function ImageCarousel({ images, projectTitle }: { images: string[]; projectTitl
 				<button
 					onClick={() => scroll("right")}
 					className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-card-strong text-coral cursor-pointer transition-colors duration-200 hover:bg-coral hover:text-white"
-					aria-label="Siguiente">
+					aria-label={nextLabel}>
 					<ChevronRight size={14} />
 				</button>
 			)}
@@ -90,6 +92,9 @@ export default function ProjectModal({
 	isOpen,
 	onClose,
 }: ProjectModalProps) {
+	const t = useTranslations("ProjectModal");
+	const { locale } = useLocale();
+
 	if (!project) return null;
 
 	return (
@@ -100,7 +105,15 @@ export default function ProjectModal({
 			</p>
 
 			{/* Image carousel */}
-			{project.images.length > 0 && <ImageCarousel images={project.images} projectTitle={project.title} />}
+			{project.images.length > 0 && (
+				<ImageCarousel
+					images={project.images}
+					projectTitle={project.title}
+					prevLabel={t("prevAria")}
+					nextLabel={t("nextAria")}
+					imageAltFn={(index: number) => t("imageAlt", { title: project.title, index })}
+				/>
+			)}
 
 			{/* Technologies */}
 			<div className="flex flex-wrap gap-2 mb-6">
@@ -114,7 +127,7 @@ export default function ProjectModal({
 
 			{/* Date */}
 			<p className="text-[0.8rem] text-muted mb-6">
-				{new Date(project.date).toLocaleDateString("es-AR", {
+				{new Date(project.date).toLocaleDateString(locale === "es" ? "es-AR" : "en-US", {
 					year: "numeric",
 					month: "long",
 				})}
@@ -129,7 +142,7 @@ export default function ProjectModal({
 						rel="noopener noreferrer"
 						className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5">
 						<ExternalLink size={16} />
-						Ver en vivo
+						{t("viewLive")}
 					</a>
 				)}
 			</div>

@@ -5,6 +5,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Project } from "@/types";
 
@@ -15,6 +16,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
+	const t = useTranslations("ProjectCard");
 	return (
 		<motion.div
 			className="flex flex-col min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 overflow-hidden rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary cursor-pointer transition-[border-color,box-shadow] duration-200 ease-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
@@ -25,7 +27,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 			viewport={{ once: true }}
 			tabIndex={0}
 			role="button"
-			aria-label={`Ver detalles de ${project.title}`}
+			aria-label={t("viewDetailsAria", { title: project.title })}
 			onKeyDown={(e) => {
 				if (e.key === "Enter" || e.key === " ") {
 					e.preventDefault();

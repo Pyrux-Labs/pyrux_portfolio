@@ -5,6 +5,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Building2 } from "lucide-react";
 import Image from "next/image";
 import type { Company } from "@/types";
@@ -15,6 +16,7 @@ interface CompanyCardProps {
 }
 
 export default function CompanyCard({ company, onClick }: CompanyCardProps) {
+	const t = useTranslations("CompanyCard");
 	return (
 		<motion.div
 			className="flex items-start gap-3 p-4 min-w-72 max-w-80 h-40 overflow-hidden max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3 rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out shrink-0 cursor-pointer hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
@@ -25,7 +27,7 @@ export default function CompanyCard({ company, onClick }: CompanyCardProps) {
 			whileHover={{ y: -2 }}
 			tabIndex={0}
 			role="button"
-			aria-label={`Ver detalles de ${company.name}`}
+			aria-label={t("viewDetailsAria", { name: company.name })}
 			onKeyDown={(e) => {
 				if (e.key === "Enter" || e.key === " ") {
 					e.preventDefault();

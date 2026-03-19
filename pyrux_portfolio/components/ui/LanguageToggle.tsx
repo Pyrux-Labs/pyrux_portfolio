@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 
 export default function LanguageToggle() {
+  const t = useTranslations("LanguageToggle");
   const { locale, setLocale } = useLocale();
 
   return (
@@ -11,9 +13,9 @@ export default function LanguageToggle() {
       type="button"
       onClick={() => setLocale(locale === "es" ? "en" : "es")}
       aria-label={
-        locale === "es" ? "Switch to English" : "Cambiar a espanol"
+        locale === "es" ? t("switchToEnglish") : t("switchToSpanish")
       }
-      title={locale === "es" ? "Switch to English" : "Cambiar a espanol"}
+      title={locale === "es" ? t("switchToEnglish") : t("switchToSpanish")}
     >
       <span className="text-[0.75rem] leading-none font-semibold">
         {locale === "es" ? "EN" : "ES"}
