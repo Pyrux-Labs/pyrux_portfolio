@@ -63,6 +63,7 @@ export default function OurTeam() {
 									width={64}
 									height={64}
 									className="w-16 h-16 rounded-full"
+									sizes="64px"
 									priority
 								/>
 							</div>

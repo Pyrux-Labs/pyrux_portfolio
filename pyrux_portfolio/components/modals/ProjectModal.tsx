@@ -64,8 +64,9 @@ function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn 
 							alt={imageAltFn(i + 1)}
 							className="w-full h-full object-cover"
 							loading="lazy"
-							width={160}
-							height={112}
+							width={224}
+							height={160}
+							sizes="(min-width: 1536px) 224px, 160px"
 						/>
 					</div>
 				))}
