@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import Script from "next/script";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { faqItems } from "@/data/faq";
 import "./globals.css";
@@ -141,7 +140,7 @@ export default function RootLayout({
 						__html: `(function(){var t=localStorage.getItem('oc-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}})();`,
 					}}
 				/>
-	{/* JSON-LD structured data */}
+				{/* JSON-LD structured data */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -156,18 +155,6 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<Script
-					src="https://www.googletagmanager.com/gtag/js?id=G-XD1K5TMVZ9"
-					strategy="afterInteractive"
-				/>
-				<Script id="gtag-init" strategy="afterInteractive">
-					{`
-						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-						gtag('config', 'G-XD1K5TMVZ9');
-					`}
-				</Script>
 				<div className="relative z-50">
 					<ThemeToggle />
 				</div>
