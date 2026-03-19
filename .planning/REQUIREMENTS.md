@@ -7,11 +7,11 @@
 
 ### Bug Fixes
 
-- [ ] **BUG-01**: Modal backdrop (StarBackground) stops flickering when any modal opens/closes
-- [ ] **BUG-02**: E-Commerce packages render correctly on mobile carousel in pricing page
-- [ ] **BUG-03**: `/clients` page shows real company logo (same as CompanyCard) instead of Building2 icon
-- [ ] **BUG-04**: "Click to view profile →" in OurTeam replaced with Spanish text
-- [ ] **BUG-05**: "Featured projects" and "View all projects" in CreatorModal replaced with Spanish text
+- [x] **BUG-01**: Modal backdrop (StarBackground) stops flickering when any modal opens/closes
+- [x] **BUG-02**: E-Commerce packages render correctly on mobile carousel in pricing page
+- [x] **BUG-03**: `/clients` page shows real company logo (same as CompanyCard) instead of Building2 icon
+- [x] **BUG-04**: "Click to view profile →" in OurTeam replaced with Spanish text
+- [x] **BUG-05**: "Featured projects" and "View all projects" in CreatorModal replaced with Spanish text
 
 ### UI Polish
 
@@ -62,7 +62,7 @@
 - [ ] **A11Y-02**: FAQ accordion buttons have correct aria-expanded attribute
 - [ ] **A11Y-03**: All images have descriptive alt text (no empty or generic alts)
 - [ ] **A11Y-04**: All console.log debug statements removed
-- [ ] **A11Y-05**: Above-the-fold images have priority prop; carousel images have correct sizes prop
+- [x] **A11Y-05**: Above-the-fold images have priority prop; carousel images have correct sizes prop
 
 ### Internationalization
 
@@ -107,11 +107,11 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BUG-01 | Phase 1 | Pending |
-| BUG-02 | Phase 1 | Pending |
-| BUG-03 | Phase 1 | Pending |
-| BUG-04 | Phase 1 | Pending |
-| BUG-05 | Phase 1 | Pending |
+| BUG-01 | Phase 1 | Complete |
+| BUG-02 | Phase 1 | Complete |
+| BUG-03 | Phase 1 | Complete |
+| BUG-04 | Phase 1 | Complete |
+| BUG-05 | Phase 1 | Complete |
 | UI-01 | Phase 2 | Pending |
 | UI-02 | Phase 2 | Pending |
 | UI-03 | Phase 2 | Pending |
@@ -147,7 +147,7 @@
 | A11Y-02 | Phase 2 | Pending |
 | A11Y-03 | Phase 2 | Pending |
 | A11Y-04 | Phase 1 | Pending |
-| A11Y-05 | Phase 1 | Pending |
+| A11Y-05 | Phase 1 | Complete |
 | I18N-01 | Phase 4 | Pending |
 | I18N-02 | Phase 4 | Pending |
 | I18N-03 | Phase 4 | Pending |
