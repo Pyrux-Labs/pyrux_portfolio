@@ -1,0 +1,10 @@
+{
+  "Hero": {
+    "subtitle": "Desarrollo web y soluciones digitales.",
+    "description": "Creamos paginas web modernas y sistemas a medida para llevar tu negocio al siguiente nivel."
+  },
+  "HeroButtons": {
+    "contact": "Contactanos",
+    "pricing": "Ver precios"
+  }
+}

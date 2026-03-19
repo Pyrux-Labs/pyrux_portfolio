@@ -1,0 +1,10 @@
+{
+  "Hero": {
+    "subtitle": "Web development and digital solutions.",
+    "description": "We create modern websites and custom systems to take your business to the next level."
+  },
+  "HeroButtons": {
+    "contact": "Contact us",
+    "pricing": "View pricing"
+  }
+}
