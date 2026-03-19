@@ -5,6 +5,7 @@
 "use client";
 
 import { useState } from "react";
+import { useDraggableMarquee } from "@/hooks/useDraggableMarquee";
 import { motion } from "framer-motion";
 import Section from "@/components/ui/Section";
 import ProjectCard from "@/components/cards/ProjectCard";
@@ -27,6 +28,9 @@ export default function OurProjects() {
 
 	const localeProjects = projects[locale];
 	const localeCompanies = companies[locale];
+
+	const projectsMarquee = useDraggableMarquee({ speed: 80, direction: "left" });
+	const companiesMarquee = useDraggableMarquee({ speed: 80, direction: "right" });
 
 	// Duplicate cards for infinite scroll effect
 	// Projects: 4x copies so total width matches companies (12 cards each) → same 110s duration = same speed
@@ -53,8 +57,9 @@ export default function OurProjects() {
 							"linear-gradient(to right, transparent, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 16%, black 24%, black 86%, rgba(0,0,0,0.7) 92%, rgba(0,0,0,0.3) 96%, transparent)",
 					}}>
 					<div
-						className="flex gap-4 w-max py-2 animate-scroll-right hover:[animation-play-state:paused]"
-						style={{ "--duration": "110s" } as React.CSSProperties}>
+						ref={projectsMarquee.innerRef}
+						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y]"
+						{...projectsMarquee.dragProps}>
 						{projectCards.map((project, i) => (
 							<ProjectCard
 								key={`p-${i}`}
@@ -75,8 +80,9 @@ export default function OurProjects() {
 							"linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
 					}}>
 					<div
-						className="flex gap-4 w-max py-2 animate-scroll-left hover:[animation-play-state:paused]"
-						style={{ "--duration": "110s" } as React.CSSProperties}>
+						ref={companiesMarquee.innerRef}
+						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y]"
+						{...companiesMarquee.dragProps}>
 						{companyCards.map((company, i) => (
 							<CompanyCard
 								key={`c-${i}`}

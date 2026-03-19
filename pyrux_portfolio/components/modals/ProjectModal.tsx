@@ -5,6 +5,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useDragScroll } from "@/hooks/useDragScroll";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import Modal from "@/components/ui/Modal";
@@ -21,7 +22,8 @@ interface ProjectModalProps {
 }
 
 function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn }: { images: string[]; projectTitle: string; prevLabel: string; nextLabel: string; imageAltFn: (index: number) => string }) {
-	const scrollRef = useRef<HTMLDivElement>(null);
+	const drag = useDragScroll();
+	const scrollRef = drag.ref;
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const hasArrows = images.length >= 4;
 	const [canScrollRight, setCanScrollRight] = useState(hasArrows);
@@ -50,8 +52,9 @@ function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn 
 			<div
 				ref={scrollRef}
 				onScroll={updateScrollState}
-				className="flex gap-2 overflow-x-auto scrollbar-hide"
-				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+				className="flex gap-2 overflow-x-auto scrollbar-hide cursor-grab select-none"
+				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+				{...drag.dragProps}>
 				{images.map((img, i) => (
 					<div
 						key={i}
