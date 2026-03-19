@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-03-19T12:52:26.491Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-19T18:59:51.470Z"
 progress:
   total_phases: 4
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
+  total_plans: 5
+  completed_plans: 3
 ---
 
 # Project State
@@ -19,12 +19,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-19)
 
 **Core value:** Every page view is a potential client -- fix every visible rough edge and add full English support so international visitors aren't turned away.
-**Current focus:** Phase 01 — fixes-and-content
+**Current focus:** Phase 04 — internationalization
 
 ## Current Position
 
-Phase: 01 (fixes-and-content) — COMPLETE
-Plan: 2 of 2 (all complete)
+Phase: 04 (internationalization) — EXECUTING
+Plan: 2 of 3
 
 ## Performance Metrics
 
@@ -46,6 +46,7 @@ Plan: 2 of 2 (all complete)
 - Trend: stable
 
 *Updated after each plan completion*
+| Phase 04 P01 | 3min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -57,6 +58,7 @@ Recent decisions affecting current work:
 - Roadmap: 4 phases (coarse granularity) -- Fixes/Content, UI Polish, Pricing, i18n
 - Roadmap: i18n is last phase because it touches every string; all copy must be final first
 - [Phase 01]: Used requestAnimationFrame for carousel scroll timing instead of setTimeout
+- [Phase 04]: Client-side locale switching via React context (no middleware routing) for static export compatibility
 
 ### Pending Todos
 
@@ -69,6 +71,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-19T12:47:56.945Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-03-19T18:59:51.467Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
