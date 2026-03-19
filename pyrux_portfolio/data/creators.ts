@@ -8,7 +8,7 @@ import type { Locale } from "@/i18n/config";
 export const creators: Record<Locale, Creator[]> = {
 	es: [
 		{
-			id: "juan",
+			id: "juan-manuel-garcia",
 			name: "Juan Manuel García",
 			bio: "Desarrollador full-stack. Con experiencia en desarrollo web moderno, sistemas a medida y automatización de procesos. Siempre buscando aprender y aplicar nuevas herramientas para crear soluciones eficientes y de calidad.",
 			image: "/creators/Juan-Manuel-Garcia.webp",
@@ -26,7 +26,7 @@ export const creators: Record<Locale, Creator[]> = {
 			],
 		},
 		{
-			id: "gino",
+			id: "gino-ruben-giorgi",
 			name: "Gino Ruben Giorgi",
 			bio: "Desarrollador creativo con enfoque en experiencias de usuario excepcionales. Especializado en frontend moderno, diseño de interfaces y optimización de rendimiento. Combina diseño y código para crear productos digitales que destacan.",
 			image: "/creators/Gino-Ruben-Giorgi.webp",
@@ -46,7 +46,7 @@ export const creators: Record<Locale, Creator[]> = {
 	],
 	en: [
 		{
-			id: "juan",
+			id: "juan-manuel-garcia",
 			name: "Juan Manuel García",
 			bio: "Full-stack developer with experience in modern web development, custom systems, and process automation. Always looking to learn and apply new tools to create efficient, high-quality solutions.",
 			image: "/creators/Juan-Manuel-Garcia.webp",
@@ -64,7 +64,7 @@ export const creators: Record<Locale, Creator[]> = {
 			],
 		},
 		{
-			id: "gino",
+			id: "gino-ruben-giorgi",
 			name: "Gino Ruben Giorgi",
 			bio: "Creative developer focused on exceptional user experiences. Specialized in modern frontend, interface design, and performance optimization. Combines design and code to create standout digital products.",
 			image: "/creators/Gino-Ruben-Giorgi.webp",
