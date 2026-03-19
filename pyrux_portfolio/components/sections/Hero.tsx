@@ -51,11 +51,9 @@ export default function Hero() {
 							Pyrux
 						</span>
 					</motion.h1>
-					<motion.p
-						className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5"
-						variants={textVariants}>
+					<p className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5">
 						Desarrollo web y soluciones digitales.
-					</motion.p>
+					</p>
 					<motion.p
 						className="text-[1rem] sm:text-[1.1rem] text-secondary max-w-120 leading-[1.7] mx-auto sm:mx-0"
 						variants={textVariants}>
