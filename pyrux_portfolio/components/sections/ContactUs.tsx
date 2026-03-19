@@ -46,7 +46,7 @@ export default function ContactUs() {
 	};
 
 	return (
-		<Section id="contacto" title={t("sectionTitle")}>
+		<Section id="contact" title={t("sectionTitle")}>
 			<motion.div
 				className="grid grid-cols-1 min-[401px]:grid-cols-2 sm:grid-cols-4 gap-4"
 				variants={gridVariants}

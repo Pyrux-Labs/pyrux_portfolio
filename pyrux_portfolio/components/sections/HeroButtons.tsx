@@ -24,7 +24,7 @@ export default function HeroButtons() {
 		<section className="mb-14 text-center">
 			<div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
 				<MotionLink
-					href="#contacto"
+					href="#contact"
 					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
