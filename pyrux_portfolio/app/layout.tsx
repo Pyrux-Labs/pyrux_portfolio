@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import ThemeToggle from "@/components/ui/ThemeToggle";
-import LanguageToggle from "@/components/ui/LanguageToggle";
+import ThemeToggle from "@/components/layout/ThemeToggle";
+import LanguageToggle from "@/components/layout/LanguageToggle";
 import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import { faqItems } from "@/data/faq";
@@ -166,12 +166,14 @@ export default function RootLayout({
 			</head>
 			<body>
 				<LocaleProvider>
-					<div className="relative z-50">
-						<ThemeToggle />
-						<LanguageToggle />
+					<div className="relative">
+						<div className="absolute top-3 left-3 z-50 flex gap-2">
+							<ThemeToggle />
+							<LanguageToggle />
+						</div>
+						{children}
 					</div>
-					{children}
-				<WhatsAppFAB />
+					<WhatsAppFAB />
 				</LocaleProvider>
 			</body>
 		</html>
