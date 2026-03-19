@@ -105,64 +105,62 @@
 
 ## Traceability
 
-*Populated during roadmap creation.*
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BUG-01 | — | Pending |
-| BUG-02 | — | Pending |
-| BUG-03 | — | Pending |
-| BUG-04 | — | Pending |
-| BUG-05 | — | Pending |
-| UI-01 | — | Pending |
-| UI-02 | — | Pending |
-| UI-03 | — | Pending |
-| UI-04 | — | Pending |
-| UI-05 | — | Pending |
-| UI-06 | — | Pending |
-| UI-07 | — | Pending |
-| UI-08 | — | Pending |
-| UI-09 | — | Pending |
-| UI-10 | — | Pending |
-| UI-11 | — | Pending |
-| UI-12 | — | Pending |
-| UI-13 | — | Pending |
-| UI-14 | — | Pending |
-| UI-15 | — | Pending |
-| UI-16 | — | Pending |
-| PRICE-01 | — | Pending |
-| PRICE-02 | — | Pending |
-| PRICE-03 | — | Pending |
-| PRICE-04 | — | Pending |
-| PRICE-05 | — | Pending |
-| PRICE-06 | — | Pending |
-| FAQ-01 | — | Pending |
-| FAQ-02 | — | Pending |
-| FAQ-03 | — | Pending |
-| FAQ-04 | — | Pending |
-| FAQ-05 | — | Pending |
-| FAQ-06 | — | Pending |
-| DATA-01 | — | Pending |
-| DATA-02 | — | Pending |
-| DATA-03 | — | Pending |
-| A11Y-01 | — | Pending |
-| A11Y-02 | — | Pending |
-| A11Y-03 | — | Pending |
-| A11Y-04 | — | Pending |
-| A11Y-05 | — | Pending |
-| I18N-01 | — | Pending |
-| I18N-02 | — | Pending |
-| I18N-03 | — | Pending |
-| I18N-04 | — | Pending |
-| I18N-05 | — | Pending |
-| I18N-06 | — | Pending |
-| I18N-07 | — | Pending |
+| BUG-01 | Phase 1 | Pending |
+| BUG-02 | Phase 1 | Pending |
+| BUG-03 | Phase 1 | Pending |
+| BUG-04 | Phase 1 | Pending |
+| BUG-05 | Phase 1 | Pending |
+| UI-01 | Phase 2 | Pending |
+| UI-02 | Phase 2 | Pending |
+| UI-03 | Phase 2 | Pending |
+| UI-04 | Phase 2 | Pending |
+| UI-05 | Phase 2 | Pending |
+| UI-06 | Phase 2 | Pending |
+| UI-07 | Phase 2 | Pending |
+| UI-08 | Phase 2 | Pending |
+| UI-09 | Phase 2 | Pending |
+| UI-10 | Phase 2 | Pending |
+| UI-11 | Phase 2 | Pending |
+| UI-12 | Phase 2 | Pending |
+| UI-13 | Phase 2 | Pending |
+| UI-14 | Phase 2 | Pending |
+| UI-15 | Phase 2 | Pending |
+| UI-16 | Phase 2 | Pending |
+| PRICE-01 | Phase 3 | Pending |
+| PRICE-02 | Phase 3 | Pending |
+| PRICE-03 | Phase 3 | Pending |
+| PRICE-04 | Phase 3 | Pending |
+| PRICE-05 | Phase 3 | Pending |
+| PRICE-06 | Phase 3 | Pending |
+| FAQ-01 | Phase 1 | Pending |
+| FAQ-02 | Phase 1 | Pending |
+| FAQ-03 | Phase 1 | Pending |
+| FAQ-04 | Phase 1 | Pending |
+| FAQ-05 | Phase 1 | Pending |
+| FAQ-06 | Phase 1 | Pending |
+| DATA-01 | Phase 1 | Pending |
+| DATA-02 | Phase 1 | Pending |
+| DATA-03 | Phase 1 | Pending |
+| A11Y-01 | Phase 2 | Pending |
+| A11Y-02 | Phase 2 | Pending |
+| A11Y-03 | Phase 2 | Pending |
+| A11Y-04 | Phase 1 | Pending |
+| A11Y-05 | Phase 1 | Pending |
+| I18N-01 | Phase 4 | Pending |
+| I18N-02 | Phase 4 | Pending |
+| I18N-03 | Phase 4 | Pending |
+| I18N-04 | Phase 4 | Pending |
+| I18N-05 | Phase 4 | Pending |
+| I18N-06 | Phase 4 | Pending |
+| I18N-07 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 47 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 47 ⚠️
+- v1 requirements: 48 total
+- Mapped to phases: 48
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-19*
-*Last updated: 2026-03-19 after initial definition*
+*Last updated: 2026-03-19 after roadmap creation*
