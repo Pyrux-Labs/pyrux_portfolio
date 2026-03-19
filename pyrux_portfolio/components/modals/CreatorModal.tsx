@@ -8,7 +8,7 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import Modal from "@/components/ui/Modal";
 import Badge from "@/components/ui/Badge";
-import { getProjectById } from "@/data/projects";
+import { getPersonalProjectsByCreator } from "@/data/personalProjects";
 import { getTechnologyById } from "@/data/technologies";
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
@@ -33,10 +33,8 @@ export default function CreatorModal({
 
 	if (!creator) return null;
 
-	// Get featured projects for the creator
-	const featuredProjects = creator.featuredProjects
-		.map((id) => getProjectById(id, locale))
-		.filter(Boolean);
+	// Get personal projects for the creator (up to 3 as preview)
+	const personalProjects = getPersonalProjectsByCreator(creator.id, locale).slice(0, 3);
 
 	const handleEmailCopy = async () => {
 		if (!creator.socialLinks.email) return;
@@ -103,40 +101,38 @@ export default function CreatorModal({
 				)}
 			</div>
 
-			{/* Featured projects */}
-			{featuredProjects.length > 0 && (
+			{/* Personal projects preview */}
+			{personalProjects.length > 0 && (
 				<div>
 					<h4 className="font-display text-[0.95rem] font-semibold text-primary mb-3">
 						{t("featuredProjects")}
 					</h4>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-						{featuredProjects.map((project) => {
-							if (!project) return null;
-							return (
-								<div
-									key={project.id}
-									className="p-3 rounded-xl border border-border bg-card transition-all duration-200 hover:border-coral">
-									<h5 className="font-display text-[0.85rem] font-semibold text-primary mb-1">
-										{project.title}
-									</h5>
-									<p className="text-[0.8rem] text-muted line-clamp-2 mb-2">
-										{project.shortDescription}
-									</p>
-									<div className="flex flex-wrap gap-1">
-										{project.technologies.slice(0, 3).map((techId) => {
-											const tech = getTechnologyById(techId);
-											return (
-												<Badge
-													key={techId}
-													label={tech?.name ?? techId}
-													className="text-[0.65rem] px-1.5 py-0.5"
-												/>
-											);
-										})}
-									</div>
+						{personalProjects.map((project) => (
+							<a
+								key={project.id}
+								href={`/creator/${creator.id}?project=${project.id}`}
+								className="p-3 rounded-xl border border-border bg-card transition-all duration-200 hover:border-coral no-underline block">
+								<h5 className="font-display text-[0.85rem] font-semibold text-primary mb-1">
+									{project.title}
+								</h5>
+								<p className="text-[0.8rem] text-muted line-clamp-2 mb-2">
+									{project.shortDescription}
+								</p>
+								<div className="flex flex-wrap gap-1">
+									{project.technologies.slice(0, 3).map((techId) => {
+										const tech = getTechnologyById(techId);
+										return (
+											<Badge
+												key={techId}
+												label={tech?.name ?? techId}
+												className="text-[0.65rem] px-1.5 py-0.5"
+											/>
+										);
+									})}
 								</div>
-							);
-						})}
+							</a>
+						))}
 					</div>
 
 					{/* View all button */}

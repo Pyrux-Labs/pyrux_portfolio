@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
@@ -61,6 +61,16 @@ export default function CreatorPageClient({
 		() => getPersonalProjectsByCreator(creatorId, locale),
 		[creatorId, locale],
 	);
+
+	// Open project modal if ?project= param is present in the URL
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search);
+		const projectId = params.get("project");
+		if (projectId) {
+			const match = creatorProjects.find((p) => p.id === projectId);
+			if (match) setSelectedProject(match);
+		}
+	}, [creatorProjects]);
 
 	if (!creator) {
 		return (
