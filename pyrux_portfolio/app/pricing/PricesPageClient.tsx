@@ -179,22 +179,31 @@ export default function PreciosPageClient() {
 					{/* Mobile — carrusel horizontal */}
 					{selectedCategory !== "personalizado" && (
 						<div className="sm:hidden">
-							<div
-								ref={carouselRef}
-								onScroll={handleCarouselScroll}
-								className="-mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
-								{visiblePackages.map((pkg, idx) => (
-									<div
-										key={`${pkg.category}-${pkg.number}`}
-										className="snap-start shrink-0 w-[85vw]">
-										<PackageCard
-											pkg={pkg}
-											isSelected={selectedPkg === idx}
-											onClick={() => setSelectedPkg(idx)}
-										/>
-									</div>
-								))}
-							</div>
+							{/* Re-mount on category change so cards get fresh "visible"
+							    propagation — without this, cards added after Section's
+							    whileInView (once:true) fires get stuck at opacity:0 */}
+							<motion.div
+								key={`mobile-carousel-${selectedCategory}`}
+								variants={gridVariants}
+								initial="hidden"
+								animate="visible">
+								<div
+									ref={carouselRef}
+									onScroll={handleCarouselScroll}
+									className="-mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+									{visiblePackages.map((pkg, idx) => (
+										<div
+											key={`${pkg.category}-${pkg.number}`}
+											className="snap-start shrink-0 w-[85vw]">
+											<PackageCard
+												pkg={pkg}
+												isSelected={selectedPkg === idx}
+												onClick={() => setSelectedPkg(idx)}
+											/>
+										</div>
+									))}
+								</div>
+							</motion.div>
 							{/* Dots */}
 							<div className="flex justify-center gap-2 mt-4">
 								{visiblePackages.map((_, idx) => (
