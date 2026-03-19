@@ -52,7 +52,7 @@ function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn 
 			<div
 				ref={scrollRef}
 				onScroll={updateScrollState}
-				className="flex gap-2 overflow-x-auto scrollbar-hide cursor-grab select-none"
+				className="flex gap-2 overflow-x-auto scrollbar-hide cursor-grab select-none [&_img]:pointer-events-none [&_img]:select-none"
 				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 				{...drag.dragProps}>
 				{images.map((img, i) => (

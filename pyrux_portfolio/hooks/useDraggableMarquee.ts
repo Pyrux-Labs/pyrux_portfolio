@@ -90,7 +90,8 @@ export function useDraggableMarquee({ speed = 80, direction = "left" }: Options 
 			hasDraggedRef.current = false;
 			dragStartXRef.current = e.clientX;
 			dragStartPosRef.current = posRef.current;
-			e.currentTarget.setPointerCapture(e.pointerId);
+			// No setPointerCapture — it redirects click events to this div,
+			// preventing card onClick from ever firing.
 			if (innerRef.current) innerRef.current.style.cursor = "grabbing";
 		},
 		[],

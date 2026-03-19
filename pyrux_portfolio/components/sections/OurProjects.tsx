@@ -58,7 +58,7 @@ export default function OurProjects() {
 					}}>
 					<div
 						ref={projectsMarquee.innerRef}
-						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y]"
+						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y] [&_img]:pointer-events-none [&_img]:select-none"
 						{...projectsMarquee.dragProps}>
 						{projectCards.map((project, i) => (
 							<ProjectCard
@@ -81,7 +81,7 @@ export default function OurProjects() {
 					}}>
 					<div
 						ref={companiesMarquee.innerRef}
-						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y]"
+						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y] [&_img]:pointer-events-none [&_img]:select-none"
 						{...companiesMarquee.dragProps}>
 						{companyCards.map((company, i) => (
 							<CompanyCard
