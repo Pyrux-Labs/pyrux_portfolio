@@ -76,11 +76,12 @@ Plans:
   2. A visitor whose browser is set to Spanish sees the site in Spanish (current behavior preserved)
   3. A language toggle button is visible on the site and switching it immediately re-renders all text without a page reload
   4. next-intl is configured for static export with client-side locale detection (no server middleware)
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: i18n infrastructure (next-intl config, locale detection, language toggle, message file scaffolding)
-- [ ] 04-02: String extraction and translation (extract all hardcoded strings, create es.json and en.json, wire all components)
+- [ ] 04-01-PLAN.md — i18n infrastructure (next-intl install, locale provider, language toggle, anti-FOWL script, message scaffolding)
+- [ ] 04-02-PLAN.md — Translation content (complete es.json/en.json message files, convert all data files to locale-keyed bilingual exports)
+- [ ] 04-03-PLAN.md — Component wiring (wire useTranslations into every component, connect locale-keyed data consumption)
 
 ## Progress
 
@@ -92,4 +93,4 @@ Phases execute in numeric order: 1 --> 2 --> 3 --> 4
 | 1. Fixes and Content | 0/2 | Not started | - |
 | 2. UI Polish and Accessibility | 0/3 | Not started | - |
 | 3. Pricing Overhaul | 0/2 | Not started | - |
-| 4. Internationalization | 0/2 | Not started | - |
+| 4. Internationalization | 0/3 | Not started | - |
