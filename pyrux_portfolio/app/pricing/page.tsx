@@ -11,6 +11,11 @@ export const metadata: Metadata = {
 		"Paquetes de desarrollo web profesional. Landing pages, sitios corporativos, e-commerce y más. Precios en dólares, código a medida, soporte incluido.",
 	alternates: {
 		canonical: "https://www.pyrux.com.ar/pricing",
+		languages: {
+			es: "https://www.pyrux.com.ar/pricing",
+			en: "https://www.pyrux.com.ar/pricing",
+			"x-default": "https://www.pyrux.com.ar/pricing",
+		},
 	},
 	openGraph: {
 		title: "Precios y Paquetes — Pyrux",

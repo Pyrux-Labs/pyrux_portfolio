@@ -11,6 +11,11 @@ export const metadata: Metadata = {
 		"Empresas y clientes que confiaron en Pyrux para sus proyectos digitales.",
 	alternates: {
 		canonical: "https://www.pyrux.com.ar/clients",
+		languages: {
+			es: "https://www.pyrux.com.ar/clients",
+			en: "https://www.pyrux.com.ar/clients",
+			"x-default": "https://www.pyrux.com.ar/clients",
+		},
 	},
 	openGraph: {
 		title: "Clientes — Pyrux",

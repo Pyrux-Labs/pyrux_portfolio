@@ -11,6 +11,11 @@ export const metadata: Metadata = {
 		"Todos los proyectos desarrollados por Pyrux. Desarrollo web, sistemas a medida y soluciones digitales.",
 	alternates: {
 		canonical: "https://www.pyrux.com.ar/projects",
+		languages: {
+			es: "https://www.pyrux.com.ar/projects",
+			en: "https://www.pyrux.com.ar/projects",
+			"x-default": "https://www.pyrux.com.ar/projects",
+		},
 	},
 	openGraph: {
 		title: "Proyectos — Pyrux",

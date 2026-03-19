@@ -86,6 +86,11 @@ export const metadata: Metadata = {
 	authors: [{ name: "Pyrux", url: BASE_URL }],
 	alternates: {
 		canonical: BASE_URL,
+		languages: {
+			es: BASE_URL,
+			en: BASE_URL,
+			"x-default": BASE_URL,
+		},
 	},
 	openGraph: {
 		title: "Pyrux — Desarrollo web y soluciones digitales",
