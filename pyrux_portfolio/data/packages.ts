@@ -19,7 +19,7 @@ const growthMaintenanceCards: MaintenanceItem[] = [
 	{
 		icon: "HardDrive",
 		title: "Backups automáticos",
-		description: "Intervalo de copias cada 14 días",
+		description: "Intervalo de copias dependiente de tu plan.",
 	},
 	{
 		icon: "Pencil",
@@ -52,7 +52,7 @@ const proMaintenanceCards: MaintenanceItem[] = [
 	{
 		icon: "HardDrive",
 		title: "Backups automáticos",
-		description: "Intervalo de copias cada 7 días",
+		description: "Intervalo de copias dependiente de tu plan.",
 	},
 	{
 		icon: "Pencil",
@@ -85,7 +85,7 @@ const businessMaintenanceCards: MaintenanceItem[] = [
 	{
 		icon: "HardDrive",
 		title: "Backups automáticos",
-		description: "Intervalo de copias cada 7 días",
+		description: "Intervalo de copias dependiente de tu plan.",
 	},
 	{
 		icon: "RefreshCw",
@@ -110,7 +110,7 @@ export const packages: ServicePackage[] = [
 	{
 		number: "01",
 		name: "Growth",
-		price: "USD 300",
+		price: "300 dólares",
 		maintenancePrice: "$40/mes",
 		deliveryTime: "2 semanas",
 		popular: false,
@@ -132,7 +132,7 @@ export const packages: ServicePackage[] = [
 	{
 		number: "02",
 		name: "Pro",
-		price: "USD 500",
+		price: "500 dólares",
 		maintenancePrice: "$50/mes",
 		deliveryTime: "3-4 semanas",
 		popular: false,
@@ -153,7 +153,7 @@ export const packages: ServicePackage[] = [
 	{
 		number: "03",
 		name: "Business",
-		price: "Desde USD 800",
+		price: "Desde 800 dólares",
 		maintenancePrice: "$70/mes",
 		deliveryTime: "4+ semanas",
 		popular: false,
@@ -177,7 +177,7 @@ export const packages: ServicePackage[] = [
 	{
 		number: "01",
 		name: "E-Commerce Básico",
-		price: "USD 800",
+		price: "800 dólares",
 		maintenancePrice: "$50/mes",
 		deliveryTime: "4 semanas",
 		popular: false,
@@ -198,7 +198,7 @@ export const packages: ServicePackage[] = [
 	{
 		number: "02",
 		name: "E-Commerce Pro",
-		price: "USD 2.000",
+		price: "2.000 dólares",
 		maintenancePrice: "$200/mes",
 		deliveryTime: "6-8 semanas",
 		popular: false,

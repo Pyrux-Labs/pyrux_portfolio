@@ -19,22 +19,22 @@ export const faqItems: FAQItem[] = [
 	{
 		question: "¿Los precios son en dólares o en pesos?",
 		answer:
-			"Se cotizan en USD, se pueden pagar en pesos al tipo de cambio del día.",
+			"Se cotizan en dólares, se pueden pagar en pesos al tipo de cambio del día.",
 	},
 	{
 		question: "¿Qué necesito tener listo antes de empezar?",
 		answer:
-			"Manual de marca hecho por un profesional sería ideal, pero no es obligatorio. Con textos, logo e imágenes básicas es suficiente para arrancar.",
+			"Un manual de marca hecho por un profesional sería ideal, pero no es obligatorio.",
 	},
 	{
 		question: "¿Puedo actualizar el contenido yo mismo?",
 		answer:
-			"El plan Pro en adelante incluye una aplicación web para que puedas cambiar el contenido por vos mismo; mientras que en el plan Growth va por el mantenimiento mensual.",
+			"El plan Standard en adelante incluyen una aplicación web para que puedas cambiar el contenido por vos mismo; mientras que en el plan Growth van por el mantenimiento mensual.",
 	},
 	{
 		question: "¿Qué pasa si no quiero contratar mantenimiento?",
 		answer:
-			"Te entregamos la aplicación lista para que los realices por tu cuenta.",
+			"Te entregamos la aplicación lista, para que los realices por tu cuenta.",
 	},
 	{
 		question: "¿Cuánto tarda realmente un proyecto?",
