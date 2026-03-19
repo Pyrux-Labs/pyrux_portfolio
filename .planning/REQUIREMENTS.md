@@ -67,9 +67,9 @@
 ### Internationalization
 
 - [x] **I18N-01**: Browser language auto-detected on mount (navigator.language starts with "es" → Spanish, otherwise → English)
-- [ ] **I18N-02**: All hardcoded Spanish strings extracted to translation keys
-- [ ] **I18N-03**: `messages/es.json` created with complete Spanish translations
-- [ ] **I18N-04**: `messages/en.json` created with complete English translations
+- [x] **I18N-02**: All hardcoded Spanish strings extracted to translation keys
+- [x] **I18N-03**: `messages/es.json` created with complete Spanish translations
+- [x] **I18N-04**: `messages/en.json` created with complete English translations
 - [x] **I18N-05**: next-intl configured for static export (client-side locale detection, no middleware routing)
 - [ ] **I18N-06**: All sections, cards, modals, and data labels render in detected language
 - [x] **I18N-07**: Language toggle button available on site for manual override
@@ -149,9 +149,9 @@
 | A11Y-04 | Phase 1 | Pending |
 | A11Y-05 | Phase 1 | Complete |
 | I18N-01 | Phase 4 | Complete |
-| I18N-02 | Phase 4 | Pending |
-| I18N-03 | Phase 4 | Pending |
-| I18N-04 | Phase 4 | Pending |
+| I18N-02 | Phase 4 | Complete |
+| I18N-03 | Phase 4 | Complete |
+| I18N-04 | Phase 4 | Complete |
 | I18N-05 | Phase 4 | Complete |
 | I18N-06 | Phase 4 | Pending |
 | I18N-07 | Phase 4 | Complete |
