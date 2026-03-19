@@ -281,7 +281,7 @@ export default function PreciosPageClient() {
 						}>
 						<MaintenanceGrid
 							cards={activePkg.maintenanceCards}
-							animKey={selectedPkg + visiblePackages.indexOf(activePkg)}
+							animKey={selectedPkg + visiblePackages.indexOf(activePkg) + (locale === "en" ? 1000 : 0)}
 							planColor={activePkg.planColor}
 						/>
 					</Section>

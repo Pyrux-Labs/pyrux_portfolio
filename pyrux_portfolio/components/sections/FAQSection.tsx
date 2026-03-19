@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
 import FAQAccordion from "./FAQAccordion";
 import type { FAQItem } from "@/types/pricing.types";
@@ -26,9 +27,11 @@ interface FAQSectionProps {
 
 export default function FAQSection({ items }: FAQSectionProps) {
 	const t = useTranslations("FAQSection");
+	const { locale } = useLocale();
 	return (
 		<Section className="mb-14" title={t("sectionTitle")}>
 			<motion.div
+				key={locale}
 				className="flex flex-col gap-3"
 				variants={gridVariants}
 				initial="hidden"
