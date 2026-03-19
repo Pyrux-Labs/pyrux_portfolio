@@ -1,10 +1,142 @@
 {
   "Hero": {
+    "title": "Pyrux",
     "subtitle": "Web development and digital solutions.",
     "description": "We create modern websites and custom systems to take your business to the next level."
   },
   "HeroButtons": {
     "contact": "Contact us",
-    "pricing": "View pricing"
+    "pricing": "Pricing & Packages"
+  },
+  "OurProjects": {
+    "sectionTitle": "Our Projects",
+    "viewAll": "View all",
+    "clientsTitle": "Our Clients"
+  },
+  "OurServices": {
+    "sectionTitle": "What We Do",
+    "viewAllLabel": "View packages & pricing"
+  },
+  "OurTeam": {
+    "sectionTitle": "Our Team",
+    "viewProfile": "View full profile →",
+    "viewProfileAria": "View {name}'s profile"
+  },
+  "OurStack": {
+    "sectionTitle": "Our Stack",
+    "all": "All",
+    "viewMore": "View more ({count}+)",
+    "viewLess": "View less",
+    "emptyExpand": "Expand to see more technologies in this category."
+  },
+  "ContactUs": {
+    "sectionTitle": "Contact Us",
+    "toastSuccess": "Email copied to clipboard"
+  },
+  "ProcessSection": {
+    "sectionTitle": "Our Process"
+  },
+  "FAQSection": {
+    "sectionTitle": "Frequently Asked Questions"
+  },
+  "FAQAccordion": {
+    "toggleAria": "Expand answer"
+  },
+  "Footer": {
+    "socialNavAria": "Social networks",
+    "copyright": "© {year} Pyrux. All rights reserved.",
+    "designedBy": "Designed by Pyrux",
+    "toastSuccess": "Email copied to clipboard"
+  },
+  "Section": {
+    "viewAllLabel": "View all"
+  },
+  "ProjectCard": {
+    "viewDetailsAria": "View details of {title}"
+  },
+  "CompanyCard": {
+    "viewDetailsAria": "View details of {name}"
+  },
+  "PackageCard": {
+    "selected": "selected",
+    "deliveryLabel": "Delivery:",
+    "maintenancePrefix": "Maint.",
+    "customTagline": "For projects without limits — systems, AI, custom platforms.",
+    "customDeliveryLabel": "Delivery time:",
+    "customCta": "Get a quote"
+  },
+  "MaintenanceCard": {},
+  "MaintenanceGrid": {
+    "heading": "Maintenance included"
+  },
+  "ProjectModal": {
+    "technologies": "Technologies",
+    "viewLive": "View live",
+    "prevAria": "Previous",
+    "nextAria": "Next",
+    "imageAlt": "{title} — screenshot {index}"
+  },
+  "CompanyModal": {
+    "workDone": "Work done",
+    "visitWebsite": "Visit website"
+  },
+  "CreatorModal": {
+    "featuredProjects": "Featured Projects",
+    "viewAllProjects": "View all projects",
+    "toastSuccess": "Email copied to clipboard",
+    "closeAria": "Close modal",
+    "githubAria": "GitHub",
+    "linkedinAria": "LinkedIn",
+    "emailAria": "Copy email"
+  },
+  "ProjectsPage": {
+    "title": "Our Projects",
+    "subtitle": "All projects developed by Pyrux",
+    "backToHome": "Back to home",
+    "viewDetailsAria": "View details of {title}"
+  },
+  "ClientsPage": {
+    "title": "Our Clients",
+    "subtitle": "Companies that trusted Pyrux for their digital projects",
+    "backToHome": "Back to home",
+    "viewDetailsAria": "View details of {name}"
+  },
+  "CreatorPage": {
+    "notFoundTitle": "Creator not found",
+    "backToHome": "Back to home",
+    "backToHomeAlt": "← Back to home",
+    "githubAria": "GitHub",
+    "linkedinAria": "LinkedIn",
+    "emailAria": "Copy email",
+    "toastSuccess": "Email copied to clipboard",
+    "featured": "Featured",
+    "viewDetailsAria": "View details of {title}"
+  },
+  "PricingPage": {
+    "backToHome": "Back to home",
+    "heading": "Your business deserves a",
+    "headingAccent": "digital presence that sells.",
+    "tagline": "Professional Web Development — Rosario, Argentina",
+    "description": "We design and develop custom websites that position your brand, build trust, and turn visitors into clients.",
+    "tabStandard": "Standard",
+    "tabEcommerce": "E-Commerce",
+    "tabCustom": "Custom",
+    "packagesTitle": "Our Packages",
+    "selectedPlan": "Selected plan",
+    "ctaWhatsApp": "Contact via WhatsApp",
+    "whatsAppMessage": "Hi! I'm interested in the {name} plan"
+  },
+  "NotFound": {
+    "code": "404",
+    "title": "Page not found",
+    "message": "Sorry, the page you're looking for doesn't exist or has been moved.",
+    "backToHome": "Back to home"
+  },
+  "LanguageToggle": {
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Cambiar a español"
+  },
+  "Modal": {
+    "closeAria": "Close modal"
   }
 }

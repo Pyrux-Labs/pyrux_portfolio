@@ -1,10 +1,142 @@
 {
   "Hero": {
+    "title": "Pyrux",
     "subtitle": "Desarrollo web y soluciones digitales.",
-    "description": "Creamos paginas web modernas y sistemas a medida para llevar tu negocio al siguiente nivel."
+    "description": "Creamos páginas web modernas y sistemas a medida para llevar tu negocio al siguiente nivel."
   },
   "HeroButtons": {
-    "contact": "Contactanos",
-    "pricing": "Ver precios"
+    "contact": "Contacta con nosotros",
+    "pricing": "Precios y Paquetes"
+  },
+  "OurProjects": {
+    "sectionTitle": "Nuestros proyectos",
+    "viewAll": "Ver todos",
+    "clientsTitle": "Nuestros clientes"
+  },
+  "OurServices": {
+    "sectionTitle": "Qué hacemos",
+    "viewAllLabel": "Ver paquetes y precios"
+  },
+  "OurTeam": {
+    "sectionTitle": "Nuestro Equipo",
+    "viewProfile": "Ver perfil completo →",
+    "viewProfileAria": "Ver perfil de {name}"
+  },
+  "OurStack": {
+    "sectionTitle": "Nuestro Stack",
+    "all": "Todas",
+    "viewMore": "Ver más ({count}+)",
+    "viewLess": "Ver menos",
+    "emptyExpand": "Expandí para ver más tecnologías en esta categoría."
+  },
+  "ContactUs": {
+    "sectionTitle": "Contactanos",
+    "toastSuccess": "Email copiado al portapapeles"
+  },
+  "ProcessSection": {
+    "sectionTitle": "Nuestro proceso"
+  },
+  "FAQSection": {
+    "sectionTitle": "Preguntas frecuentes"
+  },
+  "FAQAccordion": {
+    "toggleAria": "Expandir respuesta"
+  },
+  "Footer": {
+    "socialNavAria": "Redes sociales",
+    "copyright": "© {year} Pyrux. Todos los derechos reservados.",
+    "designedBy": "Designed by Pyrux",
+    "toastSuccess": "Email copiado al portapapeles"
+  },
+  "Section": {
+    "viewAllLabel": "Ver todos"
+  },
+  "ProjectCard": {
+    "viewDetailsAria": "Ver detalles de {title}"
+  },
+  "CompanyCard": {
+    "viewDetailsAria": "Ver detalles de {name}"
+  },
+  "PackageCard": {
+    "selected": "seleccionado",
+    "deliveryLabel": "Entrega:",
+    "maintenancePrefix": "Mant.",
+    "customTagline": "Para proyectos sin límites — sistemas, IA, plataformas a medida.",
+    "customDeliveryLabel": "Tiempo de entrega:",
+    "customCta": "Consultar ahora"
+  },
+  "MaintenanceCard": {},
+  "MaintenanceGrid": {
+    "heading": "Mantenimiento incluido"
+  },
+  "ProjectModal": {
+    "technologies": "Tecnologías",
+    "viewLive": "Ver en vivo",
+    "prevAria": "Anterior",
+    "nextAria": "Siguiente",
+    "imageAlt": "{title} — captura {index}"
+  },
+  "CompanyModal": {
+    "workDone": "Trabajo realizado",
+    "visitWebsite": "Visitar sitio web"
+  },
+  "CreatorModal": {
+    "featuredProjects": "Proyectos destacados",
+    "viewAllProjects": "Ver todos los proyectos",
+    "toastSuccess": "Email copiado al portapapeles",
+    "closeAria": "Cerrar modal",
+    "githubAria": "GitHub",
+    "linkedinAria": "LinkedIn",
+    "emailAria": "Copiar email"
+  },
+  "ProjectsPage": {
+    "title": "Nuestros Proyectos",
+    "subtitle": "Todos los proyectos desarrollados por Pyrux",
+    "backToHome": "Volver al inicio",
+    "viewDetailsAria": "Ver detalles de {title}"
+  },
+  "ClientsPage": {
+    "title": "Nuestros Clientes",
+    "subtitle": "Empresas que confiaron en Pyrux para sus proyectos digitales",
+    "backToHome": "Volver al inicio",
+    "viewDetailsAria": "Ver detalles de {name}"
+  },
+  "CreatorPage": {
+    "notFoundTitle": "Creador no encontrado",
+    "backToHome": "Volver al inicio",
+    "backToHomeAlt": "← Volver al inicio",
+    "githubAria": "GitHub",
+    "linkedinAria": "LinkedIn",
+    "emailAria": "Copiar email",
+    "toastSuccess": "Email copiado al portapapeles",
+    "featured": "Destacado",
+    "viewDetailsAria": "Ver detalles de {title}"
+  },
+  "PricingPage": {
+    "backToHome": "Volver al inicio",
+    "heading": "Tu negocio merece una",
+    "headingAccent": "presencia digital que venda.",
+    "tagline": "Desarrollo Web Profesional — Rosario, Argentina",
+    "description": "Diseñamos y desarrollamos sitios web a medida que posicionan tu marca, generan confianza y convierten visitantes en clientes.",
+    "tabStandard": "Estándar",
+    "tabEcommerce": "E-Commerce",
+    "tabCustom": "Personalizado",
+    "packagesTitle": "Nuestros paquetes",
+    "selectedPlan": "Plan seleccionado",
+    "ctaWhatsApp": "Consultar por WhatsApp",
+    "whatsAppMessage": "Hola! Me interesa el plan {name}"
+  },
+  "NotFound": {
+    "code": "404",
+    "title": "Página no encontrada",
+    "message": "Lo sentimos, la página que buscás no existe o fue movida.",
+    "backToHome": "Volver al inicio"
+  },
+  "LanguageToggle": {
+    "switchToEnglish": "Switch to English",
+    "switchToSpanish": "Cambiar a español"
+  },
+  "Modal": {
+    "closeAria": "Cerrar modal"
   }
 }
