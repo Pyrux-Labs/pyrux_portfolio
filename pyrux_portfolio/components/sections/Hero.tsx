@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -30,6 +31,7 @@ const iconVariants = {
 };
 
 export default function Hero() {
+	const t = useTranslations("Hero");
 	return (
 		<motion.header
 			className="mb-14"
@@ -52,13 +54,12 @@ export default function Hero() {
 						</span>
 					</motion.h1>
 					<p className="font-display text-[1.1rem] font-medium text-coral tracking-[0.15em] uppercase mb-5">
-						Desarrollo web y soluciones digitales.
+						{t("subtitle")}
 					</p>
 					<motion.p
 						className="text-[1rem] sm:text-[1.1rem] text-secondary max-w-120 leading-[1.7] mx-auto sm:mx-0"
 						variants={textVariants}>
-						Creamos páginas web modernas y sistemas a medida para llevar tu
-						negocio al siguiente nivel.
+						{t("description")}
 					</motion.p>
 				</div>
 				<motion.div

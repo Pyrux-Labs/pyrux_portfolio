@@ -5,6 +5,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
 import { services } from "@/data/services";
 import ServiceIcon from "@/components/ui/ServiceIcon";
@@ -25,18 +27,21 @@ const cardVariants = {
 };
 
 export default function OurServices() {
+	const t = useTranslations("OurServices");
+	const { locale } = useLocale();
+	const localeServices = services[locale];
 	return (
 		<Section
-			title="Qué hacemos"
+			title={t("sectionTitle")}
 			viewAllHref="/pricing"
-			viewAllLabel="Ver paquetes y precios">
+			viewAllLabel={t("viewAllLabel")}>
 			<motion.div
 				className="grid grid-cols-1 min-[481px]:grid-cols-2 sm:grid-cols-3 gap-4"
 				variants={gridVariants}
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, amount: 0.1 }}>
-				{services.map((f) => (
+				{localeServices.map((f) => (
 					<motion.div
 						key={f.title}
 						className="block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)] cursor-default group"

@@ -8,6 +8,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Toaster } from "sonner";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
 import CreatorModal from "@/components/modals/CreatorModal";
 import { creators } from "@/data/creators";
@@ -25,13 +27,16 @@ const cardVariants = {
 };
 
 export default function OurTeam() {
+	const t = useTranslations("OurTeam");
+	const { locale } = useLocale();
 	const [selectedCreator, setSelectedCreator] = useState<Creator | null>(null);
+	const localeCreators = creators[locale];
 
 	return (
 		<>
-			<Section title="Nuestro Equipo">
+			<Section title={t("sectionTitle")}>
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-					{creators.map((creator, i) => (
+					{localeCreators.map((creator, i) => (
 						<motion.div
 							key={creator.id}
 							className="group flex flex-col items-center gap-4 px-7 py-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl text-primary text-center cursor-pointer transition-[border-color,box-shadow] duration-200 ease-in-out hover:-translate-y-1 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
@@ -43,7 +48,7 @@ export default function OurTeam() {
 							onClick={() => setSelectedCreator(creator)}
 							role="button"
 							tabIndex={0}
-							aria-label={`Ver perfil de ${creator.name}`}
+							aria-label={t("viewProfileAria", { name: creator.name })}
 							onKeyDown={(e) => {
 								if (e.key === "Enter" || e.key === " ") {
 									e.preventDefault();
@@ -79,7 +84,7 @@ export default function OurTeam() {
 
 							{/* Click indicator */}
 							<span className="text-[0.8rem] text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-								Ver perfil completo →
+								{t("viewProfile")}
 							</span>
 						</motion.div>
 					))}

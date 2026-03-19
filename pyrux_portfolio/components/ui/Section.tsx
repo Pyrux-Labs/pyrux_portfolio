@@ -5,6 +5,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
 interface SectionProps {
@@ -36,10 +37,12 @@ export default function Section({
 	accentClassName = "text-coral font-bold",
 	titleRight,
 	viewAllHref,
-	viewAllLabel = "Ver todos",
+	viewAllLabel,
 	children,
 	className = "",
 }: SectionProps) {
+	const t = useTranslations("Section");
+	const resolvedViewAllLabel = viewAllLabel ?? t("viewAllLabel");
 	const hasTitle = title || titleNode;
 
 	return (
@@ -64,14 +67,14 @@ export default function Section({
 						<a
 							href={viewAllHref}
 							className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
-							{viewAllLabel} <span aria-hidden="true">→</span>
+							{resolvedViewAllLabel} <span aria-hidden="true">→</span>
 						</a>
 					)}
 					{titleRight && viewAllHref && (
 						<a
 							href={viewAllHref}
 							className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
-							{viewAllLabel} <span aria-hidden="true">→</span>
+							{resolvedViewAllLabel} <span aria-hidden="true">→</span>
 						</a>
 					)}
 					{titleRight && (

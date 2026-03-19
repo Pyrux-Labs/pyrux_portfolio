@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
 import Section from "@/components/ui/Section";
 import TechIcon from "@/components/ui/TechIcon";
@@ -29,6 +30,7 @@ const itemVariants = {
 };
 
 export default function OurStack() {
+	const t = useTranslations("OurStack");
 	const [activeTab, setActiveTab] = useState<TechnologyCategory | "all">("all");
 	const [isExpanded, setIsExpanded] = useState(false);
 
@@ -45,7 +47,7 @@ export default function OurStack() {
 	const featuredCount = technologies.filter((t) => t.featured).length;
 
 	return (
-		<Section title="Nuestro Stack">
+		<Section title={t("sectionTitle")}>
 			{/* Tabs */}
 			{isExpanded && (
 				<div className="flex flex-wrap gap-2 mb-6 justify-center">
@@ -56,7 +58,7 @@ export default function OurStack() {
 								? "border-coral bg-coral-soft-bg text-coral"
 								: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
 						}`}>
-						Todas
+						{t("all")}
 					</button>
 					{technologyCategories.map((cat) => (
 						<button
@@ -96,7 +98,7 @@ export default function OurStack() {
 						className="text-[0.85rem] text-muted py-4"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}>
-						Expandí para ver más tecnologías en esta categoría.
+						{t("emptyExpand")}
 					</motion.p>
 				)}
 			</div>
@@ -112,8 +114,8 @@ export default function OurStack() {
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}>
 					{isExpanded
-						? "Ver menos"
-						: `Ver más (${totalCount - featuredCount}+)`}
+						? t("viewLess")
+						: t("viewMore", { count: totalCount - featuredCount })}
 					<motion.span
 						className="inline-flex"
 						animate={{ rotate: isExpanded ? 180 : 0 }}

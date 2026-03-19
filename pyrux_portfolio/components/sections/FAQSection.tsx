@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Section from "@/components/ui/Section";
 import FAQAccordion from "./FAQAccordion";
 import type { FAQItem } from "@/types/pricing.types";
@@ -24,8 +25,9 @@ interface FAQSectionProps {
 }
 
 export default function FAQSection({ items }: FAQSectionProps) {
+	const t = useTranslations("FAQSection");
 	return (
-		<Section className="mb-14" title="Preguntas frecuentes">
+		<Section className="mb-14" title={t("sectionTitle")}>
 			<motion.div
 				className="flex flex-col gap-3"
 				variants={gridVariants}

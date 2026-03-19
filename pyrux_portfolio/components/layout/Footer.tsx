@@ -5,19 +5,25 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import { toast, Toaster } from "sonner";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { CONTACT_EMAIL, contactItems } from "@/data/contacts";
+import type { ContactItem } from "@/types";
 
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
+	const t = useTranslations("Footer");
+	const { locale } = useLocale();
 	const { copy } = useCopyToClipboard();
+	const localeContactItems = contactItems[locale];
 
-	const handleClick = async (link: (typeof contactItems)[0]) => {
+	const handleClick = async (link: ContactItem) => {
 		if (link.action === "copy-email") {
 			await copy(CONTACT_EMAIL);
-			toast.success("Email copiado al portapapeles", {
+			toast.success(t("toastSuccess"), {
 				description: CONTACT_EMAIL,
 				duration: 2500,
 			});
@@ -34,8 +40,8 @@ export default function Footer() {
 				transition={{ duration: 0.6 }}>
 				<nav
 					className="flex flex-wrap justify-center items-center gap-3 mb-4 text-[0.95rem]"
-					aria-label="Redes sociales">
-					{contactItems.map((link) => {
+					aria-label={t("socialNavAria")}>
+					{localeContactItems.map((link) => {
 						const isLink = !!link.href;
 						const Component = isLink ? "a" : "button";
 						const extraProps = isLink
@@ -59,10 +65,10 @@ export default function Footer() {
 				</nav>
 
 				<p className="mt-3 text-[0.8rem] text-muted opacity-70">
-					© {currentYear} Pyrux. Todos los derechos reservados.
+					{t("copyright", { year: currentYear })}
 				</p>
 				<p className="mt-3 text-[0.7rem] text-muted opacity-70 pb-4">
-					Designed by Pyrux
+					{t("designedBy")}
 				</p>
 			</motion.footer>
 			<Toaster

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Section from "@/components/ui/Section";
 import type { Step } from "@/types/pricing.types";
 
@@ -9,8 +10,9 @@ interface ProcessSectionProps {
 }
 
 export default function ProcessSection({ steps }: ProcessSectionProps) {
+	const t = useTranslations("ProcessSection");
 	return (
-		<Section className="mb-14" title="Nuestro proceso">
+		<Section className="mb-14" title={t("sectionTitle")}>
 			<div className="flex flex-col sm:flex-row gap-0 sm:gap-0 overflow-hidden">
 				{steps.map((step, i) => (
 					<motion.div

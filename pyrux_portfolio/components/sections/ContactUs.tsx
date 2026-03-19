@@ -5,6 +5,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useLocale } from "@/i18n/locale-provider";
 import { toast, Toaster } from "sonner";
 import Section from "@/components/ui/Section";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
@@ -28,12 +30,15 @@ const cardVariants = {
 };
 
 export default function ContactUs() {
+	const t = useTranslations("ContactUs");
+	const { locale } = useLocale();
 	const { copy } = useCopyToClipboard();
+	const localeContactItems = contactItems[locale];
 
 	const handleClick = async (item: ContactItem) => {
 		if (item.action === "copy-email") {
 			await copy(CONTACT_EMAIL);
-			toast.success("Email copiado al portapapeles", {
+			toast.success(t("toastSuccess"), {
 				description: CONTACT_EMAIL,
 				duration: 2500,
 			});
@@ -41,7 +46,7 @@ export default function ContactUs() {
 	};
 
 	return (
-		<Section id="contacto" title="Contactanos">
+		<Section id="contacto" title={t("sectionTitle")}>
 			<Toaster
 				position="bottom-center"
 				toastOptions={{
@@ -58,7 +63,7 @@ export default function ContactUs() {
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, amount: 0.1 }}>
-				{contactItems.map((item) => {
+				{localeContactItems.map((item) => {
 					const isLink = !!item.href;
 					const Component = isLink ? "a" : "button";
 					const extraProps = isLink

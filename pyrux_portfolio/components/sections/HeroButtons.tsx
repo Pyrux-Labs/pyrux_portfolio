@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const MotionLink = motion.create(Link);
 
@@ -18,6 +19,7 @@ const buttonVariants = {
 };
 
 export default function HeroButtons() {
+	const t = useTranslations("HeroButtons");
 	return (
 		<section className="mb-14 text-center">
 			<div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
@@ -30,7 +32,7 @@ export default function HeroButtons() {
 					custom={0}
 					whileTap={{ scale: 0.97 }}>
 					<span className="text-[0.9rem] text-primary">
-						Contacta con nosotros
+						{t("contact")}
 					</span>
 					<span className="text-muted transition-colors duration-200 group-hover:text-coral">
 						→
@@ -44,7 +46,7 @@ export default function HeroButtons() {
 					animate="visible"
 					custom={1}
 					whileTap={{ scale: 0.97 }}>
-					<span className="text-[0.9rem] text-primary">Precios y Paquetes</span>
+					<span className="text-[0.9rem] text-primary">{t("pricing")}</span>
 					<span className="text-muted transition-colors duration-200 group-hover:text-coral">
 						→
 					</span>
