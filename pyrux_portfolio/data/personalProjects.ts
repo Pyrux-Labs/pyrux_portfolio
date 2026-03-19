@@ -19,7 +19,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/job-finder-1.webp"],
 			githubUrl: "https://github.com/LittleBigPants/job-finder",
 			featured: false,
-			creatorId: "juan",
+			creatorId: "juan-manuel-garcia",
 			date: "2025-08-01",
 		},
 		{
@@ -33,7 +33,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/task-api-1.webp"],
 			githubUrl: "https://github.com/LittleBigPants/task-api",
 			featured: false,
-			creatorId: "juan",
+			creatorId: "juan-manuel-garcia",
 			date: "2025-05-01",
 		},
 		{
@@ -47,7 +47,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/auth-boilerplate-1.webp"],
 			githubUrl: "https://github.com/LittleBigPants/auth-boilerplate",
 			featured: false,
-			creatorId: "juan",
+			creatorId: "juan-manuel-garcia",
 			date: "2025-02-01",
 		},
 
@@ -63,7 +63,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/ui-kit-1.webp"],
 			githubUrl: "https://github.com/ginogiorgi/ui-kit",
 			featured: false,
-			creatorId: "gino",
+			creatorId: "gino-ruben-giorgi",
 			date: "2025-09-01",
 		},
 		{
@@ -77,7 +77,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/personal-portfolio-1.webp"],
 			githubUrl: "https://github.com/ginogiorgi/portfolio",
 			featured: false,
-			creatorId: "gino",
+			creatorId: "gino-ruben-giorgi",
 			date: "2025-06-01",
 		},
 		{
@@ -91,7 +91,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/analytics-dashboard-1.webp"],
 			githubUrl: "https://github.com/ginogiorgi/analytics-dashboard",
 			featured: false,
-			creatorId: "gino",
+			creatorId: "gino-ruben-giorgi",
 			date: "2025-03-01",
 		},
 	],
@@ -108,7 +108,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/job-finder-1.webp"],
 			githubUrl: "https://github.com/LittleBigPants/job-finder",
 			featured: false,
-			creatorId: "juan",
+			creatorId: "juan-manuel-garcia",
 			date: "2025-08-01",
 		},
 		{
@@ -122,7 +122,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/task-api-1.webp"],
 			githubUrl: "https://github.com/LittleBigPants/task-api",
 			featured: false,
-			creatorId: "juan",
+			creatorId: "juan-manuel-garcia",
 			date: "2025-05-01",
 		},
 		{
@@ -136,7 +136,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/auth-boilerplate-1.webp"],
 			githubUrl: "https://github.com/LittleBigPants/auth-boilerplate",
 			featured: false,
-			creatorId: "juan",
+			creatorId: "juan-manuel-garcia",
 			date: "2025-02-01",
 		},
 
@@ -152,7 +152,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/ui-kit-1.webp"],
 			githubUrl: "https://github.com/ginogiorgi/ui-kit",
 			featured: false,
-			creatorId: "gino",
+			creatorId: "gino-ruben-giorgi",
 			date: "2025-09-01",
 		},
 		{
@@ -166,7 +166,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/personal-portfolio-1.webp"],
 			githubUrl: "https://github.com/ginogiorgi/portfolio",
 			featured: false,
-			creatorId: "gino",
+			creatorId: "gino-ruben-giorgi",
 			date: "2025-06-01",
 		},
 		{
@@ -180,7 +180,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			images: ["/projects/personal/analytics-dashboard-1.webp"],
 			githubUrl: "https://github.com/ginogiorgi/analytics-dashboard",
 			featured: false,
-			creatorId: "gino",
+			creatorId: "gino-ruben-giorgi",
 			date: "2025-03-01",
 		},
 	],
