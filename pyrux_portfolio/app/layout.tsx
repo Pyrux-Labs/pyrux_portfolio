@@ -25,12 +25,14 @@ const organizationSchema = {
 		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
 	address: {
 		"@type": "PostalAddress",
+		addressLocality: "Rosario",
+		addressRegion: "Santa Fe",
 		addressCountry: "AR",
 	},
-	areaServed: {
-		"@type": "Country",
-		name: "Argentina",
-	},
+	areaServed: [
+		{ "@type": "City", name: "Rosario" },
+		{ "@type": "Country", name: "Argentina" },
+	],
 	sameAs: [
 		"https://www.instagram.com/pyrux_labs",
 		"https://linkedin.com/company/pyrux",
@@ -75,6 +77,8 @@ export const metadata: Metadata = {
 		"Pyrux",
 		"agencia web Argentina",
 		"páginas web profesionales",
+		"desarrollo web Rosario",
+		"agencia web Rosario",
 	],
 	authors: [{ name: "Pyrux", url: BASE_URL }],
 	alternates: {
