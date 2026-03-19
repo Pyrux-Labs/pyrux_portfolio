@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import Script from "next/script";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import { faqItems } from "@/data/faq";
 import "./globals.css";
@@ -130,20 +131,6 @@ export default function RootLayout({
 	return (
 		<html lang="es" data-theme="dark" suppressHydrationWarning className={manrope.variable}>
 			<head>
-				{/* Google tag (gtag.js) */}
-				<script
-					async
-					src="https://www.googletagmanager.com/gtag/js?id=G-XD1K5TMVZ9"></script>
-				<script
-					dangerouslySetInnerHTML={{
-						__html: `
-							window.dataLayer = window.dataLayer || [];
-							function gtag(){dataLayer.push(arguments);}
-							gtag('js', new Date());
-							gtag('config', 'G-XD1K5TMVZ9');
-						`,
-					}}
-				/>
 				{/* Prevenir FOUC: aplicar tema antes del primer render */}
 				<script
 					dangerouslySetInnerHTML={{
@@ -165,6 +152,18 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
+				<Script
+					src="https://www.googletagmanager.com/gtag/js?id=G-XD1K5TMVZ9"
+					strategy="afterInteractive"
+				/>
+				<Script id="gtag-init" strategy="afterInteractive">
+					{`
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						gtag('config', 'G-XD1K5TMVZ9');
+					`}
+				</Script>
 				<div className="relative z-50">
 					<ThemeToggle />
 				</div>
