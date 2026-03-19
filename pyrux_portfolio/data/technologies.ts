@@ -62,21 +62,6 @@ export const technologies: Technology[] = [
 		category: "frontend",
 		featured: false,
 	},
-	{
-		id: "vite",
-		name: "Vite",
-		icon: "SiVite",
-		category: "frontend",
-		featured: false,
-	},
-	{
-		id: "threejs",
-		name: "Three.js",
-		icon: "SiThreedotjs",
-		category: "frontend",
-		featured: false,
-	},
-
 	// Backend
 	{
 		id: "nodejs",
@@ -99,14 +84,6 @@ export const technologies: Technology[] = [
 		category: "backend",
 		featured: false,
 	},
-	{
-		id: "django",
-		name: "Django",
-		icon: "SiDjango",
-		category: "backend",
-		featured: false,
-	},
-
 	// Databases
 	{
 		id: "postgresql",
@@ -173,21 +150,6 @@ export const technologies: Technology[] = [
 		category: "devops",
 		featured: false,
 	},
-	{
-		id: "github-pages",
-		name: "GitHub Pages",
-		icon: "SiGithubpages",
-		category: "devops",
-		featured: false,
-	},
-	{
-		id: "render",
-		name: "Render",
-		icon: "SiRender",
-		category: "devops",
-		featured: false,
-	},
-
 	// Other
 	{
 		id: "stripe",
@@ -208,13 +170,6 @@ export const technologies: Technology[] = [
 		name: "Supabase",
 		icon: "SiSupabase",
 		category: "database",
-		featured: true,
-	},
-	{
-		id: "google-search-console",
-		name: "Google Search Console",
-		icon: "SiGooglesearchconsole",
-		category: "other",
 		featured: true,
 	},
 ];

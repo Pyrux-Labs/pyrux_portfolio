@@ -21,7 +21,7 @@ export default function WhatsAppFAB() {
 				href="https://wa.me/5493416941225"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25d366] text-white grid place-items-center shadow-[0_4px_20px_var(--whatsapp-shadow)] cursor-pointer"
+				className="hidden sm:grid fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25d366] text-white place-items-center shadow-[0_4px_20px_var(--whatsapp-shadow)] cursor-pointer"
 				whileHover={{ scale: 1.08 }}
 				whileTap={{ scale: 0.95 }}
 				aria-label="Contactar por WhatsApp">
