@@ -29,12 +29,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Company logos display on the /clients page (no generic Building2 icon)
   4. Every visible string on the site is in Spanish (no stray English text)
   5. FAQ answers, maintenance card descriptions, OurStack featured technologies, and pricing currency labels all match the latest copy provided by the user
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: Bug fixes (modal flicker, mobile carousel, company logos, English strings)
-- [ ] 01-02: Content updates (FAQ answers, maintenance cards, OurStack data, pricing currency, new technologies)
-- [ ] 01-03: Cleanup (console.log removal, image priority/sizes props)
+- [ ] 01-01-PLAN.md — Content and data updates (FAQ answers, maintenance cards, technologies, currency labels)
+- [ ] 01-02-PLAN.md — Bug fixes (modal flicker, mobile carousel, company logos, English strings, image performance)
 
 ### Phase 2: UI Polish and Accessibility
 **Goal**: Every section of the site feels polished, animations are smooth, mobile interactions use native-feeling patterns, and accessibility meets baseline standards
@@ -90,7 +89,7 @@ Phases execute in numeric order: 1 --> 2 --> 3 --> 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fixes and Content | 0/3 | Not started | - |
+| 1. Fixes and Content | 0/2 | Not started | - |
 | 2. UI Polish and Accessibility | 0/3 | Not started | - |
 | 3. Pricing Overhaul | 0/2 | Not started | - |
 | 4. Internationalization | 0/2 | Not started | - |
