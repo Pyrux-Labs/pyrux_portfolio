@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
@@ -34,17 +34,18 @@ export default function OurStack() {
 	const [activeTab, setActiveTab] = useState<TechnologyCategory | "all">("all");
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	const baseTechs = isExpanded
-		? technologies
-		: technologies.filter((t) => t.featured);
+	const baseTechs = useMemo(
+		() => (isExpanded ? technologies : technologies.filter((t) => t.featured)),
+		[isExpanded]
+	);
 
-	const displayedTechs =
-		activeTab === "all"
-			? baseTechs
-			: baseTechs.filter((t) => t.category === activeTab);
+	const displayedTechs = useMemo(
+		() => (activeTab === "all" ? baseTechs : baseTechs.filter((t) => t.category === activeTab)),
+		[activeTab, baseTechs]
+	);
 
 	const totalCount = technologies.length;
-	const featuredCount = technologies.filter((t) => t.featured).length;
+	const featuredCount = useMemo(() => technologies.filter((t) => t.featured).length, []);
 
 	return (
 		<Section title={t("sectionTitle")}>
