@@ -11,6 +11,7 @@ import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import type { Company } from "@/types";
 import Link from "next/link";
+import Image from "next/image";
 
 const headerVariants = {
 	hidden: { opacity: 0, y: 20 },
@@ -86,8 +87,40 @@ export default function ClientsPageClient() {
 								}
 							}}>
 							<div className="flex items-center gap-3">
-								<div className="w-11 h-11 rounded-full border-2 border-border bg-elevated flex items-center justify-center shrink-0">
-									<Building2 size={20} className="text-coral" />
+								<div className="w-11 h-11 rounded-full border-2 border-border bg-elevated flex items-center justify-center shrink-0 overflow-hidden">
+									{company.logoDark ? (
+										<>
+											<Image
+												src={company.logo}
+												alt={`${company.name} logo`}
+												width={44}
+												height={44}
+												className="logo-for-light w-full h-full object-contain"
+											/>
+											<Image
+												src={company.logoDark}
+												alt={`${company.name} logo`}
+												width={44}
+												height={44}
+												className="logo-for-dark w-full h-full object-contain"
+											/>
+										</>
+									) : (
+										<>
+											<Image
+												src={company.logo}
+												alt={`${company.name} logo`}
+												width={44}
+												height={44}
+												className="w-full h-full object-contain"
+												onError={(e) => {
+													e.currentTarget.style.display = "none";
+													e.currentTarget.nextElementSibling?.classList.remove("hidden");
+												}}
+											/>
+											<Building2 size={20} className="text-coral hidden" />
+										</>
+									)}
 								</div>
 								<div>
 									<h3 className="font-display text-[1.05rem] font-semibold text-primary">

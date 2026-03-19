@@ -63,7 +63,7 @@ export default function Modal({
 	}, [isOpen, handleKeyDown]);
 
 	return (
-		<AnimatePresence>
+		<AnimatePresence mode="wait">
 			{isOpen && (
 				<motion.div
 					className="fixed inset-0 z-50 flex items-end sm:items-center justify-center sm:p-4"
@@ -76,6 +76,10 @@ export default function Modal({
 						className="absolute inset-0 bg-black/60 backdrop-blur-sm"
 						onClick={onClose}
 						aria-hidden="true"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.2 }}
 					/>
 
 					{/* Modal content*/}

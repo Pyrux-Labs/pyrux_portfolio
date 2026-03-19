@@ -103,7 +103,7 @@ export default function CreatorModal({
 			{featuredProjects.length > 0 && (
 				<div>
 					<h4 className="font-display text-[0.95rem] font-semibold text-primary mb-3">
-						Featured projects
+						Proyectos destacados
 					</h4>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 						{featuredProjects.map((project) => {
@@ -140,7 +140,7 @@ export default function CreatorModal({
 						href={`/creator/${creator.id}`}
 						className="inline-flex items-center gap-2 mt-4 text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 hover:text-cyan">
 						<ExternalLink size={14} />
-						View all projects
+						Ver todos los proyectos
 					</a>
 				</div>
 			)}

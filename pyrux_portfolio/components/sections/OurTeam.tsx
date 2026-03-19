@@ -78,7 +78,7 @@ export default function OurTeam() {
 
 							{/* Click indicator */}
 							<span className="text-[0.8rem] text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-								Click to view profile →
+								Ver perfil completo →
 							</span>
 						</motion.div>
 					))}
