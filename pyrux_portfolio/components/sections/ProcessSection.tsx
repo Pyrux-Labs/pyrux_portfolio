@@ -24,9 +24,6 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 	return (
 		<Section className="mb-14" title="Nuestro proceso">
 			<div className="relative flex flex-col gap-0 max-w-xl mx-auto">
-				{/* Vertical connector line */}
-				<div className="absolute left-[1.75rem] top-8 bottom-8 w-px bg-border-accent" />
-
 				{steps.map((step, i) => {
 					const Icon = stepIcons[i] ?? MessageCircle;
 					return (
@@ -39,9 +36,15 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 							whileInView="visible"
 							viewport={{ once: true, amount: 0.3 }}>
 
-							{/* Left: number bubble */}
-							<div className="relative z-10 w-14 h-14 shrink-0 rounded-full border border-coral/40 bg-card-strong grid place-items-center">
-								<span className="text-coral font-bold font-mono text-[0.8rem]">{step.number}</span>
+							{/* Left: number bubble + connector below it */}
+							<div className="relative shrink-0 w-18">
+								<div className="w-18 h-18 rounded-full border-2 border-coral/40 bg-card-strong grid place-items-center">
+									<span className="text-coral font-bold font-mono text-xl">{step.number}</span>
+								</div>
+								{/* Connector: starts below circle, extends through pb-10 to reach next circle */}
+								{i < steps.length - 1 && (
+									<div className="absolute left-1/2 -translate-x-1/2 top-[4.5rem] bottom-[-2.5rem] w-0.5 bg-border-accent" />
+								)}
 							</div>
 
 							{/* Right: content card with large bg number */}
