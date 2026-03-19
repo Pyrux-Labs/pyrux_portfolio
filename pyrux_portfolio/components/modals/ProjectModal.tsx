@@ -58,7 +58,7 @@ function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn 
 				{images.map((img, i) => (
 					<div
 						key={i}
-						className="shrink-0 w-40 h-28 rounded-lg overflow-hidden border border-border bg-elevated">
+						className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated">
 						<Img
 							src={img}
 							alt={imageAltFn(i + 1)}

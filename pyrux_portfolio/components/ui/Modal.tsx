@@ -84,7 +84,7 @@ export default function Modal({
 
 					{/* Modal content*/}
 					<motion.div
-						className="relative w-full h-full overflow-y-auto bg-surface p-5 shadow-2xl sm:h-auto sm:max-w-2xl sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-border sm:p-8"
+						className="relative w-full h-full overflow-y-auto bg-surface p-5 shadow-2xl sm:h-auto sm:max-w-2xl sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-border sm:p-8 2xl:max-w-4xl"
 						variants={modalVariants}
 						initial="hidden"
 						animate="visible"
