@@ -331,11 +331,6 @@ html[data-theme="light"] .nebula {
 	}
 }
 
-/* ── Testimonials focus-within (complex selector) ── */
-.testimonials-track:focus-within .testimonials-row {
-	animation-play-state: paused;
-}
-
 /* ── Reduced motion ────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 	*,
