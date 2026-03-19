@@ -135,13 +135,15 @@ export default function PackageCard({
 			className={`relative flex flex-col p-5 rounded-xl border backdrop-blur-sm cursor-pointer transition-[border-color,box-shadow] duration-200 min-h-160 h-full
 				${isSelected ? `${c.border} ${c.shadow}` : `border-border ${c.borderHover}`}
 				bg-card-strong`}>
-			{/* Selected indicator */}
-			{isSelected && (
-				<span
-					className={`absolute top-3 right-3 text-[0.65rem] font-mono border rounded-full px-2 py-0.5 ${c.text} ${c.bg} border-current/30`}>
-					seleccionado
-				</span>
-			)}
+			{/* Selected indicator — reserva espacio fijo para evitar salto del título */}
+			<div className="h-5 flex justify-end mb-1">
+				{isSelected && (
+					<span
+						className={`text-[0.65rem] font-mono border rounded-full px-2 py-0.5 ${c.text} ${c.bg} border-current/30`}>
+						seleccionado
+					</span>
+				)}
+			</div>
 
 			<h3 className="font-display text-xl font-bold text-primary mb-2">
 				{pkg.name}

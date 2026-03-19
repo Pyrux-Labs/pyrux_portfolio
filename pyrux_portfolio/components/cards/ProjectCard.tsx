@@ -41,6 +41,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
 						width={320}
 						height={144}
 						className="w-full h-full object-cover"
+						sizes="(max-width: 480px) 256px, 320px"
 					/>
 				</div>
 			)}

@@ -42,6 +42,7 @@ export default function CompanyCard({ company, onClick }: CompanyCardProps) {
 							width={44}
 							height={44}
 							className="logo-for-light w-full h-full object-contain"
+							sizes="44px"
 						/>
 						<Image
 							src={company.logoDark}
@@ -49,6 +50,7 @@ export default function CompanyCard({ company, onClick }: CompanyCardProps) {
 							width={44}
 							height={44}
 							className="logo-for-dark w-full h-full object-contain"
+							sizes="44px"
 						/>
 					</>
 				) : (
@@ -59,6 +61,7 @@ export default function CompanyCard({ company, onClick }: CompanyCardProps) {
 							width={44}
 							height={44}
 							className="w-full h-full object-contain"
+							sizes="44px"
 							onError={(e) => {
 								e.currentTarget.style.display = "none";
 								e.currentTarget.nextElementSibling?.classList.remove("hidden");
