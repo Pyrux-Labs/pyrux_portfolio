@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { MessageCircle, Palette, Code, Rocket, HeartHandshake } from "lucide-react";
 import Section from "@/components/ui/Section";
 import type { Step } from "@/types/pricing.types";
 
@@ -9,51 +9,57 @@ interface ProcessSectionProps {
 	steps: Step[];
 }
 
-export default function ProcessSection({ steps }: ProcessSectionProps) {
-	const t = useTranslations("ProcessSection");
-	return (
-		<Section className="mb-14" title={t("sectionTitle")}>
-			<div className="flex flex-col sm:flex-row gap-0 sm:gap-0 overflow-hidden">
-				{steps.map((step, i) => (
-					<motion.div
-						key={step.number}
-						className="relative flex-1 flex flex-col"
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true }}
-						transition={{ delay: i * 0.1, duration: 0.4 }}>
-						{/* Connector line — de borde a borde, sin cruzar los círculos */}
-						{i < steps.length - 1 && (
-							<div
-								className="hidden sm:block absolute top-4 h-px bg-border-accent z-0"
-								style={{
-									left: "calc(50% + 16px)",
-									right: "calc(-50% + 16px)",
-								}}
-							/>
-						)}
+const stepIcons = [MessageCircle, Palette, Code, Rocket, HeartHandshake];
 
-						<div className="relative z-10 flex flex-col items-center text-center px-3">
-							{/* Step number circle */}
-							<div className="w-8 h-8 rounded-full border border-coral bg-card-strong grid place-items-center mb-3 shrink-0">
-								<span className="text-[0.65rem] text-coral font-bold font-mono">
+const stepVariants = {
+	hidden: { opacity: 0, x: -20 },
+	visible: (i: number) => ({
+		opacity: 1,
+		x: 0,
+		transition: { delay: i * 0.15, duration: 0.5, ease: "easeOut" as const },
+	}),
+};
+
+export default function ProcessSection({ steps }: ProcessSectionProps) {
+	return (
+		<Section className="mb-14" title="Nuestro proceso">
+			<div className="relative flex flex-col gap-0 max-w-xl mx-auto">
+				{/* Vertical connector line */}
+				<div className="absolute left-[1.75rem] top-8 bottom-8 w-px bg-border-accent" />
+
+				{steps.map((step, i) => {
+					const Icon = stepIcons[i] ?? MessageCircle;
+					return (
+						<motion.div
+							key={step.number}
+							className="relative flex gap-5 pb-10 last:pb-0"
+							custom={i}
+							variants={stepVariants}
+							initial="hidden"
+							whileInView="visible"
+							viewport={{ once: true, amount: 0.3 }}>
+
+							{/* Left: number bubble */}
+							<div className="relative z-10 w-14 h-14 shrink-0 rounded-full border border-coral/40 bg-card-strong grid place-items-center">
+								<span className="text-coral font-bold font-mono text-[0.8rem]">{step.number}</span>
+							</div>
+
+							{/* Right: content card with large bg number */}
+							<div className="relative flex-1 pt-3 pb-4 px-5 rounded-xl border border-border bg-card overflow-hidden">
+								{/* Large decorative number */}
+								<span className="absolute right-3 top-0 font-display text-[5rem] font-bold text-coral/5 leading-none select-none pointer-events-none">
 									{step.number}
 								</span>
+								{/* Icon */}
+								<div className="mb-2">
+									<Icon size={20} className="text-coral" />
+								</div>
+								<h3 className="font-display text-[1rem] font-semibold text-primary mb-1">{step.title}</h3>
+								<p className="text-[0.85rem] text-muted leading-normal">{step.description}</p>
 							</div>
-							<h3 className="font-display text-[0.9rem] font-semibold text-primary mb-1 leading-snug">
-								{step.title}
-							</h3>
-							<p className="text-[0.8rem] text-muted leading-normal">
-								{step.description}
-							</p>
-						</div>
-
-						{/* Mobile: vertical connector */}
-						{i < steps.length - 1 && (
-							<div className="sm:hidden w-px h-6 bg-border-accent mx-auto my-2" />
-						)}
-					</motion.div>
-				))}
+						</motion.div>
+					);
+				})}
 			</div>
 		</Section>
 	);
