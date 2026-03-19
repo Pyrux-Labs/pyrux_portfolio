@@ -68,13 +68,13 @@ Every page view is a potential client. The site must look polished, load fast, a
 - ✓ console.log cleanup — Validated in Phase 01: fixes-and-content
 - ✓ Image `sizes` prop and `priority` on above-the-fold images — Validated in Phase 01: fixes-and-content
 
-**Internationalization (EN/ES):**
-- [ ] Auto-detect browser language (navigator.language starts with "es" → ES, else → EN)
-- [ ] All hardcoded Spanish strings extracted to translation keys
-- [ ] `messages/es.json` — Spanish translations
-- [ ] `messages/en.json` — English translations
-- [ ] next-intl configured with locale detection middleware
-- [ ] All pages, sections, cards, modals, and data labels translated
+**Internationalization (EN/ES) — Validated in Phase 04: internationalization:**
+- ✓ Auto-detect browser language (navigator.language starts with "es" → ES, else → EN)
+- ✓ All hardcoded Spanish strings extracted to translation keys
+- ✓ `messages/es.json` — Spanish translations (27 namespaces)
+- ✓ `messages/en.json` — English translations (27 namespaces)
+- ✓ next-intl configured for static export (client-side locale detection)
+- ✓ All pages, sections, cards, modals, and data labels translated
 
 ### Out of Scope
 
@@ -107,10 +107,10 @@ Every page view is a potential client. The site must look polished, load fast, a
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| next-intl for i18n | Already in package.json; avoids adding new dependency | — Pending |
-| Client-side locale detection | Static export forbids middleware-based routing; navigator.language checked on mount | — Pending |
-| messages/es.json + messages/en.json | next-intl standard convention | — Pending |
+| next-intl for i18n | Already in package.json; avoids adding new dependency | ✓ Used |
+| Client-side locale detection | Static export forbids middleware-based routing; navigator.language checked on mount | ✓ Implemented |
+| messages/es.json + messages/en.json | next-intl standard convention | ✓ 27 namespaces each |
 | Pricing route stays at `/pricing` | Folder is `app/pricing/`, all links already correct | ✓ Good |
 
 ---
-*Last updated: 2026-03-19 — Phase 01 complete (fixes-and-content): modal flicker fixed, mobile carousel fixed, company logos theme-aware, English strings replaced, FAQ + data content updated, image performance props added*
+*Last updated: 2026-03-19 — Phase 04 complete (internationalization): next-intl infrastructure wired, 27-namespace es/en message files, all 9 data files locale-keyed, all components wired to useTranslations + useLocale*
