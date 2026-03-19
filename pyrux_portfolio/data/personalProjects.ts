@@ -16,7 +16,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"App para buscar, filtrar y hacer seguimiento de ofertas laborales.",
 			technologies: ["react", "typescript", "nodejs", "postgresql"],
-			images: ["/projects/personal/job-finder-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/LittleBigPants/job-finder",
 			featured: false,
 			creatorId: "juan-manuel-garcia",
@@ -30,7 +30,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"API REST con autenticación JWT para gestión de tareas.",
 			technologies: ["nodejs", "express", "postgresql", "docker"],
-			images: ["/projects/personal/task-api-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/LittleBigPants/task-api",
 			featured: false,
 			creatorId: "juan-manuel-garcia",
@@ -44,7 +44,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Boilerplate de autenticación completo con JWT y refresh tokens.",
 			technologies: ["nodejs", "typescript", "postgresql", "express"],
-			images: ["/projects/personal/auth-boilerplate-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/LittleBigPants/auth-boilerplate",
 			featured: false,
 			creatorId: "juan-manuel-garcia",
@@ -60,7 +60,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Sistema de diseño con componentes React documentados.",
 			technologies: ["react", "typescript", "tailwindcss"],
-			images: ["/projects/personal/ui-kit-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/ginogiorgi/ui-kit",
 			featured: false,
 			creatorId: "gino-ruben-giorgi",
@@ -74,7 +74,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Portfolio personal con animaciones y modo oscuro.",
 			technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
-			images: ["/projects/personal/personal-portfolio-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/ginogiorgi/portfolio",
 			featured: false,
 			creatorId: "gino-ruben-giorgi",
@@ -88,7 +88,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Dashboard de métricas con gráficos interactivos y exportación.",
 			technologies: ["react", "typescript", "tailwindcss"],
-			images: ["/projects/personal/analytics-dashboard-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/ginogiorgi/analytics-dashboard",
 			featured: false,
 			creatorId: "gino-ruben-giorgi",
@@ -105,7 +105,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"App for searching, filtering, and tracking job offers.",
 			technologies: ["react", "typescript", "nodejs", "postgresql"],
-			images: ["/projects/personal/job-finder-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/LittleBigPants/job-finder",
 			featured: false,
 			creatorId: "juan-manuel-garcia",
@@ -119,7 +119,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"REST API with JWT authentication for task management.",
 			technologies: ["nodejs", "express", "postgresql", "docker"],
-			images: ["/projects/personal/task-api-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/LittleBigPants/task-api",
 			featured: false,
 			creatorId: "juan-manuel-garcia",
@@ -133,7 +133,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Complete authentication boilerplate with JWT and refresh tokens.",
 			technologies: ["nodejs", "typescript", "postgresql", "express"],
-			images: ["/projects/personal/auth-boilerplate-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/LittleBigPants/auth-boilerplate",
 			featured: false,
 			creatorId: "juan-manuel-garcia",
@@ -149,7 +149,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Design system with documented React components.",
 			technologies: ["react", "typescript", "tailwindcss"],
-			images: ["/projects/personal/ui-kit-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/ginogiorgi/ui-kit",
 			featured: false,
 			creatorId: "gino-ruben-giorgi",
@@ -163,7 +163,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Personal portfolio with animations and dark mode.",
 			technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
-			images: ["/projects/personal/personal-portfolio-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/ginogiorgi/portfolio",
 			featured: false,
 			creatorId: "gino-ruben-giorgi",
@@ -177,7 +177,7 @@ export const personalProjects: Record<Locale, PersonalProject[]> = {
 			shortDescription:
 				"Metrics dashboard with interactive charts and export.",
 			technologies: ["react", "typescript", "tailwindcss"],
-			images: ["/projects/personal/analytics-dashboard-1.webp"],
+			images: [],
 			githubUrl: "https://github.com/ginogiorgi/analytics-dashboard",
 			featured: false,
 			creatorId: "gino-ruben-giorgi",
