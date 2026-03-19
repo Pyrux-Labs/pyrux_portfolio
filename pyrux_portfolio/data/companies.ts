@@ -3,23 +3,40 @@
 // ═══════════════════════════════════════════════
 
 import type { Company } from "@/types";
+import type { Locale } from "@/i18n/config";
 
-export const companies: Company[] = [
-	{
-		id: "medmind",
-		name: "MedMind",
-		logo: "/companies/medmind.svg",
-		logoDark: "/companies/medmind_blanco.svg",
-		summary: "Empresa de servicios de traducción profesional.",
-		workDescription:
-			"Creación de una landing page moderna y responsive para promocionar los servicios de traducción de MedMind.",
-		websiteUrl: "https://medmind.com.ar",
-		testimonial:
-			"Profesionales serios y comprometidos. El sitio nos genera consultas todos los días.",
-	},
-];
+export const companies: Record<Locale, Company[]> = {
+	es: [
+		{
+			id: "medmind",
+			name: "MedMind",
+			logo: "/companies/medmind.svg",
+			logoDark: "/companies/medmind_blanco.svg",
+			summary: "Empresa de servicios de traducción profesional.",
+			workDescription:
+				"Creación de una landing page moderna y responsive para promocionar los servicios de traducción de MedMind.",
+			websiteUrl: "https://medmind.com.ar",
+			testimonial:
+				"Profesionales serios y comprometidos. El sitio nos genera consultas todos los días.",
+		},
+	],
+	en: [
+		{
+			id: "medmind",
+			name: "MedMind",
+			logo: "/companies/medmind.svg",
+			logoDark: "/companies/medmind_blanco.svg",
+			summary: "Professional translation services company.",
+			workDescription:
+				"Creation of a modern and responsive landing page to promote MedMind's translation services.",
+			websiteUrl: "https://medmind.com.ar",
+			testimonial:
+				"Serious and committed professionals. The site generates inquiries for us every day.",
+		},
+	],
+};
 
 // Funciones auxiliares
-export function getCompanyById(id: string): Company | undefined {
-	return companies.find((c) => c.id === id);
+export function getCompanyById(id: string, locale: Locale): Company | undefined {
+	return companies[locale].find((c) => c.id === id);
 }
