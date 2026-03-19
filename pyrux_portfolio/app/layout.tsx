@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import LanguageToggle from "@/components/ui/LanguageToggle";
+import { LocaleProvider } from "@/i18n/locale-provider";
 import { faqItems } from "@/data/faq";
 import "./globals.css";
 
@@ -140,6 +142,12 @@ export default function RootLayout({
 						__html: `(function(){var t=localStorage.getItem('oc-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}})();`,
 					}}
 				/>
+				{/* Prevenir FOWL: aplicar locale antes del primer render */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `(function(){var l=localStorage.getItem('pyrux-locale');if(!l){l=navigator.language&&navigator.language.startsWith('es')?'es':'en';localStorage.setItem('pyrux-locale',l);}document.documentElement.lang=l;document.documentElement.dataset.locale=l;})();`,
+					}}
+				/>
 				{/* JSON-LD structured data */}
 				<script
 					type="application/ld+json"
@@ -155,10 +163,13 @@ export default function RootLayout({
 				/>
 			</head>
 			<body>
-				<div className="relative z-50">
-					<ThemeToggle />
-				</div>
-				{children}
+				<LocaleProvider>
+					<div className="relative z-50">
+						<ThemeToggle />
+						<LanguageToggle />
+					</div>
+					{children}
+				</LocaleProvider>
 			</body>
 		</html>
 	);
