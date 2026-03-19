@@ -27,12 +27,6 @@ Every page view is a potential client. The site must look polished, load fast, a
 
 ### Active
 
-**Bug Fixes (Critical):**
-- [ ] Modal StarBackground flicker on open/close — fix AnimatePresence timing
-- [ ] E-Commerce packages not loading on mobile carousel — fix useEffect/scroll logic
-- [ ] ClientsPageClient shows Building2 icon instead of real company logo
-- [ ] Three hardcoded English strings in OurTeam and CreatorModal
-
 **UX / Visual Polish:**
 - [ ] Bottom sheet modal pattern for mobile (projects, companies, creators)
 - [ ] Project card description limited to 3 lines (line-clamp-3)
@@ -59,20 +53,20 @@ Every page view is a potential client. The site must look polished, load fast, a
 - [ ] Hover animation on maintenance cards (same as project cards)
 - [ ] Package descriptions rewritten in non-technical language
 
-**FAQ text updates (7 answers):**
-- [ ] FAQ answers updated to match new copy provided by user
+**FAQ text updates — Validated in Phase 01: fixes-and-content:**
+- ✓ FAQ answers updated to match new copy provided by user
 
-**Data / content:**
-- [ ] OurStack featured technologies updated (next, ts, tailwind, supabase, vercel, linux, github, figma, node + google tool)
-- [ ] Add technologies: Vite, Three.js, GitHub Pages, Django, Render
-- [ ] Pricing descriptions use "dólares" not "USD"
+**Data / content — Validated in Phase 01: fixes-and-content:**
+- ✓ OurStack featured technologies updated (next, ts, tailwind, supabase, vercel, linux, github, figma, node + google tool)
+- ✓ Add technologies: Vite, Three.js, GitHub Pages, Django, Render
+- ✓ Pricing descriptions use "dólares" not "USD"
 
 **Accessibility / Performance:**
 - [ ] Touch targets ≥ 44px on all interactive elements
 - [ ] aria-expanded on FAQ accordions
 - [ ] alt text audit on all images
-- [ ] console.log cleanup
-- [ ] Image `sizes` prop and `priority` on above-the-fold images
+- ✓ console.log cleanup — Validated in Phase 01: fixes-and-content
+- ✓ Image `sizes` prop and `priority` on above-the-fold images — Validated in Phase 01: fixes-and-content
 
 **Internationalization (EN/ES):**
 - [ ] Auto-detect browser language (navigator.language starts with "es" → ES, else → EN)
@@ -119,4 +113,4 @@ Every page view is a potential client. The site must look polished, load fast, a
 | Pricing route stays at `/pricing` | Folder is `app/pricing/`, all links already correct | ✓ Good |
 
 ---
-*Last updated: 2026-03-19 after initialization*
+*Last updated: 2026-03-19 — Phase 01 complete (fixes-and-content): modal flicker fixed, mobile carousel fixed, company logos theme-aware, English strings replaced, FAQ + data content updated, image performance props added*
