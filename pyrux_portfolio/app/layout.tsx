@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import LanguageToggle from "@/components/ui/LanguageToggle";
+import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import { faqItems } from "@/data/faq";
 import { defaultLocale } from "@/i18n/config";
@@ -170,6 +171,7 @@ export default function RootLayout({
 						<LanguageToggle />
 					</div>
 					{children}
+				<WhatsAppFAB />
 				</LocaleProvider>
 			</body>
 		</html>

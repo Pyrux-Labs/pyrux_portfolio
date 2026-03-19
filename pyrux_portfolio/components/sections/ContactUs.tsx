@@ -7,7 +7,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import Section from "@/components/ui/Section";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { CONTACT_EMAIL, contactItems } from "@/data/contacts";
@@ -47,16 +47,6 @@ export default function ContactUs() {
 
 	return (
 		<Section id="contacto" title={t("sectionTitle")}>
-			<Toaster
-				position="bottom-center"
-				toastOptions={{
-					style: {
-						background: "var(--bg-elevated)",
-						color: "var(--text-primary)",
-						border: "1px solid var(--border-subtle)",
-					},
-				}}
-			/>
 			<motion.div
 				className="grid grid-cols-1 min-[401px]:grid-cols-2 sm:grid-cols-4 gap-4"
 				variants={gridVariants}
