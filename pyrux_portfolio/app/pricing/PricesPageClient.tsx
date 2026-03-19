@@ -214,7 +214,7 @@ export default function PreciosPageClient() {
 
 					{/* Desktop + mobile personalizado */}
 					<motion.div
-						key={selectedCategory}
+						key={`${selectedCategory}-${locale}`}
 						className={
 							selectedCategory === "personalizado"
 								? "flex justify-center"
@@ -222,8 +222,7 @@ export default function PreciosPageClient() {
 						}
 						variants={gridVariants}
 						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true, amount: 0.1 }}>
+						animate="visible">
 						{visiblePackages.map((pkg, idx) => (
 							<PackageCard
 								key={`${pkg.category}-${pkg.number}`}
