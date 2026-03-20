@@ -5,9 +5,16 @@ import { useState, useEffect } from "react";
 export default function ThemeToggle() {
 	const [theme, setTheme] = useState<"dark" | "light">("dark");
 
+	// Sync with what the anti-FOUC script already applied on load
+	useEffect(() => {
+		const saved = localStorage.getItem("oc-theme");
+		if (saved === "light" || saved === "dark") setTheme(saved);
+	}, []);
+
 	useEffect(() => {
 		document.documentElement.dataset.theme = theme;
 		document.documentElement.style.colorScheme = theme;
+		localStorage.setItem("oc-theme", theme);
 	}, [theme]);
 
 	const toggle = () => {
