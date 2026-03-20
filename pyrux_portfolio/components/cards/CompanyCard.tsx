@@ -120,7 +120,7 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 			className={`${baseClass} flex flex-col gap-2 p-4 h-56 overflow-hidden shrink-0 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3`}
 			{...motionProps}>
 			{/* Sección superior: texto izquierda / logo derecha */}
-			<div className="flex items-start gap-3">
+			<div className="flex items-start gap-3 flex-1">
 				{/* Izquierda: nombre + descripción */}
 				<div className="flex flex-col gap-1.5 min-w-0 flex-1">
 					<h3 className="font-display text-[0.95rem] font-semibold text-primary leading-tight line-clamp-1">
@@ -135,7 +135,7 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 				</div>
 				{/* Derecha: logo centrado */}
 				<div className="flex items-center justify-center shrink-0">
-					<CompanyLogo company={company} size={44} />
+					<CompanyLogo company={company} size={52} />
 				</div>
 			</div>
 
