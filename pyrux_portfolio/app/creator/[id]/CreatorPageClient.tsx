@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
@@ -54,7 +54,6 @@ export default function CreatorPageClient({
 }: CreatorPageClientProps) {
 	const t = useTranslations("CreatorPage");
 	const { locale } = useLocale();
-	const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(null);
 	const { copy } = useCopyToClipboard();
 	const creator = getCreatorById(creatorId, locale);
 	const creatorProjects = useMemo(
@@ -62,15 +61,12 @@ export default function CreatorPageClient({
 		[creatorId, locale],
 	);
 
-	// Open project modal if ?project= param is present in the URL
-	useEffect(() => {
-		const params = new URLSearchParams(window.location.search);
-		const projectId = params.get("project");
-		if (projectId) {
-			const match = creatorProjects.find((p) => p.id === projectId);
-			if (match) setSelectedProject(match);
-		}
-	}, [creatorProjects]);
+	// Initialize modal from ?project= URL param on first render
+	const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(() => {
+		if (typeof window === "undefined") return null;
+		const projectId = new URLSearchParams(window.location.search).get("project");
+		return creatorProjects.find((p) => p.id === projectId) ?? null;
+	});
 
 	if (!creator) {
 		return (
