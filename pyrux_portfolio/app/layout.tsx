@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import { faqItems } from "@/data/faq";
-import { defaultLocale } from "@/i18n/config";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -21,7 +19,7 @@ const organizationSchema = {
 	logo: `${BASE_URL}/Pyrux-logo.svg`,
 	image: `${BASE_URL}/og-image.png`,
 	description:
-		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+		"We build modern websites, custom systems and automations to take your business to the next level.",
 	address: {
 		"@type": "PostalAddress",
 		addressLocality: "Rosario",
@@ -37,7 +35,7 @@ const organizationSchema = {
 		"https://linkedin.com/company/pyrux",
 	],
 	priceRange: "$$",
-	knowsAbout: ["desarrollo web", "diseño web", "software a medida", "Next.js", "React"],
+	knowsAbout: ["web development", "web design", "custom software", "Next.js", "React"],
 };
 
 const websiteSchema = {
@@ -47,18 +45,6 @@ const websiteSchema = {
 	url: BASE_URL,
 };
 
-const faqSchema = {
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	mainEntity: faqItems[defaultLocale].map((item) => ({
-		"@type": "Question",
-		name: item.question,
-		acceptedAnswer: {
-			"@type": "Answer",
-			text: item.answer,
-		},
-	})),
-};
 
 export const metadata: Metadata = {
 	metadataBase: new URL(BASE_URL),
@@ -159,10 +145,6 @@ export default function RootLayout({
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-				/>
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
 				/>
 			</head>
 			<body>

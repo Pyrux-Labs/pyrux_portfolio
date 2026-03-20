@@ -4,6 +4,8 @@
 
 import type { Metadata } from "next";
 import PreciosPageClient from "@/app/pricing/PricesPageClient";
+import { faqItems } from "@/data/faq";
+import type { Locale } from "@/i18n/config";
 
 interface PricingPageProps {
 	params: Promise<{ locale: string }>;
@@ -63,9 +65,20 @@ export default async function PricingPage({ params }: PricingPageProps) {
 		],
 	});
 
+	const faqSchema = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: faqItems[locale as Locale].map((item) => ({
+			"@type": "Question",
+			name: item.question,
+			acceptedAnswer: { "@type": "Answer", text: item.answer },
+		})),
+	});
+
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
 			<PreciosPageClient />
 		</>
 	);
