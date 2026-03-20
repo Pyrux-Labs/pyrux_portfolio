@@ -33,7 +33,7 @@ export default function HeroButtons() {
 							.getElementById("contact")
 							?.scrollIntoView({ behavior: "smooth" });
 					}}
-					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-coral bg-transparent text-coral no-underline font-semibold text-[1rem] shadow-[0_0_24px_var(--shadow-coral-mid)] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_40px_var(--shadow-coral-strong,var(--shadow-coral-mid))]"
+					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#a84510] text-white no-underline font-semibold text-[1rem] shadow-[0_0_24px_var(--shadow-coral-mid)] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_40px_var(--shadow-coral-strong,var(--shadow-coral-mid))]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
