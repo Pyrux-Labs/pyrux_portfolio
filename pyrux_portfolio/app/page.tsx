@@ -7,10 +7,13 @@ export default function RootPage() {
 	const router = useRouter();
 
 	useEffect(() => {
+		const saved = localStorage.getItem("pyrux-locale");
 		const lang =
-			typeof navigator !== "undefined" && navigator.language.startsWith("es")
-				? "es"
-				: "en";
+			saved === "es" || saved === "en"
+				? saved
+				: navigator.language.startsWith("es")
+					? "es"
+					: "en";
 		router.replace(`/${lang}`);
 	}, [router]);
 

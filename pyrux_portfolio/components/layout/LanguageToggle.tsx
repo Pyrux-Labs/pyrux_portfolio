@@ -11,7 +11,9 @@ export default function LanguageToggle() {
 	const pathname = usePathname();
 
 	const handleToggle = () => {
-		router.replace(pathname, { locale: locale === "es" ? "en" : "es" });
+		const next = locale === "es" ? "en" : "es";
+		localStorage.setItem("pyrux-locale", next);
+		router.replace(pathname, { locale: next });
 	};
 
 	return (
