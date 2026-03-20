@@ -6,6 +6,7 @@
 
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { ReactNode } from "react";
 
 interface SectionProps {
@@ -64,18 +65,18 @@ export default function Section({
 						</h2>
 					)}
 					{viewAllHref && !titleRight && (
-						<a
-							href={viewAllHref}
+						<Link
+							href={viewAllHref as Parameters<typeof Link>[0]["href"]}
 							className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 							{resolvedViewAllLabel} <span aria-hidden="true">→</span>
-						</a>
+						</Link>
 					)}
 					{titleRight && viewAllHref && (
-						<a
-							href={viewAllHref}
+						<Link
+							href={viewAllHref as Parameters<typeof Link>[0]["href"]}
 							className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 							{resolvedViewAllLabel} <span aria-hidden="true">→</span>
-						</a>
+						</Link>
 					)}
 					{titleRight && (
 						<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">

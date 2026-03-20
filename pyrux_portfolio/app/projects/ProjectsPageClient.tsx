@@ -10,7 +10,7 @@ import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import type { Project } from "@/types";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const headerVariants = {
 	hidden: { opacity: 0, y: 20 },

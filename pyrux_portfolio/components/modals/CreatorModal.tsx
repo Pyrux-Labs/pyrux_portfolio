@@ -11,6 +11,7 @@ import Badge from "@/components/ui/Badge";
 import { getPersonalProjectsByCreator } from "@/data/personalProjects";
 import { getTechnologyById } from "@/data/technologies";
 import { Github, Linkedin, Mail, ExternalLink } from "lucide-react";
+import { Link } from "@/i18n/navigation";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
@@ -109,7 +110,7 @@ export default function CreatorModal({
 					</h4>
 					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 						{personalProjects.map((project) => (
-							<a
+							<Link
 								key={project.id}
 								href={`/creator/${creator.id}?project=${project.id}`}
 								className="p-3 rounded-xl border border-border bg-card transition-all duration-200 hover:border-coral no-underline block">
@@ -131,17 +132,17 @@ export default function CreatorModal({
 										);
 									})}
 								</div>
-							</a>
+							</Link>
 						))}
 					</div>
 
 					{/* View all button */}
-					<a
+					<Link
 						href={`/creator/${creator.id}`}
 						className="inline-flex items-center gap-2 mt-4 text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 hover:text-cyan">
 						<ExternalLink size={14} />
 						{t("viewAllProjects")}
-					</a>
+					</Link>
 				</div>
 			)}
 		</Modal>

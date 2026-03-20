@@ -12,7 +12,7 @@ import CompanyModal from "@/components/modals/CompanyModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import type { Company } from "@/types";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
 const headerVariants = {

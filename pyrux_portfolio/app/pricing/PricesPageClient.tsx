@@ -8,7 +8,7 @@ import { ArrowLeft, MessageCircle } from "lucide-react";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/ui/Section";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import PackageCard from "@/components/cards/PackageCard";
 import MaintenanceGrid from "@/components/cards/MaintenanceGrid";
 import ProcessSection from "@/components/sections/ProcessSection";

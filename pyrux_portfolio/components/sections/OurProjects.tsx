@@ -14,6 +14,7 @@ import ProjectModal from "@/components/modals/ProjectModal";
 import CompanyModal from "@/components/modals/CompanyModal";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
+import { Link } from "@/i18n/navigation";
 import { projects } from "@/data/projects";
 import { companies } from "@/data/companies";
 import type { Project, Company } from "@/types";
@@ -99,11 +100,11 @@ export default function OurProjects() {
 					whileInView={{ opacity: 1 }}
 					viewport={{ once: true }}
 					transition={{ duration: 0.5 }}>
-					<a
+					<Link
 						href="/clients"
 						className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 						{t("viewAll")} <span aria-hidden="true">→</span>
-					</a>
+					</Link>
 					<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
 						{t("clientsTitle")} <span className="text-coral font-bold">⟨</span>
 					</h2>
