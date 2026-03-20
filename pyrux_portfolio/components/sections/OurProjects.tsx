@@ -30,8 +30,8 @@ export default function OurProjects() {
 	const localeProjects = projects[locale];
 	const localeCompanies = companies[locale];
 
-	const projectsMarquee = useDraggableMarquee({ speed: 60, direction: "left" });
-	const companiesMarquee = useDraggableMarquee({ speed: 60, direction: "right" });
+	const projectsRef = useDraggableMarquee({ speed: 60, direction: "left" });
+	const companiesRef = useDraggableMarquee({ speed: 60, direction: "right" });
 	const clientsHeaderRef = useRef<HTMLDivElement>(null);
 	const clientsHeaderInView = useInView(clientsHeaderRef, { once: true, amount: 0 });
 
@@ -60,9 +60,8 @@ export default function OurProjects() {
 							"linear-gradient(to right, transparent, rgba(0,0,0,0.3) 8%, rgba(0,0,0,0.7) 16%, black 24%, black 86%, rgba(0,0,0,0.7) 92%, rgba(0,0,0,0.3) 96%, transparent)",
 					}}>
 					<div
-						ref={projectsMarquee.innerRef}
-						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y] [&_img]:pointer-events-none [&_img]:select-none"
-						{...projectsMarquee.dragProps}>
+						ref={projectsRef}
+						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y] [&_img]:pointer-events-none [&_img]:select-none">
 						{projectCards.map((project, i) => (
 							<ProjectCard
 								key={`p-${i}`}
@@ -83,9 +82,8 @@ export default function OurProjects() {
 							"linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
 					}}>
 					<div
-						ref={companiesMarquee.innerRef}
-						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y] [&_img]:pointer-events-none [&_img]:select-none"
-						{...companiesMarquee.dragProps}>
+						ref={companiesRef}
+						className="flex gap-4 w-max py-2 cursor-grab select-none [touch-action:pan-y] [&_img]:pointer-events-none [&_img]:select-none">
 						{companyCards.map((company, i) => (
 							<CompanyCard
 								key={`c-${i}`}

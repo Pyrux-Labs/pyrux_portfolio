@@ -11,6 +11,9 @@ interface Options {
  *
  * - Drag only activates when starting on a card (not on gap between cards)
  * - Releases with inertia that decays before resuming auto-scroll
+ *
+ * All pointer/mouse/click listeners are attached imperatively via useEffect
+ * so that no ref-capturing handlers are spread as render-time props.
  */
 export function useDraggableMarquee({ speed = 80, direction = "left" }: Options = {}) {
 	const innerRef = useRef<HTMLDivElement>(null);
@@ -86,13 +89,13 @@ export function useDraggableMarquee({ speed = 80, direction = "left" }: Options 
 		(velocity: number) => {
 			isInertiaRef.current = true;
 			const DECAY = 0.95;
-			const MIN_VELOCITY = 0.05; // px/ms — below this, stop inertia
+			const MIN_VELOCITY = 0.05;
 
 			const step = () => {
 				velocity *= DECAY;
 				if (Math.abs(velocity) < MIN_VELOCITY) {
 					isInertiaRef.current = false;
-					lastTimeRef.current = undefined; // avoid jump on auto-scroll resume
+					lastTimeRef.current = undefined;
 					return;
 				}
 				posRef.current = normalize(posRef.current + velocity * 16);
@@ -105,11 +108,12 @@ export function useDraggableMarquee({ speed = 80, direction = "left" }: Options 
 		[normalize],
 	);
 
-	const onPointerDown = useCallback(
-		(e: React.PointerEvent<HTMLDivElement>) => {
-			// Ignore clicks on the gap (flex container itself, not a card child)
-			if (e.target === e.currentTarget) return;
+	// Attach all interaction listeners imperatively to avoid ref-during-render
+	useEffect(() => {
+		const el = innerRef.current;
+		if (!el) return;
 
+		const onPointerDown = (e: PointerEvent) => {
 			isDraggingRef.current = true;
 			isInertiaRef.current = false;
 			hasDraggedRef.current = false;
@@ -118,15 +122,10 @@ export function useDraggableMarquee({ speed = 80, direction = "left" }: Options 
 			velocityRef.current = 0;
 			lastMoveXRef.current = e.clientX;
 			lastMoveTimeRef.current = performance.now();
-			// No setPointerCapture — it redirects click events to this div,
-			// preventing card onClick from ever firing.
-			if (innerRef.current) innerRef.current.style.cursor = "grabbing";
-		},
-		[],
-	);
+			el.style.cursor = "grabbing";
+		};
 
-	const onPointerMove = useCallback(
-		(e: React.PointerEvent<HTMLDivElement>) => {
+		const onPointerMove = (e: PointerEvent) => {
 			if (!isDraggingRef.current) return;
 
 			const now = performance.now();
@@ -141,49 +140,55 @@ export function useDraggableMarquee({ speed = 80, direction = "left" }: Options 
 			if (Math.abs(delta) > 5) hasDraggedRef.current = true;
 			posRef.current = normalize(dragStartPosRef.current + delta);
 			applyTransform(posRef.current);
-		},
-		[normalize],
-	);
+		};
 
-	const onPointerUp = useCallback(() => {
-		if (!isDraggingRef.current) return;
-		isDraggingRef.current = false;
-		if (innerRef.current) innerRef.current.style.cursor = "grab";
+		const onPointerUp = () => {
+			if (!isDraggingRef.current) return;
+			isDraggingRef.current = false;
+			el.style.cursor = "grab";
 
-		// Launch inertia if there's meaningful velocity
-		if (Math.abs(velocityRef.current) > 0.05) {
-			runInertia(velocityRef.current);
-		} else {
+			if (Math.abs(velocityRef.current) > 0.05) {
+				runInertia(velocityRef.current);
+			} else {
+				lastTimeRef.current = undefined;
+			}
+		};
+
+		const onMouseEnter = () => {
+			isHoveredRef.current = true;
+		};
+
+		const onMouseLeave = () => {
+			isHoveredRef.current = false;
 			lastTimeRef.current = undefined;
-		}
-	}, [runInertia]);
+		};
 
-	const onMouseEnter = useCallback(() => {
-		isHoveredRef.current = true;
-	}, []);
+		// Capture phase — blocks card onClick if pointer moved enough to be a drag
+		const onClickCapture = (e: MouseEvent) => {
+			if (hasDraggedRef.current) {
+				e.stopPropagation();
+				hasDraggedRef.current = false;
+			}
+		};
 
-	const onMouseLeave = useCallback(() => {
-		isHoveredRef.current = false;
-		lastTimeRef.current = undefined;
-	}, []);
+		el.addEventListener("pointerdown", onPointerDown);
+		el.addEventListener("pointermove", onPointerMove);
+		el.addEventListener("pointerup", onPointerUp);
+		el.addEventListener("pointerleave", onPointerUp);
+		el.addEventListener("mouseenter", onMouseEnter);
+		el.addEventListener("mouseleave", onMouseLeave);
+		el.addEventListener("click", onClickCapture, true); // capture phase
 
-	/** Blocks card onClick if the pointer moved enough to be a drag, not a click */
-	const onClickCapture = useCallback((e: React.MouseEvent) => {
-		if (hasDraggedRef.current) {
-			e.stopPropagation();
-			hasDraggedRef.current = false;
-		}
-	}, []);
+		return () => {
+			el.removeEventListener("pointerdown", onPointerDown);
+			el.removeEventListener("pointermove", onPointerMove);
+			el.removeEventListener("pointerup", onPointerUp);
+			el.removeEventListener("pointerleave", onPointerUp);
+			el.removeEventListener("mouseenter", onMouseEnter);
+			el.removeEventListener("mouseleave", onMouseLeave);
+			el.removeEventListener("click", onClickCapture, true);
+		};
+	}, [normalize, runInertia]);
 
-	return {
-		innerRef,
-		dragProps: {
-			onPointerDown,
-			onPointerMove,
-			onPointerUp,
-			onMouseEnter,
-			onMouseLeave,
-			onClickCapture,
-		},
-	};
+	return innerRef;
 }
