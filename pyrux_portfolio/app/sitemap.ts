@@ -11,13 +11,12 @@ export const dynamic = "force-static";
 const BASE_URL = "https://www.pyrux.com.ar";
 
 const routes = ["/", "/projects", "/pricing", "/clients"];
-const LAST_MODIFIED = new Date("2026-03-20");
 
 export default function sitemap(): MetadataRoute.Sitemap {
 	const localeRoutes = locales.flatMap((locale) =>
 		routes.map((route) => ({
 			url: `${BASE_URL}/${locale}${route === "/" ? "" : route}`,
-			lastModified: LAST_MODIFIED,
+			lastModified: new Date(),
 			changeFrequency: "monthly" as const,
 			priority: route === "/" ? 1.0 : 0.8,
 		}))
@@ -26,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const creatorRoutes = locales.flatMap((locale) =>
 		creators[defaultLocale].map((creator) => ({
 			url: `${BASE_URL}/${locale}/creator/${creator.id}`,
-			lastModified: LAST_MODIFIED,
+			lastModified: new Date(),
 			changeFrequency: "monthly" as const,
 			priority: 0.7,
 		}))
