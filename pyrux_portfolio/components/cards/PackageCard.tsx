@@ -94,14 +94,6 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 
 			<div className="border-t border-(--pkg-custom)/20 mb-5" />
 
-			{/* Delivery */}
-			<p className="text-[0.8rem] text-muted mb-5">
-				{t("customDeliveryLabel")}{" "}
-				<span className="text-(--pkg-custom) font-semibold">
-					{pkg.deliveryTime}
-				</span>
-			</p>
-
 			{/* CTA */}
 			<a
 				href="https://wa.me/5493416941225"
