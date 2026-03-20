@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { MessageCircle, Palette, Code, Rocket, HeartHandshake } from "lucide-react";
 import Section from "@/components/ui/Section";
 import type { Step } from "@/types/pricing.types";
@@ -21,9 +22,11 @@ const stepVariants = {
 };
 
 export default function ProcessSection({ steps }: ProcessSectionProps) {
+	const containerRef = useRef<HTMLDivElement>(null);
+	const inView = useInView(containerRef, { once: true, amount: 0 });
 	return (
 		<Section className="mb-14" title="Nuestro proceso">
-			<div className="relative flex flex-col gap-0 max-w-xl mx-auto">
+			<div ref={containerRef} className="relative flex flex-col gap-0 max-w-xl mx-auto">
 				{steps.map((step, i) => {
 					const Icon = stepIcons[i] ?? MessageCircle;
 					return (
@@ -33,8 +36,7 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 							custom={i}
 							variants={stepVariants}
 							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true, amount: 0.3 }}>
+							animate={inView ? "visible" : "hidden"}>
 
 							{/* Left: number bubble + connector below it */}
 							<div className="relative shrink-0 w-18">

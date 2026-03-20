@@ -4,7 +4,8 @@
 
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import { toast } from "sonner";
@@ -34,6 +35,8 @@ export default function ContactUs() {
 	const { locale } = useLocale();
 	const { copy } = useCopyToClipboard();
 	const localeContactItems = contactItems[locale];
+	const ref = useRef<HTMLDivElement>(null);
+	const inView = useInView(ref, { once: true, amount: 0 });
 
 	const handleClick = async (item: ContactItem) => {
 		if (item.action === "copy-email") {
@@ -48,11 +51,11 @@ export default function ContactUs() {
 	return (
 		<Section id="contact" title={t("sectionTitle")}>
 			<motion.div
+				ref={ref}
 				className="grid grid-cols-1 min-[401px]:grid-cols-2 sm:grid-cols-4 gap-4"
 				variants={gridVariants}
 				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, amount: 0.1 }}>
+				animate={inView ? "visible" : "hidden"}>
 				{localeContactItems.map((item) => {
 					const isLink = !!item.href;
 					const Component = isLink ? "a" : "button";

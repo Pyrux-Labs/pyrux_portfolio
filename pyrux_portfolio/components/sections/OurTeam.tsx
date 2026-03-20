@@ -5,8 +5,8 @@
 
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Toaster } from "sonner";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
@@ -31,19 +31,20 @@ export default function OurTeam() {
 	const { locale } = useLocale();
 	const [selectedCreator, setSelectedCreator] = useState<Creator | null>(null);
 	const localeCreators = creators[locale];
+	const gridRef = useRef<HTMLDivElement>(null);
+	const inView = useInView(gridRef, { once: true, amount: 0 });
 
 	return (
 		<>
 			<Section title={t("sectionTitle")}>
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+				<div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 gap-5">
 					{localeCreators.map((creator, i) => (
 						<motion.div
 							key={creator.id}
 							className="group flex flex-col items-center gap-4 px-7 py-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl text-primary text-center cursor-pointer transition-[border-color,box-shadow] duration-200 ease-in-out hover:-translate-y-1 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
 							initial="hidden"
-							whileInView="visible"
-							viewport={{ once: true }}
+							animate={inView ? "visible" : "hidden"}
 							custom={i}
 							onClick={() => setSelectedCreator(creator)}
 							role="button"

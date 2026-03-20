@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
@@ -28,15 +29,17 @@ interface FAQSectionProps {
 export default function FAQSection({ items }: FAQSectionProps) {
 	const t = useTranslations("FAQSection");
 	const { locale } = useLocale();
+	const ref = useRef<HTMLDivElement>(null);
+	const inView = useInView(ref, { once: true, amount: 0 });
 	return (
 		<Section className="mb-14" title={t("sectionTitle")}>
 			<motion.div
+				ref={ref}
 				key={locale}
 				className="flex flex-col gap-3"
 				variants={gridVariants}
 				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, amount: 0.1 }}>
+				animate={inView ? "visible" : "hidden"}>
 				{items.map((item, index) => (
 					<motion.div
 						key={item.question}

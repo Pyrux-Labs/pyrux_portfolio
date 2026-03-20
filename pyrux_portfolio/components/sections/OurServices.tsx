@@ -4,7 +4,8 @@
 
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
@@ -30,18 +31,20 @@ export default function OurServices() {
 	const t = useTranslations("OurServices");
 	const { locale } = useLocale();
 	const localeServices = services[locale];
+	const ref = useRef<HTMLDivElement>(null);
+	const inView = useInView(ref, { once: true, amount: 0 });
 	return (
 		<Section
 			title={t("sectionTitle")}
 			viewAllHref="/pricing"
 			viewAllLabel={t("viewAllLabel")}>
 			<motion.div
+				ref={ref}
 				key={locale}
 				className="grid grid-cols-1 min-[481px]:grid-cols-2 sm:grid-cols-3 gap-4"
 				variants={gridVariants}
 				initial="hidden"
-				whileInView="visible"
-				viewport={{ once: true, amount: 0.1 }}>
+				animate={inView ? "visible" : "hidden"}>
 				{localeServices.map((f) => (
 					<motion.div
 						key={f.title}

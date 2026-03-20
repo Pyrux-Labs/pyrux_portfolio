@@ -4,9 +4,9 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useDraggableMarquee } from "@/hooks/useDraggableMarquee";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Section from "@/components/ui/Section";
 import ProjectCard from "@/components/cards/ProjectCard";
 import CompanyCard from "@/components/cards/CompanyCard";
@@ -32,6 +32,8 @@ export default function OurProjects() {
 
 	const projectsMarquee = useDraggableMarquee({ speed: 80, direction: "left" });
 	const companiesMarquee = useDraggableMarquee({ speed: 80, direction: "right" });
+	const clientsHeaderRef = useRef<HTMLDivElement>(null);
+	const clientsHeaderInView = useInView(clientsHeaderRef, { once: true, amount: 0 });
 
 	// Duplicate cards for infinite scroll effect
 	// Projects: 4x copies so total width matches companies (12 cards each) → same 110s duration = same speed
@@ -95,10 +97,10 @@ export default function OurProjects() {
 				</div>
 
 				<motion.div
+					ref={clientsHeaderRef}
 					className="flex justify-between items-center mb-5 mt-5 max-[480px]:pl-4"
 					initial={{ opacity: 0 }}
-					whileInView={{ opacity: 1 }}
-					viewport={{ once: true }}
+					animate={{ opacity: clientsHeaderInView ? 1 : 0 }}
 					transition={{ duration: 0.5 }}>
 					<Link
 						href="/clients"
