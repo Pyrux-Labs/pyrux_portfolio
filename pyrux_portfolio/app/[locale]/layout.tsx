@@ -4,7 +4,6 @@ import { routing } from "@/i18n/routing";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import LanguageToggle from "@/components/layout/LanguageToggle";
-import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
 import type { Locale } from "@/i18n/config";
 
 interface LocaleLayoutProps {
@@ -35,7 +34,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 				</div>
 				{children}
 			</div>
-			<WhatsAppFAB />
 		</LocaleProvider>
 	);
 }

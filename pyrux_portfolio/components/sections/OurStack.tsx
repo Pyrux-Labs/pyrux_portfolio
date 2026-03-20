@@ -10,8 +10,7 @@ import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
 import Section from "@/components/ui/Section";
 import TechIcon from "@/components/ui/TechIcon";
-import { technologies, technologyCategories } from "@/data/technologies";
-import type { TechnologyCategory } from "@/types";
+import { technologies } from "@/data/technologies";
 
 const itemVariants = {
 	hidden: { opacity: 0, scale: 0.88, y: 10 },
@@ -31,17 +30,11 @@ const itemVariants = {
 
 export default function OurStack() {
 	const t = useTranslations("OurStack");
-	const [activeTab, setActiveTab] = useState<TechnologyCategory | "all">("all");
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	const baseTechs = useMemo(
+	const displayedTechs = useMemo(
 		() => (isExpanded ? technologies : technologies.filter((t) => t.featured)),
 		[isExpanded]
-	);
-
-	const displayedTechs = useMemo(
-		() => (activeTab === "all" ? baseTechs : baseTechs.filter((t) => t.category === activeTab)),
-		[activeTab, baseTechs]
 	);
 
 	const totalCount = technologies.length;
@@ -49,33 +42,6 @@ export default function OurStack() {
 
 	return (
 		<Section title={t("sectionTitle")}>
-			{/* Tabs */}
-			{isExpanded && (
-				<div className="flex flex-wrap gap-2 mb-6 justify-center">
-					<button
-						onClick={() => setActiveTab("all")}
-						className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-							activeTab === "all"
-								? "border-coral bg-coral-soft-bg text-coral"
-								: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
-						}`}>
-						{t("all")}
-					</button>
-					{technologyCategories.map((cat) => (
-						<button
-							key={cat.id}
-							onClick={() => setActiveTab(cat.id)}
-							className={`px-3.5 py-1.5 rounded-full text-[0.85rem] font-medium border transition-[border-color,box-shadow] duration-200 cursor-pointer ${
-								activeTab === cat.id
-									? "border-coral bg-coral-soft-bg text-coral"
-									: "border-border bg-card text-secondary hover:border-coral hover:text-coral"
-							}`}>
-							{cat.label}
-						</button>
-					))}
-				</div>
-			)}
-
 			{/* Technologies grid */}
 			<div className="flex flex-wrap gap-2.5 justify-center">
 				<AnimatePresence mode="popLayout">
@@ -107,10 +73,7 @@ export default function OurStack() {
 			{/* Botón Ver más / Ver menos */}
 			<div className="flex justify-center mt-6">
 				<motion.button
-					onClick={() => {
-						setIsExpanded(!isExpanded);
-						setActiveTab("all");
-					}}
+					onClick={() => setIsExpanded(!isExpanded)}
 					className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-secondary text-[0.9rem] font-medium hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] cursor-pointer"
 					whileHover={{ scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}>

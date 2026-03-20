@@ -172,6 +172,13 @@ export const technologies: Technology[] = [
 		category: "database",
 		featured: true,
 	},
+	{
+		id: "firebase",
+		name: "Firebase",
+		icon: "SiFirebase",
+		category: "other",
+		featured: true,
+	},
 ];
 
 // Funciones auxiliares

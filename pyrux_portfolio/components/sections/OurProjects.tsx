@@ -30,8 +30,8 @@ export default function OurProjects() {
 	const localeProjects = projects[locale];
 	const localeCompanies = companies[locale];
 
-	const projectsMarquee = useDraggableMarquee({ speed: 80, direction: "left" });
-	const companiesMarquee = useDraggableMarquee({ speed: 80, direction: "right" });
+	const projectsMarquee = useDraggableMarquee({ speed: 60, direction: "left" });
+	const companiesMarquee = useDraggableMarquee({ speed: 60, direction: "right" });
 	const clientsHeaderRef = useRef<HTMLDivElement>(null);
 	const clientsHeaderInView = useInView(clientsHeaderRef, { once: true, amount: 0 });
 
