@@ -77,7 +77,7 @@ export default function CompanyModal({
 			{/* Testimonial + Button row */}
 			<div className="flex items-end justify-between gap-4">
 				{company.testimonial ? (
-					<div className="p-4 rounded-xl border border-border bg-card max-w-sm">
+					<div className="p-4 rounded-xl border border-border bg-elevated max-w-sm">
 						<div className="flex items-start gap-3">
 							<Quote
 								size={20}
