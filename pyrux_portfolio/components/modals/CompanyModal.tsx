@@ -74,29 +74,29 @@ export default function CompanyModal({
 				</p>
 			</div>
 
-			{/* Testimonial + Button row */}
-			<div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-				{company.testimonial ? (
-					<div className="p-4 rounded-xl border border-border bg-elevated w-full sm:max-w-sm">
-						<div className="flex items-start gap-3">
-							<Quote
-								size={20}
-								className="text-coral shrink-0 mt-0.5 rotate-180"
-							/>
-							<blockquote className="text-[0.9rem] text-secondary italic leading-relaxed">
-								&ldquo;{company.testimonial}&rdquo;
-							</blockquote>
-							<Quote size={20} className="text-coral shrink-0 mt-0.5" />
-						</div>
+			{/* Testimonial */}
+			{company.testimonial && (
+				<div className="p-4 rounded-xl border border-border bg-elevated mb-6">
+					<div className="flex items-start gap-3">
+						<Quote
+							size={20}
+							className="text-coral shrink-0 mt-0.5 rotate-180"
+						/>
+						<blockquote className="text-[0.9rem] text-secondary italic leading-relaxed">
+							&ldquo;{company.testimonial}&rdquo;
+						</blockquote>
+						<Quote size={20} className="text-coral shrink-0 mt-0.5" />
 					</div>
-				) : (
-					<div className="hidden sm:block" />
-				)}
+				</div>
+			)}
+
+			{/* Button */}
+			<div className="flex justify-end">
 				<a
 					href={company.websiteUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5 w-full sm:w-auto">
+					className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5">
 					<ExternalLink size={16} />
 					{t("visitWebsite")}
 				</a>
