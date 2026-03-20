@@ -32,20 +32,20 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 					return (
 						<motion.div
 							key={step.number}
-							className="relative flex gap-5 pb-10 last:pb-0"
+							className="relative flex items-center gap-5 pb-10 last:pb-0"
 							custom={i}
 							variants={stepVariants}
 							initial="hidden"
 							animate={inView ? "visible" : "hidden"}>
 
 							{/* Left: number bubble + connector below it */}
-							<div className="relative shrink-0 w-18 self-stretch flex flex-col items-center justify-center">
+							<div className="relative shrink-0 w-18">
 								<div className="w-18 h-18 rounded-full border-2 border-coral/40 bg-card-strong grid place-items-center">
 									<span className="text-coral font-bold font-mono text-xl">{step.number}</span>
 								</div>
 								{/* Connector: starts below circle, extends through pb-10 to reach next circle */}
 								{i < steps.length - 1 && (
-									<div className="absolute left-1/2 -translate-x-1/2 top-[calc(50%+2.25rem)] bottom-[-2.5rem] w-0.5 bg-border-accent" />
+									<div className="absolute left-1/2 -translate-x-1/2 top-[4.5rem] w-0.5 bg-border-accent h-[250px]" />
 								)}
 							</div>
 
