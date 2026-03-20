@@ -74,11 +74,13 @@
     "viewLive": "Ver en vivo",
     "prevAria": "Anterior",
     "nextAria": "Siguiente",
-    "imageAlt": "{title} — captura {index}"
+    "imageAlt": "{title} — captura {index}",
+    "closeModal": "Cerrar modal"
   },
   "CompanyModal": {
     "workDone": "Trabajo realizado",
-    "visitWebsite": "Visitar sitio web"
+    "visitWebsite": "Visitar sitio web",
+    "closeModal": "Cerrar modal"
   },
   "CreatorModal": {
     "featuredProjects": "Proyectos destacados",

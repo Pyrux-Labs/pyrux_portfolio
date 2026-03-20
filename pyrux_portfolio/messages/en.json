@@ -74,11 +74,13 @@
     "viewLive": "View live",
     "prevAria": "Previous",
     "nextAria": "Next",
-    "imageAlt": "{title} — screenshot {index}"
+    "imageAlt": "{title} — screenshot {index}",
+    "closeModal": "Close modal"
   },
   "CompanyModal": {
     "workDone": "Work done",
-    "visitWebsite": "Visit website"
+    "visitWebsite": "Visit website",
+    "closeModal": "Close modal"
   },
   "CreatorModal": {
     "featuredProjects": "Featured Projects",

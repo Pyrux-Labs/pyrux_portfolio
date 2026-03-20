@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import type { FAQItem } from "@/types/pricing.types";
@@ -11,13 +11,15 @@ interface FAQAccordionProps {
 
 export default function FAQAccordion({ item }: FAQAccordionProps) {
 	const [open, setOpen] = useState(false);
+	const answerId = useId();
 
 	return (
 		<div className="border border-border rounded-xl overflow-hidden">
 			<button
 				onClick={() => setOpen(!open)}
 				className="w-full flex items-center justify-between gap-3 px-5 py-4 text-left bg-card cursor-pointer hover:bg-interactive-hover"
-				aria-expanded={open}>
+				aria-expanded={open}
+				aria-controls={answerId}>
 				<span className="font-display text-[0.95rem] font-semibold text-primary">
 					{item.question}
 				</span>
@@ -31,6 +33,7 @@ export default function FAQAccordion({ item }: FAQAccordionProps) {
 			<AnimatePresence>
 				{open && (
 					<motion.div
+						id={answerId}
 						initial={{ height: 0, opacity: 0 }}
 						animate={{ height: "auto", opacity: 1 }}
 						exit={{ height: 0, opacity: 0 }}

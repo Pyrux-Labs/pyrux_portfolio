@@ -8,6 +8,7 @@ import type { Step } from "@/types/pricing.types";
 
 interface ProcessSectionProps {
 	steps: Step[];
+	title: string;
 }
 
 const stepIcons = [MessageCircle, Palette, Code, Rocket, HeartHandshake];
@@ -21,12 +22,12 @@ const stepVariants = {
 	}),
 };
 
-export default function ProcessSection({ steps }: ProcessSectionProps) {
+export default function ProcessSection({ steps, title }: ProcessSectionProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const inView = useInView(containerRef, { once: true, amount: 0 });
 
 	return (
-		<Section className="mb-14" title="Nuestro proceso">
+		<Section className="mb-14" title={title}>
 			{/* 2-column grid: [circle col] [card col]
 			    gap-y-10 = 40px between rows → connectors extend 1.25rem (20px) each side */}
 			<div

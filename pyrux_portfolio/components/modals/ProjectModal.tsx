@@ -21,7 +21,18 @@ interface ProjectModalProps {
 	onClose: () => void;
 }
 
-function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn }: { images: string[]; projectTitle: string; prevLabel: string; nextLabel: string; imageAltFn: (index: number) => string }) {
+function ImageCarousel({
+	images,
+	prevLabel,
+	nextLabel,
+	imageAltFn,
+}: {
+	images: string[];
+	projectTitle: string;
+	prevLabel: string;
+	nextLabel: string;
+	imageAltFn: (index: number) => string;
+}) {
 	const scrollRef = useDragScroll();
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const hasArrows = images.length >= 4;
@@ -100,7 +111,7 @@ export default function ProjectModal({
 	if (!project) return null;
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} bottomSheet title={project.title}>
+		<Modal isOpen={isOpen} onClose={onClose} bottomSheet title={project.title} closeLabel={t("closeModal")}>
 			{/* Description */}
 			<p className="text-secondary leading-relaxed mb-5">
 				{project.description}
@@ -113,7 +124,9 @@ export default function ProjectModal({
 					projectTitle={project.title}
 					prevLabel={t("prevAria")}
 					nextLabel={t("nextAria")}
-					imageAltFn={(index: number) => t("imageAlt", { title: project.title, index })}
+					imageAltFn={(index: number) =>
+						t("imageAlt", { title: project.title, index })
+					}
 				/>
 			)}
 
@@ -129,10 +142,13 @@ export default function ProjectModal({
 
 			{/* Date */}
 			<p className="text-[0.8rem] text-muted mb-6">
-				{new Date(project.date).toLocaleDateString(locale === "es" ? "es-AR" : "en-US", {
-					year: "numeric",
-					month: "long",
-				})}
+				{new Date(project.date).toLocaleDateString(
+					locale === "es" ? "es-AR" : "en-US",
+					{
+						year: "numeric",
+						month: "long",
+					},
+				)}
 			</p>
 
 			{/* Links */}

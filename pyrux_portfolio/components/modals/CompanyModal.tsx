@@ -25,7 +25,7 @@ export default function CompanyModal({
 	if (!company) return null;
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} bottomSheet>
+		<Modal isOpen={isOpen} onClose={onClose} bottomSheet closeLabel={t("closeModal")}>
 			{/* Header: name (left) / logo (right) */}
 			<div className="flex items-center justify-between gap-4 mb-4 pr-10">
 				<h3 className="font-display text-xl font-bold text-primary">

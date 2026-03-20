@@ -53,6 +53,7 @@ const ctaColorTokens: Record<
 export default function PreciosPageClient() {
 	const t = useTranslations("PricingPage");
 	const tMaint = useTranslations("MaintenanceGrid");
+	const tProcess = useTranslations("ProcessSection");
 	const { locale } = useLocale();
 	const [selectedCategory, setSelectedCategory] =
 		useState<PlanCategory>("estandar");
@@ -277,7 +278,7 @@ export default function PreciosPageClient() {
 				)}
 
 				{/* Proceso */}
-				<ProcessSection steps={localeSteps} />
+				<ProcessSection steps={localeSteps} title={tProcess("sectionTitle")} />
 
 				{/* FAQ */}
 				<FAQSection items={localeFaqItems} />

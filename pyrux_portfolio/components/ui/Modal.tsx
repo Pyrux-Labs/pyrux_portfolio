@@ -14,6 +14,7 @@ interface ModalProps {
 	children: ReactNode;
 	title?: string;
 	bottomSheet?: boolean;
+	closeLabel?: string;
 }
 
 // Animation variants
@@ -56,6 +57,7 @@ export default function Modal({
 	children,
 	title,
 	bottomSheet = false,
+	closeLabel = "Cerrar modal",
 }: ModalProps) {
 	// Close with Escape
 	const handleKeyDown = useCallback(
@@ -120,7 +122,7 @@ export default function Modal({
 						<button
 							onClick={onClose}
 							className="absolute top-4 right-4 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color] duration-200 hover:border-coral hover:text-coral cursor-pointer"
-							aria-label="Cerrar modal">
+							aria-label={closeLabel}>
 							<X size={18} />
 						</button>
 
