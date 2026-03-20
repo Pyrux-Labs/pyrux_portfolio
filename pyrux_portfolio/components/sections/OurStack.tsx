@@ -48,12 +48,11 @@ export default function OurStack() {
 					{displayedTechs.map((tech) => (
 						<motion.span
 							key={tech.id}
-							className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary cursor-default hover:border-coral hover:text-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
+							className="inline-flex items-center gap-2 px-3.5 py-2 rounded-[20px] border border-border bg-card backdrop-blur-sm text-[0.85rem] text-secondary cursor-default [@media(hover:hover)]:hover:border-coral [@media(hover:hover)]:hover:text-coral [@media(hover:hover)]:hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
 							variants={itemVariants}
 							initial="hidden"
 							animate="visible"
-							exit="exit"
-							whileHover={{ y: -3, scale: 1.03 }}>
+							exit="exit">
 							<TechIcon iconName={tech.icon} size={16} />
 							<span>{tech.name}</span>
 						</motion.span>

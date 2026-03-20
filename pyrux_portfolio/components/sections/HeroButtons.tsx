@@ -27,6 +27,7 @@ export default function HeroButtons() {
 				{/* Primary CTA — relleno coral */}
 				<MotionLink
 					href="#contact"
+					onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
 					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-coral text-white no-underline font-semibold text-[1rem] shadow-[0_0_24px_var(--shadow-coral-mid)] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_40px_var(--shadow-coral-strong,var(--shadow-coral-mid))]"
 					variants={buttonVariants}
 					initial="hidden"

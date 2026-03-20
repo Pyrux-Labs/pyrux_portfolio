@@ -102,7 +102,7 @@ export default function ProjectModal({
 	if (!project) return null;
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} title={project.title}>
+		<Modal isOpen={isOpen} onClose={onClose} bottomSheet title={project.title}>
 			{/* Description */}
 			<p className="text-secondary leading-relaxed mb-5">
 				{project.description}

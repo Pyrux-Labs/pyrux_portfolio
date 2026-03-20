@@ -94,22 +94,15 @@ export default function PreciosPageClient() {
 	// Scroll carousel to selectedPkg when it changes
 	useEffect(() => {
 		if (!carouselRef.current) return;
-		// Reset scroll position when category changes, then scroll to selected package
-		// Use requestAnimationFrame to ensure DOM has re-rendered with new children
 		requestAnimationFrame(() => {
 			if (!carouselRef.current) return;
-			const children = Array.from(
-				carouselRef.current.children,
-			) as HTMLElement[];
-			if (selectedPkg === 0) {
-				carouselRef.current.scrollLeft = 0;
-			} else {
-				children[selectedPkg]?.scrollIntoView({
-					behavior: "smooth",
-					block: "nearest",
-					inline: "start",
-				});
-			}
+			const children = Array.from(carouselRef.current.children) as HTMLElement[];
+			const card = children[selectedPkg];
+			if (!card) return;
+			carouselRef.current.scrollTo({
+				left: card.offsetLeft - carouselRef.current.offsetLeft,
+				behavior: "smooth",
+			});
 		});
 	}, [selectedPkg, selectedCategory]);
 

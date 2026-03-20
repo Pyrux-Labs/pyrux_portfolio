@@ -13,6 +13,7 @@ interface ModalProps {
 	onClose: () => void;
 	children: ReactNode;
 	title?: string;
+	bottomSheet?: boolean;
 }
 
 // Animation variants
@@ -37,11 +38,24 @@ const modalVariants = {
 	},
 };
 
+const sheetVariants = {
+	hidden: { y: "100%" },
+	visible: {
+		y: 0,
+		transition: { type: "spring" as const, damping: 30, stiffness: 300 },
+	},
+	exit: {
+		y: "100%",
+		transition: { duration: 0.25, ease: "easeIn" as const },
+	},
+};
+
 export default function Modal({
 	isOpen,
 	onClose,
 	children,
 	title,
+	bottomSheet = false,
 }: ModalProps) {
 	// Close with Escape
 	const handleKeyDown = useCallback(
@@ -84,14 +98,24 @@ export default function Modal({
 
 					{/* Modal content*/}
 					<motion.div
-						className="relative w-full h-full overflow-y-auto bg-surface p-5 shadow-2xl sm:h-auto sm:max-w-2xl sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-border sm:p-8 2xl:max-w-4xl"
-						variants={modalVariants}
+						className={
+							bottomSheet
+								? "relative w-full max-h-[90vh] overflow-y-auto bg-surface p-5 shadow-2xl rounded-t-2xl sm:rounded-2xl sm:max-w-2xl sm:max-h-[85vh] sm:border sm:border-border sm:p-8 2xl:max-w-4xl"
+								: "relative w-full h-full overflow-y-auto bg-surface p-5 shadow-2xl sm:h-auto sm:max-w-2xl sm:max-h-[85vh] sm:rounded-2xl sm:border sm:border-border sm:p-8 2xl:max-w-4xl"
+						}
+						variants={bottomSheet ? sheetVariants : modalVariants}
 						initial="hidden"
 						animate="visible"
 						exit="exit"
 						role="dialog"
 						aria-modal="true"
 						aria-label={title}>
+						{/* Handle bar — solo visible en mobile con bottomSheet */}
+						{bottomSheet && (
+							<div className="flex justify-center mb-4 sm:hidden">
+								<div className="w-10 h-1 rounded-full bg-border" />
+							</div>
+						)}
 						{/* Close button */}
 						<button
 							onClick={onClose}
