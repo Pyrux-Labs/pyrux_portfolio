@@ -145,6 +145,12 @@ export default function RootLayout({
 						__html: `(function(){var t=localStorage.getItem('oc-theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;document.documentElement.style.colorScheme=t;}})();`,
 					}}
 				/>
+				{/* Setear html lang según la URL antes del render */}
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `(function(){document.documentElement.lang=location.pathname.startsWith('/en')?'en':'es';})();`,
+					}}
+				/>
 					{/* JSON-LD structured data */}
 				<script
 					type="application/ld+json"
