@@ -8,13 +8,13 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   output: 'export',
   
-  // Si tu repositorio se llama "pyrux_portfolio", descomenta la siguiente línea:
+  // If your repo is named "pyrux_portfolio", uncomment the following line:
   //basePath: '/pyrux_portfolio',
-  
-  // Si es tu repositorio de usuario (username.github.io), deja basePath comentado
-  
+
+  // If it's a user repo (username.github.io), leave basePath commented out
+
   images: {
-    unoptimized: true, // Necesario para exportación estática
+    unoptimized: true, // Required for static export
   },
 };
 

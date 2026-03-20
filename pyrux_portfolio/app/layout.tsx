@@ -66,14 +66,6 @@ export const metadata: Metadata = {
 		"agencia web Rosario",
 	],
 	authors: [{ name: "Pyrux", url: BASE_URL }],
-	alternates: {
-		canonical: `${BASE_URL}/es`,
-		languages: {
-			es: `${BASE_URL}/es`,
-			en: `${BASE_URL}/en`,
-			"x-default": `${BASE_URL}/es`,
-		},
-	},
 	openGraph: {
 		title: "Pyrux — Desarrollo web y soluciones digitales",
 		description:

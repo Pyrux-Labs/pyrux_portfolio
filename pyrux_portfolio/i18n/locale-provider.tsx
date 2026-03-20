@@ -23,7 +23,7 @@ interface LocaleProviderProps {
 export function LocaleProvider({ locale, messages, children }: LocaleProviderProps) {
 	return (
 		<LocaleContext.Provider value={{ locale }}>
-			<NextIntlClientProvider locale={locale} messages={messages}>
+			<NextIntlClientProvider locale={locale} messages={messages} timeZone="America/Argentina/Buenos_Aires">
 				{children}
 			</NextIntlClientProvider>
 		</LocaleContext.Provider>
