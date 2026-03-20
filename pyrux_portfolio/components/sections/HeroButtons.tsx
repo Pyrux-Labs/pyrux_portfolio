@@ -18,6 +18,14 @@ const buttonVariants = {
 	}),
 };
 
+const arrowVariants = {
+	rest: { x: 0 },
+	hovered: {
+		x: 5,
+		transition: { type: "spring" as const, stiffness: 400, damping: 15 },
+	},
+};
+
 export default function HeroButtons() {
 	const t = useTranslations("HeroButtons");
 	return (
@@ -25,33 +33,39 @@ export default function HeroButtons() {
 			<div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
 				<MotionLink
 					href="#contact"
-					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
+					className="group inline-flex items-center gap-3 px-6 py-3 rounded-full border border-coral bg-card-strong no-underline shadow-[0_0_18px_var(--shadow-coral-soft)] transition-shadow duration-300 ease-in-out hover:shadow-[0_0_32px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={0}
-					whileHover={{ y: -4, scale: 1.03 }}
+					whileHover="hovered"
 					whileTap={{ scale: 0.97 }}>
-					<span className="text-[0.9rem] text-primary">
+					<span className="text-[0.95rem] font-medium text-primary">
 						{t("contact")}
 					</span>
-					<span className="inline-block text-muted transition-[color,transform] duration-200 ease-in-out group-hover:text-coral group-hover:translate-x-1">
+					<motion.span
+						className="text-coral"
+						variants={arrowVariants}
+						initial="rest">
 						→
-					</span>
+					</motion.span>
 				</MotionLink>
 				<MotionLink
 					href="/pricing"
-					className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-card-strong border border-border no-underline transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_4px_20px_var(--shadow-coral-mid)]"
+					className="group inline-flex items-center gap-3 px-6 py-3 rounded-full border border-coral bg-card-strong no-underline shadow-[0_0_18px_var(--shadow-coral-soft)] transition-shadow duration-300 ease-in-out hover:shadow-[0_0_32px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={1}
-					whileHover={{ y: -4, scale: 1.03 }}
+					whileHover="hovered"
 					whileTap={{ scale: 0.97 }}>
-					<span className="text-[0.9rem] text-primary">{t("pricing")}</span>
-					<span className="inline-block text-muted transition-[color,transform] duration-200 ease-in-out group-hover:text-coral group-hover:translate-x-1">
+					<span className="text-[0.95rem] font-medium text-primary">{t("pricing")}</span>
+					<motion.span
+						className="text-coral"
+						variants={arrowVariants}
+						initial="rest">
 						→
-					</span>
+					</motion.span>
 				</MotionLink>
 			</div>
 		</section>
