@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: ProjectsPageProps): Promise<M
 				? "Todos los proyectos desarrollados por Pyrux."
 				: "All projects developed by Pyrux.",
 			url,
+			locale: isEs ? "es_AR" : "en_US",
 			images: [{ url: "/og-image.png", width: 1200, height: 630, alt: isEs ? "Proyectos — Pyrux" : "Projects — Pyrux" }],
 		},
 		twitter: {

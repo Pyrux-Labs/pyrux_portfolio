@@ -43,6 +43,7 @@ export async function generateMetadata({ params }: CreatorPageProps): Promise<Me
 			title,
 			description,
 			url,
+			locale: isEs ? "es_AR" : "en_US",
 			images: [{ url: "/og-image.png", width: 1200, height: 630 }],
 		},
 		twitter: {

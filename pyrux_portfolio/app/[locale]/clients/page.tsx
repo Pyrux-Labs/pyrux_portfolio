@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: ClientsPageProps): Promise<Me
 				? "Empresas y clientes que confiaron en Pyrux."
 				: "Companies and clients that trusted Pyrux.",
 			url,
+			locale: isEs ? "es_AR" : "en_US",
 			images: [{ url: "/og-image.png", width: 1200, height: 630, alt: isEs ? "Clientes — Pyrux" : "Clients — Pyrux" }],
 		},
 		twitter: {

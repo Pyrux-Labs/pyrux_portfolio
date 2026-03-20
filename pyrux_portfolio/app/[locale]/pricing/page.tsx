@@ -35,6 +35,7 @@ export async function generateMetadata({ params }: PricingPageProps): Promise<Me
 				? "Paquetes de desarrollo web profesional. Landing pages, sitios corporativos, e-commerce y más."
 				: "Professional web development packages. Landing pages, corporate sites, e-commerce and more.",
 			url,
+			locale: isEs ? "es_AR" : "en_US",
 			images: [{ url: "/og-image.png", width: 1200, height: 630, alt: isEs ? "Precios — Pyrux" : "Pricing — Pyrux" }],
 		},
 		twitter: {
