@@ -49,21 +49,21 @@ export default function CreatorModal({
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			{/* Header: name + role (left) / photo (right) */}
-			<div className="flex items-center justify-between gap-4 mb-4 pr-10">
-				<div>
-					<h3 className="font-display text-xl font-bold text-primary">
+			<div className="flex flex-col items-center text-center gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:gap-4 pr-10">
+				<div className="order-2 sm:order-1">
+					<h3 className="font-display text-2xl font-bold text-primary">
 						{creator.name}
 					</h3>
-					<p className="text-coral text-[0.9rem] font-medium mt-0.5">
+					<p className="text-coral text-base font-medium mt-0.5">
 						{creator.role}
 					</p>
 				</div>
 				<Image
 					src={creator.image}
 					alt={creator.name}
-					width={80}
-					height={80}
-					className="rounded-full object-cover shrink-0"
+					width={112}
+					height={112}
+					className="rounded-full object-cover shrink-0 order-1 sm:order-2"
 				/>
 			</div>
 
@@ -137,12 +137,14 @@ export default function CreatorModal({
 					</div>
 
 					{/* View all button */}
-					<Link
-						href={`/creator/${creator.id}`}
-						className="inline-flex items-center gap-2 mt-4 text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 hover:text-cyan">
-						<ExternalLink size={14} />
-						{t("viewAllProjects")}
-					</Link>
+					<div className="flex justify-end mt-4">
+						<Link
+							href={`/creator/${creator.id}`}
+							className="inline-flex items-center gap-2 text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 hover:text-cyan">
+							<ExternalLink size={14} />
+							{t("viewAllProjects")}
+						</Link>
+					</div>
 				</div>
 			)}
 		</Modal>
