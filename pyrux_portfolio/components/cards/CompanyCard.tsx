@@ -139,14 +139,14 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 				</div>
 			</div>
 
-			{/* Comentario — protagonista */}
+			{/* Comentario */}
 			{company.testimonial && (
-				<div className="flex items-start gap-2 flex-1 px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 mt-1">
-					<Quote size={14} className="text-coral shrink-0 mt-0.5 rotate-180" />
+				<div className="flex items-center gap-2 pt-2 border-t border-border">
+					<Quote size={14} className="text-coral shrink-0 rotate-180" />
 					<p className="text-[0.8rem] text-white font-medium leading-relaxed line-clamp-2">
 						{company.testimonial}
 					</p>
-					<Quote size={14} className="text-coral shrink-0 mt-0.5" />
+					<Quote size={14} className="text-coral shrink-0" />
 				</div>
 			)}
 		</motion.div>
