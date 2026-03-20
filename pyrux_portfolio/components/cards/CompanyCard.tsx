@@ -14,9 +14,10 @@ interface CompanyCardProps {
 	company: Company;
 	onClick?: () => void;
 	fullWidth?: boolean;
+	priority?: boolean;
 }
 
-function CompanyLogo({ company, size }: { company: Company; size: number }) {
+function CompanyLogo({ company, size, priority = false }: { company: Company; size: number; priority?: boolean }) {
 	return (
 		<div
 			className="rounded-full border-2 border-border bg-elevated flex items-center justify-center shrink-0 overflow-hidden"
@@ -30,6 +31,7 @@ function CompanyLogo({ company, size }: { company: Company; size: number }) {
 						height={size}
 						className="logo-for-light w-full h-full object-contain"
 						sizes={`${size}px`}
+						priority={priority}
 					/>
 					<Image
 						src={company.logoDark}
@@ -38,6 +40,7 @@ function CompanyLogo({ company, size }: { company: Company; size: number }) {
 						height={size}
 						className="logo-for-dark w-full h-full object-contain"
 						sizes={`${size}px`}
+						priority={priority}
 					/>
 				</>
 			) : (
@@ -49,6 +52,7 @@ function CompanyLogo({ company, size }: { company: Company; size: number }) {
 						height={size}
 						className="w-full h-full object-contain"
 						sizes={`${size}px`}
+						priority={priority}
 						onError={(e) => {
 							e.currentTarget.style.display = "none";
 							e.currentTarget.nextElementSibling?.classList.remove("hidden");
@@ -65,6 +69,7 @@ export default function CompanyCard({
 	company,
 	onClick,
 	fullWidth = false,
+	priority = false,
 }: CompanyCardProps) {
 	const t = useTranslations("CompanyCard");
 
@@ -96,7 +101,7 @@ export default function CompanyCard({
 				className={`${baseClass} flex flex-col gap-3 p-5 w-full`}
 				{...motionProps}>
 				<div className="flex items-center gap-3">
-					<CompanyLogo company={company} size={44} />
+					<CompanyLogo company={company} size={44} priority={priority} />
 					<h3 className="font-display text-[1.05rem] font-semibold text-primary">
 						{company.name}
 					</h3>
@@ -144,7 +149,7 @@ export default function CompanyCard({
 				</div>
 				{/* Derecha: logo centrado */}
 				<div className="flex items-center justify-center shrink-0">
-					<CompanyLogo company={company} size={52} />
+					<CompanyLogo company={company} size={52} priority={priority} />
 				</div>
 			</div>
 

@@ -14,9 +14,10 @@ interface ProjectCardProps {
 	onClick?: () => void;
 	index?: number;
 	fullWidth?: boolean;
+	priority?: boolean;
 }
 
-export default function ProjectCard({ project, onClick, fullWidth = false }: ProjectCardProps) {
+export default function ProjectCard({ project, onClick, fullWidth = false, priority = false }: ProjectCardProps) {
 	const t = useTranslations("ProjectCard");
 	return (
 		<motion.div
@@ -49,6 +50,7 @@ export default function ProjectCard({ project, onClick, fullWidth = false }: Pro
 						height={144}
 						className="w-full h-full object-cover"
 						sizes="(max-width: 480px) 256px, 320px"
+						priority={priority}
 					/>
 				</div>
 			)}

@@ -67,6 +67,7 @@ export default function OurProjects() {
 								key={`p-${i}`}
 								project={project}
 								onClick={() => setSelectedProject(project)}
+								priority={i < 4}
 							/>
 						))}
 					</div>
@@ -89,6 +90,7 @@ export default function OurProjects() {
 								key={`c-${i}`}
 								company={company}
 								onClick={() => setSelectedCompany(company)}
+								priority={i < 4}
 							/>
 						))}
 					</div>
