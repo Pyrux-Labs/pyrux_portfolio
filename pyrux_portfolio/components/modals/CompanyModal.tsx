@@ -31,7 +31,7 @@ export default function CompanyModal({
 				<h3 className="font-display text-xl font-bold text-primary">
 					{company.name}
 				</h3>
-				<div className="w-24 h-24 shrink-0 rounded-full border border-border bg-elevated flex items-center justify-center overflow-hidden p-2">
+				<div className="w-16 h-16 sm:w-24 sm:h-24 shrink-0 rounded-full border border-border bg-elevated flex items-center justify-center overflow-hidden p-2">
 					{company.logoDark ? (
 						<>
 							<Image
@@ -75,9 +75,9 @@ export default function CompanyModal({
 			</div>
 
 			{/* Testimonial + Button row */}
-			<div className="flex items-end justify-between gap-4">
+			<div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
 				{company.testimonial ? (
-					<div className="p-4 rounded-xl border border-border bg-elevated max-w-sm">
+					<div className="p-4 rounded-xl border border-border bg-elevated w-full sm:max-w-sm">
 						<div className="flex items-start gap-3">
 							<Quote
 								size={20}
@@ -90,13 +90,13 @@ export default function CompanyModal({
 						</div>
 					</div>
 				) : (
-					<div />
+					<div className="hidden sm:block" />
 				)}
 				<a
 					href={company.websiteUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5">
+					className="shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5 w-full sm:w-auto">
 					<ExternalLink size={16} />
 					{t("visitWebsite")}
 				</a>
