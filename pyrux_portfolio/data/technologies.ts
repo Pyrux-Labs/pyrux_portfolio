@@ -173,9 +173,9 @@ export const technologies: Technology[] = [
 		featured: true,
 	},
 	{
-		id: "firebase",
-		name: "Firebase",
-		icon: "SiFirebase",
+		id: "google-seo",
+		name: "Google SEO",
+		icon: "SiGoogle",
 		category: "other",
 		featured: true,
 	},

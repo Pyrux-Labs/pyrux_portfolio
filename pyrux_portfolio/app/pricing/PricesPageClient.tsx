@@ -183,11 +183,11 @@ export default function PreciosPageClient() {
 								<div
 									ref={carouselRef}
 									onScroll={handleCarouselScroll}
-									className="-mx-4 px-4 flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+									className="-mx-4 px-4 pr-[10vw] flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
 									{visiblePackages.map((pkg, idx) => (
 										<div
 											key={`${pkg.category}-${pkg.number}`}
-											className="snap-start shrink-0 w-[85vw]">
+											className="snap-center shrink-0 w-[85vw]">
 											<PackageCard
 												pkg={pkg}
 												isSelected={selectedPkg === idx}

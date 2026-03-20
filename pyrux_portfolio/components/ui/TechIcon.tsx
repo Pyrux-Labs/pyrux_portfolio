@@ -26,6 +26,7 @@ import {
 	SiStripe,
 	SiFigma,
 	SiSupabase,
+	SiGoogle,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
 
@@ -54,6 +55,7 @@ const iconMap: Record<string, IconType> = {
 	SiStripe,
 	SiFigma,
 	SiSupabase,
+	SiGoogle,
 };
 
 // Colores de marca para cada icono
@@ -81,6 +83,7 @@ const iconColors: Record<string, string> = {
 	SiStripe: "#635BFF",
 	SiFigma: "#F24E1E",
 	SiSupabase: "#3ECF8E",
+	SiGoogle: "#4285F4",
 };
 
 interface TechIconProps {

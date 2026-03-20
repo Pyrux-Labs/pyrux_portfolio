@@ -49,7 +49,7 @@ export default function CreatorModal({
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
 			{/* Header: name + role (left) / photo (right) */}
-			<div className="flex flex-col items-center text-center gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:gap-4 pr-10">
+			<div className="flex flex-col items-center text-center gap-3 mb-4 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:gap-4 sm:pr-10">
 				<div className="order-2 sm:order-1">
 					<h3 className="font-display text-2xl font-bold text-primary">
 						{creator.name}
@@ -71,7 +71,7 @@ export default function CreatorModal({
 			<p className="text-secondary leading-relaxed mb-6">{creator.bio}</p>
 
 			{/* Links */}
-			<div className="flex gap-3 mb-6">
+			<div className="flex justify-center sm:justify-start gap-3 mb-6">
 				{creator.socialLinks.github && (
 					<a
 						href={creator.socialLinks.github}
