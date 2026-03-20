@@ -214,7 +214,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "01",
 			name: "Growth",
-			price: "300 dólares",
+			price: "$300 USD",
 			maintenancePrice: "$40/mes",
 			deliveryTime: "2 semanas",
 			popular: false,
@@ -236,7 +236,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "02",
 			name: "Pro",
-			price: "500 dólares",
+			price: "$500 USD",
 			maintenancePrice: "$50/mes",
 			deliveryTime: "3-4 semanas",
 			popular: false,
@@ -257,7 +257,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "03",
 			name: "Business",
-			price: "Desde 800 dólares",
+			price: "Desde $800 USD",
 			maintenancePrice: "$70/mes",
 			deliveryTime: "4+ semanas",
 			popular: false,
@@ -281,7 +281,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "01",
 			name: "E-Commerce Básico",
-			price: "800 dólares",
+			price: "$800 USD",
 			maintenancePrice: "$50/mes",
 			deliveryTime: "4 semanas",
 			popular: false,
@@ -302,7 +302,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "02",
 			name: "E-Commerce Pro",
-			price: "2.000 dólares",
+			price: "$2.000 USD",
 			maintenancePrice: "$200/mes",
 			deliveryTime: "6-8 semanas",
 			popular: false,
@@ -369,7 +369,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "01",
 			name: "Growth",
-			price: "300 dollars",
+			price: "$300 USD",
 			maintenancePrice: "$40/mo",
 			deliveryTime: "2 weeks",
 			popular: false,
@@ -391,7 +391,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "02",
 			name: "Pro",
-			price: "500 dollars",
+			price: "$500 USD",
 			maintenancePrice: "$50/mo",
 			deliveryTime: "3-4 weeks",
 			popular: false,
@@ -412,7 +412,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "03",
 			name: "Business",
-			price: "From 800 dollars",
+			price: "From $800 USD",
 			maintenancePrice: "$70/mo",
 			deliveryTime: "4+ weeks",
 			popular: false,
@@ -436,7 +436,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "01",
 			name: "Basic E-Commerce",
-			price: "800 dollars",
+			price: "$800 USD",
 			maintenancePrice: "$50/mo",
 			deliveryTime: "4 weeks",
 			popular: false,
@@ -457,7 +457,7 @@ export const packages: Record<Locale, ServicePackage[]> = {
 		{
 			number: "02",
 			name: "E-Commerce Pro",
-			price: "2,000 dollars",
+			price: "$2,000 USD",
 			maintenancePrice: "$200/mo",
 			deliveryTime: "6-8 weeks",
 			popular: false,
