@@ -31,7 +31,7 @@ export default function CompanyModal({
 				<h3 className="font-display text-xl font-bold text-primary">
 					{company.name}
 				</h3>
-				<div className="w-24 h-24 shrink-0 rounded-xl border border-border bg-elevated flex items-center justify-center overflow-hidden p-2">
+				<div className="w-24 h-24 shrink-0 rounded-full border border-border bg-elevated flex items-center justify-center overflow-hidden p-2">
 					{company.logoDark ? (
 						<>
 							<Image

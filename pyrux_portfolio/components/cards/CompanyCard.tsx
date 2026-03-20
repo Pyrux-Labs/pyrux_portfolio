@@ -61,7 +61,11 @@ function CompanyLogo({ company, size }: { company: Company; size: number }) {
 	);
 }
 
-export default function CompanyCard({ company, onClick, fullWidth = false }: CompanyCardProps) {
+export default function CompanyCard({
+	company,
+	onClick,
+	fullWidth = false,
+}: CompanyCardProps) {
 	const t = useTranslations("CompanyCard");
 
 	const motionProps = {
@@ -88,7 +92,9 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 	if (fullWidth) {
 		/* ── /clients page — layout vertical con todo el contenido ── */
 		return (
-			<motion.div className={`${baseClass} flex flex-col gap-3 p-5 w-full`} {...motionProps}>
+			<motion.div
+				className={`${baseClass} flex flex-col gap-3 p-5 w-full`}
+				{...motionProps}>
 				<div className="flex items-center gap-3">
 					<CompanyLogo company={company} size={44} />
 					<h3 className="font-display text-[1.05rem] font-semibold text-primary">
@@ -103,7 +109,10 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 				</p>
 				{company.testimonial && (
 					<div className="flex items-start gap-2 pt-2 border-t border-border">
-						<Quote size={14} className="text-coral shrink-0 mt-0.5 rotate-180" />
+						<Quote
+							size={14}
+							className="text-coral shrink-0 mt-0.5 rotate-180"
+						/>
 						<p className="text-[0.8rem] text-muted italic line-clamp-1">
 							{company.testimonial}
 						</p>
@@ -120,9 +129,9 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 			className={`${baseClass} flex flex-col gap-2 p-4 h-56 overflow-hidden shrink-0 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3`}
 			{...motionProps}>
 			{/* Sección superior: texto izquierda / logo derecha */}
-			<div className="flex items-start gap-3 flex-1">
+			<div className="flex items-start gap-3 flex-1 mt-2">
 				{/* Izquierda: nombre + descripción */}
-				<div className="flex flex-col gap-1.5 min-w-0 flex-1">
+				<div className="flex flex-col gap-1.5 min-w-0 flex-1 ">
 					<h3 className="font-display text-[0.95rem] font-semibold text-primary leading-tight line-clamp-1">
 						{company.name}
 					</h3>
@@ -141,9 +150,9 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 
 			{/* Comentario */}
 			{company.testimonial && (
-				<div className="flex items-center gap-2 pt-2 border-t border-border">
+				<div className="flex items-center gap-2 pt-4 border-t border-border mb-2">
 					<Quote size={14} className="text-coral shrink-0 rotate-180" />
-					<p className="text-[0.8rem] text-white font-medium leading-relaxed line-clamp-2">
+					<p className="text-[0.8rem] text-primary font-medium leading-relaxed line-clamp-2">
 						{company.testimonial}
 					</p>
 					<Quote size={14} className="text-coral shrink-0" />
