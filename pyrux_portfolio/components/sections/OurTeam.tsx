@@ -41,11 +41,13 @@ export default function OurTeam() {
 					{localeCreators.map((creator, i) => (
 						<motion.div
 							key={creator.id}
-							className="group flex flex-col items-center gap-4 px-7 py-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl text-primary text-center cursor-pointer transition-[border-color,box-shadow] duration-200 ease-in-out hover:-translate-y-1 hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+							className="group flex flex-col items-center gap-4 px-7 py-6 rounded-2xl border border-border bg-card-strong backdrop-blur-xl text-primary text-center cursor-pointer transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 							variants={cardVariants}
 							initial="hidden"
 							animate={inView ? "visible" : "hidden"}
 							custom={i}
+							whileHover={{ y: -6 }}
+							whileTap={{ y: -4 }}
 							onClick={() => setSelectedCreator(creator)}
 							role="button"
 							tabIndex={0}

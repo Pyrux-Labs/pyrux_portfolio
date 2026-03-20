@@ -50,7 +50,10 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 							</div>
 
 							{/* Right: content card with large bg number */}
-							<div className="relative flex-1 pt-3 pb-4 px-5 rounded-xl border border-border bg-card overflow-hidden">
+							<motion.div
+								className="relative flex-1 pt-3 pb-4 px-5 rounded-xl border border-border bg-card overflow-hidden transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral/40 hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+								whileHover={{ y: -6 }}
+								whileTap={{ y: -4 }}>
 								{/* Large decorative number */}
 								<span className="absolute right-3 top-0 font-display text-[5rem] font-bold text-coral/5 leading-none select-none pointer-events-none">
 									{step.number}
@@ -61,7 +64,7 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 								</div>
 								<h3 className="font-display text-[1rem] font-semibold text-primary mb-1">{step.title}</h3>
 								<p className="text-[0.85rem] text-muted leading-normal">{step.description}</p>
-							</div>
+							</motion.div>
 						</motion.div>
 					);
 				})}

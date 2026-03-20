@@ -30,11 +30,12 @@ export default function HeroButtons() {
 					initial="hidden"
 					animate="visible"
 					custom={0}
+					whileHover={{ y: -4, scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}>
 					<span className="text-[0.9rem] text-primary">
 						{t("contact")}
 					</span>
-					<span className="text-muted transition-colors duration-200 group-hover:text-coral">
+					<span className="inline-block text-muted transition-[color,transform] duration-200 ease-in-out group-hover:text-coral group-hover:translate-x-1">
 						→
 					</span>
 				</MotionLink>
@@ -45,9 +46,10 @@ export default function HeroButtons() {
 					initial="hidden"
 					animate="visible"
 					custom={1}
+					whileHover={{ y: -4, scale: 1.03 }}
 					whileTap={{ scale: 0.97 }}>
 					<span className="text-[0.9rem] text-primary">{t("pricing")}</span>
-					<span className="text-muted transition-colors duration-200 group-hover:text-coral">
+					<span className="inline-block text-muted transition-[color,transform] duration-200 ease-in-out group-hover:text-coral group-hover:translate-x-1">
 						→
 					</span>
 				</MotionLink>

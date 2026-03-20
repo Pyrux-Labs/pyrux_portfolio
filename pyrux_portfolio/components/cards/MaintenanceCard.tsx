@@ -46,7 +46,8 @@ export default function MaintenanceCard({ item, planColor }: MaintenanceCardProp
 					transition: { duration: 0.35, ease: "easeOut" },
 				},
 			}}
-			whileHover={{ y: -6 }}>
+			whileHover={{ y: -6 }}
+		whileTap={{ y: -4 }}>
 			<div className="flex items-center justify-center mb-3 transition-transform duration-200 ease-in-out group-hover:scale-110">
 				<MaintenanceIcon iconName={item.icon} className={c.text} />
 			</div>

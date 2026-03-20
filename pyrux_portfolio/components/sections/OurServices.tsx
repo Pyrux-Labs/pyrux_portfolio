@@ -50,7 +50,8 @@ export default function OurServices() {
 						key={f.title}
 						className="block p-5 rounded-[14px] border border-border bg-card backdrop-blur-xl transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)] cursor-default group"
 						variants={cardVariants}
-						whileHover={{ y: -6 }}>
+						whileHover={{ y: -6 }}
+						whileTap={{ y: -4 }}>
 						<div className="flex items-center justify-center mb-3 transition-transform duration-200 ease-in-out group-hover:scale-110">
 							<ServiceIcon iconName={f.icon} className="text-coral" />
 						</div>

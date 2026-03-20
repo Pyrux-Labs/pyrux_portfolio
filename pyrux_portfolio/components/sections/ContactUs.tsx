@@ -68,11 +68,11 @@ export default function ContactUs() {
 						: { type: "button" as const };
 
 					return (
-						<motion.div key={item.label} variants={cardVariants}>
+						<motion.div key={item.label} variants={cardVariants} whileHover={{ y: -6 }} whileTap={{ y: -4 }}>
 							<Component
 								{...extraProps}
 								onClick={() => handleClick(item)}
-								className="group w-full flex flex-col items-center gap-2 py-6 px-4 max-[480px]:py-5 max-[480px]:px-3 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out cursor-pointer hover:-translate-y-1 hover:border-(--cta-border) hover:shadow-[0_12px_40px_var(--cta-shadow)]"
+								className="group w-full flex flex-col items-center gap-2 py-6 px-4 max-[480px]:py-5 max-[480px]:px-3 rounded-2xl border border-border bg-card backdrop-blur-xl no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out cursor-pointer hover:border-(--cta-border) hover:shadow-[0_12px_40px_var(--cta-shadow)]"
 								style={
 									{
 										"--cta-border": item.hoverBorder,
