@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { MessageCircle, Tag } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 
@@ -19,46 +19,40 @@ const buttonVariants = {
 	}),
 };
 
-interface HeroButtonProps {
-	href: string;
-	label: string;
-	index: number;
-}
-
-function HeroButton({ href, label, index }: HeroButtonProps) {
-	const [hovered, setHovered] = useState(false);
-
-	return (
-		<MotionLink
-			href={href}
-			className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-coral bg-card-strong no-underline shadow-[0_0_18px_var(--shadow-coral-soft)] transition-shadow duration-300 ease-in-out hover:shadow-[0_0_32px_var(--shadow-coral-mid)]"
-			variants={buttonVariants}
-			initial="hidden"
-			animate="visible"
-			custom={index}
-			whileHover={{ scale: 1.04 }}
-			whileTap={{ scale: 0.97 }}
-			transition={{ type: "spring", stiffness: 350, damping: 20 }}
-			onHoverStart={() => setHovered(true)}
-			onHoverEnd={() => setHovered(false)}>
-			<span className="text-[0.95rem] font-medium text-primary">{label}</span>
-			<motion.span
-				className="text-coral"
-				animate={hovered ? { x: 5 } : { x: 0 }}
-				transition={{ type: "spring", stiffness: 400, damping: 15 }}>
-				→
-			</motion.span>
-		</MotionLink>
-	);
-}
-
 export default function HeroButtons() {
 	const t = useTranslations("HeroButtons");
 	return (
 		<section className="mb-14 text-center">
 			<div className="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
-				<HeroButton href="#contact" label={t("contact")} index={0} />
-				<HeroButton href="/pricing" label={t("pricing")} index={1} />
+				{/* Primary CTA — relleno coral */}
+				<MotionLink
+					href="#contact"
+					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-coral text-white no-underline font-semibold text-[1rem] shadow-[0_0_24px_var(--shadow-coral-mid)] transition-shadow duration-300 ease-in-out hover:shadow-[0_0_40px_var(--shadow-coral-strong,var(--shadow-coral-mid))]"
+					variants={buttonVariants}
+					initial="hidden"
+					animate="visible"
+					custom={0}
+					whileHover={{ scale: 1.04 }}
+					whileTap={{ scale: 0.97 }}
+					transition={{ type: "spring", stiffness: 350, damping: 20 }}>
+					<MessageCircle size={17} strokeWidth={2} />
+					{t("contact")}
+				</MotionLink>
+
+				{/* Secondary CTA — outline coral */}
+				<MotionLink
+					href="/pricing"
+					className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-coral bg-transparent text-coral no-underline font-semibold text-[1rem] transition-[background-color,color,box-shadow] duration-250 ease-in-out hover:bg-coral hover:text-white hover:shadow-[0_0_24px_var(--shadow-coral-mid)]"
+					variants={buttonVariants}
+					initial="hidden"
+					animate="visible"
+					custom={1}
+					whileHover={{ scale: 1.04 }}
+					whileTap={{ scale: 0.97 }}
+					transition={{ type: "spring", stiffness: 350, damping: 20 }}>
+					<Tag size={17} strokeWidth={2} />
+					{t("pricing")}
+				</MotionLink>
 			</div>
 		</section>
 	);
