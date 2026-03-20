@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Componente TechIcon — renderiza iconos de tecnologías
+// TechIcon component — renders technology icons
 // ═══════════════════════════════════════════════
 
 import {

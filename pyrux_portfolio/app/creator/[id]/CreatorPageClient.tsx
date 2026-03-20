@@ -19,6 +19,7 @@ import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import type { PersonalProject } from "@/types";
+import { fadeUpHeader, fadeUpItem, staggerContainerFast } from "@/lib/animations";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 
@@ -26,28 +27,6 @@ interface CreatorPageClientProps {
 	creatorId: string;
 }
 
-const headerVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.5, ease: "easeOut" as const },
-	},
-};
-
-const gridVariants = {
-	hidden: {},
-	visible: { transition: { staggerChildren: 0.06 } },
-};
-
-const cardVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.4, ease: "easeOut" as const },
-	},
-};
 
 export default function CreatorPageClient({
 	creatorId,
@@ -102,7 +81,7 @@ export default function CreatorPageClient({
 				{/* Header */}
 				<motion.div
 					className="mb-8"
-					variants={headerVariants}
+					variants={fadeUpHeader}
 					initial="hidden"
 					animate="visible">
 					<Link
@@ -170,14 +149,14 @@ export default function CreatorPageClient({
 				{/* Projects grid */}
 				<motion.div
 					className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
-					variants={gridVariants}
+					variants={staggerContainerFast}
 					initial="hidden"
 					animate="visible">
 					{creatorProjects.map((project) => (
 						<motion.div
 							key={project.id}
 							className="flex flex-col gap-3 p-5 rounded-xl border border-border bg-card-strong backdrop-blur-sm cursor-pointer hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]"
-							variants={cardVariants}
+							variants={fadeUpItem}
 							whileHover={{ y: -4 }}
 							whileTap={{ scale: 0.98 }}
 							onClick={() => setSelectedProject(project)}

@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Sitemap dinámico — generado en build
+// Dynamic sitemap — generated at build
 // ═══════════════════════════════════════════════
 
 import type { MetadataRoute } from "next";

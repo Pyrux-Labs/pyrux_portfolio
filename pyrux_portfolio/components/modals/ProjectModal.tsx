@@ -13,7 +13,7 @@ import Badge from "@/components/ui/Badge";
 import { getTechnologyById } from "@/data/technologies";
 import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import type { Project } from "@/types";
-import Img from "next/image";
+import Image from "next/image";
 
 interface ProjectModalProps {
 	project: Project | null;
@@ -57,7 +57,7 @@ function ImageCarousel({ images, projectTitle, prevLabel, nextLabel, imageAltFn 
 					<div
 						key={i}
 						className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated">
-						<Img
+						<Image
 							src={img}
 							alt={imageAltFn(i + 1)}
 							className="w-full h-full object-cover"

@@ -17,6 +17,7 @@ import { packages } from "@/data/packages";
 import { steps } from "@/data/steps";
 import { faqItems } from "@/data/faq";
 import type { PlanCategory, PlanColor } from "@/types/pricing.types";
+import { fadeUpHeader, staggerContainerFast } from "@/lib/animations";
 
 const ctaColorTokens: Record<
 	PlanColor,
@@ -48,19 +49,6 @@ const ctaColorTokens: Record<
 	},
 };
 
-const headerVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.5, ease: "easeOut" as const },
-	},
-};
-
-const gridVariants = {
-	hidden: {},
-	visible: { transition: { staggerChildren: 0.06 } },
-};
 
 export default function PreciosPageClient() {
 	const t = useTranslations("PricingPage");
@@ -124,7 +112,7 @@ export default function PreciosPageClient() {
 				{/* Header */}
 				<motion.div
 					className="mb-14"
-					variants={headerVariants}
+					variants={fadeUpHeader}
 					initial="hidden"
 					animate="visible">
 					<Link
@@ -149,7 +137,7 @@ export default function PreciosPageClient() {
 				{/* Category toggle */}
 				<motion.div
 					className="flex gap-1 p-1 rounded-xl border border-border bg-card w-fit mb-8 self-center"
-					variants={headerVariants}
+					variants={fadeUpHeader}
 					initial="hidden"
 					animate="visible">
 					{TABS.map((tab) => (
@@ -177,7 +165,7 @@ export default function PreciosPageClient() {
 							    whileInView (once:true) fires get stuck at opacity:0 */}
 							<motion.div
 								key={`mobile-carousel-${selectedCategory}`}
-								variants={gridVariants}
+								variants={staggerContainerFast}
 								initial="hidden"
 								animate="visible">
 								<div
@@ -222,7 +210,7 @@ export default function PreciosPageClient() {
 								? "flex justify-center"
 								: "hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch"
 						}
-						variants={gridVariants}
+						variants={staggerContainerFast}
 						initial="hidden"
 						animate="visible">
 						{visiblePackages.map((pkg, idx) => (

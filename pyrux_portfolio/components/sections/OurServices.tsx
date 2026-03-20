@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════
-// Sección Qué Hacemos — servicios de Pyrux
+// What We Do section — Pyrux services
 // ═══════════════════════════════════════════════
 
 "use client";
@@ -11,12 +11,7 @@ import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
 import { services } from "@/data/services";
 import ServiceIcon from "@/components/ui/ServiceIcon";
-
-// Variantes para stagger de cards
-const gridVariants = {
-	hidden: {},
-	visible: { transition: { staggerChildren: 0.08 } },
-};
+import { staggerContainer } from "@/lib/animations";
 
 const cardVariants = {
 	hidden: { opacity: 0, y: 16 },
@@ -42,7 +37,7 @@ export default function OurServices() {
 				ref={ref}
 				key={locale}
 				className="grid grid-cols-1 min-[481px]:grid-cols-2 sm:grid-cols-3 gap-4"
-				variants={gridVariants}
+				variants={staggerContainer}
 				initial="hidden"
 				animate={inView ? "visible" : "hidden"}>
 				{localeServices.map((f) => (

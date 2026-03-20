@@ -14,21 +14,7 @@ import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { CONTACT_EMAIL, contactItems } from "@/data/contacts";
 import ContactIcon from "@/components/ui/ContactIcon";
 import type { ContactItem } from "@/types";
-
-// Animation variants
-const gridVariants = {
-	hidden: {},
-	visible: { transition: { staggerChildren: 0.08 } },
-};
-
-const cardVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.4, ease: "easeOut" as const },
-	},
-};
+import { staggerContainer, fadeUpItem } from "@/lib/animations";
 
 export default function ContactUs() {
 	const t = useTranslations("ContactUs");
@@ -53,7 +39,7 @@ export default function ContactUs() {
 			<motion.div
 				ref={ref}
 				className="grid grid-cols-1 min-[401px]:grid-cols-2 sm:grid-cols-4 gap-4"
-				variants={gridVariants}
+				variants={staggerContainer}
 				initial="hidden"
 				animate={inView ? "visible" : "hidden"}>
 				{localeContactItems.map((item) => {
@@ -68,7 +54,7 @@ export default function ContactUs() {
 						: { type: "button" as const };
 
 					return (
-						<motion.div key={item.label} variants={cardVariants} whileHover={{ y: -6 }} whileTap={{ y: -4 }}>
+						<motion.div key={item.label} variants={fadeUpItem} whileHover={{ y: -6 }} whileTap={{ y: -4 }}>
 							<Component
 								{...extraProps}
 								onClick={() => handleClick(item)}
