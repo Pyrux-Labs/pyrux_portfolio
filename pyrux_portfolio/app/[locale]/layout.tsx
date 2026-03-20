@@ -4,6 +4,7 @@ import { routing } from "@/i18n/routing";
 import { LocaleProvider } from "@/i18n/locale-provider";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import LanguageToggle from "@/components/layout/LanguageToggle";
+import { Toaster } from "sonner";
 import type { Locale } from "@/i18n/config";
 
 interface LocaleLayoutProps {
@@ -34,6 +35,16 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 				</div>
 				{children}
 			</div>
+			<Toaster
+				position="bottom-center"
+				toastOptions={{
+					style: {
+						background: "var(--bg-elevated)",
+						color: "var(--text-primary)",
+						border: "1px solid var(--border-subtle)",
+					},
+				}}
+			/>
 		</LocaleProvider>
 	);
 }
