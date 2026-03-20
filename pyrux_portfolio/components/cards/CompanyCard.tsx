@@ -120,7 +120,7 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 			className={`${baseClass} flex flex-col gap-2 p-4 h-56 overflow-hidden shrink-0 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3`}
 			{...motionProps}>
 			{/* Sección superior: texto izquierda / logo derecha */}
-			<div className="flex items-start gap-3 flex-1 min-h-0">
+			<div className="flex items-start gap-3">
 				{/* Izquierda: nombre + descripción */}
 				<div className="flex flex-col gap-1.5 min-w-0 flex-1">
 					<h3 className="font-display text-[0.95rem] font-semibold text-primary leading-tight line-clamp-1">
@@ -129,19 +129,21 @@ export default function CompanyCard({ company, onClick, fullWidth = false }: Com
 					<p className="text-[0.8rem] text-secondary leading-relaxed line-clamp-2">
 						{company.summary}
 					</p>
-					<p className="text-[0.75rem] text-muted leading-relaxed line-clamp-2">
+					<p className="text-[0.7rem] text-muted italic leading-normal line-clamp-1">
 						{company.workDescription}
 					</p>
 				</div>
-				{/* Derecha: logo */}
-				<CompanyLogo company={company} size={44} />
+				{/* Derecha: logo centrado */}
+				<div className="flex items-center justify-center shrink-0">
+					<CompanyLogo company={company} size={44} />
+				</div>
 			</div>
 
-			{/* Comentario */}
+			{/* Comentario — protagonista */}
 			{company.testimonial && (
-				<div className="flex items-start gap-2 pt-2 border-t border-border">
+				<div className="flex items-start gap-2 flex-1 px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 mt-1">
 					<Quote size={14} className="text-coral shrink-0 mt-0.5 rotate-180" />
-					<p className="text-[0.75rem] text-muted italic line-clamp-2">
+					<p className="text-[0.8rem] text-white font-medium leading-relaxed line-clamp-2">
 						{company.testimonial}
 					</p>
 					<Quote size={14} className="text-coral shrink-0 mt-0.5" />
