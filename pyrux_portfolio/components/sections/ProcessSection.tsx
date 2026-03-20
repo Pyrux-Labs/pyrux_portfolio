@@ -41,7 +41,7 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 
 							{/* Left: number bubble */}
 							<motion.div
-								className="relative shrink-0 z-10"
+								className="relative shrink-0 z-10 isolate"
 								initial={{ scale: 0, opacity: 0 }}
 								animate={inView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
 								transition={{
@@ -50,7 +50,7 @@ export default function ProcessSection({ steps }: ProcessSectionProps) {
 									stiffness: 300,
 									damping: 18,
 								}}>
-								<div className="w-18 h-18 rounded-full border-2 border-coral/40 bg-card-strong grid place-items-center shadow-[0_0_16px_var(--shadow-coral-soft)]">
+								<div className="w-18 h-18 rounded-full border-2 border-coral/40 bg-card-strong grid place-items-center shadow-[0_0_16px_var(--shadow-coral-soft)] ring-4 ring-[var(--color-bg)]">
 									<span className="text-coral font-bold font-mono text-xl">{step.number}</span>
 								</div>
 							</motion.div>
