@@ -33,7 +33,8 @@ const iconVariants = {
 export default function Hero() {
 	const t = useTranslations("Hero");
 	return (
-		<motion.header
+		<motion.section
+			aria-label="Hero"
 			className="mb-14"
 			variants={containerVariants}
 			initial="hidden"
@@ -96,6 +97,6 @@ export default function Hero() {
 					</svg>
 				</motion.div>
 			</div>
-		</motion.header>
+		</motion.section>
 	);
 }
