@@ -27,31 +27,31 @@ export default function HeroButtons() {
 				{/* Primary CTA — relleno coral */}
 				<MotionLink
 					href="#contact"
-					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-coral text-white no-underline font-semibold text-[1rem] shadow-[0_0_24px_var(--shadow-coral-mid)] transition-shadow duration-300 ease-in-out hover:shadow-[0_0_40px_var(--shadow-coral-strong,var(--shadow-coral-mid))]"
+					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-coral text-white no-underline font-semibold text-[1rem] shadow-[0_0_24px_var(--shadow-coral-mid)] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_40px_var(--shadow-coral-strong,var(--shadow-coral-mid))]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={0}
 					whileHover={{ scale: 1.04 }}
 					whileTap={{ scale: 0.97 }}
-					transition={{ type: "spring", stiffness: 350, damping: 20 }}>
-					<MessageCircle size={17} strokeWidth={2} />
+					transition={{ type: "spring", stiffness: 500, damping: 20 }}>
 					{t("contact")}
+					<MessageCircle size={17} strokeWidth={2} />
 				</MotionLink>
 
 				{/* Secondary CTA — outline coral */}
 				<MotionLink
 					href="/pricing"
-					className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-coral bg-transparent text-coral no-underline font-semibold text-[1rem] transition-[background-color,color,box-shadow] duration-250 ease-in-out hover:bg-coral hover:text-white hover:shadow-[0_0_24px_var(--shadow-coral-mid)]"
+					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-coral bg-transparent text-coral no-underline font-semibold text-[1rem] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_24px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"
 					animate="visible"
 					custom={1}
 					whileHover={{ scale: 1.04 }}
 					whileTap={{ scale: 0.97 }}
-					transition={{ type: "spring", stiffness: 350, damping: 20 }}>
-					<Tag size={17} strokeWidth={2} />
+					transition={{ type: "spring", stiffness: 500, damping: 20 }}>
 					{t("pricing")}
+					<Tag size={17} strokeWidth={2} />
 				</MotionLink>
 			</div>
 		</section>
