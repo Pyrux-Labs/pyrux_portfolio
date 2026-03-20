@@ -9,6 +9,9 @@
   - Archivo: `components/ui/Section.tsx`
 - **Heading "Nuestros clientes" debajo del carousel**: posición intencional por estética, pero semánticamente incorrecto para lectores de pantalla. Evaluar si vale cambiar en el futuro.
 
+## Resiliencia
+- **Error boundaries**: ningún componente tiene `ErrorBoundary`. Un dato roto (ej. tech ID inexistente) causa pantalla en blanco. Wrappear al menos los modales y page-level clients.
+
 ## Performance / Imágenes
 - **Apple touch icon como SVG**: iOS no soporta SVG como icono de pantalla de inicio. Agregar `public/apple-touch-icon.png` (180×180 PNG) y actualizar `icons.apple` en `app/layout.tsx`.
 - **OG image sin `type` declarado**: agregar `type: "image/png"` al objeto de imagen en los metadatos. Opcional: convertir a WebP para reducir peso (~30%).
