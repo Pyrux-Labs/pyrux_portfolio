@@ -129,7 +129,7 @@ export default function PreciosPageClient() {
 					animate="visible">
 					<Link
 						href="/"
-						className="inline-flex items-center gap-2 text-[0.9rem] text-secondary no-underline mb-6 hover:text-coral">
+						className="inline-flex items-center gap-2 text-[0.9rem] text-coral no-underline mb-6 hover:text-cyan">
 						<ArrowLeft size={16} />
 						{t("backToHome")}
 					</Link>
