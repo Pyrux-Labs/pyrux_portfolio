@@ -61,7 +61,6 @@ export interface Creator {
 	photos: string[];
 	role: string;
 	socialLinks: SocialLinks;
-	featuredProjects: string[];
 }
 
 export interface Value {

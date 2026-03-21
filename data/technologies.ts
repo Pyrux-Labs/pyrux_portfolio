@@ -62,7 +62,28 @@ export const technologies: Technology[] = [
 		category: "frontend",
 		featured: false,
 	},
+	{
+		id: "vite",
+		name: "Vite",
+		icon: "SiVite",
+		category: "frontend",
+		featured: false,
+	},
+	{
+		id: "three-js",
+		name: "Three.js",
+		icon: "SiThreedotjs",
+		category: "frontend",
+		featured: false,
+	},
 	// Backend
+	{
+		id: "django",
+		name: "Django",
+		icon: "SiDjango",
+		category: "backend",
+		featured: false,
+	},
 	{
 		id: "nodejs",
 		name: "Node.js",
@@ -142,6 +163,20 @@ export const technologies: Technology[] = [
 		icon: "SiVercel",
 		category: "devops",
 		featured: true,
+	},
+	{
+		id: "render",
+		name: "Render",
+		icon: "SiRender",
+		category: "devops",
+		featured: false,
+	},
+	{
+		id: "github-pages",
+		name: "GitHub Pages",
+		icon: "SiGithub",
+		category: "devops",
+		featured: false,
 	},
 	{
 		id: "nginx",

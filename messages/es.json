@@ -82,15 +82,6 @@
     "visitWebsite": "Visitar sitio web",
     "closeModal": "Cerrar modal"
   },
-  "CreatorModal": {
-    "featuredProjects": "Proyectos destacados",
-    "viewAllProjects": "Ver todos los proyectos",
-    "toastSuccess": "Email copiado al portapapeles",
-    "closeAria": "Cerrar modal",
-    "githubAria": "GitHub",
-    "linkedinAria": "LinkedIn",
-    "emailAria": "Copiar email"
-  },
   "ProjectsPage": {
     "title": "Nuestros Proyectos",
     "subtitle": "Todos los proyectos desarrollados por Pyrux",

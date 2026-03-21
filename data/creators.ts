@@ -19,29 +19,19 @@ export const creators: Record<Locale, Creator[]> = {
 				github: "https://github.com/LittleBigPants",
 				email: "juanmanuelgarcia@pyrux.com.ar",
 			},
-			featuredProjects: [
-				"cms_medmind",
-				"landing_page_medmind",
-				"pyrux_portfolio",
-			],
 		},
 		{
 			id: "gino-ruben-giorgi",
 			name: "Gino Ruben Giorgi",
-			bio: "Desarrollador creativo con enfoque en experiencias de usuario excepcionales. Especializado en frontend moderno, diseño de interfaces y optimización de rendimiento. Combina diseño y código para crear productos digitales que destacan.",
+			bio: "Ingeniero en sistemas enfocado en desarrollo frontend y arquitectura web. Experiencia construyendo productos digitales, priorizando performance, escalabilidad y experiencia de usuario. Experto en sistemas operativos y en creación de sistemas de automatización avanzados.",
 			image: "/creators/gino/Gino_Ruben_Giorgi.webp",
 			photos: ["/creators/gino/Gino_Ruben_Giorgi.webp"],
-			role: "Frontend Developer & UI Designer",
+			role: "System Engineer",
 			socialLinks: {
 				linkedin: "https://www.linkedin.com/in/ginorubengiorgi/",
 				github: "https://github.com/ginogiorgi",
 				email: "ginorubengiorgi@pyrux.com.ar",
 			},
-			featuredProjects: [
-				"landing_page_medmind",
-				"pyrux_portfolio",
-				"cms_medmind",
-			],
 		},
 	],
 	en: [
@@ -57,29 +47,19 @@ export const creators: Record<Locale, Creator[]> = {
 				github: "https://github.com/LittleBigPants",
 				email: "juanmanuelgarcia@pyrux.com.ar",
 			},
-			featuredProjects: [
-				"cms_medmind",
-				"landing_page_medmind",
-				"pyrux_portfolio",
-			],
 		},
 		{
 			id: "gino-ruben-giorgi",
 			name: "Gino Ruben Giorgi",
-			bio: "Creative developer focused on exceptional user experiences. Specialized in modern frontend, interface design, and performance optimization. Combines design and code to create standout digital products.",
+			bio: "Systems engineer focused on frontend development and web architecture. Experienced in building digital products with a priority on performance, scalability, and user experience. Expert in operating systems and advanced automation systems.",
 			image: "/creators/gino/Gino_Ruben_Giorgi.webp",
 			photos: ["/creators/gino/Gino_Ruben_Giorgi.webp"],
-			role: "Frontend Developer & UI Designer",
+			role: "System Engineer",
 			socialLinks: {
 				linkedin: "https://www.linkedin.com/in/ginorubengiorgi/",
 				github: "https://github.com/ginogiorgi",
 				email: "ginorubengiorgi@pyrux.com.ar",
 			},
-			featuredProjects: [
-				"landing_page_medmind",
-				"pyrux_portfolio",
-				"cms_medmind",
-			],
 		},
 	],
 };
