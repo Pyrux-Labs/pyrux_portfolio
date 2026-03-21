@@ -63,23 +63,25 @@ function ImageCarousel({
 			<div
 				ref={scrollRef}
 				onScroll={updateScrollState}
-				className="flex gap-2 overflow-x-auto scrollbar-hide cursor-grab select-none [&_img]:pointer-events-none [&_img]:select-none"
+				className="overflow-x-auto scrollbar-hide cursor-grab select-none"
 				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-				{images.map((img, i) => (
-					<div
-						key={i}
-						className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated">
-						<Image
-							src={img}
-							alt={imageAltFn(i + 1)}
-							className="w-full h-full object-cover"
-							loading="lazy"
-							width={224}
-							height={160}
-							sizes="(min-width: 1536px) 224px, 160px"
-						/>
-					</div>
-				))}
+				<div className="flex gap-2 justify-center min-w-full w-max [&_img]:pointer-events-none [&_img]:select-none">
+					{images.map((img, i) => (
+						<div
+							key={i}
+							className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated">
+							<Image
+								src={img}
+								alt={imageAltFn(i + 1)}
+								className="w-full h-full object-cover"
+								loading="lazy"
+								width={224}
+								height={160}
+								sizes="(min-width: 1536px) 224px, 160px"
+							/>
+						</div>
+					))}
+				</div>
 			</div>
 			{hasArrows && canScrollLeft && (
 				<button
@@ -131,33 +133,31 @@ export default function ProjectModal({
 				/>
 			)}
 
-			{/* Technologies */}
-			<div className="flex flex-wrap gap-2 mb-6">
-				{project.technologies.map((techId) => {
-					const tech = getTechnologyById(techId);
-					return (
-						<Badge key={techId} label={tech?.name ?? techId} variant="coral" />
-					);
-				})}
-			</div>
-
-			{/* Date */}
-			<p className="text-[0.8rem] text-muted mb-6">
-				{new Date(project.date).toLocaleDateString(
-					locale === "es" ? "es-AR" : "en-US",
-					{
-						year: "numeric",
-						month: "long",
-					},
-				)}
-			</p>
-
-			{/* Links */}
-			{project.liveUrl && (
-				<div className="flex justify-end">
-					<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
+			{/* Technologies + Date + Live link */}
+			<div className="flex items-end justify-between gap-4 flex-wrap">
+				<div>
+					<div className="flex flex-wrap gap-2 mb-2">
+						{project.technologies.map((techId) => {
+							const tech = getTechnologyById(techId);
+							return (
+								<Badge key={techId} label={tech?.name ?? techId} variant="coral" />
+							);
+						})}
+					</div>
+					<p className="text-[0.8rem] text-muted">
+						{new Date(project.date).toLocaleDateString(
+							locale === "es" ? "es-AR" : "en-US",
+							{
+								year: "numeric",
+								month: "long",
+							},
+						)}
+					</p>
 				</div>
-			)}
+				{project.liveUrl && (
+					<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
+				)}
+			</div>
 		</Modal>
 	);
 }
