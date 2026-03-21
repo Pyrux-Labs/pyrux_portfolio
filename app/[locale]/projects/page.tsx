@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
-import ProjectsPageClient from "@/app/projects/ProjectsPageClient";
+import ProjectsPageClient from "./ProjectsPageClient";
 
 interface ProjectsPageProps {
 	params: Promise<{ locale: string }>;

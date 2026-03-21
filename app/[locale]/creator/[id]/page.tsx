@@ -5,7 +5,7 @@
 import type { Metadata } from "next";
 import { creators } from "@/data/creators";
 import { routing } from "@/i18n/routing";
-import CreatorPageClient from "@/app/creator/[id]/CreatorPageClient";
+import CreatorPageClient from "./CreatorPageClient";
 import type { Locale } from "@/i18n/config";
 
 interface CreatorPageProps {

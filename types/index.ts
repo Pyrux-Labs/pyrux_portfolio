@@ -13,9 +13,7 @@ export interface Project {
 	githubUrl?: string;
 	featured: boolean;
 	date: string;
-}
-
-export interface PersonalProject extends Project {
+	/** "pyrux" para proyectos del estudio, ID del creador para proyectos personales */
 	creatorId: string;
 }
 

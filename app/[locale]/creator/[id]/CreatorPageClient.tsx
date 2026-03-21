@@ -12,13 +12,13 @@ import { ArrowLeft, Github, Linkedin, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getCreatorById } from "@/data/creators";
-import { getPersonalProjectsByCreator } from "@/data/personalProjects";
+import { getProjectsByCreator } from "@/data/projects";
 import { getTechnologyById } from "@/data/technologies";
 import Badge from "@/components/ui/Badge";
 import ProjectModal from "@/components/modals/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
-import type { PersonalProject } from "@/types";
+import type { Project } from "@/types";
 import { fadeUpHeader, fadeUpItem, staggerContainerFast } from "@/lib/animations";
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
@@ -36,12 +36,12 @@ export default function CreatorPageClient({
 	const { copy } = useCopyToClipboard();
 	const creator = getCreatorById(creatorId, locale);
 	const creatorProjects = useMemo(
-		() => getPersonalProjectsByCreator(creatorId, locale),
+		() => getProjectsByCreator(creatorId, locale),
 		[creatorId, locale],
 	);
 
 	// Initialize modal from ?project= URL param on first render
-	const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(() => {
+	const [selectedProject, setSelectedProject] = useState<Project | null>(() => {
 		if (typeof window === "undefined") return null;
 		const projectId = new URLSearchParams(window.location.search).get("project");
 		return creatorProjects.find((p) => p.id === projectId) ?? null;

@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
-import PreciosPageClient from "@/app/pricing/PricesPageClient";
+import PreciosPageClient from "./PricesPageClient";
 import { faqItems } from "@/data/faq";
 import type { Locale } from "@/i18n/config";
 
