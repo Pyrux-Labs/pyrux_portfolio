@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import HomePageContent from "./HomePageContent";
+import Hero from "@/components/home/Hero";
+import HeroButtons from "@/components/home/HeroButtons";
+import FeaturedWork from "@/components/home/FeaturedWork";
+import Services from "@/components/home/Services";
+import Team from "@/components/home/Team";
+import ContactUs from "@/components/home/ContactUs";
+import TechStack from "@/components/home/TechStack";
 
 interface HomePageProps {
 	params: Promise<{ locale: string }>;
@@ -41,5 +47,15 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 }
 
 export default function LocaleHomePage() {
-	return <HomePageContent />;
+	return (
+		<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+			<Hero />
+			<HeroButtons />
+			<FeaturedWork />
+			<Services />
+			<Team />
+			<ContactUs />
+			<TechStack />
+		</main>
+	);
 }

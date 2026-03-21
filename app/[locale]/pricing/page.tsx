@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
-import PreciosPageClient from "./PricesPageClient";
+import PricingContent from "@/components/pricing/PricingContent";
 import { faqItems } from "@/data/faq";
 import type { Locale } from "@/i18n/config";
 
@@ -79,7 +79,7 @@ export default async function PricingPage({ params }: PricingPageProps) {
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
-			<PreciosPageClient />
+			<PricingContent />
 		</>
 	);
 }

@@ -33,7 +33,7 @@ export default function Footer() {
 	return (
 		<>
 			<motion.footer
-				className="mt-auto pt-10 text-center text-[0.9rem] text-muted"
+				className="pt-10 text-center text-[0.9rem] text-muted"
 				initial={{ opacity: 0 }}
 				whileInView={{ opacity: 1 }}
 				viewport={{ once: true }}

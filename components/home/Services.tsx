@@ -22,7 +22,7 @@ const cardVariants = {
 	},
 };
 
-export default function OurServices() {
+export default function Services() {
 	const t = useTranslations("OurServices");
 	const { locale } = useLocale();
 	const localeServices = services[locale];

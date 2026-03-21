@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
-import ProjectsPageClient from "./ProjectsPageClient";
+import ProjectsContent from "@/components/projects/ProjectsContent";
 
 interface ProjectsPageProps {
 	params: Promise<{ locale: string }>;
@@ -66,7 +66,7 @@ export default async function ProjectsPage({ params }: ProjectsPageProps) {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
-			<ProjectsPageClient />
+			<ProjectsContent />
 		</>
 	);
 }

@@ -25,7 +25,7 @@ const cardVariants = {
 
 const MotionLink = motion.create(Link);
 
-export default function OurTeam() {
+export default function Team() {
 	const t = useTranslations("OurTeam");
 	const { locale } = useLocale();
 	const localeCreators = creators[locale];

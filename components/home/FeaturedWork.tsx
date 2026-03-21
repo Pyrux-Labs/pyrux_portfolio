@@ -19,7 +19,7 @@ import { projects } from "@/data/projects";
 import { companies } from "@/data/companies";
 import type { Project, Company } from "@/types";
 
-export default function OurProjects() {
+export default function FeaturedWork() {
 	const t = useTranslations("OurProjects");
 	const { locale } = useLocale();
 

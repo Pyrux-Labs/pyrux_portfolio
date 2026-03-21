@@ -28,7 +28,7 @@ const itemVariants = {
 	},
 };
 
-export default function OurStack() {
+export default function TechStack() {
 	const t = useTranslations("OurStack");
 	const [isExpanded, setIsExpanded] = useState(false);
 

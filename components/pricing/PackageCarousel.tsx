@@ -1,0 +1,80 @@
+"use client";
+
+import { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import PackageCard from "@/components/pricing/PackageCard";
+import { staggerContainerFast } from "@/lib/animations";
+import type { ServicePackage, PlanColor } from "@/types/pricing.types";
+
+interface PackageCarouselProps {
+	packages: ServicePackage[];
+	selectedPkg: number;
+	onSelect: (idx: number) => void;
+	ctaColorTokens: Record<PlanColor, { text: string; border: string; bg: string; glow: string }>;
+	animKey: string;
+}
+
+export default function PackageCarousel({
+	packages: visiblePackages,
+	selectedPkg,
+	onSelect,
+	ctaColorTokens,
+	animKey,
+}: PackageCarouselProps) {
+	const carouselRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		if (!carouselRef.current) return;
+		requestAnimationFrame(() => {
+			if (!carouselRef.current) return;
+			const children = Array.from(carouselRef.current.children) as HTMLElement[];
+			const card = children[selectedPkg];
+			if (!card) return;
+			carouselRef.current.scrollTo({
+				left: card.offsetLeft - carouselRef.current.offsetLeft,
+				behavior: "smooth",
+			});
+		});
+	}, [selectedPkg]);
+
+	function handleCarouselScroll() {
+		if (!carouselRef.current) return;
+		const { scrollLeft, clientWidth } = carouselRef.current;
+		const children = Array.from(carouselRef.current.children) as HTMLElement[];
+		let idx = 0;
+		for (let i = 0; i < children.length; i++) {
+			if (children[i].offsetLeft <= scrollLeft + clientWidth / 2) idx = i;
+		}
+		if (idx !== selectedPkg) onSelect(idx);
+	}
+
+	return (
+		<div className="sm:hidden">
+			<motion.div key={animKey} variants={staggerContainerFast} initial="hidden" animate="visible">
+				<div
+					ref={carouselRef}
+					onScroll={handleCarouselScroll}
+					className="-mx-4 px-4 pr-[10vw] flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+					{visiblePackages.map((pkg, idx) => (
+						<div key={`${pkg.category}-${pkg.number}`} className="snap-center shrink-0 w-[85vw]">
+							<PackageCard pkg={pkg} isSelected={selectedPkg === idx} onClick={() => onSelect(idx)} />
+						</div>
+					))}
+				</div>
+			</motion.div>
+			<div className="flex justify-center gap-2 mt-4">
+				{visiblePackages.map((pkg, idx) => (
+					<button
+						key={idx}
+						onClick={() => onSelect(idx)}
+						className={`rounded-full transition-all duration-200 cursor-pointer ${
+							selectedPkg === idx
+								? `w-5 h-2 ${ctaColorTokens[pkg.planColor].bg} border ${ctaColorTokens[pkg.planColor].border}`
+								: "w-2 h-2 bg-border"
+						}`}
+					/>
+				))}
+			</div>
+		</div>
+	);
+}

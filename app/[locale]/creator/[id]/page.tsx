@@ -5,7 +5,7 @@
 import type { Metadata } from "next";
 import { creators } from "@/data/creators";
 import { routing } from "@/i18n/routing";
-import CreatorPageClient from "./CreatorPageClient";
+import CreatorContent from "@/components/creator/CreatorContent";
 import type { Locale } from "@/i18n/config";
 
 interface CreatorPageProps {
@@ -73,7 +73,7 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
-			<CreatorPageClient creatorId={id} />
+			<CreatorContent creatorId={id} />
 		</>
 	);
 }
