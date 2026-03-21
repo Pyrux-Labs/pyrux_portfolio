@@ -3,9 +3,13 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
-import PricingContent from "@/components/pricing/PricingContent";
 import { faqItems } from "@/data/faq";
 import type { Locale } from "@/i18n/config";
+import BackLink from "@/components/ui/BackLink";
+import PricingHeader from "@/components/pricing/PricingHeader";
+import PackageSection from "@/components/pricing/PackageSection";
+import ProcessSection from "@/components/pricing/ProcessSection";
+import FAQSection from "@/components/pricing/FAQSection";
 
 interface PricingPageProps {
 	params: Promise<{ locale: string }>;
@@ -79,7 +83,13 @@ export default async function PricingPage({ params }: PricingPageProps) {
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
-			<PricingContent />
+			<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+				<BackLink />
+				<PricingHeader />
+				<PackageSection />
+				<ProcessSection />
+				<FAQSection />
+			</main>
 		</>
 	);
 }

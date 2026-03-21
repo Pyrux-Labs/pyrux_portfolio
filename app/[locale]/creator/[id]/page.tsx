@@ -3,10 +3,13 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { creators } from "@/data/creators";
 import { routing } from "@/i18n/routing";
-import CreatorContent from "@/components/creator/CreatorContent";
 import type { Locale } from "@/i18n/config";
+import BackLink from "@/components/ui/BackLink";
+import CreatorHeader from "@/components/creator/CreatorHeader";
+import ItemGallery from "@/components/gallery/ItemGallery";
 
 interface CreatorPageProps {
 	params: Promise<{ locale: string; id: string }>;
@@ -59,6 +62,8 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 	const { locale, id } = await params;
 	const isEs = locale === "es";
 	const creator = creators[locale as Locale]?.find((c) => c.id === id);
+	if (!creator) notFound();
+
 	const url = `${BASE_URL}/${locale}/creator/${id}`;
 
 	const breadcrumb = JSON.stringify({
@@ -66,14 +71,18 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 		"@type": "BreadcrumbList",
 		itemListElement: [
 			{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: `${BASE_URL}/${locale}` },
-			{ "@type": "ListItem", position: 2, name: creator?.name ?? id, item: url },
+			{ "@type": "ListItem", position: 2, name: creator.name, item: url },
 		],
 	});
 
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
-			<CreatorContent creatorId={id} />
+			<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+				<BackLink />
+				<CreatorHeader creatorId={id} />
+				<ItemGallery type="projects" creatorId={id} />
+			</main>
 		</>
 	);
 }

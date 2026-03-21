@@ -57,62 +57,66 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 │   ├── page.tsx                 # Redirect → /{locale} según navigator.language
 │   ├── sitemap.ts
 │   └── [locale]/
-│       ├── layout.tsx           # Locale layout: LocaleProvider, ThemeToggle, LanguageToggle, Toaster
-│       ├── page.tsx             # Landing principal
+│       ├── layout.tsx           # LocaleProvider + StarBackground + ThemeToggle + LanguageToggle + Footer + Toaster
+│       ├── page.tsx             # Landing principal (Server Component)
+│       ├── [type]/
+│       │   └── page.tsx         # /projects + /clients — generateStaticParams: ["projects","clients"]
 │       ├── pricing/
-│       │   ├── page.tsx         # Server Component (metadata)
-│       │   └── PricesPageClient.tsx  # Página completa de precios
-│       ├── clients/
-│       │   ├── page.tsx
-│       │   └── ClientsPageClient.tsx
-│       ├── projects/
-│       │   ├── page.tsx
-│       │   └── ProjectsPageClient.tsx
+│       │   └── page.tsx         # Server Component (metadata + FAQ schema JSON-LD)
 │       └── creator/
 │           └── [id]/
-│               ├── page.tsx     # SSG: generateStaticParams → ["gino", "juan"]
-│               └── CreatorPageClient.tsx
+│               └── page.tsx     # SSG: generateStaticParams → ids de creators
 ├── components/
-│   ├── layout/                  # Inyectados globalmente en todos los layouts
+│   ├── layout/                  # Inyectados globalmente en el locale layout
 │   │   ├── Footer.tsx
 │   │   ├── LanguageToggle.tsx
 │   │   └── ThemeToggle.tsx
-│   ├── ui/                      # Primitivos sin afiliación de página
+│   ├── ui/                      # Primitivos sin lógica de dominio — usables en cualquier contexto
+│   │   ├── BackLink.tsx         # "← Volver al inicio" (self-translating, Navigation.backToHome)
 │   │   ├── Badge.tsx
 │   │   ├── ContactIcon.tsx
+│   │   ├── ExternalLinkButton.tsx  # Botón coral con ExternalLink icon (ProjectModal + CompanyModal)
+│   │   ├── FeatureCard.tsx      # Card icon+título+descripción con hover accentuado (Services + MaintenanceGrid)
 │   │   ├── MaintenanceIcon.tsx
-│   │   ├── Modal.tsx            # Base modal reutilizable
+│   │   ├── Modal.tsx            # Base modal reutilizable (bottomSheet: true por defecto)
+│   │   ├── PageHeading.tsx      # h1 + subtitle — recibe strings del Server Component padre
 │   │   ├── Section.tsx
 │   │   ├── ServiceIcon.tsx
 │   │   ├── StarBackground.tsx
 │   │   └── TechIcon.tsx
-│   ├── common/                  # Usados en 2+ páginas distintas
-│   │   ├── CompanyCard.tsx      # clients + home (OurProjects)
-│   │   ├── CompanyModal.tsx     # clients + home (OurProjects)
-│   │   ├── ProjectCard.tsx      # projects + creator + home (OurProjects)
-│   │   └── ProjectModal.tsx     # projects + creator + home (OurProjects)
+│   ├── common/                  # Componentes usados en 2+ páginas distintas
+│   │   ├── CompanyCard.tsx      # FeaturedWork (home) + ItemGallery (clients)
+│   │   ├── CompanyModal.tsx     # FeaturedWork (home) + ItemGallery (clients)
+│   │   ├── ProjectCard.tsx      # FeaturedWork (home) + ItemGallery (projects + creator)
+│   │   └── ProjectModal.tsx     # FeaturedWork (home) + ItemGallery (projects + creator)
+│   ├── gallery/                 # Galería interactiva con modal (grid + estado)
+│   │   └── ItemGallery.tsx      # type="projects"|"clients", creatorId opcional para filtrar
 │   ├── home/                    # Exclusivos de la landing page
+│   │   ├── ContactUs.tsx
+│   │   ├── FeaturedWork.tsx     # Carousel infinito proyectos Pyrux + clientes
 │   │   ├── Hero.tsx
 │   │   ├── HeroButtons.tsx
-│   │   ├── OurProjects.tsx
-│   │   ├── OurServices.tsx
-│   │   ├── OurTeam.tsx
-│   │   ├── OurStack.tsx
-│   │   └── ContactUs.tsx
+│   │   ├── Services.tsx         # Grid de servicios usando FeatureCard
+│   │   ├── Team.tsx
+│   │   └── TechStack.tsx
+│   ├── creator/                 # Exclusivos de /creator/[id]
+│   │   └── CreatorHeader.tsx    # Foto, nombre, rol, bio, social buttons (GitHub/LinkedIn/email)
 │   └── pricing/                 # Exclusivos de /pricing
 │       ├── FAQAccordion.tsx
-│       ├── FAQSection.tsx
-│       ├── MaintenanceCard.tsx
-│       ├── MaintenanceGrid.tsx
+│       ├── FAQSection.tsx       # Self-contained (data + i18n interna)
+│       ├── MaintenanceGrid.tsx  # Grid de FeatureCard con colores por planColor
 │       ├── PackageCard.tsx
-│       └── ProcessSection.tsx
+│       ├── PackageCarousel.tsx  # Carousel mobile de paquetes
+│       ├── PackageSection.tsx   # Estado interactivo: tabs + paquetes + CTA + mantenimiento
+│       ├── PricingHeader.tsx    # h1, tagline, descripción animados (self-translating)
+│       └── ProcessSection.tsx   # Self-contained (data + i18n interna)
 ├── data/
-│   ├── companies.ts             # Clientes/empresas
+│   ├── companies.ts             # Record<Locale, Company[]> — clientes/empresas
 │   ├── contacts.ts              # Info de contacto
-│   ├── creators.ts              # Perfiles de Gino y Juan
+│   ├── creators.ts              # Record<Locale, Creator[]> — perfiles de Gino y Juan
 │   ├── faq.ts                   # Record<Locale, FAQItem[]>
 │   ├── packages.ts              # Record<Locale, ServicePackage[]> — planes con precios
-│   ├── projects.ts              # Todos los proyectos (studio con creatorId:"pyrux" + personales)
+│   ├── projects.ts              # Record<Locale, Project[]> + getProjectsByCreator()
 │   ├── services.ts              # Record<Locale, ServiceItem[]>
 │   ├── steps.ts                 # Pasos del proceso
 │   └── technologies.ts          # Stack tecnológico con categorías
@@ -127,7 +131,7 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 │   ├── request.ts
 │   └── routing.ts
 ├── lib/
-│   ├── animations.ts            # Variants reutilizables de Framer Motion
+│   ├── animations.ts            # Variants reutilizables: staggerContainer, staggerContainerFast, fadeUpItem, fadeUpHeader
 │   └── utils.ts
 ├── messages/
 │   ├── es.json                  # Traducciones español
@@ -138,10 +142,6 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 │   ├── robots.txt
 │   ├── companies/               # Logos SVG de clientes
 │   └── projects/                # Imágenes WebP organizadas por proyecto
-│       ├── cms_medmind/
-│       ├── goal_planner/
-│       ├── medmind_landing_page/
-│       └── pyrux_portfolio/
 ├── types/
 │   ├── index.ts                 # Project, Company, Technology, Creator, SocialLinks, Value, ServiceItem
 │   └── pricing.types.ts         # ServicePackage, MaintenanceItem, FAQItem, ProcessStep
@@ -159,48 +159,98 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 
 ## Arquitectura
 
-### Patrón Server/Client
+### Patrón general de páginas
 
-Cada ruta interactiva sigue:
+Cada ruta es un **Server Component** que se encarga de:
+1. `generateMetadata` + structured data (JSON-LD)
+2. Llamar `getTranslations` para pasar strings a `PageHeading`
+3. Renderizar el `<main>` wrapper y componer los componentes de la página directamente
 
-```
-app/[locale]/ruta/page.tsx          → Server Component (metadata only)
-app/[locale]/ruta/RutaPageClient.tsx → Client Component ("use client", lógica + UI)
-```
-
-### Landing Page — Composición de secciones
+No existe el patrón `*PageClient.tsx`. La lógica interactiva vive en Client Components con nombres descriptivos.
 
 ```tsx
-// app/[locale]/page.tsx → solo metadata + <HomePageContent />
-// app/[locale]/HomePageContent.tsx → layout de la landing
-<StarBackground />
+// Ejemplo: app/[locale]/[type]/page.tsx
+export default async function GalleryPage({ params }) {
+  const t = await getTranslations({ locale, namespace: "ProjectsPage" });
+  return (
+    <main className="...">
+      <BackLink />                                    // Client — self-translating
+      <PageHeading title={t("title")} subtitle={t("subtitle")} />  // puro, recibe strings
+      <ItemGallery type="projects" creatorId="pyrux" /> // Client — estado + modal
+    </main>
+  );
+}
+```
+
+### Landing Page
+
+```tsx
+// app/[locale]/page.tsx
 <main>
-  <Hero />
-  <HeroButtons />    // CTA: Contacta con nosotros | Precios
-  <OurProjects />    // Proyectos destacados + empresas/clientes en marquee
-  <OurServices />    // 6 servicios, link → /pricing
-  <OurTeam />        // Creadores con modals
+  <Hero />           // animación de entrada
+  <HeroButtons />    // CTAs: Contacto | Precios
+  <FeaturedWork />   // Carousel proyectos Pyrux + carousel clientes
+  <Services />       // Grid de servicios → /pricing
+  <Team />           // Creadores con modal
   <ContactUs />      // Info de contacto
-  <OurStack />       // Tecnologías expandibles con tabs por categoría
-  <Footer />
+  <TechStack />      // Tecnologías expandibles con tabs
 </main>
 ```
+
+StarBackground y Footer se inyectan desde `app/[locale]/layout.tsx`, no desde cada página.
+
+### Página de Pricing
+
+```tsx
+// app/[locale]/pricing/page.tsx
+<main>
+  <BackLink />         // self-translating
+  <PricingHeader />    // h1 + tagline + descripción (animado, self-translating)
+  <PackageSection />   // estado: tabs categoría + paquetes + CTA + mantenimiento
+  <ProcessSection />   // self-contained
+  <FAQSection />       // self-contained
+</main>
+```
+
+### Página de Creator
+
+```tsx
+// app/[locale]/creator/[id]/page.tsx
+<main>
+  <BackLink />
+  <CreatorHeader creatorId={id} />              // foto + bio + social (Client)
+  <ItemGallery type="projects" creatorId={id} /> // proyectos filtrados por creador
+</main>
+```
+
+### Componentes self-contained
+
+`ProcessSection`, `FAQSection`, `PricingHeader`, `BackLink` y `CreatorHeader` obtienen sus propios datos y traducciones internamente via `useLocale()` + `useTranslations()`. No reciben props de contenido desde el padre — eliminan el prop drilling.
 
 ### Navegación
 
 No hay navbar. La navegación ocurre a través de:
 - `HeroButtons`: landing → `/pricing`, landing → `#contacto`
 - Links "Ver todos" en secciones → `/projects`, `/clients`, `/pricing`
-- Botones "Volver al inicio" en páginas internas → `/`
+- `BackLink` en páginas internas → `/`
 - `ThemeToggle` + `LanguageToggle` absolutos en top-left del locale layout
 
 ### i18n
 
 - `app/page.tsx` detecta `navigator.language` y hace redirect a `/es` o `/en`
-- `vercel.json` redirige `/` → `/es` en Vercel (para SSR/edge)
-- `app/[locale]/layout.tsx` valida el locale con `hasLocale()` y provee mensajes via `LocaleProvider`
+- `vercel.json` redirige `/` → `/es` en Vercel
 - Textos de UI en `messages/es.json` y `messages/en.json`
-- Datos bilingüales (servicios, paquetes, FAQ) en formato `Record<Locale, T[]>` en `data/`
+- Datos bilingüales en formato `Record<Locale, T[]>` en `data/`
+- Server Components usan `getTranslations` (next-intl/server)
+- Client Components usan `useTranslations` + `useLocale()`
+
+### Filtrado de proyectos
+
+Los proyectos tienen `creatorId`. Los proyectos del estudio usan `creatorId: "pyrux"`, los personales usan el ID del creador.
+
+- `/projects` y el carousel de la landing → `getProjectsByCreator("pyrux", locale)`
+- `/creator/[id]` → `getProjectsByCreator(id, locale)`
+- `ItemGallery` recibe `creatorId` opcional y filtra automáticamente
 
 ---
 
@@ -209,12 +259,14 @@ No hay navbar. La navegación ocurre a través de:
 | Ruta                | Tipo   | Descripción                               |
 | ------------------- | ------ | ----------------------------------------- |
 | `/`                 | Client | Redirect automático → `/es` o `/en`       |
-| `/es` · `/en`       | Static | Landing principal con todas las secciones |
-| `/es/projects`      | Static | Grid de todos los proyectos               |
-| `/es/clients`       | Static | Grid de todos los clientes                |
-| `/es/pricing`       | Static | Paquetes y precios (3 categorías)         |
-| `/es/creator/[id]`  | SSG    | Perfil de creador — ids: `gino`, `juan`   |
+| `/es` · `/en`       | SSG    | Landing principal con todas las secciones |
+| `/es/projects`      | SSG    | Grid de proyectos Pyrux (creatorId=pyrux) |
+| `/es/clients`       | SSG    | Grid de todos los clientes                |
+| `/es/pricing`       | SSG    | Paquetes y precios (3 categorías)         |
+| `/es/creator/[id]`  | SSG    | Perfil de creador — ids en `data/creators.ts` |
 | `/_not-found`       | Static | 404                                       |
+
+`/projects` y `/clients` comparten `app/[locale]/[type]/page.tsx`. Next.js genera ambas rutas via `generateStaticParams`.
 
 ---
 
@@ -239,17 +291,19 @@ No hay navbar. La navegación ocurre a través de:
 
 ```typescript
 // types/index.ts
-interface Project { id, title, description, shortDescription, technologies: string[], images: string[], liveUrl?, featured, creators: string[] }
-interface Company { id, name, logo, description, testimonial?, website?, featured }
+interface Project { id, title, description, shortDescription, technologies: string[], images: string[], liveUrl?, featured, date, creators: string[] }
+interface Company { id, name, logo, logoDark?, summary, workDescription, testimonial?, websiteUrl, featured }
 interface Technology { id, name, icon: string, category: TechnologyCategory, featured }
-interface Creator { id, name, role, bio, shortBio, photo, socialLinks: SocialLinks, featuredProjects: string[] }
+interface Creator { id, name, role, bio, shortBio, image, socialLinks: SocialLinks, featuredProjects: string[] }
 interface SocialLinks { linkedin?, github?, email?, whatsapp?, instagram?, website? }
 interface ServiceItem { title, desc, icon: string }
 
 // types/pricing.types.ts
-interface ServicePackage { number, name, price, maintenancePrice, deliveryTime, popular, category, planColor, features: Feature[], maintenanceCards: MaintenanceItem[] }
+interface ServicePackage { number, name, price, maintenancePrice, deliveryTime, popular, category: PlanCategory, planColor: PlanColor, features: Feature[], maintenanceCards: MaintenanceItem[] }
 interface MaintenanceItem { icon, title, description }
 interface FAQItem { question, answer }
+type PlanCategory = "estandar" | "ecommerce" | "personalizado"
+type PlanColor = "growth" | "pro" | "business" | "custom"
 ```
 
 ---
@@ -265,16 +319,45 @@ interface FAQItem { question, answer }
 - `"use client"` solo cuando el componente necesita `useState`, `useEffect`, Framer Motion, o event handlers
 - No librerías fuera del stack definido
 
-### Patrón de Animación (stagger + whileInView)
+### Variants de animación
+
+Usar siempre las variantes de `lib/animations.ts` antes de definir locales:
+
+| Export               | Uso                                           |
+| -------------------- | --------------------------------------------- |
+| `staggerContainer`   | Contenedor con stagger 0.08s                  |
+| `staggerContainerFast` | Contenedor con stagger 0.06s               |
+| `fadeUpItem`         | Card/item estándar (opacity 0→1, y 20→0, 0.4s) |
+| `fadeUpHeader`       | Heading de página (opacity 0→1, y 20→0, 0.5s) |
+
+Variantes locales solo si tienen lógica única (ej: `custom` prop, `scale`, easing específico).
+
+### FeatureCard
+
+Usar `FeatureCard` de `ui/` para cualquier card con estructura icono+título+descripción+hover:
 
 ```tsx
-import { containerVariants, itemVariants } from "@/lib/animations";
+<FeatureCard
+  title="..."
+  description="..."
+  icon={<SomeIcon className="text-coral" />}
+  accentClass="hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+/>
+```
 
-<motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-  {items.map((item) => (
-    <motion.div key={item.id} variants={itemVariants} />
-  ))}
-</motion.div>
+### Logos con tema claro/oscuro
+
+Cuando una empresa tiene `logoDark`, renderizar ambos con las clases `logo-for-light` / `logo-for-dark`:
+
+```tsx
+const logos = company.logoDark
+  ? [
+      { src: company.logo, className: "logo-for-light w-full h-full object-contain" },
+      { src: company.logoDark, className: "logo-for-dark w-full h-full object-contain" },
+    ]
+  : [{ src: company.logo, className: "w-full h-full object-contain" }];
+
+logos.map(({ src, className }) => <Image key={src} src={src} ... className={className} />)
 ```
 
 ### Tema Dark/Light
@@ -291,7 +374,7 @@ import { containerVariants, itemVariants } from "@/lib/animations";
 | --------- | --------------------------------------------- |
 | LinkedIn  | `https://linkedin.com/company/pyrux`          |
 | Email     | `pyrux@pyrux.com.ar`                          |
-| WhatsApp  | `https://wa.me/5491112345678`                 |
+| WhatsApp  | `https://wa.me/5493416941225`                 |
 | Instagram | `https://www.instagram.com/pyrux_labs`        |
 | Base URL  | `https://www.pyrux.com.ar`                    |
 
@@ -312,101 +395,90 @@ import { containerVariants, itemVariants } from "@/lib/animations";
 | Bug | Archivo | Descripción |
 |-----|---------|-------------|
 | Apple touch icon SVG | `app/layout.tsx` | iOS no soporta SVG como icono de pantalla de inicio. Necesita `apple-touch-icon.png` 180×180 |
-| OG image sin `type` | `app/layout.tsx`, `app/[locale]/page.tsx` | Falta `type: "image/png"` en los metadatos de OG |
-| Imágenes en modales sin placeholder | `components/modals/ProjectModal.tsx` | En conexiones lentas aparece espacio en blanco — agregar `placeholder="blur"` o skeleton |
-| `<section>` sin `aria-label` | `components/ui/Section.tsx` | Impacta lectores de pantalla — todas las secciones de la landing |
-| Sin Error Boundaries | Modales y page clients | Un dato roto causa pantalla en blanco |
+| OG image sin `type` | `app/layout.tsx`, páginas | Falta `type: "image/png"` en los metadatos de OG |
+| Imágenes en modales sin placeholder | `components/common/ProjectModal.tsx` | En conexiones lentas aparece espacio en blanco — agregar `placeholder="blur"` o skeleton |
+| `<section>` sin `aria-label` | `components/ui/Section.tsx` | Impacta lectores de pantalla |
+| Sin Error Boundaries | Modales y componentes client | Un dato roto causa pantalla en blanco |
 | Creator OG image genérica | `app/[locale]/creator/[id]/page.tsx` | Al compartir un perfil, muestra el logo de Pyrux en vez de la foto del creador |
+| Carousel mobile de planes | `components/pricing/PackageCarousel.tsx` | Revisar comportamiento en iOS Safari |
+| OurServices en 350px | `components/home/Services.tsx` | Layout roto en viewports muy angostos |
 
 ---
 
-## TODOLIST — Completa y Ordenada por Prioridad
+## TODOLIST — Ordenada por Fase de Desarrollo
 
-### 🔴 Crítico — Pre-Launch
+### Fase 1 — Bugs y fixes (hacer primero)
 
-- [ ] **Cross-browser testing**: Chrome, Firefox, Safari, Edge (desktop + mobile)
-- [ ] **Mobile testing**: iOS (Safari) y Android (Chrome) — especialmente 350px viewports
-- [ ] **Limpiar console.logs, comentarios de debug y código muerto**
-- [ ] **Fix: bug carousel de planes en mobile** — revisar `useDraggableMarquee`
-- [ ] **Fix: sección OurServices en pantallas 350px** — texto o layout roto
+- [ ] **Fix: Project modal — posición de "Ver en vivo"**: moverlo junto a las tecnologías y la fecha, hay demasiado espacio vacío
+- [ ] **Fix: bug carousel de planes en mobile** — revisar `PackageCarousel.tsx`, comportamiento roto en iOS Safari
+- [ ] **Fix: sección Services en pantallas 350px** — texto o layout roto en viewports muy angostos
 - [ ] **Fix: Apple touch icon** — agregar `public/apple-touch-icon.png` (180×180 PNG) y actualizar `icons.apple` en `layout.tsx`
 - [ ] **Fix: OG image** — agregar `type: "image/png"` en metadatos de todas las rutas
+- [ ] **Fix: OG image creator** — mostrar foto del creador al compartir su perfil, actualmente muestra logo genérico — `app/[locale]/creator/[id]/page.tsx`
 
-### 🟠 Alta Prioridad — Calidad y Conversión
+### Fase 2 — Contenido y calidad visual
 
-- [ ] **Hover/touch en mobile**: cards de Qué Hacemos, Mantenimiento y Proceso — replicar el efecto hover de desktop en touch
-- [ ] **Modal swipe a página**: en mobile, tocar el título "Nuestros clientes" y arrastrarlo → navega a `/clients` (y análogamente para proyectos)
 - [ ] **Imágenes de mayor calidad**: proyectos y fotos de los developers — subir a Cloudinary y usar como CDN
-- [ ] **Preview de imagen en modal**: click en imagen del carousel → abre lightbox con resolución completa y botones prev/next
 - [ ] **Creator page — foto de mayor resolución**: actualizar `public/creators/`
-- [ ] **Creator page — project cards**: mostrar las cards de proyectos del creador además del modal
-- [ ] **Project modal — posición de "Ver en vivo"**: moverlo junto a las tecnologías y la fecha (menos espacio vacío)
-- [ ] **OG image creator**: mostrar foto del creador al compartir su perfil — `app/[locale]/creator/[id]/page.tsx`
-
-### 🟡 Importante — UX y Contenido
-
-- [ ] **Error Boundaries**: wrappear modales y page-level clients con `ErrorBoundary`
-- [ ] **Imágenes en ProjectModal**: agregar `placeholder="blur"` o skeleton para conexiones lentas
 - [ ] **Datos bilingüales de proyectos**: verificar que todos los proyectos en `data/projects.ts` tengan `title` y `description` en es y en
-- [ ] **PageSpeed Insights**: correr audit → objetivo score > 90 en mobile. Optimizar lo que se pueda
-- [ ] **Pricing — lenguaje más accesible**: verificar que los textos de los planes sean comprensibles para no técnicos (ya actualizado parcialmente en `data/packages.ts`)
+- [ ] **Pricing — lenguaje más accesible**: verificar que los textos de los planes sean comprensibles para no técnicos
 
-### 🟢 Mejoras — Para Lanzamiento Comercial Multinacional
+### Fase 3 — UX y features de interacción
 
-#### SEO & Discoverability
-- [ ] **sitemap.xml completo**: incluir todas las rutas localizadas (`/es`, `/en`, `/es/pricing`, etc.) con `hreflang` correcto
-- [ ] **hreflang**: verificar implementación en `generateMetadata` — `es` y `en` con `x-default: /es`
-- [ ] **Structured data**: agregar schemas `FAQPage`, `Service`, `Person`, `Review` a las páginas correspondientes
-- [ ] **FAQ Schema**: agregar `FAQPage` JSON-LD en la página de pricing
-- [ ] **Google Search Console**: conectar, verificar, monitorear errores de indexación
-
-#### Tracking & Analytics
-- [ ] **GA4 custom events**: trackear clicks en CTAs, WhatsApp, email, pricing page views, plan seleccionado
-- [ ] **Hotjar / Microsoft Clarity**: heatmaps para entender el comportamiento del usuario en la landing
-- [ ] **Conversion goals**: configurar objetivos en GA4 (inicio de contacto, click en pricing)
-
-#### Trust & Social Proof (crítico para multinacional)
-- [ ] **Stats bar / números de impacto**: sección con "X proyectos entregados · Y% satisfacción · Z clientes" (animados al hacer scroll)
-- [ ] **Testimonials destacados**: carousel o grid de quotes de clientes reales con foto, nombre y empresa
-- [ ] **Case studies**: páginas o modals con resultado cuantificado ("aumentamos las ventas un X%", "redujimos el tiempo de carga en Y segundos")
-- [ ] **Partners / tech badges**: logos de Vercel, Next.js, Tailwind, etc. como señal de credibilidad técnica
-- [ ] **"As featured in" / prensa**: si hay menciones externas, mostrarlas (blog posts, entrevistas, etc.)
-
-#### Conversión
+- [ ] **Error Boundaries**: wrappear modales y componentes client con `ErrorBoundary`
+- [ ] **Imágenes en ProjectModal**: agregar `placeholder="blur"` o skeleton para conexiones lentas
+- [ ] **Preview de imagen en modal**: click en imagen del carousel → lightbox con resolución completa y botones prev/next
+- [ ] **Modal swipe a página**: en mobile, swipe del título "Nuestros clientes" → navega a `/clients` (y análogo para proyectos)
+- [ ] **Hover/touch en mobile**: cards de Services, MaintenanceGrid y ProcessSection — replicar efecto hover en touch
 - [ ] **Floating CTA / WhatsApp button**: botón siempre visible en mobile para contacto directo
-- [ ] **Comparación Pyrux vs Agencia vs Freelancer**: tabla o sección visual con diferenciadores concretos
-- [ ] **Multi-step contact form**: en vez de solo links, un form corto (nombre + email + qué necesitan) para capturar leads
-- [ ] **Newsletter / lead capture**: "Suscribite para recibir tips de diseño web" — agregar campo simple
-
-#### UX & Diseño Premium
-- [ ] **Navbar con scroll-aware**: aparece al scrollear hacia arriba, se oculta al bajar — con links a las secciones
+- [ ] **Proceso en landing**: versión resumida (3 pasos) visible en la landing sin ir a /pricing
+- [ ] **Navbar con scroll-aware**: aparece al scrollear hacia arriba, se oculta al bajar — con links a secciones
 - [ ] **Scroll-to-top button**: aparece después de 300px de scroll
 - [ ] **Reduced motion**: respetar `prefers-reduced-motion` en todas las animaciones de Framer Motion
-- [ ] **Proceso en landing**: versión resumida (3 pasos) de "Nuestro proceso" visible en la landing sin tener que ir a /pricing
-- [ ] **Video demo / reel**: corto (15-30s) mostrando proyectos en uso real — hero o sección dedicada
-- [ ] **Custom cursor**: efecto de cursor premium (opcional, refuerza identidad tech)
 
-#### Accesibilidad (WCAG 2.1 AA)
+### Fase 4 — Conversión y contenido comercial
+
+- [ ] **Stats bar / números de impacto**: sección con "X proyectos entregados · Y% satisfacción · Z clientes"
+- [ ] **Testimonials destacados**: carousel o grid de quotes de clientes reales con foto, nombre y empresa
+- [ ] **Case studies**: modals con resultado cuantificado ("aumentamos las ventas un X%")
+- [ ] **Comparación Pyrux vs Agencia vs Freelancer**: tabla con diferenciadores concretos
+- [ ] **Multi-step contact form**: nombre + email + qué necesitan — captura de leads
+- [ ] **Partners / tech badges**: logos de Vercel, Next.js, Tailwind como señal de credibilidad
+- [ ] **Newsletter / lead capture**: campo simple de suscripción
+- [ ] **Página de proyectos**: agregar filtros por tipo/tecnología
+- [ ] **Video demo / reel**: corto (15-30s) mostrando proyectos en uso real
+
+### Fase 5 — SEO, Analytics e Infraestructura
+
+- [ ] **GA4 custom events**: trackear clicks en CTAs, WhatsApp, email, pricing page views, plan seleccionado
+- [ ] **Hotjar / Microsoft Clarity**: heatmaps para entender el comportamiento del usuario
+- [ ] **Conversion goals**: configurar objetivos en GA4
+- [ ] **sitemap.xml completo**: incluir todas las rutas localizadas con `hreflang` correcto
+- [ ] **hreflang**: verificar implementación en `generateMetadata` de todas las rutas
+- [ ] **Structured data**: agregar schemas `FAQPage`, `Service`, `Person`, `Review`
+- [ ] **Google Search Console**: conectar, verificar, monitorear errores de indexación
+- [ ] **Privacy Policy y Terms**: páginas legales (`/es/privacidad`, `/es/terminos`) — requerido para GA4/GDPR
+- [ ] **Cookie consent**: banner minimalista para GA4
+- [ ] **Cloudinary**: migrar imágenes de proyectos y creadores a CDN (si no se hizo en Fase 2)
+- [ ] **Uptime monitoring**: UptimeRobot o similar
+- [ ] **Error monitoring**: Sentry o similar para errores JS en producción
+- [ ] **Lighthouse CI**: agregar a GitHub Actions para que el build falle si el score baja del umbral
+
+### Fase 6 — Accesibilidad (WCAG 2.1 AA)
+
 - [ ] **`aria-label` en todas las secciones**: `components/ui/Section.tsx` — impacta toda la landing
-- [ ] **`alt` descriptivos en todas las imágenes**: revisar logos de empresas, fotos de creadores, imágenes de proyectos
-- [ ] **Focus indicators visibles**: asegurarse de que los elementos interactivos tengan `:focus-visible` visible
+- [ ] **`alt` descriptivos en todas las imágenes**: logos de empresas, fotos de creadores, imágenes de proyectos
+- [ ] **Focus indicators visibles**: `:focus-visible` en todos los elementos interactivos
 - [ ] **Keyboard navigation**: toda la UI navegable con Tab/Enter/Escape
 - [ ] **Color contrast**: verificar ratios en modo dark y light (mínimo 4.5:1)
 - [ ] **Skip navigation link**: link "Saltar al contenido" para lectores de pantalla
 
-#### Infraestructura y Confiabilidad
-- [ ] **Cloudinary**: subir todas las imágenes de proyectos y creadores, usar URLs de Cloudinary en `data/`
-- [ ] **Uptime monitoring**: configurar UptimeRobot o similar para alertas si el sitio cae
-- [ ] **Error monitoring**: Sentry o similar para trackear errores JS en producción
-- [ ] **Lighthouse CI**: agregar a GitHub Actions para que el build falle si el score baja de umbral
-- [ ] **Privacy Policy y Terms**: páginas legales mínimas (`/es/privacidad`, `/es/terminos`) — requerido para GDPR/LGPD
-- [ ] **Cookie consent**: banner minimalista para cumplir con normativas (si usan GA4)
+### Fase 7 — Testing y limpieza final (hacer último)
 
-#### Contenido
-- [ ] **Blog / Insights**: sección con 2-3 artículos técnicos — refuerza SEO y credibilidad
-- [ ] **"Por qué nosotros" dedicada**: sección con diferenciadores concretos y prueba (no solo texto)
-- [ ] **Página de proyectos**: agregar filtros por tipo/tecnología — mejorar discovery
-- [ ] **Vídeos de casos de uso**: demostrar proyectos en uso real (screen recording corto)
+- [ ] **PageSpeed Insights**: correr audit → objetivo score > 90 en mobile. Optimizar lo que se pueda
+- [ ] **Cross-browser testing**: Chrome, Firefox, Safari, Edge (desktop + mobile)
+- [ ] **Mobile testing**: iOS (Safari) y Android (Chrome) — especialmente 350px viewports
+- [ ] **Limpiar console.logs, comentarios de debug y código muerto**
 
 ---
 
@@ -422,6 +494,9 @@ import { containerVariants, itemVariants } from "@/lib/animations";
 - ❌ Hardcodear strings de UI — usar `messages/` + `useTranslations`
 - ❌ Componentes sin tipado de props
 - ❌ Diseño sin considerar mobile first
+- ❌ Patrón `*PageClient.tsx` — las pages llaman componentes directamente
+- ❌ Componentes nombrados `*Content` que solo mueven la lógica sin dividirla
+- ❌ Variants de Framer Motion duplicadas — usar `lib/animations.ts`
 - ❌ Asumir la estructura de un componente sin leerlo primero
 
 ---
@@ -435,6 +510,9 @@ import { containerVariants, itemVariants } from "@/lib/animations";
 | Framer Motion | API declarativa, stagger animations nativas, sin `useEffect`. |
 | Dark theme default | Portfolio tech: highlights de color más impactantes. Sistema anti-FOUC para respetar preferencia guardada. |
 | App Router | Futuro de Next.js. Server Components por defecto. Layouts compartidos. |
-| Static export | Vercel gratis. GitHub Pages posible. Sin cold starts. |
+| Static export | Vercel gratis. Sin cold starts. |
 | Manrope | Tipografía geométrica, moderna, excelente legibilidad en pantalla. |
 | next-intl | i18n server-first, compatible con static export, tipado de mensajes. |
+| `[type]/page.tsx` | `/projects` y `/clients` comparten exactamente la misma estructura — un solo archivo evita duplicación. |
+| `getProjectsByCreator("pyrux")` | Los proyectos personales de los creadores no aparecen en la galería ni en el carousel de la empresa. |
+| Self-contained components | `BackLink`, `PricingHeader`, `ProcessSection`, `FAQSection` obtienen sus propios datos/traducciones — eliminan prop drilling innecesario. |

@@ -15,7 +15,7 @@ import CompanyModal from "@/components/common/CompanyModal";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import { Link } from "@/i18n/navigation";
-import { projects } from "@/data/projects";
+import { getProjectsByCreator } from "@/data/projects";
 import { companies } from "@/data/companies";
 import type { Project, Company } from "@/types";
 
@@ -27,7 +27,7 @@ export default function FeaturedWork() {
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 	const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
-	const localeProjects = projects[locale];
+	const localeProjects = getProjectsByCreator("pyrux", locale);
 	const localeCompanies = companies[locale];
 
 	const projectsRef = useDraggableMarquee({ speed: 60, direction: "left" });

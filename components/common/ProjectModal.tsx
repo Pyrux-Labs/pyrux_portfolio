@@ -11,7 +11,8 @@ import { useLocale } from "@/i18n/locale-provider";
 import Modal from "@/components/ui/Modal";
 import Badge from "@/components/ui/Badge";
 import { getTechnologyById } from "@/data/technologies";
-import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import ExternalLinkButton from "@/components/ui/ExternalLinkButton";
 import type { Project } from "@/types";
 import Image from "next/image";
 
@@ -152,18 +153,11 @@ export default function ProjectModal({
 			</p>
 
 			{/* Links */}
-			<div className="flex justify-end">
-				{project.liveUrl && (
-					<a
-						href={project.liveUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-coral bg-coral-soft-bg text-coral text-[0.9rem] font-medium no-underline transition-all duration-200 hover:shadow-[0_8px_24px_var(--shadow-coral-soft)] hover:-translate-y-0.5">
-						<ExternalLink size={16} />
-						{t("viewLive")}
-					</a>
-				)}
-			</div>
+			{project.liveUrl && (
+				<div className="flex justify-end">
+					<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
+				</div>
+			)}
 		</Modal>
 	);
 }

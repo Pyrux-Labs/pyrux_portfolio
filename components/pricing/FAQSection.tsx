@@ -7,20 +7,7 @@ import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
 import FAQAccordion from "./FAQAccordion";
 import { faqItems } from "@/data/faq";
-
-const gridVariants = {
-	hidden: {},
-	visible: { transition: { staggerChildren: 0.06 } },
-};
-
-const cardVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.4, ease: "easeOut" as const },
-	},
-};
+import { staggerContainerFast, fadeUpItem } from "@/lib/animations";
 
 export default function FAQSection() {
 	const t = useTranslations("FAQSection");
@@ -35,11 +22,11 @@ export default function FAQSection() {
 				ref={ref}
 				key={locale}
 				className="flex flex-col gap-3"
-				variants={gridVariants}
+				variants={staggerContainerFast}
 				initial="hidden"
 				animate={inView ? "visible" : "hidden"}>
 				{items.map((item, index) => (
-					<motion.div key={item.question} variants={cardVariants} custom={index}>
+					<motion.div key={item.question} variants={fadeUpItem} custom={index}>
 						<FAQAccordion item={item} />
 					</motion.div>
 				))}

@@ -4,15 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { X, ArrowRight } from "lucide-react";
 import type { PlanColor, ServicePackage } from "@/types/pricing.types";
-
-const cardVariants = {
-	hidden: { opacity: 0, y: 20 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { duration: 0.4, ease: "easeOut" as const },
-	},
-};
+import { fadeUpItem } from "@/lib/animations";
 
 const colorTokens: Record<
 	PlanColor,
@@ -64,7 +56,7 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 	const t = useTranslations("PackageCard");
 	return (
 		<motion.div
-			variants={cardVariants}
+			variants={fadeUpItem}
 			className="relative flex flex-col p-7 rounded-2xl border border-(--pkg-custom) bg-card-strong backdrop-blur-sm animate-legendary-pulse w-full max-w-md min-h-160"
 			style={{
 				background:
@@ -125,7 +117,7 @@ export default function PackageCard({
 
 	return (
 		<motion.div
-			variants={cardVariants}
+			variants={fadeUpItem}
 			onClick={onClick}
 			className={`relative flex flex-col p-5 rounded-xl border backdrop-blur-sm cursor-pointer transition-[border-color,box-shadow] duration-200 min-h-160 h-full
 				${isSelected ? `${c.border} ${c.shadow}` : `border-border ${c.borderHover}`}

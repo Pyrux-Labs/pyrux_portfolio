@@ -18,59 +18,51 @@ interface CompanyCardProps {
 }
 
 function CompanyLogo({ company, size, priority = false }: { company: Company; size: number; priority?: boolean }) {
+	const logos = company.logoDark
+		? [
+				{ src: company.logo, className: "logo-for-light w-full h-full object-contain" },
+				{ src: company.logoDark, className: "logo-for-dark w-full h-full object-contain" },
+			]
+		: [{ src: company.logo, className: "w-full h-full object-contain" }];
+
+	const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+		e.currentTarget.style.display = "none";
+		e.currentTarget.nextElementSibling?.classList.remove("hidden");
+	};
+
 	return (
 		<div
 			className="rounded-full border-2 border-border bg-elevated flex items-center justify-center shrink-0 overflow-hidden"
 			style={{ width: size, height: size }}>
-			{company.logoDark ? (
-				<>
-					<Image
-						src={company.logo}
-						alt={`${company.name} logo`}
-						width={size}
-						height={size}
-						className="logo-for-light w-full h-full object-contain"
-						sizes={`${size}px`}
-						priority={priority}
-					/>
-					<Image
-						src={company.logoDark}
-						alt={`${company.name} logo`}
-						width={size}
-						height={size}
-						className="logo-for-dark w-full h-full object-contain"
-						sizes={`${size}px`}
-						priority={priority}
-					/>
-				</>
-			) : (
-				<>
-					<Image
-						src={company.logo}
-						alt={`${company.name} logo`}
-						width={size}
-						height={size}
-						className="w-full h-full object-contain"
-						sizes={`${size}px`}
-						priority={priority}
-						onError={(e) => {
-							e.currentTarget.style.display = "none";
-							e.currentTarget.nextElementSibling?.classList.remove("hidden");
-						}}
-					/>
-					<Building2 size={size * 0.4} className="text-coral hidden" />
-				</>
-			)}
+			{logos.map(({ src, className }) => (
+				<Image
+					key={src}
+					src={src}
+					alt={`${company.name} logo`}
+					width={size}
+					height={size}
+					className={className}
+					sizes={`${size}px`}
+					priority={priority}
+					onError={!company.logoDark ? handleError : undefined}
+				/>
+			))}
+			{!company.logoDark && <Building2 size={size * 0.4} className="text-coral hidden" />}
 		</div>
 	);
 }
 
-export default function CompanyCard({
-	company,
-	onClick,
-	fullWidth = false,
-	priority = false,
-}: CompanyCardProps) {
+function Testimonial({ text, wrapClass, textClass }: { text: string; wrapClass: string; textClass: string }) {
+	return (
+		<div className={`flex gap-2 border-t border-border ${wrapClass}`}>
+			<Quote size={14} className="text-coral shrink-0 rotate-180 mt-0.5" />
+			<p className={`text-[0.8rem] ${textClass}`}>{text}</p>
+			<Quote size={14} className="text-coral shrink-0 mt-0.5" />
+		</div>
+	);
+}
+
+export default function CompanyCard({ company, onClick, fullWidth = false, priority = false }: CompanyCardProps) {
 	const t = useTranslations("CompanyCard");
 
 	const motionProps = {
@@ -95,73 +87,43 @@ export default function CompanyCard({
 		"rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary cursor-pointer transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]";
 
 	if (fullWidth) {
-		/* ── /clients page — layout vertical con todo el contenido ── */
 		return (
-			<motion.div
-				className={`${baseClass} flex flex-col gap-3 p-5 w-full`}
-				{...motionProps}>
+			<motion.div className={`${baseClass} flex flex-col gap-3 p-5 w-full`} {...motionProps}>
 				<div className="flex items-center gap-3">
 					<CompanyLogo company={company} size={44} priority={priority} />
-					<h3 className="font-display text-[1.05rem] font-semibold text-primary">
-						{company.name}
-					</h3>
+					<h3 className="font-display text-[1.05rem] font-semibold text-primary">{company.name}</h3>
 				</div>
-				<p className="text-[0.9rem] text-secondary leading-relaxed line-clamp-2">
-					{company.summary}
-				</p>
-				<p className="text-[0.85rem] text-muted leading-relaxed line-clamp-2">
-					{company.workDescription}
-				</p>
+				<p className="text-[0.9rem] text-secondary leading-relaxed line-clamp-2">{company.summary}</p>
+				<p className="text-[0.85rem] text-muted leading-relaxed line-clamp-2">{company.workDescription}</p>
 				{company.testimonial && (
-					<div className="flex items-start gap-2 pt-2 border-t border-border">
-						<Quote
-							size={14}
-							className="text-coral shrink-0 mt-0.5 rotate-180"
-						/>
-						<p className="text-[0.8rem] text-muted italic line-clamp-1">
-							{company.testimonial}
-						</p>
-						<Quote size={14} className="text-coral shrink-0 mt-0.5" />
-					</div>
+					<Testimonial text={company.testimonial} wrapClass="items-start pt-2" textClass="text-muted italic line-clamp-1" />
 				)}
 			</motion.div>
 		);
 	}
 
-	/* ── Carousel — h-56, nombre+desc a la izquierda, logo a la derecha ── */
 	return (
 		<motion.div
 			className={`${baseClass} flex flex-col gap-2 p-4 h-56 overflow-hidden shrink-0 min-w-72 max-w-80 max-[480px]:min-w-64 max-[480px]:max-w-72 max-[480px]:p-3`}
 			{...motionProps}>
-			{/* Sección superior: texto izquierda / logo derecha */}
 			<div className="flex items-start gap-3 flex-1 mt-2">
-				{/* Izquierda: nombre + descripción */}
-				<div className="flex flex-col gap-1.5 min-w-0 flex-1 ">
+				<div className="flex flex-col gap-1.5 min-w-0 flex-1">
 					<h3 className="font-display text-[0.95rem] font-semibold text-primary leading-tight line-clamp-1">
 						{company.name}
 					</h3>
-					<p className="text-[0.8rem] text-secondary leading-relaxed line-clamp-2">
-						{company.summary}
-					</p>
-					<p className="text-[0.7rem] text-muted italic leading-normal line-clamp-1">
-						{company.workDescription}
-					</p>
+					<p className="text-[0.8rem] text-secondary leading-relaxed line-clamp-2">{company.summary}</p>
+					<p className="text-[0.7rem] text-muted italic leading-normal line-clamp-1">{company.workDescription}</p>
 				</div>
-				{/* Derecha: logo centrado */}
 				<div className="flex items-center justify-center shrink-0">
 					<CompanyLogo company={company} size={52} priority={priority} />
 				</div>
 			</div>
-
-			{/* Comentario */}
 			{company.testimonial && (
-				<div className="flex items-center gap-2 pt-4 border-t border-border mb-2">
-					<Quote size={14} className="text-coral shrink-0 rotate-180" />
-					<p className="text-[0.8rem] text-primary font-medium leading-relaxed line-clamp-2">
-						{company.testimonial}
-					</p>
-					<Quote size={14} className="text-coral shrink-0" />
-				</div>
+				<Testimonial
+					text={company.testimonial}
+					wrapClass="items-center pt-4 mb-2"
+					textClass="text-primary font-medium leading-relaxed line-clamp-2"
+				/>
 			)}
 		</motion.div>
 	);

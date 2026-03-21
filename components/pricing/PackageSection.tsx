@@ -6,15 +6,12 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import { MessageCircle } from "lucide-react";
 import Section from "@/components/ui/Section";
-import BackLink from "@/components/ui/BackLink";
 import PackageCard from "@/components/pricing/PackageCard";
 import PackageCarousel from "@/components/pricing/PackageCarousel";
 import MaintenanceGrid from "@/components/pricing/MaintenanceGrid";
-import ProcessSection from "@/components/pricing/ProcessSection";
-import FAQSection from "@/components/pricing/FAQSection";
 import { packages } from "@/data/packages";
 import type { PlanCategory, PlanColor } from "@/types/pricing.types";
-import { fadeUpHeader, staggerContainerFast } from "@/lib/animations";
+import { staggerContainerFast } from "@/lib/animations";
 
 const ctaColorTokens: Record<PlanColor, { text: string; border: string; bg: string }> = {
 	growth: {
@@ -39,7 +36,7 @@ const ctaColorTokens: Record<PlanColor, { text: string; border: string; bg: stri
 	},
 };
 
-export default function PricingContent() {
+export default function PackageSection() {
 	const t = useTranslations("PricingPage");
 	const tMaint = useTranslations("MaintenanceGrid");
 	const { locale } = useLocale();
@@ -63,24 +60,9 @@ export default function PricingContent() {
 	}
 
 	return (
-		<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
-			{/* Header */}
-			<motion.div className="mb-14" variants={fadeUpHeader} initial="hidden" animate="visible">
-				<BackLink label={t("backToHome")} />
-				<h1 className="font-display text-3xl font-bold text-primary mb-4">
-					{t("heading")} <br />
-					<span className="text-coral">{t("headingAccent")}</span>
-				</h1>
-				<p className="text-[0.8rem] text-muted font-mono tracking-wider uppercase mb-3">{t("tagline")}</p>
-				<p className="text-[1rem] text-secondary max-w-140 leading-relaxed mb-6">{t("description")}</p>
-			</motion.div>
-
+		<>
 			{/* Category toggle */}
-			<motion.div
-				className="flex gap-1 p-1 rounded-xl border border-border bg-card w-fit mb-8 self-center"
-				variants={fadeUpHeader}
-				initial="hidden"
-				animate="visible">
+			<div className="flex gap-1 p-1 rounded-xl border border-border bg-card w-fit mb-8 self-center">
 				{TABS.map((tab) => (
 					<button
 						key={tab.id}
@@ -90,7 +72,7 @@ export default function PricingContent() {
 						{tab.label}
 					</button>
 				))}
-			</motion.div>
+			</div>
 
 			{/* Packages */}
 			<Section id="paquetes" className="mb-6" title={t("packagesTitle")}>
@@ -169,9 +151,6 @@ export default function PricingContent() {
 					/>
 				</Section>
 			)}
-
-			<ProcessSection />
-			<FAQSection />
-		</main>
+		</>
 	);
 }

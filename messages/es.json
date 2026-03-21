@@ -134,6 +134,9 @@
     "message": "Lo sentimos, la página que buscás no existe o fue movida.",
     "backToHome": "Volver al inicio"
   },
+  "Navigation": {
+    "backToHome": "Volver al inicio"
+  },
   "LanguageToggle": {
     "switchToEnglish": "Switch to English",
     "switchToSpanish": "Cambiar a español"

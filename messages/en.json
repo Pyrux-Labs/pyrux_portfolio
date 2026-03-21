@@ -134,6 +134,9 @@
     "message": "Sorry, the page you're looking for doesn't exist or has been moved.",
     "backToHome": "Back to home"
   },
+  "Navigation": {
+    "backToHome": "Back to home"
+  },
   "LanguageToggle": {
     "switchToEnglish": "Switch to English",
     "switchToSpanish": "Cambiar a español"
