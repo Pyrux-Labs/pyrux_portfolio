@@ -15,7 +15,7 @@ import { getCreatorById } from "@/data/creators";
 import { getProjectsByCreator } from "@/data/projects";
 import { getTechnologyById } from "@/data/technologies";
 import Badge from "@/components/ui/Badge";
-import ProjectModal from "@/components/modals/ProjectModal";
+import ProjectModal from "@/components/common/ProjectModal";
 import StarBackground from "@/components/ui/StarBackground";
 import Footer from "@/components/layout/Footer";
 import type { Project } from "@/types";

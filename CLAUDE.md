@@ -73,40 +73,39 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 │               ├── page.tsx     # SSG: generateStaticParams → ["gino", "juan"]
 │               └── CreatorPageClient.tsx
 ├── components/
-│   ├── cards/
-│   │   ├── CompanyCard.tsx
-│   │   ├── MaintenanceCard.tsx
-│   │   ├── MaintenanceGrid.tsx
-│   │   ├── PackageCard.tsx
-│   │   └── ProjectCard.tsx      # Max 3 techs + "+N", -webkit-line-clamp: 3
-│   ├── layout/
-│   │   ├── Footer.tsx           # LinkedIn, email, WhatsApp, Instagram
-│   │   ├── LanguageToggle.tsx   # Cambia locale (es/en)
-│   │   └── ThemeToggle.tsx      # Dark/light
-│   ├── modals/
-│   │   ├── CompanyModal.tsx
-│   │   ├── ProjectModal.tsx     # Sin GitHub link, ImageCarousel, "Ver en vivo" a la derecha
-│   │   └── CreatorModal.tsx     # Foto circular, copy email → toast
-│   ├── sections/
-│   │   ├── ContactUs.tsx
-│   │   ├── FAQAccordion.tsx
-│   │   ├── FAQSection.tsx
+│   ├── layout/                  # Inyectados globalmente en todos los layouts
+│   │   ├── Footer.tsx
+│   │   ├── LanguageToggle.tsx
+│   │   └── ThemeToggle.tsx
+│   ├── ui/                      # Primitivos sin afiliación de página
+│   │   ├── Badge.tsx
+│   │   ├── ContactIcon.tsx
+│   │   ├── MaintenanceIcon.tsx
+│   │   ├── Modal.tsx            # Base modal reutilizable
+│   │   ├── Section.tsx
+│   │   ├── ServiceIcon.tsx
+│   │   ├── StarBackground.tsx
+│   │   └── TechIcon.tsx
+│   ├── common/                  # Usados en 2+ páginas distintas
+│   │   ├── CompanyCard.tsx      # clients + home (OurProjects)
+│   │   ├── CompanyModal.tsx     # clients + home (OurProjects)
+│   │   ├── ProjectCard.tsx      # projects + creator + home (OurProjects)
+│   │   └── ProjectModal.tsx     # projects + creator + home (OurProjects)
+│   ├── home/                    # Exclusivos de la landing page
 │   │   ├── Hero.tsx
-│   │   ├── HeroButtons.tsx      # "Contacta" + "Precios" → /pricing
-│   │   ├── OurProjects.tsx      # Proyectos destacados + empresas/clientes
-│   │   ├── OurServices.tsx      # 6 servicios, link → /pricing
-│   │   ├── OurStack.tsx         # Tabs ocultos cuando colapsado
+│   │   ├── HeroButtons.tsx
+│   │   ├── OurProjects.tsx
+│   │   ├── OurServices.tsx
 │   │   ├── OurTeam.tsx
-│   │   └── ProcessSection.tsx
-│   └── ui/
-│       ├── Badge.tsx
-│       ├── ContactIcon.tsx
-│       ├── MaintenanceIcon.tsx
-│       ├── Modal.tsx
-│       ├── Section.tsx          # viewAllLabel default: "Ver todos"
-│       ├── ServiceIcon.tsx
-│       ├── StarBackground.tsx
-│       └── TechIcon.tsx
+│   │   ├── OurStack.tsx
+│   │   └── ContactUs.tsx
+│   └── pricing/                 # Exclusivos de /pricing
+│       ├── FAQAccordion.tsx
+│       ├── FAQSection.tsx
+│       ├── MaintenanceCard.tsx
+│       ├── MaintenanceGrid.tsx
+│       ├── PackageCard.tsx
+│       └── ProcessSection.tsx
 ├── data/
 │   ├── companies.ts             # Clientes/empresas
 │   ├── contacts.ts              # Info de contacto
@@ -172,7 +171,8 @@ app/[locale]/ruta/RutaPageClient.tsx → Client Component ("use client", lógica
 ### Landing Page — Composición de secciones
 
 ```tsx
-// app/[locale]/page.tsx
+// app/[locale]/page.tsx → solo metadata + <HomePageContent />
+// app/[locale]/HomePageContent.tsx → layout de la landing
 <StarBackground />
 <main>
   <Hero />
