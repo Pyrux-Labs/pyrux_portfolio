@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
 import Section from "@/components/ui/Section";
 import FAQAccordion from "./FAQAccordion";
-import type { FAQItem } from "@/types/pricing.types";
+import { faqItems } from "@/data/faq";
 
 const gridVariants = {
 	hidden: {},
@@ -22,17 +22,15 @@ const cardVariants = {
 	},
 };
 
-interface FAQSectionProps {
-	items: FAQItem[];
-}
-
-export default function FAQSection({ items }: FAQSectionProps) {
+export default function FAQSection() {
 	const t = useTranslations("FAQSection");
 	const { locale } = useLocale();
+	const items = faqItems[locale];
 	const ref = useRef<HTMLDivElement>(null);
 	const inView = useInView(ref, { once: true, amount: 0 });
+
 	return (
-		<Section className="mb-14" title={t("sectionTitle")}>
+		<Section title={t("sectionTitle")}>
 			<motion.div
 				ref={ref}
 				key={locale}
@@ -41,10 +39,7 @@ export default function FAQSection({ items }: FAQSectionProps) {
 				initial="hidden"
 				animate={inView ? "visible" : "hidden"}>
 				{items.map((item, index) => (
-					<motion.div
-						key={item.question}
-						variants={cardVariants}
-						custom={index}>
+					<motion.div key={item.question} variants={cardVariants} custom={index}>
 						<FAQAccordion item={item} />
 					</motion.div>
 				))}

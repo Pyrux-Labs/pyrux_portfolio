@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════
 
 import type { Metadata } from "next";
-import ClientsContent from "@/components/clients/ClientsContent";
+import CompanyBrowser from "@/components/common/CompanyBrowser";
 
 interface ClientsPageProps {
 	params: Promise<{ locale: string }>;
@@ -66,7 +66,7 @@ export default async function ClientsPage({ params }: ClientsPageProps) {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
-			<ClientsContent />
+			<CompanyBrowser />
 		</>
 	);
 }

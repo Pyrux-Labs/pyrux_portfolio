@@ -4,7 +4,8 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
-import { ArrowLeft, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+import BackLink from "@/components/ui/BackLink";
 import { toast } from "sonner";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getCreatorById } from "@/data/creators";
@@ -55,12 +56,7 @@ export default function CreatorContent({ creatorId }: CreatorContentProps) {
 		<>
 			<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 				<motion.div className="mb-8" variants={fadeUpHeader} initial="hidden" animate="visible">
-					<Link
-						href="/"
-						className="inline-flex items-center gap-2 text-[0.9rem] text-coral no-underline mb-4 hover:text-cyan">
-						<ArrowLeft size={16} />
-						{t("backToHome")}
-					</Link>
+					<BackLink label={t("backToHome")} />
 
 					<div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 sm:items-start mb-6">
 						<div className="flex-1 text-center sm:text-left">

@@ -6,11 +6,17 @@ import PackageCard from "@/components/pricing/PackageCard";
 import { staggerContainerFast } from "@/lib/animations";
 import type { ServicePackage, PlanColor } from "@/types/pricing.types";
 
+const ctaColorTokens: Record<PlanColor, { border: string; bg: string }> = {
+	growth: { border: "border-[var(--pkg-growth)]", bg: "bg-[var(--pkg-growth-soft)]" },
+	pro: { border: "border-coral", bg: "bg-[var(--color-coral-soft-bg)]" },
+	business: { border: "border-[var(--pkg-business)]", bg: "bg-[var(--pkg-business-soft)]" },
+	custom: { border: "border-[var(--pkg-custom)]", bg: "bg-[var(--pkg-custom-soft)]" },
+};
+
 interface PackageCarouselProps {
 	packages: ServicePackage[];
 	selectedPkg: number;
 	onSelect: (idx: number) => void;
-	ctaColorTokens: Record<PlanColor, { text: string; border: string; bg: string; glow: string }>;
 	animKey: string;
 }
 
@@ -18,7 +24,6 @@ export default function PackageCarousel({
 	packages: visiblePackages,
 	selectedPkg,
 	onSelect,
-	ctaColorTokens,
 	animKey,
 }: PackageCarouselProps) {
 	const carouselRef = useRef<HTMLDivElement>(null);

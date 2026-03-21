@@ -56,7 +56,7 @@ export default function Modal({
 	onClose,
 	children,
 	title,
-	bottomSheet = false,
+	bottomSheet = true,
 	closeLabel = "Cerrar modal",
 }: ModalProps) {
 	// Close with Escape

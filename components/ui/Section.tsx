@@ -40,7 +40,7 @@ export default function Section({
 	viewAllHref,
 	viewAllLabel,
 	children,
-	className = "",
+	className = "mb-14",
 }: SectionProps) {
 	const t = useTranslations("Section");
 	const resolvedViewAllLabel = viewAllLabel ?? t("viewAllLabel");
@@ -53,7 +53,7 @@ export default function Section({
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.15 }}
-			className={`mb-14 scroll-mt-[30vh] ${className}`}>
+			className={`scroll-mt-[30vh] ${className}`}>
 			{hasTitle && (
 				<div
 					className={`flex items-center mb-5 gap-2.5 ${
