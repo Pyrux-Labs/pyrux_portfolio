@@ -27,38 +27,66 @@ export default function PackageCarousel({
 	animKey,
 }: PackageCarouselProps) {
 	const carouselRef = useRef<HTMLDivElement>(null);
+	const isProgrammatic = useRef(false);
+	const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+	// Scroll to card when selectedPkg changes (dot tap) — skip if already there
 	useEffect(() => {
-		if (!carouselRef.current) return;
-		requestAnimationFrame(() => {
-			if (!carouselRef.current) return;
-			const children = Array.from(carouselRef.current.children) as HTMLElement[];
-			const card = children[selectedPkg];
-			if (!card) return;
-			carouselRef.current.scrollTo({
-				left: card.offsetLeft - carouselRef.current.offsetLeft,
-				behavior: "smooth",
-			});
-		});
+		const el = carouselRef.current;
+		if (!el) return;
+		const children = Array.from(el.children) as HTMLElement[];
+		const card = children[selectedPkg];
+		if (!card) return;
+		const targetLeft = card.offsetLeft - el.offsetLeft;
+		if (Math.abs(el.scrollLeft - targetLeft) < 1) return; // already at target
+		isProgrammatic.current = true;
+		el.scrollTo({ left: targetLeft, behavior: "smooth" });
 	}, [selectedPkg]);
 
-	function handleCarouselScroll() {
-		if (!carouselRef.current) return;
-		const { scrollLeft, clientWidth } = carouselRef.current;
-		const children = Array.from(carouselRef.current.children) as HTMLElement[];
-		let idx = 0;
-		for (let i = 0; i < children.length; i++) {
-			if (children[i].offsetLeft <= scrollLeft + clientWidth / 2) idx = i;
+	// Detect swipe end via scrollend (+ debounce fallback for older browsers)
+	useEffect(() => {
+		const el = carouselRef.current;
+		if (!el) return;
+
+		function detectCard() {
+			if (!el) return;
+			const { scrollLeft, clientWidth } = el;
+			const children = Array.from(el.children) as HTMLElement[];
+			let idx = 0;
+			for (let i = 0; i < children.length; i++) {
+				if ((children[i] as HTMLElement).offsetLeft <= scrollLeft + clientWidth / 2) idx = i;
+			}
+			onSelect(idx);
 		}
-		if (idx !== selectedPkg) onSelect(idx);
-	}
+
+		function onScrollEnd() {
+			if (scrollTimer.current) clearTimeout(scrollTimer.current);
+			if (isProgrammatic.current) {
+				isProgrammatic.current = false;
+				return; // programmatic scroll settled — dots already correct
+			}
+			detectCard();
+		}
+
+		function onScroll() {
+			if (scrollTimer.current) clearTimeout(scrollTimer.current);
+			scrollTimer.current = setTimeout(onScrollEnd, 150);
+		}
+
+		el.addEventListener("scrollend", onScrollEnd);
+		el.addEventListener("scroll", onScroll);
+		return () => {
+			el.removeEventListener("scrollend", onScrollEnd);
+			el.removeEventListener("scroll", onScroll);
+			if (scrollTimer.current) clearTimeout(scrollTimer.current);
+		};
+	}, [onSelect]);
 
 	return (
 		<div className="sm:hidden">
 			<motion.div key={animKey} variants={staggerContainerFast} initial="hidden" animate="visible">
 				<div
 					ref={carouselRef}
-					onScroll={handleCarouselScroll}
 					className="-mx-4 px-4 pr-[10vw] flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
 					{visiblePackages.map((pkg, idx) => (
 						<div key={`${pkg.category}-${pkg.number}`} className="snap-center shrink-0 w-[85vw]">

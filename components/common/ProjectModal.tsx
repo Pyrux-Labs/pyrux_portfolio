@@ -134,7 +134,7 @@ export default function ProjectModal({
 			)}
 
 			{/* Technologies + Date + Live link */}
-			<div className="flex items-end justify-between gap-4 flex-wrap">
+			<div className="flex items-center justify-between gap-4 flex-wrap">
 				<div>
 					<div className="flex flex-wrap gap-2 mb-2">
 						{project.technologies.map((techId) => {
