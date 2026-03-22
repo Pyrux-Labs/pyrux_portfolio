@@ -27,8 +27,7 @@ export default function PackageCarousel({
 	animKey,
 }: PackageCarouselProps) {
 	const carouselRef = useRef<HTMLDivElement>(null);
-	const isProgrammatic = useRef(false);
-	const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const fallbackTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
 	// Scroll to card when selectedPkg changes (dot tap) — skip if already there
 	useEffect(() => {
@@ -39,7 +38,6 @@ export default function PackageCarousel({
 		if (!card) return;
 		const targetLeft = card.offsetLeft - el.offsetLeft;
 		if (Math.abs(el.scrollLeft - targetLeft) < 1) return; // already at target
-		isProgrammatic.current = true;
 		el.scrollTo({ left: targetLeft, behavior: "smooth" });
 	}, [selectedPkg]);
 
@@ -59,18 +57,22 @@ export default function PackageCarousel({
 			onSelect(idx);
 		}
 
-		function onScrollEnd() {
-			if (scrollTimer.current) clearTimeout(scrollTimer.current);
-			if (isProgrammatic.current) {
-				isProgrammatic.current = false;
-				return; // programmatic scroll settled — dots already correct
+		function clearFallback() {
+			if (fallbackTimer.current) {
+				clearTimeout(fallbackTimer.current);
+				fallbackTimer.current = null;
 			}
+		}
+
+		function onScrollEnd() {
+			clearFallback();
 			detectCard();
 		}
 
 		function onScroll() {
-			if (scrollTimer.current) clearTimeout(scrollTimer.current);
-			scrollTimer.current = setTimeout(onScrollEnd, 150);
+			clearFallback();
+			// Long timeout so momentum scroll fully settles before detecting card
+			fallbackTimer.current = setTimeout(onScrollEnd, 500);
 		}
 
 		el.addEventListener("scrollend", onScrollEnd);
@@ -78,7 +80,7 @@ export default function PackageCarousel({
 		return () => {
 			el.removeEventListener("scrollend", onScrollEnd);
 			el.removeEventListener("scroll", onScroll);
-			if (scrollTimer.current) clearTimeout(scrollTimer.current);
+			clearFallback();
 		};
 	}, [onSelect]);
 
