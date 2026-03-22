@@ -226,6 +226,6 @@ No code changes needed — just edit the data files.
 
 <div align="center">
 
-Built by [Juan Manuel García](https://github.com/LittleBigPants) and [Gino Ruben Giorgi](https://github.com/gingogiori) · [pyrux.com.ar](https://www.pyrux.com.ar)
+Built by [Juan Manuel García](https://github.com/LittleBigPants) and [Gino Ruben Giorgi](https://github.com/ginogiorgi) · [pyrux.com.ar](https://www.pyrux.com.ar)
 
 </div>
