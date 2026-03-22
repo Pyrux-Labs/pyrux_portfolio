@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="pyrux_portfolio/public/Pyrux-logo.svg" alt="Pyrux Logo" width="80" />
+<img src="public/Pyrux-logo.svg" alt="Pyrux Logo" width="80" />
 
 # Pyrux Portfolio
 
