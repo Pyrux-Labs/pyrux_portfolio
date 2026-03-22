@@ -13,7 +13,7 @@
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-EE4B96?style=flat-square&logo=framer)](https://www.framer.com/motion/)
 [![Deploy](https://img.shields.io/badge/Deploy-GitHub_Pages-222?style=flat-square&logo=github)](https://pages.github.com/)
 
-[**Live Site**](https://www.pyrux.com.ar) · [**Pricing**](https://www.pyrux.com.ar/pricing) · [**Projects**](https://www.pyrux.com.ar/projects)
+[**Live Site**](https://www.pyrux.com.ar) · [**Pricing**](https://www.pyrux.com.ar/en/pricing) · [**Projects**](https://www.pyrux.com.ar/en/projects)
 
 </div>
 
