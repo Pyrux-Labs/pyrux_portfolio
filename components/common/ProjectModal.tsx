@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useDragScroll } from "@/hooks/useDragScroll";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
@@ -22,6 +22,31 @@ interface ProjectModalProps {
 	project: Project | null;
 	isOpen: boolean;
 	onClose: () => void;
+}
+
+function CarouselImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
+	const [loaded, setLoaded] = useState(false);
+	const handleLoad = useCallback(() => setLoaded(true), []);
+
+	return (
+		<div
+			onClick={onClick}
+			className="relative shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated cursor-zoom-in transition-[border-color] duration-200 hover:border-coral">
+			{!loaded && (
+				<div className="absolute inset-0 bg-elevated animate-pulse" />
+			)}
+			<Image
+				src={src}
+				alt={alt}
+				className="w-full h-full object-cover"
+				loading="lazy"
+				width={224}
+				height={160}
+				sizes="(min-width: 1536px) 224px, 160px"
+				onLoad={handleLoad}
+			/>
+		</div>
+	);
 }
 
 function ImageCarousel({
@@ -71,20 +96,12 @@ function ImageCarousel({
 				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
 				<div className="flex gap-2 justify-center min-w-full w-max [&_img]:pointer-events-none [&_img]:select-none [&_img]:[-webkit-user-drag:none]">
 					{images.map((img, i) => (
-						<div
+						<CarouselImage
 							key={i}
+							src={cdnThumb(img)}
+							alt={imageAltFn(i + 1)}
 							onClick={() => onImageClick(i)}
-							className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated cursor-zoom-in transition-[border-color] duration-200 hover:border-coral">
-							<Image
-								src={cdnThumb(img)}
-								alt={imageAltFn(i + 1)}
-								className="w-full h-full object-cover"
-								loading="lazy"
-								width={224}
-								height={160}
-								sizes="(min-width: 1536px) 224px, 160px"
-							/>
-						</div>
+						/>
 					))}
 				</div>
 			</div>
