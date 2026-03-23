@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import type { Project } from "@/types";
+import { cdnThumb } from "@/lib/cloudinary";
 
 interface ProjectCardProps {
 	project: Project;
@@ -44,7 +45,7 @@ export default function ProjectCard({ project, onClick, fullWidth = false, prior
 			{project.images[0] && (
 				<div className="w-full h-36 overflow-hidden shrink-0 border-b border-coral/20">
 					<Image
-						src={project.images[0]}
+						src={cdnThumb(project.images[0])}
 						alt={project.title}
 						width={320}
 						height={144}

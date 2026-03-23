@@ -77,6 +77,7 @@ export const metadata: Metadata = {
 		images: [
 			{
 				url: "/og-image.png",
+				type: "image/png",
 				width: 1200,
 				height: 630,
 				alt: "Pyrux — Desarrollo web y soluciones digitales",

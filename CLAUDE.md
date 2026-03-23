@@ -30,19 +30,19 @@ No hay test suite. `npm run build` es la validación principal.
 
 ## Stack
 
-| Categoría   | Tecnología                                          |
-| ----------- | --------------------------------------------------- |
-| Framework   | Next.js 16.1.6 — App Router, `output: 'export'`    |
+| Categoría   | Tecnología                                              |
+| ----------- | ------------------------------------------------------- |
+| Framework   | Next.js 16.1.6 — App Router, `output: 'export'`         |
 | React       | 19.2.3 + React Compiler (`babel-plugin-react-compiler`) |
-| Lenguaje    | TypeScript 5 — strict mode                         |
-| Estilos     | Tailwind CSS v4 (`@tailwindcss/postcss`)            |
-| Animaciones | Framer Motion 12.34.3                               |
-| i18n        | next-intl 4.8.3 — locales: `es` (default), `en`    |
-| Iconos      | Lucide React + React Icons                          |
-| Toasts      | Sonner 2.0.7                                        |
-| Fuente      | Manrope (Google Fonts)                              |
-| Deploy      | Vercel — static export, `vercel.json` en repo root  |
-| Analytics   | Google Analytics 4 (G-XD1K5TMVZ9)                  |
+| Lenguaje    | TypeScript 5 — strict mode                              |
+| Estilos     | Tailwind CSS v4 (`@tailwindcss/postcss`)                |
+| Animaciones | Framer Motion 12.34.3                                   |
+| i18n        | next-intl 4.8.3 — locales: `es` (default), `en`         |
+| Iconos      | Lucide React + React Icons                              |
+| Toasts      | Sonner 2.0.7                                            |
+| Fuente      | Manrope (Google Fonts)                                  |
+| Deploy      | Vercel — static export, `vercel.json` en repo root      |
+| Analytics   | Google Analytics 4 (G-XD1K5TMVZ9)                       |
 
 ---
 
@@ -141,7 +141,9 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 │   ├── og-image.png
 │   ├── robots.txt
 │   ├── companies/               # Logos SVG de clientes
-│   └── projects/                # Imágenes WebP organizadas por proyecto
+│   ├── creators/                # Fotos de creadores (local, no en Cloudinary)
+│   └── projects/
+│       └── pyrux_portfolio/     # Única carpeta local — resto migrado a Cloudinary
 ├── types/
 │   ├── index.ts                 # Project, Company, Technology, Creator, SocialLinks, Value, ServiceItem
 │   └── pricing.types.ts         # ServicePackage, MaintenanceItem, FAQItem, ProcessStep
@@ -162,6 +164,7 @@ pyrux_portfolio/                 ← RAÍZ del proyecto (Next.js aquí)
 ### Patrón general de páginas
 
 Cada ruta es un **Server Component** que se encarga de:
+
 1. `generateMetadata` + structured data (JSON-LD)
 2. Llamar `getTranslations` para pasar strings a `PageHeading`
 3. Renderizar el `<main>` wrapper y componer los componentes de la página directamente
@@ -171,14 +174,16 @@ No existe el patrón `*PageClient.tsx`. La lógica interactiva vive en Client Co
 ```tsx
 // Ejemplo: app/[locale]/[type]/page.tsx
 export default async function GalleryPage({ params }) {
-  const t = await getTranslations({ locale, namespace: "ProjectsPage" });
-  return (
-    <main className="...">
-      <BackLink />                                    // Client — self-translating
-      <PageHeading title={t("title")} subtitle={t("subtitle")} />  // puro, recibe strings
-      <ItemGallery type="projects" creatorId="pyrux" /> // Client — estado + modal
-    </main>
-  );
+    const t = await getTranslations({ locale, namespace: "ProjectsPage" });
+    return (
+        <main className="...">
+            <BackLink /> // Client — self-translating
+            <PageHeading title={t("title")} subtitle={t("subtitle")} /> // puro,
+            recibe strings
+            <ItemGallery type="projects" creatorId="pyrux" /> // Client — estado
+            + modal
+        </main>
+    );
 }
 ```
 
@@ -187,13 +192,13 @@ export default async function GalleryPage({ params }) {
 ```tsx
 // app/[locale]/page.tsx
 <main>
-  <Hero />           // animación de entrada
-  <HeroButtons />    // CTAs: Contacto | Precios
-  <FeaturedWork />   // Carousel proyectos Pyrux + carousel clientes
-  <Services />       // Grid de servicios → /pricing
-  <Team />           // Creadores con modal
-  <ContactUs />      // Info de contacto
-  <TechStack />      // Tecnologías expandibles con tabs
+    <Hero /> // animación de entrada
+    <HeroButtons /> // CTAs: Contacto | Precios
+    <FeaturedWork /> // Carousel proyectos Pyrux + carousel clientes
+    <Services /> // Grid de servicios → /pricing
+    <Team /> // Creadores con modal
+    <ContactUs /> // Info de contacto
+    <TechStack /> // Tecnologías expandibles con tabs
 </main>
 ```
 
@@ -204,11 +209,12 @@ StarBackground y Footer se inyectan desde `app/[locale]/layout.tsx`, no desde ca
 ```tsx
 // app/[locale]/pricing/page.tsx
 <main>
-  <BackLink />         // self-translating
-  <PricingHeader />    // h1 + tagline + descripción (animado, self-translating)
-  <PackageSection />   // estado: tabs categoría + paquetes + CTA + mantenimiento
-  <ProcessSection />   // self-contained
-  <FAQSection />       // self-contained
+    <BackLink /> // self-translating
+    <PricingHeader /> // h1 + tagline + descripción (animado, self-translating)
+    <PackageSection /> // estado: tabs categoría + paquetes + CTA +
+    mantenimiento
+    <ProcessSection /> // self-contained
+    <FAQSection /> // self-contained
 </main>
 ```
 
@@ -217,9 +223,10 @@ StarBackground y Footer se inyectan desde `app/[locale]/layout.tsx`, no desde ca
 ```tsx
 // app/[locale]/creator/[id]/page.tsx
 <main>
-  <BackLink />
-  <CreatorHeader creatorId={id} />              // foto + bio + social (Client)
-  <ItemGallery type="projects" creatorId={id} /> // proyectos filtrados por creador
+    <BackLink />
+    <CreatorHeader creatorId={id} /> // foto + bio + social (Client)
+    <ItemGallery type="projects" creatorId={id} /> // proyectos filtrados por
+    creador
 </main>
 ```
 
@@ -230,6 +237,7 @@ StarBackground y Footer se inyectan desde `app/[locale]/layout.tsx`, no desde ca
 ### Navegación
 
 No hay navbar. La navegación ocurre a través de:
+
 - `HeroButtons`: landing → `/pricing`, landing → `#contacto`
 - Links "Ver todos" en secciones → `/projects`, `/clients`, `/pricing`
 - `BackLink` en páginas internas → `/`
@@ -256,15 +264,15 @@ Los proyectos tienen `creatorId`. Los proyectos del estudio usan `creatorId: "py
 
 ## Rutas
 
-| Ruta                | Tipo   | Descripción                               |
-| ------------------- | ------ | ----------------------------------------- |
-| `/`                 | Client | Redirect automático → `/es` o `/en`       |
-| `/es` · `/en`       | SSG    | Landing principal con todas las secciones |
-| `/es/projects`      | SSG    | Grid de proyectos Pyrux (creatorId=pyrux) |
-| `/es/clients`       | SSG    | Grid de todos los clientes                |
-| `/es/pricing`       | SSG    | Paquetes y precios (3 categorías)         |
-| `/es/creator/[id]`  | SSG    | Perfil de creador — ids en `data/creators.ts` |
-| `/_not-found`       | Static | 404                                       |
+| Ruta               | Tipo   | Descripción                                   |
+| ------------------ | ------ | --------------------------------------------- |
+| `/`                | Client | Redirect automático → `/es` o `/en`           |
+| `/es` · `/en`      | SSG    | Landing principal con todas las secciones     |
+| `/es/projects`     | SSG    | Grid de proyectos Pyrux (creatorId=pyrux)     |
+| `/es/clients`      | SSG    | Grid de todos los clientes                    |
+| `/es/pricing`      | SSG    | Paquetes y precios (3 categorías)             |
+| `/es/creator/[id]` | SSG    | Perfil de creador — ids en `data/creators.ts` |
+| `/_not-found`      | Static | 404                                           |
 
 `/projects` y `/clients` comparten `app/[locale]/[type]/page.tsx`. Next.js genera ambas rutas via `generateStaticParams`.
 
@@ -273,16 +281,19 @@ Los proyectos tienen `creatorId`. Los proyectos del estudio usan `creatorId: "py
 ## Pricing — Planes actuales
 
 **Categoría Estándar:**
+
 - Growth — $300 USD · $40/mes mantenimiento · 2 semanas
 - Pro — $500 USD · $50/mes · 3-4 semanas
 - Business — Desde $800 USD · $70/mes · 4+ semanas
 
 **Categoría E-Commerce:**
+
 - E-Commerce Básico — $800 USD · $50/mes · 4 semanas
 - E-Commerce Pro — $2.000 USD · $200/mes · 6-8 semanas
 - E-Commerce Enterprise — Consultar
 
 **Categoría Personalizado:**
+
 - Personalizado — Consultar (sistemas a medida, IA, integraciones)
 
 ---
@@ -291,19 +302,84 @@ Los proyectos tienen `creatorId`. Los proyectos del estudio usan `creatorId: "py
 
 ```typescript
 // types/index.ts
-interface Project { id, title, description, shortDescription, technologies: string[], images: string[], liveUrl?, featured, date, creators: string[] }
-interface Company { id, name, logo, logoDark?, summary, workDescription, testimonial?, websiteUrl, featured }
-interface Technology { id, name, icon: string, category: TechnologyCategory, featured }
-interface Creator { id, name, role, bio, shortBio, image, socialLinks: SocialLinks, featuredProjects: string[] }
-interface SocialLinks { linkedin?, github?, email?, whatsapp?, instagram?, website? }
-interface ServiceItem { title, desc, icon: string }
+interface Project {
+    id;
+    title;
+    description;
+    shortDescription;
+    technologies: string[];
+    images: string[];
+    liveUrl?;
+    featured;
+    date;
+    creators: string[];
+}
+interface Company {
+    id;
+    name;
+    logo;
+    logoDark?;
+    summary;
+    workDescription;
+    testimonial?;
+    websiteUrl;
+    featured;
+}
+interface Technology {
+    id;
+    name;
+    icon: string;
+    category: TechnologyCategory;
+    featured;
+}
+interface Creator {
+    id;
+    name;
+    role;
+    bio;
+    shortBio;
+    image;
+    socialLinks: SocialLinks;
+    featuredProjects: string[];
+}
+interface SocialLinks {
+    linkedin?;
+    github?;
+    email?;
+    whatsapp?;
+    instagram?;
+    website?;
+}
+interface ServiceItem {
+    title;
+    desc;
+    icon: string;
+}
 
 // types/pricing.types.ts
-interface ServicePackage { number, name, price, maintenancePrice, deliveryTime, popular, category: PlanCategory, planColor: PlanColor, features: Feature[], maintenanceCards: MaintenanceItem[] }
-interface MaintenanceItem { icon, title, description }
-interface FAQItem { question, answer }
-type PlanCategory = "estandar" | "ecommerce" | "personalizado"
-type PlanColor = "growth" | "pro" | "business" | "custom"
+interface ServicePackage {
+    number;
+    name;
+    price;
+    maintenancePrice;
+    deliveryTime;
+    popular;
+    category: PlanCategory;
+    planColor: PlanColor;
+    features: Feature[];
+    maintenanceCards: MaintenanceItem[];
+}
+interface MaintenanceItem {
+    icon;
+    title;
+    description;
+}
+interface FAQItem {
+    question;
+    answer;
+}
+type PlanCategory = "estandar" | "ecommerce" | "personalizado";
+type PlanColor = "growth" | "pro" | "business" | "custom";
 ```
 
 ---
@@ -316,6 +392,7 @@ type PlanColor = "growth" | "pro" | "business" | "custom"
 - Mobile first en todos los componentes
 - Framer Motion para animaciones — **nunca `useEffect` para animar**
 - Datos desde `data/` — nunca fetch, nunca backend
+- Imágenes de proyectos en Cloudinary (cloud: `dj95v7mro`) vía `lib/cloudinary.ts` — `cdnThumb()` en cards, `cdnFull()` en modales. Fotos de creadores en `public/creators/` (local).
 - `"use client"` solo cuando el componente necesita `useState`, `useEffect`, Framer Motion, o event handlers
 - No librerías fuera del stack definido
 
@@ -323,12 +400,12 @@ type PlanColor = "growth" | "pro" | "business" | "custom"
 
 Usar siempre las variantes de `lib/animations.ts` antes de definir locales:
 
-| Export               | Uso                                           |
-| -------------------- | --------------------------------------------- |
-| `staggerContainer`   | Contenedor con stagger 0.08s                  |
-| `staggerContainerFast` | Contenedor con stagger 0.06s               |
-| `fadeUpItem`         | Card/item estándar (opacity 0→1, y 20→0, 0.4s) |
-| `fadeUpHeader`       | Heading de página (opacity 0→1, y 20→0, 0.5s) |
+| Export                 | Uso                                            |
+| ---------------------- | ---------------------------------------------- |
+| `staggerContainer`     | Contenedor con stagger 0.08s                   |
+| `staggerContainerFast` | Contenedor con stagger 0.06s                   |
+| `fadeUpItem`           | Card/item estándar (opacity 0→1, y 20→0, 0.4s) |
+| `fadeUpHeader`         | Heading de página (opacity 0→1, y 20→0, 0.5s)  |
 
 Variantes locales solo si tienen lógica única (ej: `custom` prop, `scale`, easing específico).
 
@@ -338,10 +415,10 @@ Usar `FeatureCard` de `ui/` para cualquier card con estructura icono+título+des
 
 ```tsx
 <FeatureCard
-  title="..."
-  description="..."
-  icon={<SomeIcon className="text-coral" />}
-  accentClass="hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
+    title="..."
+    description="..."
+    icon={<SomeIcon className="text-coral" />}
+    accentClass="hover:border-coral hover:shadow-[0_12px_40px_var(--shadow-coral-soft)]"
 />
 ```
 
@@ -370,13 +447,13 @@ logos.map(({ src, className }) => <Image key={src} src={src} ... className={clas
 
 ## Datos de Contacto (hardcodeados en componentes)
 
-| Canal     | Valor                                         |
-| --------- | --------------------------------------------- |
-| LinkedIn  | `https://linkedin.com/company/pyrux`          |
-| Email     | `pyrux@pyrux.com.ar`                          |
-| WhatsApp  | `https://wa.me/5493416941225`                 |
-| Instagram | `https://www.instagram.com/pyrux_labs`        |
-| Base URL  | `https://www.pyrux.com.ar`                    |
+| Canal     | Valor                                  |
+| --------- | -------------------------------------- |
+| LinkedIn  | `https://linkedin.com/company/pyrux`   |
+| Email     | `pyrux@pyrux.com.ar`                   |
+| WhatsApp  | `https://wa.me/5493416941225`          |
+| Instagram | `https://www.instagram.com/pyrux_labs` |
+| Base URL  | `https://www.pyrux.com.ar`             |
 
 ---
 
@@ -392,33 +469,19 @@ logos.map(({ src, className }) => <Image key={src} src={src} ... className={clas
 
 ## Bugs Conocidos
 
-| Bug | Archivo | Descripción |
-|-----|---------|-------------|
-| Apple touch icon SVG | `app/layout.tsx` | iOS no soporta SVG como icono de pantalla de inicio. Necesita `apple-touch-icon.png` 180×180 |
-| OG image sin `type` | `app/layout.tsx`, páginas | Falta `type: "image/png"` en los metadatos de OG |
+| Bug                                 | Archivo                              | Descripción                                                                              |
+| ----------------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------- |
 | Imágenes en modales sin placeholder | `components/common/ProjectModal.tsx` | En conexiones lentas aparece espacio en blanco — agregar `placeholder="blur"` o skeleton |
-| `<section>` sin `aria-label` | `components/ui/Section.tsx` | Impacta lectores de pantalla |
-| Sin Error Boundaries | Modales y componentes client | Un dato roto causa pantalla en blanco |
-| Creator OG image genérica | `app/[locale]/creator/[id]/page.tsx` | Al compartir un perfil, muestra el logo de Pyrux en vez de la foto del creador |
-| Carousel mobile de planes | `components/pricing/PackageCarousel.tsx` | Revisar comportamiento en iOS Safari |
-| OurServices en 350px | `components/home/Services.tsx` | Layout roto en viewports muy angostos |
+| `<section>` sin `aria-label`        | `components/ui/Section.tsx`          | Impacta lectores de pantalla                                                             |
+| Sin Error Boundaries                | Modales y componentes client         | Un dato roto causa pantalla en blanco                                                    |
+| OurServices en 350px                | `components/home/Services.tsx`       | Layout roto en viewports muy angostos                                                    |
 
 ---
 
 ## TODOLIST — Ordenada por Fase de Desarrollo
 
-### Fase 1 — Bugs y fixes (hacer primero)
-
-- [ ] **Fix: Project modal — posición de "Ver en vivo"**: moverlo junto a las tecnologías y la fecha, hay demasiado espacio vacío
-- [ ] **Fix: bug carousel de planes en mobile** — revisar `PackageCarousel.tsx`, comportamiento roto en iOS Safari
-- [ ] **Fix: sección Services en pantallas 350px** — texto o layout roto en viewports muy angostos
-- [ ] **Fix: Apple touch icon** — agregar `public/apple-touch-icon.png` (180×180 PNG) y actualizar `icons.apple` en `layout.tsx`
-- [ ] **Fix: OG image** — agregar `type: "image/png"` en metadatos de todas las rutas
-- [ ] **Fix: OG image creator** — mostrar foto del creador al compartir su perfil, actualmente muestra logo genérico — `app/[locale]/creator/[id]/page.tsx`
-
 ### Fase 2 — Contenido y calidad visual
 
-- [ ] **Imágenes de mayor calidad**: proyectos y fotos de los developers — subir a Cloudinary y usar como CDN
 - [ ] **Creator page — foto de mayor resolución**: actualizar `public/creators/`
 - [ ] **Datos bilingüales de proyectos**: verificar que todos los proyectos en `data/projects.ts` tengan `title` y `description` en es y en
 - [ ] **Pricing — lenguaje más accesible**: verificar que los textos de los planes sean comprensibles para no técnicos
@@ -503,16 +566,16 @@ logos.map(({ src, className }) => <Image key={src} src={src} ... className={clas
 
 ## Decisiones de Diseño
 
-| Decisión | Razón |
-|----------|-------|
-| Sin navbar | Navegación integrada en secciones + botones de cada página. La landing es el hub. |
-| Sin backend | Static export = máxima performance. Todo pre-renderizado. |
-| Framer Motion | API declarativa, stagger animations nativas, sin `useEffect`. |
-| Dark theme default | Portfolio tech: highlights de color más impactantes. Sistema anti-FOUC para respetar preferencia guardada. |
-| App Router | Futuro de Next.js. Server Components por defecto. Layouts compartidos. |
-| Static export | Vercel gratis. Sin cold starts. |
-| Manrope | Tipografía geométrica, moderna, excelente legibilidad en pantalla. |
-| next-intl | i18n server-first, compatible con static export, tipado de mensajes. |
-| `[type]/page.tsx` | `/projects` y `/clients` comparten exactamente la misma estructura — un solo archivo evita duplicación. |
-| `getProjectsByCreator("pyrux")` | Los proyectos personales de los creadores no aparecen en la galería ni en el carousel de la empresa. |
-| Self-contained components | `BackLink`, `PricingHeader`, `ProcessSection`, `FAQSection` obtienen sus propios datos/traducciones — eliminan prop drilling innecesario. |
+| Decisión                        | Razón                                                                                                                                     |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Sin navbar                      | Navegación integrada en secciones + botones de cada página. La landing es el hub.                                                         |
+| Sin backend                     | Static export = máxima performance. Todo pre-renderizado.                                                                                 |
+| Framer Motion                   | API declarativa, stagger animations nativas, sin `useEffect`.                                                                             |
+| Dark theme default              | Portfolio tech: highlights de color más impactantes. Sistema anti-FOUC para respetar preferencia guardada.                                |
+| App Router                      | Futuro de Next.js. Server Components por defecto. Layouts compartidos.                                                                    |
+| Static export                   | Vercel gratis. Sin cold starts.                                                                                                           |
+| Manrope                         | Tipografía geométrica, moderna, excelente legibilidad en pantalla.                                                                        |
+| next-intl                       | i18n server-first, compatible con static export, tipado de mensajes.                                                                      |
+| `[type]/page.tsx`               | `/projects` y `/clients` comparten exactamente la misma estructura — un solo archivo evita duplicación.                                   |
+| `getProjectsByCreator("pyrux")` | Los proyectos personales de los creadores no aparecen en la galería ni en el carousel de la empresa.                                      |
+| Self-contained components       | `BackLink`, `PricingHeader`, `ProcessSection`, `FAQSection` obtienen sus propios datos/traducciones — eliminan prop drilling innecesario. |

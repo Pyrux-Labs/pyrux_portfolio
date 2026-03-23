@@ -76,7 +76,7 @@ export async function generateMetadata({ params }: GalleryPageProps): Promise<Me
 			description: short,
 			url,
 			locale: locale === "es" ? "es_AR" : "en_US",
-			images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
+			images: [{ url: "/og-image.png", type: "image/png", width: 1200, height: 630, alt: title }],
 		},
 		twitter: {
 			card: "summary_large_image",
