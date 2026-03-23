@@ -28,18 +28,18 @@ No hay test suite. `npm run build` es la validación principal.
 
 ## Stack
 
-| Categoría   | Tecnología                                              |
-| ----------- | ------------------------------------------------------- |
-| Framework   | Next.js 16 — App Router, `output: 'export'`             |
-| React       | 19 + React Compiler                                     |
-| Lenguaje    | TypeScript 5 — strict mode                              |
-| Estilos     | Tailwind CSS v4                                         |
-| Animaciones | Framer Motion                                           |
-| i18n        | next-intl — locales: `es` (default), `en`               |
-| Iconos      | Lucide React + React Icons                              |
-| Toasts      | Sonner                                                  |
-| Fuente      | Manrope (Google Fonts)                                  |
-| Deploy      | Vercel — static export                                  |
+| Categoría   | Tecnología                                                  |
+| ----------- | ----------------------------------------------------------- |
+| Framework   | Next.js 16 — App Router, `output: 'export'`                 |
+| React       | 19 + React Compiler                                         |
+| Lenguaje    | TypeScript 5 — strict mode                                  |
+| Estilos     | Tailwind CSS v4                                             |
+| Animaciones | Framer Motion                                               |
+| i18n        | next-intl — locales: `es` (default), `en`                   |
+| Iconos      | Lucide React + React Icons                                  |
+| Toasts      | Sonner                                                      |
+| Fuente      | Manrope (Google Fonts)                                      |
+| Deploy      | Vercel — static export                                      |
 | Imágenes    | Cloudinary CDN (cloud: `dj95v7mro`) vía `lib/cloudinary.ts` |
 
 ---
@@ -152,8 +152,8 @@ Cada ruta es un **Server Component** que genera metadata y compone componentes. 
 ```tsx
 <main>
     <Hero />
-    <HeroButtons />       // CTAs: Contacto | Precios
-    <FeaturedWork />      // Carousel proyectos Pyrux + carousel clientes
+    <HeroButtons /> // CTAs: Contacto | Precios
+    <FeaturedWork /> // Carousel proyectos Pyrux + carousel clientes
     <Services />
     <Team />
     <ContactUs />
@@ -189,11 +189,22 @@ Cuando `company.logoDark` existe, renderizar ambas imágenes con clases de visib
 
 ```tsx
 const logos = company.logoDark
-  ? [
-      { src: cdnFull(company.logo), className: "logo-for-light w-full h-full object-contain" },
-      { src: cdnFull(company.logoDark), className: "logo-for-dark w-full h-full object-contain" },
-    ]
-  : [{ src: cdnFull(company.logo), className: "w-full h-full object-contain" }];
+    ? [
+          {
+              src: cdnFull(company.logo),
+              className: "logo-for-light w-full h-full object-contain",
+          },
+          {
+              src: cdnFull(company.logoDark),
+              className: "logo-for-dark w-full h-full object-contain",
+          },
+      ]
+    : [
+          {
+              src: cdnFull(company.logo),
+              className: "w-full h-full object-contain",
+          },
+      ];
 ```
 
 `.logo-for-dark` / `.logo-for-light` están definidas en `globals.css`.
@@ -244,12 +255,8 @@ Variantes locales solo si tienen lógica única (scale, custom prop, easing espe
 
 ## TODOLIST
 
-### Fase 2 — Contenido
-
 ### Fase 3 — UX
 
-- [ ] **Error Boundaries**: wrappear modales y componentes client
-- [ ] **Imágenes en ProjectModal**: skeleton o placeholder para conexiones lentas
 - [ ] **Modal swipe a página**: en mobile, swipe del título → navega a `/clients` / `/projects`
 - [ ] **Floating CTA / WhatsApp button**: siempre visible en mobile
 - [ ] **Proceso en landing**: versión resumida (3 pasos) sin ir a /pricing

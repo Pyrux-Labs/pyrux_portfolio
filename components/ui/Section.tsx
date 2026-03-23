@@ -9,6 +9,11 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { ReactNode } from "react";
 
+interface HeaderSwipeProps {
+	onTouchStart?: React.TouchEventHandler<HTMLDivElement>;
+	onTouchEnd?: React.TouchEventHandler<HTMLDivElement>;
+}
+
 interface SectionProps {
 	id?: string;
 	title?: string;
@@ -19,6 +24,7 @@ interface SectionProps {
 	viewAllLabel?: string;
 	children: ReactNode;
 	className?: string;
+	headerSwipeProps?: HeaderSwipeProps;
 }
 
 // Animation variants for the section
@@ -41,6 +47,7 @@ export default function Section({
 	viewAllLabel,
 	children,
 	className = "mb-14",
+	headerSwipeProps,
 }: SectionProps) {
 	const t = useTranslations("Section");
 	const resolvedViewAllLabel = viewAllLabel ?? t("viewAllLabel");
@@ -58,7 +65,8 @@ export default function Section({
 				<div
 					className={`flex items-center mb-5 gap-2.5 ${
 						titleRight ? "justify-end" : "justify-between"
-					}`}>
+					}`}
+					{...headerSwipeProps}>
 					{!titleRight && (
 						<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
 							<span className={accentClassName}>⟩</span> {titleNode ?? title}

@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { useDraggableMarquee } from "@/hooks/useDraggableMarquee";
 import { motion, useInView } from "framer-motion";
 import Section from "@/components/ui/Section";
@@ -14,18 +14,30 @@ import ProjectModal from "@/components/common/ProjectModal";
 import CompanyModal from "@/components/common/CompanyModal";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
-import { Link } from "@/i18n/navigation";
 import { getProjectsByCreator } from "@/data/projects";
 import { companies } from "@/data/companies";
 import type { Project, Company } from "@/types";
+import { usePageTransition } from "@/lib/page-transition";
+import { useSwipeTrigger } from "@/hooks/useSwipeTrigger";
 
 export default function FeaturedWork() {
 	const t = useTranslations("OurProjects");
 	const { locale } = useLocale();
+	const { trigger } = usePageTransition();
 
 	// Modal states
 	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 	const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+
+	// Swipe-to-navigate on section titles (mobile only)
+	const projectsSwipe = useSwipeTrigger({
+		direction: "right",
+		onSwipe: useCallback(() => trigger(`/${locale}/projects`, "right"), [trigger, locale]),
+	});
+	const clientsSwipe = useSwipeTrigger({
+		direction: "left",
+		onSwipe: useCallback(() => trigger(`/${locale}/clients`, "left"), [trigger, locale]),
+	});
 
 	const localeProjects = getProjectsByCreator("pyrux", locale);
 	const localeCompanies = companies[locale];
@@ -50,7 +62,8 @@ export default function FeaturedWork() {
 				id="proyectos"
 				title={t("sectionTitle")}
 				viewAllHref="/projects"
-				viewAllLabel={t("viewAll")}>
+				viewAllLabel={t("viewAll")}
+				headerSwipeProps={projectsSwipe}>
 				<div
 					className="flex flex-col gap-2 -mx-6 max-[480px]:-mx-4 overflow-hidden"
 					style={{
@@ -98,15 +111,11 @@ export default function FeaturedWork() {
 
 				<motion.div
 					ref={clientsHeaderRef}
-					className="flex justify-between items-center mb-5 mt-5 max-[480px]:pl-4"
+					className="flex justify-end items-center mb-5 mt-5 max-[480px]:pl-4"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: clientsHeaderInView ? 1 : 0 }}
-					transition={{ duration: 0.5 }}>
-					<Link
-						href="/clients"
-						className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
-						{t("viewAll")} <span aria-hidden="true">→</span>
-					</Link>
+					transition={{ duration: 0.5 }}
+					{...clientsSwipe}>
 					<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
 						{t("clientsTitle")} <span className="text-coral font-bold">⟨</span>
 					</h2>
