@@ -83,7 +83,7 @@ export default async function PricingPage({ params }: PricingPageProps) {
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
-			<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+			<main className="w-full max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 				<BackLink />
 				<PricingHeader />
 				<PackageSection />

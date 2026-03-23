@@ -109,7 +109,7 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
-			<main className="max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+			<main className="w-full max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 				<BackLink />
 				<PageHeading title={t("title")} subtitle={t("subtitle")} />
 				<ItemGallery type={galleryType} creatorId={galleryType === "projects" ? "pyrux" : undefined} />
