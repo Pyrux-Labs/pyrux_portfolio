@@ -218,7 +218,7 @@ html[data-theme="light"] {
 /* ── Base ──────────────────────────────────── */
 html {
 	scroll-behavior: smooth;
-	overflow-x: clip; /* Propagates to the viewport — prevents iOS from using 980px synthetic viewport */
+	overflow-x: hidden; /* Propagates to the viewport — prevents horizontal scroll on all browsers */
 }
 
 body {
