@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { X, ArrowRight } from "lucide-react";
 import type { PlanColor, ServicePackage } from "@/types/pricing.types";
 import { fadeUpItem } from "@/lib/animations";
+import { gtag } from "@/lib/gtag";
 
 const colorTokens: Record<
 	PlanColor,
@@ -91,7 +92,7 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 				href="https://wa.me/5493416941225"
 				target="_blank"
 				rel="noopener noreferrer"
-				onClick={(e) => e.stopPropagation()}
+				onClick={(e) => { e.stopPropagation(); gtag.clickWhatsAppCustom(); }}
 				className="inline-flex items-center justify-center gap-2 w-full py-3 px-6 rounded-xl border border-(--pkg-custom) bg-(--pkg-custom-soft) text-(--pkg-custom) font-semibold text-[0.95rem] hover:bg-(--pkg-custom) hover:text-white transition-all duration-200 no-underline group">
 				{t("customCta")}
 				<ArrowRight

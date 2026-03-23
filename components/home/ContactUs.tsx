@@ -15,6 +15,7 @@ import { CONTACT_EMAIL, contactItems } from "@/data/contacts";
 import ContactIcon from "@/components/ui/ContactIcon";
 import type { ContactItem } from "@/types";
 import { staggerContainer, fadeUpItem } from "@/lib/animations";
+import { gtag } from "@/lib/gtag";
 
 export default function ContactUs() {
 	const t = useTranslations("ContactUs");
@@ -25,6 +26,7 @@ export default function ContactUs() {
 	const inView = useInView(ref, { once: true, amount: 0 });
 
 	const handleClick = async (item: ContactItem) => {
+		gtag.clickContact(item.icon.toLowerCase() as "whatsapp" | "email" | "linkedin" | "instagram");
 		if (item.action === "copy-email") {
 			await copy(CONTACT_EMAIL);
 			toast.success(t("toastSuccess"), {

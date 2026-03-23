@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, Tag } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { gtag } from "@/lib/gtag";
 
 const MotionLink = motion.create(Link);
 
@@ -29,6 +30,7 @@ export default function HeroButtons() {
 					href="#contact"
 					onClick={(e) => {
 						e.preventDefault();
+						gtag.clickCtaContact();
 						document
 							.getElementById("contact")
 							?.scrollIntoView({ behavior: "smooth" });
@@ -48,6 +50,7 @@ export default function HeroButtons() {
 				{/* Secondary CTA — outline coral */}
 				<MotionLink
 					href="/pricing"
+					onClick={() => gtag.clickCtaPricing()}
 					className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full border border-coral bg-transparent text-coral no-underline font-semibold text-[1rem] transition-shadow duration-150 ease-in-out hover:shadow-[0_0_24px_var(--shadow-coral-mid)]"
 					variants={buttonVariants}
 					initial="hidden"

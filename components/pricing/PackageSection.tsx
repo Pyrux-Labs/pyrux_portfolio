@@ -12,6 +12,7 @@ import MaintenanceGrid from "@/components/pricing/MaintenanceGrid";
 import { packages } from "@/data/packages";
 import type { PlanCategory, PlanColor } from "@/types/pricing.types";
 import { staggerContainerFast } from "@/lib/animations";
+import { gtag } from "@/lib/gtag";
 
 const ctaColorTokens: Record<PlanColor, { text: string; border: string; bg: string }> = {
 	growth: {
@@ -99,7 +100,10 @@ export default function PackageSection() {
 							key={`${pkg.category}-${pkg.number}`}
 							pkg={pkg}
 							isSelected={selectedPkg === idx}
-							onClick={() => setSelectedPkg(idx)}
+							onClick={() => {
+						setSelectedPkg(idx);
+						gtag.selectPricingPlan(pkg.name, pkg.category);
+					}}
 						/>
 					))}
 				</motion.div>
@@ -122,6 +126,7 @@ export default function PackageSection() {
 						href={`https://wa.me/5493416941225?text=${encodeURIComponent(t("whatsAppMessage", { name: activePkg.name }))}`}
 						target="_blank"
 						rel="noopener noreferrer"
+						onClick={() => gtag.clickWhatsAppPlan(activePkg.name)}
 						className={`inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border text-[0.85rem] font-semibold transition-all duration-200 shrink-0 w-full min-[400px]:w-auto no-underline hover:brightness-110 hover:scale-[1.02]
 								${ctaColorTokens[activePkg.planColor].text}
 								${ctaColorTokens[activePkg.planColor].border}
