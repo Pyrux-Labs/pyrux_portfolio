@@ -220,6 +220,10 @@ html {
 	scroll-behavior: smooth;
 }
 
+main {
+	overflow-x: clip; /* Prevent -mx-* carousels from widening the document on mobile */
+}
+
 body {
 	font-family: var(--font-body);
 	background: var(--bg-deep);
