@@ -67,7 +67,7 @@ export default function Section({
 					{viewAllHref && !titleRight && (
 						<Link
 							href={viewAllHref as Parameters<typeof Link>[0]["href"]}
-							className="text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
+							className="hidden min-[481px]:inline text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
 							{resolvedViewAllLabel} <span aria-hidden="true">→</span>
 						</Link>
 					)}
