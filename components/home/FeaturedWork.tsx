@@ -17,6 +17,7 @@ import { useLocale } from "@/i18n/locale-provider";
 import { getProjectsByCreator } from "@/data/projects";
 import { companies } from "@/data/companies";
 import type { Project, Company } from "@/types";
+import { Link } from "@/i18n/navigation";
 import { usePageTransition } from "@/lib/page-transition";
 import { useSwipeTrigger } from "@/hooks/useSwipeTrigger";
 
@@ -111,12 +112,17 @@ export default function FeaturedWork() {
 
 				<motion.div
 					ref={clientsHeaderRef}
-					className="flex justify-end items-center mb-5 mt-5 max-[480px]:pl-4"
+					className="flex justify-between items-center mb-5 mt-5 max-[480px]:pl-4"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: clientsHeaderInView ? 1 : 0 }}
 					transition={{ duration: 0.5 }}
 					{...clientsSwipe}>
-					<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5">
+					<Link
+						href="/clients"
+						className="hidden min-[481px]:inline text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
+						{t("viewAll")} <span aria-hidden="true">→</span>
+					</Link>
+					<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5 ml-auto">
 						{t("clientsTitle")} <span className="text-coral font-bold">⟨</span>
 					</h2>
 				</motion.div>

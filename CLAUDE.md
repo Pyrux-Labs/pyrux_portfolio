@@ -255,14 +255,6 @@ Variantes locales solo si tienen lógica única (scale, custom prop, easing espe
 
 ## TODOLIST
 
-### Fase 3 — UX
-
-- [ ] **Modal swipe a página**: en mobile, swipe del título → navega a `/clients` / `/projects`
-- [ ] **Floating CTA / WhatsApp button**: siempre visible en mobile
-- [ ] **Proceso en landing**: versión resumida (3 pasos) sin ir a /pricing
-- [ ] **Navbar scroll-aware**: aparece al scrollear hacia arriba, se oculta al bajar
-- [ ] **Scroll-to-top button**: aparece tras 300px de scroll
-
 ### Fase 4 — Conversión
 
 - [ ] **Stats bar**: sección con métricas (proyectos entregados, clientes, etc.)

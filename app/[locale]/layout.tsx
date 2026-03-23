@@ -9,6 +9,7 @@ import StarBackground from "@/components/ui/StarBackground";
 import { Toaster } from "sonner";
 import type { Locale } from "@/i18n/config";
 import { PageTransitionProvider, AnimatedPage } from "@/lib/page-transition";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 interface LocaleLayoutProps {
 	children: React.ReactNode;
@@ -41,7 +42,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 					<AnimatedPage>{children}</AnimatedPage>
 					<Footer />
 				</div>
-				<Toaster
+				<ScrollToTop />
+			<Toaster
 				position="bottom-center"
 				toastOptions={{
 					style: {
