@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { companies } from "@/data/companies";
+import type { Locale } from "@/i18n/config";
 import Hero from "@/components/home/Hero";
 import HeroButtons from "@/components/home/HeroButtons";
 import FeaturedWork from "@/components/home/FeaturedWork";
@@ -47,9 +49,27 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 	};
 }
 
-export default function LocaleHomePage() {
+export default async function LocaleHomePage({ params }: HomePageProps) {
+	const { locale } = await params;
+
+	const reviewSchema = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"@id": `${BASE_URL}/#organization`,
+		review: companies[locale as Locale]
+			.filter((c) => c.testimonial)
+			.map((c) => ({
+				"@type": "Review",
+				author: { "@type": "Organization", name: c.name },
+				reviewBody: c.testimonial,
+				reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
+			})),
+	});
+
 	return (
-		<main className="w-full max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
+		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: reviewSchema }} />
+			<main className="w-full max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 			<Hero />
 			<HeroButtons />
 			<FeaturedWork />
@@ -59,5 +79,6 @@ export default function LocaleHomePage() {
 			<StatsBar />
 			<TechStack />
 		</main>
+		</>
 	);
 }

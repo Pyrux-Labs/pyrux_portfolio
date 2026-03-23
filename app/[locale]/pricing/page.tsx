@@ -4,6 +4,7 @@
 
 import type { Metadata } from "next";
 import { faqItems } from "@/data/faq";
+import { services } from "@/data/services";
 import type { Locale } from "@/i18n/config";
 import BackLink from "@/components/ui/BackLink";
 import PricingHeader from "@/components/pricing/PricingHeader";
@@ -69,6 +70,22 @@ export default async function PricingPage({ params }: PricingPageProps) {
 		],
 	});
 
+	const serviceSchema = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "ItemList",
+		itemListElement: services[locale as Locale].map((s, i) => ({
+			"@type": "ListItem",
+			position: i + 1,
+			item: {
+				"@type": "Service",
+				name: s.title,
+				description: s.desc,
+				provider: { "@type": "Organization", name: "Pyrux", url: BASE_URL },
+				areaServed: { "@type": "Country", name: "Argentina" },
+			},
+		})),
+	});
+
 	const faqSchema = JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "FAQPage",
@@ -82,6 +99,7 @@ export default async function PricingPage({ params }: PricingPageProps) {
 	return (
 		<>
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serviceSchema }} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
 			<main className="w-full max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 				<BackLink />

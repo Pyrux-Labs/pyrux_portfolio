@@ -257,14 +257,7 @@ Variantes locales solo si tienen lógica única (scale, custom prop, easing espe
 
 ### Fase 5 — SEO y Analytics
 
-- [ ] **GA4 custom events**: clicks en CTAs, WhatsApp, email, plan seleccionado
-- [ ] **Hotjar / Microsoft Clarity**: heatmaps
-- [ ] **sitemap.xml completo**: rutas localizadas con `hreflang`
-- [ ] **Structured data**: schemas `FAQPage`, `Service`, `Person`, `Review`
-- [ ] **Google Search Console**: conectar y verificar
-- [ ] **Privacy Policy y Terms**: requerido para GA4/GDPR
-- [ ] **Cookie consent**: banner para GA4
-- [ ] **Uptime monitoring**: UptimeRobot o similar
+- [ ] **Privacy Policy y Terms**: páginas `/privacy` y `/terms` — texto generado en Termly
 
 ### Fase 6 — Accesibilidad
 

@@ -70,6 +70,18 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 
 	const url = `${BASE_URL}/${locale}/creator/${id}`;
 
+	const personSchema = JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "Person",
+		name: creator.name,
+		jobTitle: creator.role,
+		description: creator.bio,
+		url,
+		image: `https://res.cloudinary.com/dj95v7mro/image/upload/q_auto,f_auto/${creator.image}`,
+		worksFor: { "@type": "Organization", name: "Pyrux", url: BASE_URL },
+		sameAs: [creator.socialLinks.linkedin, creator.socialLinks.github].filter(Boolean),
+	});
+
 	const breadcrumb = JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
@@ -81,6 +93,7 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 
 	return (
 		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: personSchema }} />
 			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumb }} />
 			<main className="w-full max-w-content mx-auto flex-1 flex flex-col px-4 pt-20 pb-8 min-[481px]:px-6 min-[481px]:pb-10">
 				<BackLink />
