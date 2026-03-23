@@ -67,7 +67,7 @@ export default function FeaturedWork() {
 								key={`p-${i}`}
 								project={project}
 								onClick={() => setSelectedProject(project)}
-								priority={i < 4}
+								priority={i === 0}
 							/>
 						))}
 					</div>
@@ -90,7 +90,7 @@ export default function FeaturedWork() {
 								key={`c-${i}`}
 								company={company}
 								onClick={() => setSelectedCompany(company)}
-								priority={i < 4}
+								priority={i === 0}
 							/>
 						))}
 					</div>

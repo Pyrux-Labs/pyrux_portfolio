@@ -55,7 +55,6 @@ export default function Team() {
 							height={64}
 							className="w-16 h-16 rounded-full"
 							sizes="64px"
-							priority
 						/>
 
 						{/* Name */}
