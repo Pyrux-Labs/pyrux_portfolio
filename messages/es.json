@@ -29,6 +29,11 @@
     "viewLess": "Ver menos",
     "emptyExpand": "Expandí para ver más tecnologías en esta categoría."
   },
+  "StatsBar": {
+    "projects": "Proyectos lanzados",
+    "clients": "Empresas potenciadas",
+    "years": "Años en el mercado"
+  },
   "ContactUs": {
     "sectionTitle": "Contactanos",
     "toastSuccess": "Email copiado al portapapeles"

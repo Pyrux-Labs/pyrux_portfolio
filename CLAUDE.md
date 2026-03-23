@@ -255,15 +255,6 @@ Variantes locales solo si tienen lógica única (scale, custom prop, easing espe
 
 ## TODOLIST
 
-### Fase 4 — Conversión
-
-- [ ] **Stats bar**: sección con métricas (proyectos entregados, clientes, etc.)
-- [ ] **Testimonials**: carousel o grid de quotes con foto y empresa
-- [ ] **Comparación Pyrux vs Agencia vs Freelancer**: tabla con diferenciadores
-- [ ] **Multi-step contact form**: captura de leads
-- [ ] **Filtros en /projects**: por tipo o tecnología
-- [ ] **Video demo / reel**: 15-30s mostrando proyectos en uso
-
 ### Fase 5 — SEO y Analytics
 
 - [ ] **GA4 custom events**: clicks en CTAs, WhatsApp, email, plan seleccionado

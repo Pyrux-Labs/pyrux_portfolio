@@ -6,6 +6,7 @@ import Services from "@/components/home/Services";
 import Team from "@/components/home/Team";
 import ContactUs from "@/components/home/ContactUs";
 import TechStack from "@/components/home/TechStack";
+import StatsBar from "@/components/home/StatsBar";
 
 interface HomePageProps {
 	params: Promise<{ locale: string }>;
@@ -55,6 +56,7 @@ export default function LocaleHomePage() {
 			<Services />
 			<Team />
 			<ContactUs />
+			<StatsBar />
 			<TechStack />
 		</main>
 	);

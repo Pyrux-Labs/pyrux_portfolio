@@ -29,6 +29,11 @@
     "viewLess": "View less",
     "emptyExpand": "Expand to see more technologies in this category."
   },
+  "StatsBar": {
+    "projects": "Projects launched",
+    "clients": "Businesses empowered",
+    "years": "Years in the market"
+  },
   "ContactUs": {
     "sectionTitle": "Contact Us",
     "toastSuccess": "Email copied to clipboard"
