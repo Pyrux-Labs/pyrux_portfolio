@@ -93,7 +93,7 @@ export const metadata: Metadata = {
 	icons: {
 		icon: "/Pyrux-logo.svg",
 		shortcut: "/Pyrux-logo.svg",
-		apple: "/Pyrux-logo.svg",
+		apple: "/apple-touch-icon.png",
 	},
 	robots: {
 		index: true,
