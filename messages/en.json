@@ -48,6 +48,7 @@
     "toggleAria": "Expand answer"
   },
   "Footer": {
+    "privacyPolicy": "Privacy Policy",
     "socialNavAria": "Social networks",
     "copyright": "© {year} Pyrux. All rights reserved.",
     "designedBy": "Designed by Pyrux",

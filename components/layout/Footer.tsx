@@ -67,6 +67,11 @@ export default function Footer() {
 				<p className="mt-3 text-[0.8rem] text-muted opacity-70">
 					{t("copyright", { year: currentYear })}
 				</p>
+				<p className="mt-2 text-[0.75rem] text-muted opacity-60">
+					<a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="no-underline hover:text-coral transition-colors duration-200">
+						{t("privacyPolicy")}
+					</a>
+				</p>
 				<p className="mt-3 text-[0.7rem] text-muted opacity-70 pb-4">
 					{t("designedBy")}
 				</p>

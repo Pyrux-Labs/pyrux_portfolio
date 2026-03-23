@@ -48,6 +48,7 @@
     "toggleAria": "Expandir respuesta"
   },
   "Footer": {
+    "privacyPolicy": "Política de Privacidad",
     "socialNavAria": "Redes sociales",
     "copyright": "© {year} Pyrux. Todos los derechos reservados.",
     "designedBy": "Designed by Pyrux",
