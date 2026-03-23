@@ -17,24 +17,31 @@ export function useDragScroll() {
 		const el = ref.current;
 		if (!el) return;
 
+		let isDown = false;
 		let isDragging = false;
 		let startX = 0;
 		let startScroll = 0;
 
 		const onPointerDown = (e: PointerEvent) => {
-			isDragging = true;
+			isDown = true;
+			isDragging = false;
 			startX = e.clientX;
 			startScroll = el.scrollLeft;
-			el.setPointerCapture(e.pointerId);
 			el.style.cursor = "grabbing";
 		};
 
 		const onPointerMove = (e: PointerEvent) => {
-			if (!isDragging) return;
+			if (!isDown) return;
+			if (!isDragging) {
+				if (Math.abs(e.clientX - startX) <= 5) return;
+				isDragging = true;
+				el.setPointerCapture(e.pointerId);
+			}
 			el.scrollLeft = startScroll + (startX - e.clientX);
 		};
 
 		const onPointerUp = () => {
+			isDown = false;
 			isDragging = false;
 			el.style.cursor = "grab";
 		};

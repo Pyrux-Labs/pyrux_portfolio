@@ -15,7 +15,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ExternalLinkButton from "@/components/ui/ExternalLinkButton";
 import type { Project } from "@/types";
 import Image from "next/image";
-import { cdnFull } from "@/lib/cloudinary";
+import { cdnThumb } from "@/lib/cloudinary";
+import ImagePreview from "@/components/common/ImagePreview";
 
 interface ProjectModalProps {
 	project: Project | null;
@@ -28,12 +29,14 @@ function ImageCarousel({
 	prevLabel,
 	nextLabel,
 	imageAltFn,
+	onImageClick,
 }: {
 	images: string[];
 	projectTitle: string;
 	prevLabel: string;
 	nextLabel: string;
 	imageAltFn: (index: number) => string;
+	onImageClick: (index: number) => void;
 }) {
 	const scrollRef = useDragScroll();
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -66,13 +69,14 @@ function ImageCarousel({
 				onScroll={updateScrollState}
 				className="overflow-x-auto scrollbar-hide cursor-grab select-none"
 				style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-				<div className="flex gap-2 justify-center min-w-full w-max [&_img]:pointer-events-none [&_img]:select-none">
+				<div className="flex gap-2 justify-center min-w-full w-max [&_img]:pointer-events-none [&_img]:select-none [&_img]:[-webkit-user-drag:none]">
 					{images.map((img, i) => (
 						<div
 							key={i}
-							className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated">
+							onClick={() => onImageClick(i)}
+							className="shrink-0 w-40 h-28 2xl:w-56 2xl:h-40 rounded-lg overflow-hidden border border-border bg-elevated cursor-zoom-in transition-[border-color] duration-200 hover:border-coral">
 							<Image
-								src={cdnFull(img)}
+								src={cdnThumb(img)}
 								alt={imageAltFn(i + 1)}
 								className="w-full h-full object-cover"
 								loading="lazy"
@@ -111,54 +115,67 @@ export default function ProjectModal({
 }: ProjectModalProps) {
 	const t = useTranslations("ProjectModal");
 	const { locale } = useLocale();
+	const [previewIndex, setPreviewIndex] = useState<number | null>(null);
 
 	if (!project) return null;
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} title={project.title} closeLabel={t("closeModal")}>
-			{/* Description */}
-			<p className="text-secondary leading-relaxed mb-5">
-				{project.description}
-			</p>
+		<>
+			<Modal isOpen={isOpen} onClose={onClose} title={project.title} closeLabel={t("closeModal")}>
+				{/* Description */}
+				<p className="text-secondary leading-relaxed mb-5">
+					{project.description}
+				</p>
 
-			{/* Image carousel */}
-			{project.images.length > 0 && (
-				<ImageCarousel
+				{/* Image carousel */}
+				{project.images.length > 0 && (
+					<ImageCarousel
+						images={project.images}
+						projectTitle={project.title}
+						prevLabel={t("prevAria")}
+						nextLabel={t("nextAria")}
+						imageAltFn={(index: number) =>
+							t("imageAlt", { title: project.title, index })
+						}
+						onImageClick={setPreviewIndex}
+					/>
+				)}
+
+				{/* Technologies + Date + Live link */}
+				<div className="flex items-center justify-between gap-4 flex-wrap">
+					<div>
+						<div className="flex flex-wrap gap-2 mb-2">
+							{project.technologies.map((techId) => {
+								const tech = getTechnologyById(techId);
+								return (
+									<Badge key={techId} label={tech?.name ?? techId} variant="coral" />
+								);
+							})}
+						</div>
+						<p className="text-[0.8rem] text-muted">
+							{new Date(project.date).toLocaleDateString(
+								locale === "es" ? "es-AR" : "en-US",
+								{
+									year: "numeric",
+									month: "long",
+								},
+							)}
+						</p>
+					</div>
+					{project.liveUrl && (
+						<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
+					)}
+				</div>
+			</Modal>
+
+			{previewIndex !== null && (
+				<ImagePreview
 					images={project.images}
-					projectTitle={project.title}
-					prevLabel={t("prevAria")}
-					nextLabel={t("nextAria")}
-					imageAltFn={(index: number) =>
-						t("imageAlt", { title: project.title, index })
-					}
+					initialIndex={previewIndex}
+					alt={project.title}
+					onClose={() => setPreviewIndex(null)}
 				/>
 			)}
-
-			{/* Technologies + Date + Live link */}
-			<div className="flex items-center justify-between gap-4 flex-wrap">
-				<div>
-					<div className="flex flex-wrap gap-2 mb-2">
-						{project.technologies.map((techId) => {
-							const tech = getTechnologyById(techId);
-							return (
-								<Badge key={techId} label={tech?.name ?? techId} variant="coral" />
-							);
-						})}
-					</div>
-					<p className="text-[0.8rem] text-muted">
-						{new Date(project.date).toLocaleDateString(
-							locale === "es" ? "es-AR" : "en-US",
-							{
-								year: "numeric",
-								month: "long",
-							},
-						)}
-					</p>
-				</div>
-				{project.liveUrl && (
-					<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
-				)}
-			</div>
-		</Modal>
+		</>
 	);
 }

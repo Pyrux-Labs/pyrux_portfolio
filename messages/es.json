@@ -101,6 +101,7 @@
     "githubAria": "GitHub",
     "linkedinAria": "LinkedIn",
     "emailAria": "Copiar email",
+    "viewPhotoAria": "Ver foto de {name}",
     "toastSuccess": "Email copiado al portapapeles",
     "featured": "Destacado",
     "viewDetailsAria": "Ver detalles de {title}"

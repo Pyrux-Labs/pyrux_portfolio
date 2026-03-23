@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { Building2, Quote } from "lucide-react";
 import Image from "next/image";
 import type { Company } from "@/types";
+import { cdnFull } from "@/lib/cloudinary";
 
 interface CompanyCardProps {
 	company: Company;
@@ -20,10 +21,10 @@ interface CompanyCardProps {
 function CompanyLogo({ company, size, priority = false }: { company: Company; size: number; priority?: boolean }) {
 	const logos = company.logoDark
 		? [
-				{ src: company.logo, className: "logo-for-light w-full h-full object-contain" },
-				{ src: company.logoDark, className: "logo-for-dark w-full h-full object-contain" },
+				{ src: cdnFull(company.logo), className: "logo-for-light w-full h-full object-contain" },
+				{ src: cdnFull(company.logoDark), className: "logo-for-dark w-full h-full object-contain" },
 			]
-		: [{ src: company.logo, className: "w-full h-full object-contain" }];
+		: [{ src: cdnFull(company.logo), className: "w-full h-full object-contain" }];
 
 	const handleError = (e: React.SyntheticEvent<HTMLImageElement>) => {
 		e.currentTarget.style.display = "none";

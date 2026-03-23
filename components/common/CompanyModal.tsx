@@ -10,6 +10,7 @@ import { Quote } from "lucide-react";
 import ExternalLinkButton from "@/components/ui/ExternalLinkButton";
 import Image from "next/image";
 import type { Company } from "@/types";
+import { cdnFull } from "@/lib/cloudinary";
 
 interface CompanyModalProps {
 	company: Company | null;
@@ -23,10 +24,10 @@ export default function CompanyModal({ company, isOpen, onClose }: CompanyModalP
 
 	const logos = company.logoDark
 		? [
-				{ src: company.logo, className: "logo-for-light w-full h-full object-contain" },
-				{ src: company.logoDark, className: "logo-for-dark w-full h-full object-contain" },
+				{ src: cdnFull(company.logo), className: "logo-for-light w-full h-full object-contain" },
+				{ src: cdnFull(company.logoDark), className: "logo-for-dark w-full h-full object-contain" },
 			]
-		: [{ src: company.logo, className: "w-full h-full object-contain" }];
+		: [{ src: cdnFull(company.logo), className: "w-full h-full object-contain" }];
 
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} closeLabel={t("closeModal")}>

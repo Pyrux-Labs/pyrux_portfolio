@@ -12,6 +12,7 @@ import Section from "@/components/ui/Section";
 import { Link } from "@/i18n/navigation";
 import { creators } from "@/data/creators";
 import Image from "next/image";
+import { cdnThumb } from "@/lib/cloudinary";
 
 // Animation variants
 const cardVariants = {
@@ -49,11 +50,11 @@ export default function Team() {
 						aria-label={t("viewProfileAria", { name: creator.name })}>
 						{/* Profile image */}
 						<Image
-							src={creator.image}
+							src={cdnThumb(creator.image)}
 							alt={creator.name}
 							width={64}
 							height={64}
-							className="w-16 h-16 rounded-full"
+							className="w-16 h-16 rounded-full object-cover"
 							sizes="64px"
 						/>
 

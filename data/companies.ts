@@ -10,8 +10,8 @@ export const companies: Record<Locale, Company[]> = {
 		{
 			id: "medmind",
 			name: "MedMind",
-			logo: "/companies/medmind/medmind.svg",
-			logoDark: "/companies/medmind/medmind_blanco.svg",
+			logo: "medmind_g9qz2p",
+			logoDark: "medmind_blanco_ips9x1",
 			summary: "Empresa de servicios de traducción profesional.",
 			workDescription:
 				"Creación de una landing page moderna y responsive para promocionar los servicios de traducción de MedMind.",
@@ -24,8 +24,8 @@ export const companies: Record<Locale, Company[]> = {
 		{
 			id: "medmind",
 			name: "MedMind",
-			logo: "/companies/medmind/medmind.svg",
-			logoDark: "/companies/medmind/medmind_blanco.svg",
+			logo: "medmind_g9qz2p",
+			logoDark: "medmind_blanco_ips9x1",
 			summary: "Professional translation services company.",
 			workDescription:
 				"Creation of a modern and responsive landing page to promote MedMind's translation services.",

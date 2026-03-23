@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
@@ -9,6 +10,8 @@ import Image from "next/image";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getCreatorById } from "@/data/creators";
 import { fadeUpHeader } from "@/lib/animations";
+import { cdnThumb, cdnFull } from "@/lib/cloudinary";
+import CreatorPreview from "@/components/common/CreatorPreview";
 
 interface CreatorHeaderProps {
 	creatorId: string;
@@ -19,6 +22,7 @@ export default function CreatorHeader({ creatorId }: CreatorHeaderProps) {
 	const { locale } = useLocale();
 	const { copy } = useCopyToClipboard();
 	const creator = getCreatorById(creatorId, locale);
+	const [previewOpen, setPreviewOpen] = useState(false);
 
 	if (!creator) return null;
 
@@ -29,52 +33,67 @@ export default function CreatorHeader({ creatorId }: CreatorHeaderProps) {
 	};
 
 	return (
-		<motion.div className="mb-8" variants={fadeUpHeader} initial="hidden" animate="visible">
-			<div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 sm:items-start mb-6">
-				<div className="flex-1 text-center sm:text-left">
-					<h1 className="font-display text-3xl font-bold text-primary mb-1">{creator.name}</h1>
-					<p className="text-coral text-[0.95rem] font-medium mb-3">{creator.role}</p>
-					<p className="text-secondary leading-relaxed max-w-xl mx-auto sm:mx-0">{creator.bio}</p>
+		<>
+			<motion.div className="mb-8" variants={fadeUpHeader} initial="hidden" animate="visible">
+				<div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between sm:gap-8 sm:items-start mb-6">
+					<div className="flex-1 text-center sm:text-left">
+						<h1 className="font-display text-3xl font-bold text-primary mb-1">{creator.name}</h1>
+						<p className="text-coral text-[0.95rem] font-medium mb-3">{creator.role}</p>
+						<p className="text-secondary leading-relaxed max-w-xl mx-auto sm:mx-0">{creator.bio}</p>
 
-					<div className="flex gap-3 mt-4 justify-center sm:justify-start">
-						{creator.socialLinks.github && (
-							<a
-								href={creator.socialLinks.github}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
-								aria-label={t("githubAria")}>
-								<Github size={16} />
-							</a>
-						)}
-						{creator.socialLinks.linkedin && (
-							<a
-								href={creator.socialLinks.linkedin}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
-								aria-label={t("linkedinAria")}>
-								<Linkedin size={16} />
-							</a>
-						)}
-						{creator.socialLinks.email && (
-							<button
-								onClick={handleEmailCopy}
-								className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
-								aria-label={t("emailAria")}>
-								<Mail size={16} />
-							</button>
-						)}
+						<div className="flex gap-3 mt-4 justify-center sm:justify-start">
+							{creator.socialLinks.github && (
+								<a
+									href={creator.socialLinks.github}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
+									aria-label={t("githubAria")}>
+									<Github size={16} />
+								</a>
+							)}
+							{creator.socialLinks.linkedin && (
+								<a
+									href={creator.socialLinks.linkedin}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary no-underline transition-all duration-200 hover:border-coral hover:text-coral"
+									aria-label={t("linkedinAria")}>
+									<Linkedin size={16} />
+								</a>
+							)}
+							{creator.socialLinks.email && (
+								<button
+									onClick={handleEmailCopy}
+									className="w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-all duration-200 hover:border-coral hover:text-coral cursor-pointer"
+									aria-label={t("emailAria")}>
+									<Mail size={16} />
+								</button>
+							)}
+						</div>
 					</div>
+					<button
+						onClick={() => setPreviewOpen(true)}
+						className="shrink-0 rounded-full cursor-zoom-in transition-[box-shadow] duration-200 hover:shadow-[0_0_0_3px_var(--color-coral)]"
+						aria-label={t("viewPhotoAria", { name: creator.name })}>
+						<Image
+							src={cdnFull(creator.image)}
+							alt={creator.name}
+							width={160}
+							height={160}
+							className="w-40 h-40 rounded-full object-cover"
+						/>
+					</button>
 				</div>
-				<Image
-					src={creator.image}
+			</motion.div>
+
+			{previewOpen && (
+				<CreatorPreview
+					publicId={creator.image}
 					alt={creator.name}
-					width={160}
-					height={160}
-					className="shrink-0 rounded-full object-cover"
+					onClose={() => setPreviewOpen(false)}
 				/>
-			</div>
-		</motion.div>
+			)}
+		</>
 	);
 }

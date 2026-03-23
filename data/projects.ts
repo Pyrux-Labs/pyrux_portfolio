@@ -59,7 +59,15 @@ export const projects: Record<Locale, Project[]> = {
 			shortDescription:
 				"Portfolio web del estudio, con animaciones y deploy estático.",
 			technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
-			images: ["/projects/pyrux_portfolio/1.webp"],
+			images: [
+				"2026-03-23-153843_hyprshot_nf5col",
+				"2026-03-23-153904_hyprshot_kysyvd",
+				"2026-03-23-153929_hyprshot_zvwpy9",
+				"2026-03-23-153939_hyprshot_jkmqdp",
+				"2026-03-23-153950_hyprshot_cp4hur",
+				"2026-03-23-154004_hyprshot_sbepy9",
+				"2026-03-23-154024_hyprshot_yulgki",
+			],
 			liveUrl: "https://www.pyrux.com.ar",
 			featured: true,
 			date: "2026-02-01",
@@ -348,7 +356,15 @@ export const projects: Record<Locale, Project[]> = {
 			shortDescription:
 				"Studio web portfolio with animations and static deployment.",
 			technologies: ["nextjs", "typescript", "tailwindcss", "framer-motion"],
-			images: ["/projects/pyrux_portfolio/1.webp"],
+			images: [
+				"2026-03-23-153843_hyprshot_nf5col",
+				"2026-03-23-153904_hyprshot_kysyvd",
+				"2026-03-23-153929_hyprshot_zvwpy9",
+				"2026-03-23-153939_hyprshot_jkmqdp",
+				"2026-03-23-153950_hyprshot_cp4hur",
+				"2026-03-23-154004_hyprshot_sbepy9",
+				"2026-03-23-154024_hyprshot_yulgki",
+			],
 			liveUrl: "https://www.pyrux.com.ar",
 			featured: true,
 			date: "2026-02-01",
