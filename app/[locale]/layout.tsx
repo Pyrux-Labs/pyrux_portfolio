@@ -31,7 +31,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 	return (
 		<LocaleProvider locale={locale as Locale} messages={messages as Record<string, unknown>}>
 			<StarBackground />
-			<div className="relative z-1 min-h-screen flex flex-col overflow-x-hidden">
+			<div className="relative z-1 min-h-screen flex flex-col overflow-x-clip">
 				<div className="absolute top-3 left-3 z-50 flex gap-2">
 					<ThemeToggle />
 					<LanguageToggle />
