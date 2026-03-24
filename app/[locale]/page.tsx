@@ -67,6 +67,7 @@ export default async function LocaleHomePage({ params }: HomePageProps) {
 			.filter((c) => c.testimonial)
 			.map((c) => ({
 				"@type": "Review",
+				name: `Reseña de ${c.name}`,
 				author: { "@type": "Organization", name: c.name },
 				reviewBody: c.testimonial,
 				reviewRating: { "@type": "Rating", ratingValue: 5, bestRating: 5 },
