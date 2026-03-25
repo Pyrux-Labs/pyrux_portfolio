@@ -16,9 +16,11 @@ interface ProjectCardProps {
 	index?: number;
 	fullWidth?: boolean;
 	priority?: boolean;
+	headingLevel?: 2 | 3;
 }
 
-export default function ProjectCard({ project, onClick, fullWidth = false, priority = false }: ProjectCardProps) {
+export default function ProjectCard({ project, onClick, fullWidth = false, priority = false, headingLevel = 3 }: ProjectCardProps) {
+	const Heading = `h${headingLevel}` as "h2" | "h3";
 	const t = useTranslations("ProjectCard");
 	return (
 		<motion.div
@@ -59,9 +61,9 @@ export default function ProjectCard({ project, onClick, fullWidth = false, prior
 			{/* Content */}
 			<div className="flex flex-col gap-1.5 px-4 py-3">
 				{/* Title */}
-				<h3 className="font-display text-[0.95rem] font-semibold text-primary leading-tight">
+				<Heading className="font-display text-[0.95rem] font-semibold text-primary leading-tight">
 					{project.title}
-				</h3>
+				</Heading>
 
 				{/* Short description */}
 				<p className="text-[0.8rem] text-secondary leading-normal line-clamp-2">

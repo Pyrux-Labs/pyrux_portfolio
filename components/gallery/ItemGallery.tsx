@@ -26,7 +26,7 @@ export default function ItemGallery({ type, creatorId }: ItemGalleryProps) {
 			<div className="mt-6">
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 					{displayProjects.map((project) => (
-						<ProjectCard key={project.id} project={project} fullWidth onClick={() => setSelectedProject(project)} />
+						<ProjectCard key={project.id} project={project} fullWidth headingLevel={2} onClick={() => setSelectedProject(project)} />
 					))}
 				</div>
 				<ProjectModal project={selectedProject} isOpen={selectedProject !== null} onClose={() => setSelectedProject(null)} />
