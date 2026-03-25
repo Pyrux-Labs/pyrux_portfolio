@@ -45,6 +45,11 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 				: "We build modern websites, custom systems and automations to take your business to the next level.",
 			url,
 			locale: isEs ? "es_AR" : "en_US",
+			images: [{ url: `${BASE_URL}/og-image.png`, type: "image/png", width: 1200, height: 630 }],
+		},
+		twitter: {
+			card: "summary_large_image",
+			images: [`${BASE_URL}/og-image.png`],
 		},
 	};
 }

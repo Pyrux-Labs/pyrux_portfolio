@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PricingPageProps): Promise<Me
 				: "Professional web development packages. Landing pages, corporate sites, e-commerce and more.",
 			url,
 			locale: isEs ? "es_AR" : "en_US",
-			images: [{ url: "/og-image.png", type: "image/png", width: 1200, height: 630, alt: isEs ? "Precios — Pyrux" : "Pricing — Pyrux" }],
+			images: [{ url: `${BASE_URL}/og-image.png`, type: "image/png", width: 1200, height: 630, alt: isEs ? "Precios — Pyrux" : "Pricing — Pyrux" }],
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: PricingPageProps): Promise<Me
 			description: isEs
 				? "Paquetes de desarrollo web profesional."
 				: "Professional web development packages.",
-			images: ["/og-image.png"],
+			images: [`${BASE_URL}/og-image.png`],
 		},
 	};
 }

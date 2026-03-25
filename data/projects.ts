@@ -239,66 +239,66 @@ const projectsBase: ProjectBase[] = [
 const projectsI18n: Record<string, Record<Locale, ProjectTranslation>> = {
 	landing_page_medmind: {
 		es: {
-			title: "Landing Page MedMind",
+			title: "MedMind",
 			description:
-				"Landing page moderna y responsive para MedMind, una empresa de servicios de traducción profesional. Diseñada para comunicar confianza y generar consultas de clientes de forma efectiva, con animaciones fluidas y optimización SEO completa.",
+				"Sitio web institucional para MedMind, empresa de traducción especializada en medicina y educación entre español e inglés. Incluye landing page, sección sobre la empresa, formulario de contacto y blog de artículos bilingüe. Diseñado para transmitir confianza y profesionalismo a instituciones de salud, clínicas y universidades. Desde que salió al aire, el sitio genera contactos nuevos todos los días. Dos semanas de desarrollo.",
 			shortDescription:
-				"Landing page moderna para empresa de traducción profesional.",
+				"Sitio institucional bilingüe para empresa de traducción en medicina y educación.",
 		},
 		en: {
-			title: "MedMind Landing Page",
+			title: "MedMind",
 			description:
-				"Modern and responsive landing page for MedMind, a professional translation services company. Designed to communicate trust and effectively generate client inquiries, with smooth animations and full SEO optimization.",
+				"Institutional website for MedMind, a translation company specialized in medicine and education between Spanish and English. Includes a landing page, about section, contact form, and bilingual article blog. Designed to convey trust and professionalism to health institutions, clinics, and universities. Since launch, the site has been generating new contacts every day. Two weeks of development.",
 			shortDescription:
-				"Modern landing page for a professional translation company.",
+				"Bilingual institutional website for a medical and educational translation company.",
 		},
 	},
 	cms_medmind: {
 		es: {
 			title: "CMS MedMind",
 			description:
-				"Aplicación web de gestión de contenido desarrollada a medida para MedMind. Permite al equipo administrar traducciones, clientes y facturación desde un panel privado. Incluye integración con Stripe para la gestión de pagos y se despliega en contenedores Docker para máxima portabilidad.",
+				"Panel de gestión a medida para el equipo de MedMind. Permite publicar y editar noticias del blog en español e inglés directamente desde una interfaz simple, sin tocar código. Entregado en una semana.",
 			shortDescription:
-				"Panel de administración con pagos Stripe y despliegue en Docker.",
+				"Panel de gestión con blog bilingüe para el equipo de MedMind. Entregado en una semana.",
 		},
 		en: {
 			title: "MedMind CMS",
 			description:
-				"Custom-built content management web application for MedMind. Allows the team to manage translations, clients, and billing from a private dashboard. Includes Stripe integration for payment management and deploys in Docker containers for maximum portability.",
+				"Custom management panel for the MedMind team. Allows publishing and editing blog posts in Spanish and English directly from a simple interface, no coding required. Delivered in one week.",
 			shortDescription:
-				"Admin panel with Stripe payments and Docker deployment.",
+				"Bilingual blog management panel for the MedMind team. Delivered in one week.",
 		},
 	},
 	pyrux_portfolio: {
 		es: {
 			title: "Portfolio Pyrux",
 			description:
-				"Este mismo sitio. Portfolio web de Pyrux diseñado y desarrollado íntegramente por el estudio. Muestra proyectos, clientes, integrantes y planes de precios. Construido con Next.js App Router, Tailwind CSS v4 y Framer Motion, con exportación estática y deploy automático en Vercel.",
+				"Este mismo sitio. Diseñado y desarrollado por Pyrux para mostrar el trabajo del estudio con la misma calidad que le entregamos a nuestros clientes. Animaciones con Framer Motion, internacionalización en español e inglés, deploy estático automático en Vercel. Dos semanas de desarrollo.",
 			shortDescription:
-				"Portfolio web del estudio, con animaciones y deploy estático.",
+				"El portfolio del estudio: animaciones, i18n y deploy estático. Dos semanas de desarrollo.",
 		},
 		en: {
 			title: "Pyrux Portfolio",
 			description:
-				"This very site. Pyrux's web portfolio designed and developed entirely by the studio. Showcases projects, clients, team members, and pricing plans. Built with Next.js App Router, Tailwind CSS v4, and Framer Motion, with static export and automatic deployment on Vercel.",
+				"This very site. Designed and developed by Pyrux to showcase the studio's work with the same quality we deliver to our clients. Framer Motion animations, Spanish and English internationalization, automatic static deployment on Vercel. Two weeks of development.",
 			shortDescription:
-				"Studio web portfolio with animations and static deployment.",
+				"The studio's portfolio: animations, i18n, and static deployment. Two weeks of development.",
 		},
 	},
 	goal_planner: {
 		es: {
 			title: "Goal Planner",
 			description:
-				"Aplicación web de calendario de metas personales. Permite a los usuarios crear objetivos, organizarlos en un calendario interactivo y hacer seguimiento de su progreso semana a semana. Construida con Next.js y Supabase para persistencia en tiempo real.",
+				"Aplicación web para gestionar metas personales en un calendario interactivo. Los usuarios crean objetivos, los organizan por semana y hacen seguimiento de su progreso en tiempo real. Ya con sus primeros usuarios activos y creciendo de forma orgánica, sin haber hecho marketing todavía. Construida con Next.js y Supabase. Un mes de desarrollo.",
 			shortDescription:
-				"Calendario de metas con seguimiento semanal y persistencia en tiempo real.",
+				"App de metas personales con primeros usuarios activos y crecimiento orgánico.",
 		},
 		en: {
 			title: "Goal Planner",
 			description:
-				"Personal goal calendar web application. Allows users to create objectives, organize them in an interactive calendar, and track their progress week by week. Built with Next.js and Supabase for real-time persistence.",
+				"Web application to manage personal goals on an interactive calendar. Users create objectives, organize them by week, and track their progress in real time. Already gaining its first active users and growing organically, without any marketing yet. Built with Next.js and Supabase. One month of development.",
 			shortDescription:
-				"Goal calendar with weekly tracking and real-time persistence.",
+				"Personal goals app with first active users and organic growth.",
 		},
 	},
 	job_finder: {

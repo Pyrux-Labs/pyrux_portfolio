@@ -71,7 +71,7 @@ function LegendaryCard({ pkg }: { pkg: ServicePackage }) {
 				{t("customTagline")}
 			</p>
 
-			<div className="border-t border-(--pkg-custom)/20" />
+			<div className="border-t border-(--pkg-custom)/20 mb-4" />
 
 			{/* Features */}
 			<ul className="flex flex-col gap-2.5 flex-1 mb-6">

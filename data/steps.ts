@@ -6,7 +6,7 @@ export const steps: Record<Locale, Step[]> = {
     {
       number: "01",
       title: "Hablamos gratis",
-      description: "Entendemos tu negocio y te damos un presupuesto claro en 72hs.",
+      description: "Entendemos tu negocio y te damos un presupuesto claro en 24hs.",
     },
     {
       number: "02",
@@ -33,7 +33,7 @@ export const steps: Record<Locale, Step[]> = {
     {
       number: "01",
       title: "Free consultation",
-      description: "We understand your business and give you a clear quote within 72 hours.",
+      description: "We understand your business and give you a clear quote within 24 hours.",
     },
     {
       number: "02",

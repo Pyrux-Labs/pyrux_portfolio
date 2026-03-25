@@ -181,7 +181,9 @@ export default function ProjectModal({
 						</p>
 					</div>
 					{project.liveUrl && (
-						<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
+						<div className="ml-auto">
+							<ExternalLinkButton href={project.liveUrl} label={t("viewLive")} />
+						</div>
 					)}
 				</div>
 			</Modal>

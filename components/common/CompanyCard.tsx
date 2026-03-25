@@ -14,7 +14,6 @@ import { cdnFull } from "@/lib/cloudinary";
 interface CompanyCardProps {
 	company: Company;
 	onClick?: () => void;
-	fullWidth?: boolean;
 	priority?: boolean;
 }
 
@@ -64,7 +63,7 @@ function Testimonial({ text, wrapClass, textClass }: { text: string; wrapClass: 
 	);
 }
 
-export default function CompanyCard({ company, onClick, fullWidth = false, priority = false }: CompanyCardProps) {
+export default function CompanyCard({ company, onClick, priority = false }: CompanyCardProps) {
 	const t = useTranslations("CompanyCard");
 
 	const motionProps = {
@@ -74,35 +73,22 @@ export default function CompanyCard({ company, onClick, fullWidth = false, prior
 		viewport: { once: true },
 		whileHover: { y: -4 },
 		whileTap: { scale: 0.98 },
-		tabIndex: 0,
-		role: "button" as const,
-		"aria-label": t("viewDetailsAria", { name: company.name }),
-		onKeyDown: (e: React.KeyboardEvent) => {
-			if (e.key === "Enter" || e.key === " ") {
-				e.preventDefault();
-				onClick?.();
-			}
-		},
+		tabIndex: onClick ? 0 : undefined,
+		role: onClick ? ("button" as const) : undefined,
+		"aria-label": onClick ? t("viewDetailsAria", { name: company.name }) : undefined,
+		onKeyDown: onClick
+			? (e: React.KeyboardEvent) => {
+					if (e.key === "Enter" || e.key === " ") {
+						e.preventDefault();
+						onClick();
+					}
+				}
+			: undefined,
 	};
 
 	const baseClass =
-		"rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary cursor-pointer transition-[border-color,box-shadow] duration-200 ease-in-out hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]";
-
-	if (fullWidth) {
-		return (
-			<motion.div className={`${baseClass} flex flex-col gap-3 p-5 w-full`} {...motionProps}>
-				<div className="flex items-center gap-3">
-					<CompanyLogo company={company} size={44} priority={priority} />
-					<h3 className="font-display text-[1.05rem] font-semibold text-primary">{company.name}</h3>
-				</div>
-				<p className="text-[0.9rem] text-secondary leading-relaxed line-clamp-2">{company.summary}</p>
-				<p className="text-[0.85rem] text-muted leading-relaxed line-clamp-2">{company.workDescription}</p>
-				{company.testimonial && (
-					<Testimonial text={company.testimonial} wrapClass="items-start pt-2" textClass="text-muted italic line-clamp-1" />
-				)}
-			</motion.div>
-		);
-	}
+		"rounded-xl border border-border bg-card-strong backdrop-blur-sm no-underline text-primary transition-[border-color,box-shadow] duration-200 ease-in-out" +
+		(onClick ? " cursor-pointer hover:border-coral hover:shadow-[0_8px_24px_var(--shadow-coral-soft)]" : "");
 
 	return (
 		<motion.div

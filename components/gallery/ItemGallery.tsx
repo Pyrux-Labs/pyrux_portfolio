@@ -36,9 +36,9 @@ export default function ItemGallery({ type, creatorId }: ItemGalleryProps) {
 
 	return (
 		<div className="mt-6">
-			<div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 				{companies[locale].map((company) => (
-					<CompanyCard key={company.id} company={company} fullWidth onClick={() => setSelectedCompany(company)} />
+					<CompanyCard key={company.id} company={company} onClick={() => setSelectedCompany(company)} />
 				))}
 			</div>
 			<CompanyModal company={selectedCompany} isOpen={selectedCompany !== null} onClose={() => setSelectedCompany(null)} />

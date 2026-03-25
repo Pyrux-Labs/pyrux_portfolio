@@ -76,7 +76,7 @@ export const metadata: Metadata = {
 		siteName: "Pyrux",
 		images: [
 			{
-				url: "/og-image.png",
+				url: `${BASE_URL}/og-image.png`,
 				type: "image/png",
 				width: 1200,
 				height: 630,
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
 		title: "Pyrux — Desarrollo web y soluciones digitales",
 		description:
 			"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
-		images: ["/og-image.png"],
+		images: [`${BASE_URL}/og-image.png`],
 	},
 	icons: {
 		icon: "/Pyrux-logo.svg",

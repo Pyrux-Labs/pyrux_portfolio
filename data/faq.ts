@@ -6,84 +6,84 @@ export const faqItems: Record<Locale, FAQItem[]> = {
 		{
 			question: "¿Por qué Pyrux y no una agencia?",
 			answer:
-				"Las agencias cobran un 200% más que nuestros precios, y tercerizan tu proyecto a un programador inexperto. En Pyrux, asegurás que hablás directamente con los profesionales que realizarán tu proyecto, manteniendo una calidad y personalización que no vas a tener en ninguna otra empresa.",
+				"Las agencias cobran hasta un 200% más y tercerizan tu proyecto a un desarrollador inexperto. En Pyrux trabajás directamente con los profesionales que construyen tu producto, garantizando la calidad y el nivel de detalle que una agencia nunca puede ofrecer.",
 		},
 		{
 			question: "¿Hay garantía de satisfacción?",
 			answer:
-				"Sí. Incluimos rondas de revisiones sin costo adicional hasta que el resultado te convenza. No lanzamos nada que no te represente.",
+				"Sí. Incluimos rondas de revisión sin cargo adicional hasta que el resultado te convenza por completo. No publicamos nada que no te represente al 100%.",
 		},
 		{
 			question: "¿Cuál es el tiempo de respuesta?",
 			answer:
-				"Plan Growth: respuesta en menos de 48hs. Plan Pro: menos de 24hs. Plan Business y E-Commerce: soporte prioritario con respuesta en menos de 12hs.",
+				"Depende del plan: desde 48 horas en Growth hasta 12 horas en Business y E-Commerce. Cuanto más crítico sea tu negocio, más rápido llegamos.",
 		},
 		{
 			question: "¿Los precios son en dólares o en pesos?",
 			answer:
-				"Se cotizan en dólares, se pueden pagar en pesos al tipo de cambio del día.",
+				"Cotizamos en dólares para mantener precios estables, y podés pagar en pesos al tipo de cambio del día. Sin sorpresas ni actualizaciones arbitrarias.",
 		},
 		{
 			question: "¿Qué necesito tener listo antes de empezar?",
 			answer:
-				"Un manual de marca hecho por un profesional sería ideal, pero no es obligatorio.",
+				"Idealmente, un manual de marca y el contenido (textos e imágenes). Si no tenés alguno de los dos, lo resolvemos juntos — tenemos experiencia arrancando desde cero.",
 		},
 		{
 			question: "¿Puedo actualizar el contenido yo mismo?",
 			answer:
-				"El plan Standard en adelante incluyen una aplicación web para que puedas cambiar el contenido por vos mismo; mientras que en el plan Growth van por el mantenimiento mensual.",
+				"Los planes Pro en adelante incluyen un panel de administración para que gestiones el contenido sin depender de nosotros. En el plan Growth, las actualizaciones se incluyen dentro del mantenimiento mensual.",
 		},
 		{
 			question: "¿Qué pasa si no quiero contratar mantenimiento?",
 			answer:
-				"Te entregamos la aplicación lista, para que los realices por tu cuenta.",
+				"Sin problema. Te entregamos el proyecto completo, documentado y listo para que lo administres vos o cualquier desarrollador que elijas.",
 		},
 		{
 			question: "¿Cuánto tarda realmente un proyecto?",
 			answer:
-				"Los tiempos son desde que tenemos todo el contenido. Si hay demoras del cliente, el plazo se extiende. Cronograma acordado desde el inicio.",
+				"Los plazos arrancan desde que tenemos el contenido completo y se acuerdan al inicio del proyecto. El cronograma es claro desde el día uno, sin sorpresas ni demoras de nuestra parte.",
 		},
 	],
 	en: [
 		{
 			question: "Why Pyrux instead of an agency?",
 			answer:
-				"Agencies charge 200% more than our prices and outsource your project to an inexperienced developer. With Pyrux, you deal directly with the professionals who will build your project, ensuring a level of quality and personalization you won't find anywhere else.",
+				"Agencies charge up to 200% more and outsource your project to an inexperienced developer. At Pyrux, you work directly with the professionals building your product — guaranteeing the quality and attention to detail that no agency can match.",
 		},
 		{
 			question: "Is there a satisfaction guarantee?",
 			answer:
-				"Yes. We include revision rounds at no extra cost until you're satisfied. We don't launch anything that doesn't represent you.",
+				"Yes. We include unlimited revision rounds at no extra cost until you're fully satisfied. We don't publish anything that doesn't represent you 100%.",
 		},
 		{
 			question: "What is the response time?",
 			answer:
-				"Growth plan: response within 48 hours. Pro plan: within 24 hours. Business and E-Commerce: priority support with response within 12 hours.",
+				"It depends on the plan: from 48 hours on Growth to 12 hours on Business and E-Commerce. The more critical your business, the faster we respond.",
 		},
 		{
 			question: "Are prices in dollars or pesos?",
 			answer:
-				"Prices are quoted in US dollars and can be paid in pesos at the current exchange rate.",
+				"We quote in US dollars to keep pricing stable, and you can pay in pesos at the current exchange rate. No surprises, no arbitrary increases.",
 		},
 		{
 			question: "What do I need ready before we start?",
 			answer:
-				"A brand manual made by a professional would be ideal, but it's not mandatory.",
+				"Ideally, a brand manual and your content (text and images). If you're missing either, we'll work through it together — we have experience starting from scratch.",
 		},
 		{
 			question: "Can I update the content myself?",
 			answer:
-				"The Standard plan and above include a web application so you can update the content yourself, while the Growth plan includes monthly maintenance for content updates.",
+				"The Pro plan and above include an admin panel so you can manage your content without relying on us. On the Growth plan, updates are handled as part of the monthly maintenance.",
 		},
 		{
 			question: "What if I don't want a maintenance plan?",
 			answer:
-				"We deliver the finished application so you can handle updates on your own.",
+				"No problem. We deliver the full project, documented and ready for you or any developer you choose to manage.",
 		},
 		{
 			question: "How long does a project actually take?",
 			answer:
-				"Timelines start from when we have all the content. If there are client delays, the deadline extends. The schedule is agreed upon from the start.",
+				"Timelines start from when we have all the content and are agreed upon at the beginning of the project. The schedule is clear from day one — no surprises, no delays on our end.",
 		},
 	],
 };

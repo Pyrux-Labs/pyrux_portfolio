@@ -90,13 +90,13 @@
   },
   "ProjectsPage": {
     "title": "Nuestros Proyectos",
-    "subtitle": "Todos los proyectos desarrollados por Pyrux",
+    "subtitle": "Webs, sistemas y aplicaciones que resuelven problemas reales. Todo lo que construimos, acá.",
     "backToHome": "Volver al inicio",
     "viewDetailsAria": "Ver detalles de {title}"
   },
   "ClientsPage": {
     "title": "Nuestros Clientes",
-    "subtitle": "Empresas que confiaron en Pyrux para sus proyectos digitales",
+    "subtitle": "Cada cliente es un problema resuelto. Conocé las empresas que confían en Pyrux.",
     "backToHome": "Volver al inicio",
     "viewDetailsAria": "Ver detalles de {name}"
   },

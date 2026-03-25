@@ -164,7 +164,7 @@ Cada ruta es un **Server Component** que genera metadata y compone componentes. 
     <Services />
     <Team />
     <ContactUs />
-    <StatsBar />   // métricas: proyectos, clientes, años
+    <StatsBar /> // métricas: proyectos, clientes, años
     <TechStack />
 </main>
 ```
@@ -247,50 +247,54 @@ Variantes locales solo si tienen lógica única (scale, custom prop, easing espe
 Definidas en `app/globals.css`. Se usan via Tailwind (`text-coral`, `bg-elevated`) o `var()` directos.
 
 ### Colores base
-| Variable | Valor dark | Significado |
-|---|---|---|
-| `--bg-deep` | `#0a0604` | Fondo más oscuro (body) |
-| `--bg-surface` | `#120d0a` | Fondo de superficies |
-| `--bg-elevated` | `#1a130f` | Fondo de cards elevadas |
-| `--coral-bright` | `#ff7b3d` | Coral principal (CTAs, accents) |
-| `--coral-mid` | `#e8641f` | Coral medio |
-| `--coral-dark` | `#a84510` | Coral oscuro |
-| `--gold-bright` | `#d4a574` | Dorado/ámbar (acento secundario) |
-| `--gold-mid` | `#9d7045` | Dorado oscuro |
-| `--text-primary` | `#fef7f0` | Texto principal |
-| `--text-secondary` | `#c9b5a0` | Texto secundario |
-| `--text-muted` | `#8a7966` | Texto atenuado |
-| `--border-subtle` | `rgba(201,181,160,0.14)` | Borde sutil |
-| `--border-accent` | `rgba(255,123,61,0.32)` | Borde coral |
+
+| Variable           | Valor dark               | Significado                      |
+| ------------------ | ------------------------ | -------------------------------- |
+| `--bg-deep`        | `#0a0604`                | Fondo más oscuro (body)          |
+| `--bg-surface`     | `#120d0a`                | Fondo de superficies             |
+| `--bg-elevated`    | `#1a130f`                | Fondo de cards elevadas          |
+| `--coral-bright`   | `#ff7b3d`                | Coral principal (CTAs, accents)  |
+| `--coral-mid`      | `#e8641f`                | Coral medio                      |
+| `--coral-dark`     | `#a84510`                | Coral oscuro                     |
+| `--gold-bright`    | `#d4a574`                | Dorado/ámbar (acento secundario) |
+| `--gold-mid`       | `#9d7045`                | Dorado oscuro                    |
+| `--text-primary`   | `#fef7f0`                | Texto principal                  |
+| `--text-secondary` | `#c9b5a0`                | Texto secundario                 |
+| `--text-muted`     | `#8a7966`                | Texto atenuado                   |
+| `--border-subtle`  | `rgba(201,181,160,0.14)` | Borde sutil                      |
+| `--border-accent`  | `rgba(255,123,61,0.32)`  | Borde coral                      |
 
 ### Surfaces y sombras
-| Variable | Color real |
-|---|---|
-| `--surface-coral-tint` | `rgba(255,123,61,0.14)` — tinte coral |
-| `--surface-gold-tint` | `rgba(212,165,116,0.12)` — tinte dorado |
+
+| Variable                         | Color real                                    |
+| -------------------------------- | --------------------------------------------- |
+| `--surface-coral-tint`           | `rgba(255,123,61,0.14)` — tinte coral         |
+| `--surface-gold-tint`            | `rgba(212,165,116,0.12)` — tinte dorado       |
 | `--shadow-coral-soft/mid/strong` | Sombras coral en opacidades 0.18 / 0.28 / 0.4 |
-| `--shadow-gold-soft` | `rgba(212,165,116,0.16)` — sombra dorada |
+| `--shadow-gold-soft`             | `rgba(212,165,116,0.16)` — sombra dorada      |
 
 ### Tokens Tailwind (`@theme`)
-| Token CSS | Clase Tailwind |
-|---|---|
-| `--color-coral` | `text-coral`, `bg-coral`, `border-coral` |
-| `--color-gold` | `text-gold`, `bg-gold`, `border-gold` |
-| `--color-gold-mid` | `text-gold-mid` |
+
+| Token CSS                         | Clase Tailwind                                 |
+| --------------------------------- | ---------------------------------------------- |
+| `--color-coral`                   | `text-coral`, `bg-coral`, `border-coral`       |
+| `--color-gold`                    | `text-gold`, `bg-gold`, `border-gold`          |
+| `--color-gold-mid`                | `text-gold-mid`                                |
 | `--color-primary/secondary/muted` | `text-primary`, `text-secondary`, `text-muted` |
-| `--color-deep/surface/elevated` | `bg-deep`, `bg-surface`, `bg-elevated` |
-| `--color-border` | `border-border` |
-| `--color-card/card-strong` | `bg-card`, `bg-card-strong` |
-| `--color-gold-tint` | `bg-[var(--color-gold-tint)]` |
-| `--color-coral-tint` | `bg-[var(--color-coral-tint)]` |
+| `--color-deep/surface/elevated`   | `bg-deep`, `bg-surface`, `bg-elevated`         |
+| `--color-border`                  | `border-border`                                |
+| `--color-card/card-strong`        | `bg-card`, `bg-card-strong`                    |
+| `--color-gold-tint`               | `bg-[var(--color-gold-tint)]`                  |
+| `--color-coral-tint`              | `bg-[var(--color-coral-tint)]`                 |
 
 ### Colores de planes (`--pkg-*`)
-| Plan | Color | Variable base |
-|---|---|---|
-| Growth | Verde `#22c55e` | `--pkg-growth` |
-| Pro | Coral (alias de `--color-coral`) | `--pkg-pro` |
-| Business | Violeta `#a855f7` | `--pkg-business` |
-| Personalizado | Ámbar `#f59e0b` | `--pkg-custom` |
+
+| Plan          | Color                            | Variable base    |
+| ------------- | -------------------------------- | ---------------- |
+| Growth        | Verde `#22c55e`                  | `--pkg-growth`   |
+| Pro           | Coral (alias de `--color-coral`) | `--pkg-pro`      |
+| Business      | Violeta `#a855f7`                | `--pkg-business` |
+| Personalizado | Ámbar `#f59e0b`                  | `--pkg-custom`   |
 
 ---
 
@@ -315,42 +319,12 @@ Definidas en `app/globals.css`. Se usan via Tailwind (`text-coral`, `bg-elevated
 
 ## TODOLIST
 
-### Fase 6 — Bugs críticos
-
-
-### Fase 7 — Contenido urgente
-
-- [ ] **Proceso paso 1**: cambiar "presupuesto en 72hs" → "24hs" en `data/steps.ts` (es + en)
-- [ ] **FAQ redacción**: "En Pyrux, asegurás" → "te asegurás" + revisar todo el bloque de FAQs por errores similares (es y en)
-- [ ] **Comentario MedMind**: resumir a máximo 2–3 líneas concisas manteniendo el tono. Texto nuevo: *"Desde el primer contacto demostraron ser un equipo profesional y comprometido. Cumplieron los tiempos, comunicaron claro y el resultado superó nuestras expectativas. Los recomendamos sin dudarlo."*
-- [ ] **Subtítulos /projects y /clients**: ampliar el subtítulo de `PageHeading`, actualmente demasiado corto
-
-### Fase 8 — UI Polish
-
-- [ ] **Pack Personalizado**: padding incorrecto en la lista de beneficios (primer ítem pegado a la línea divisoria)
-- [ ] **Modal clientes**: subtítulo descentrado; máx. 3 líneas descripción empresa, máx. 2 líneas trabajo realizado; comentario centrado en su contenedor; alinear distancia superior al estilo del modal de proyectos
-- [ ] **Unificar modal clientes**: la página `/clients` usa una variante distinta del modal — reemplazarla por el mismo `CompanyModal` del carousel y eliminar la variante duplicada
-
-### Fase 9 — Copy & Textos
-
-- [ ] **Cards "Qué hacemos"**: reescribir los 6 servicios con tono más profesional y orientado al cliente objetivo (dueño de PyME). Pedir contexto antes de hacer cambios.
-- [ ] **FAQ — tono de empresa**: pulir preguntas/respuestas para que se alineen con la voz de Pyrux. Pedir contexto antes.
-- [ ] **Descripciones de proyectos y empresas**: mejorar `description`, `shortDescription` y `workDescription` en `data/projects.ts` y `data/companies.ts`. Pedir contexto antes.
-
-### Fase 10 — TechStack
-
-- [ ] **SVGs faltantes**: agregar íconos a las tecnologías que no los tienen en `data/technologies.ts`
-- [ ] **Tecnologías adicionales**: sugerir qué agregar (Docker, PostgreSQL, Supabase, Prisma, Node.js, etc.)
-- [ ] **Orden**: reorganizar el stack por relevancia y frecuencia de uso
-
 ### Fase 11 — Accesibilidad
 
 - [ ] **Color contrast**: verificar ratios dark y light (mínimo 4.5:1) con Lighthouse o axe
-- [ ] **Skip navigation link**: link oculto "Saltar al contenido" al inicio del `<body>`
 
 ### Fase 12 — Pre-deploy & Calidad
 
-- [ ] **Security headers**: agregar en `vercel.json` — `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`
 - [ ] **Open Graph test**: verificar og-image con Meta Sharing Debugger y Twitter Card Validator antes de lanzar
 - [ ] **Rich Results Test**: validar structured data (FAQPage, Service, Person, Review) en Google Rich Results Test
 - [ ] **PageSpeed Insights**: objetivo > 90 en mobile; identificar y corregir lo que baje el score
@@ -370,4 +344,3 @@ Definidas en `app/globals.css`. Se usan via Tailwind (`text-coral`, `bg-elevated
 - ❌ Hardcodear strings de UI — usar `messages/` + `useTranslations`
 - ❌ Patrón `*PageClient.tsx`
 - ❌ Variants de Framer Motion duplicadas — usar `lib/animations.ts`
-- ❌ Asumir la estructura de un componente sin leerlo primero

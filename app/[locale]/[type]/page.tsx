@@ -21,28 +21,28 @@ const meta = {
 	projects: {
 		es: {
 			title: "Proyectos — Pyrux",
-			description: "Todos los proyectos desarrollados por Pyrux. Desarrollo web, sistemas a medida y soluciones digitales.",
-			short: "Todos los proyectos desarrollados por Pyrux.",
+			description: "Webs, sistemas y aplicaciones que resuelven problemas reales. Todo lo que construimos, acá.",
+			short: "Todo lo que construimos, acá.",
 			breadcrumb: "Proyectos",
 		},
 		en: {
 			title: "Projects — Pyrux",
-			description: "All projects developed by Pyrux. Web development, custom systems and digital solutions.",
-			short: "All projects developed by Pyrux.",
+			description: "Websites, systems and apps that solve real problems. Everything we've built, right here.",
+			short: "Everything we've built, right here.",
 			breadcrumb: "Projects",
 		},
 	},
 	clients: {
 		es: {
 			title: "Clientes — Pyrux",
-			description: "Empresas y clientes que confiaron en Pyrux para sus proyectos digitales.",
-			short: "Empresas y clientes que confiaron en Pyrux.",
+			description: "Cada cliente es un problema resuelto. Conocé las empresas que confían en Pyrux.",
+			short: "Las empresas que confían en Pyrux.",
 			breadcrumb: "Clientes",
 		},
 		en: {
 			title: "Clients — Pyrux",
-			description: "Companies and clients that trusted Pyrux for their digital projects.",
-			short: "Companies and clients that trusted Pyrux.",
+			description: "Every client is a problem solved. Meet the companies that trust Pyrux.",
+			short: "The companies that trust Pyrux.",
 			breadcrumb: "Clients",
 		},
 	},
@@ -76,13 +76,13 @@ export async function generateMetadata({ params }: GalleryPageProps): Promise<Me
 			description: short,
 			url,
 			locale: locale === "es" ? "es_AR" : "en_US",
-			images: [{ url: "/og-image.png", type: "image/png", width: 1200, height: 630, alt: title }],
+			images: [{ url: `${BASE_URL}/og-image.png`, type: "image/png", width: 1200, height: 630, alt: title }],
 		},
 		twitter: {
 			card: "summary_large_image",
 			title,
 			description: short,
-			images: ["/og-image.png"],
+			images: [`${BASE_URL}/og-image.png`],
 		},
 	};
 }
