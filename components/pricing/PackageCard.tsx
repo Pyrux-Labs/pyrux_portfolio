@@ -138,9 +138,20 @@ export default function PackageCard({
 			</h3>
 
 			<div className="mb-2">
-				<span className={`font-display text-2xl font-bold ${c.text}`}>
-					{pkg.price}
-				</span>
+				{pkg.discountedPrice ? (
+					<div className="flex items-baseline gap-2 flex-wrap">
+						<span className={`font-display text-2xl font-bold ${c.text}`}>
+							{pkg.discountedPrice}
+						</span>
+						<span className="font-display text-sm text-muted line-through">
+							{pkg.price}
+						</span>
+					</div>
+				) : (
+					<span className={`font-display text-2xl font-bold ${c.text}`}>
+						{pkg.price}
+					</span>
+				)}
 			</div>
 
 			{/* Delivery time */}

@@ -16,6 +16,7 @@ export interface ServicePackage {
 	number: string;
 	name: string;
 	price: string;
+	discountedPrice?: string;
 	maintenancePrice: string;
 	deliveryTime: string;
 	popular: boolean;

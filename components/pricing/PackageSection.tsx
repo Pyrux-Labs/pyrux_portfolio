@@ -62,6 +62,14 @@ export default function PackageSection() {
 
 	return (
 		<>
+			{/* Discount banner */}
+			<div className="flex flex-col min-[480px]:flex-row items-center justify-center gap-2 mb-8 px-4 py-3 rounded-xl border border-gold bg-[var(--surface-gold-tint)] text-center">
+				<span className="shrink-0 px-2.5 py-0.5 rounded-full bg-gold text-[var(--bg-deep)] text-[0.75rem] font-bold tracking-wide">
+					{t("discountBadge")}
+				</span>
+				<span className="text-[0.85rem] text-primary font-medium">{t("discountText")}</span>
+			</div>
+
 			{/* Category toggle */}
 			<div className="flex gap-1 p-1 rounded-xl border border-border bg-card w-fit mb-8 self-center">
 				{TABS.map((tab) => (

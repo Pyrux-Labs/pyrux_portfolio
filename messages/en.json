@@ -124,7 +124,9 @@
     "packagesTitle": "Our Packages",
     "selectedPlan": "Selected plan",
     "ctaWhatsApp": "Contact via WhatsApp",
-    "whatsAppMessage": "Hi! I'm interested in the {name} plan"
+    "whatsAppMessage": "Hi! I'm interested in the {name} plan",
+    "discountBadge": "30% OFF",
+    "discountText": "Launch offer — first 5 clients get 30% off. Almost full!"
   },
   "NotFound": {
     "code": "404",
