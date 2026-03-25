@@ -255,10 +255,6 @@ Variantes locales solo si tienen lógica única (scale, custom prop, easing espe
 
 ## TODOLIST
 
-### Fase 5 — SEO y Analytics
-
-- [ ] **Privacy Policy y Terms**: páginas `/privacy` y `/terms` — texto generado en Termly
-
 ### Fase 6 — Accesibilidad
 
 - [ ] **`aria-label` en secciones**: `Section.tsx` sin aria-label impacta lectores de pantalla

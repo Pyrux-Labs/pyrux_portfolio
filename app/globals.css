@@ -158,6 +158,13 @@ html[data-theme="light"] {
 	--animate-scroll-right: scroll-right var(--duration, 90s) linear infinite;
 }
 
+/* ── Focus visible — keyboard navigation only ── */
+:focus-visible {
+	outline: 2px solid var(--coral-bright);
+	outline-offset: 3px;
+	border-radius: 4px;
+}
+
 /* ── Base ──────────────────────────────────── */
 html {
 	scroll-behavior: smooth;
