@@ -69,7 +69,7 @@ export default function PackageSection() {
 						key={tab.id}
 						onClick={() => handleCategoryChange(tab.id)}
 						className={`px-4 py-1.5 rounded-lg text-[0.85rem] font-medium transition-all duration-200 cursor-pointer
-							${selectedCategory === tab.id ? "bg-coral text-white shadow-sm" : "text-secondary hover:text-primary"}`}>
+							${selectedCategory === tab.id ? "bg-coral text-white shadow-sm" : "text-primary hover:text-white hover:bg-coral/20"}`}>
 						{tab.label}
 					</button>
 				))}
@@ -117,7 +117,7 @@ export default function PackageSection() {
 					transition={{ duration: 0.4, ease: "easeOut" }}
 					className={`flex flex-wrap items-center justify-between gap-4 mb-10 px-5 py-4 rounded-xl border backdrop-blur-sm ${ctaColorTokens[activePkg.planColor].border} ${ctaColorTokens[activePkg.planColor].bg}`}>
 					<div className="flex flex-col min-[481px]:flex-row min-[481px]:items-center gap-1 min-[481px]:gap-3">
-						<span className="text-[0.8rem] text-muted">{t("selectedPlan")}</span>
+						<span className="text-[0.8rem] text-secondary">{t("selectedPlan")}</span>
 						<span className={`font-display font-bold text-[1rem] ${ctaColorTokens[activePkg.planColor].text}`}>
 							{activePkg.name}
 						</span>

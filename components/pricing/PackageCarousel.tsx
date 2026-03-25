@@ -96,17 +96,19 @@ export default function PackageCarousel({
 					))}
 				</div>
 			</motion.div>
-			<div className="flex justify-center gap-2 mt-4">
+			<div className="flex justify-center gap-0 mt-4">
 				{visiblePackages.map((pkg, idx) => (
 					<button
 						key={idx}
 						onClick={() => onSelect(idx)}
-						className={`rounded-full transition-all duration-200 cursor-pointer ${
+						aria-label={pkg.name}
+						className="px-1.5 py-2 cursor-pointer flex items-center justify-center">
+						<span className={`block rounded-full transition-all duration-200 ${
 							selectedPkg === idx
 								? `w-5 h-2 ${ctaColorTokens[pkg.planColor].bg} border ${ctaColorTokens[pkg.planColor].border}`
 								: "w-2 h-2 bg-border"
-						}`}
-					/>
+						}`} />
+					</button>
 				))}
 			</div>
 		</div>
