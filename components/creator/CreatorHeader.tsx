@@ -11,7 +11,7 @@ import Image from "next/image";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { getCreatorById } from "@/data/creators";
 import { fadeUpHeader } from "@/lib/animations";
-import { cdnThumb, cdnFull } from "@/lib/cloudinary";
+import { cdnThumb, cdnFull, cdnPortrait } from "@/lib/cloudinary";
 import CreatorPreview from "@/components/common/CreatorPreview";
 
 interface CreatorHeaderProps {
@@ -100,10 +100,11 @@ export default function CreatorHeader({ creatorId }: CreatorHeaderProps) {
                             <div className="absolute inset-0 rounded-full bg-elevated animate-pulse" />
                         )}
                         <Image
-                            src={cdnFull(creator.image)}
+                            src={cdnPortrait(creator.image)}
                             alt={creator.name}
                             width={160}
                             height={160}
+                            sizes="160px"
                             className="w-40 h-40 rounded-full object-cover"
                             onLoad={() => setPhotoLoaded(true)}
                         />
