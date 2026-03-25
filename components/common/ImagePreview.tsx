@@ -42,6 +42,7 @@ export default function ImagePreview({
     const panStart = useRef<{ x: number; y: number } | null>(null);
     const panStartOffset = useRef({ x: 0, y: 0 });
     const lastTap = useRef(0);
+    const imageContainerRef = useRef<HTMLDivElement>(null);
 
     const resetZoom = useCallback(() => {
         scaleRef.current = 1;
@@ -103,7 +104,7 @@ export default function ImagePreview({
         }
     }, [resetZoom]);
 
-    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    const handleTouchMove = useCallback((e: TouchEvent) => {
         e.preventDefault();
 
         if (e.touches.length === 2 && pinchStartDist.current !== null) {
@@ -129,6 +130,14 @@ export default function ImagePreview({
         panStart.current = null;
         if (scaleRef.current <= 1) resetZoom();
     }, [resetZoom]);
+
+    // Register touchmove with passive:false so preventDefault() works
+    useEffect(() => {
+        const el = imageContainerRef.current;
+        if (!el) return;
+        el.addEventListener("touchmove", handleTouchMove, { passive: false });
+        return () => el.removeEventListener("touchmove", handleTouchMove);
+    }, [handleTouchMove]);
 
     const zoomed = scale > 1;
 
@@ -171,6 +180,7 @@ export default function ImagePreview({
                 {/* Image */}
                 <motion.div
                     key={index}
+                    ref={imageContainerRef}
                     className="relative z-10 max-w-[90vw] max-h-[90vh] touch-none select-none"
                     style={{
                         transform: `scale(${scale}) translate(${offset.x / scale}px, ${offset.y / scale}px)`,
@@ -181,7 +191,6 @@ export default function ImagePreview({
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
                     onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
                     <Image
