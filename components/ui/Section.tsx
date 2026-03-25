@@ -56,6 +56,7 @@ export default function Section({
 	return (
 		<motion.section
 			id={id}
+			aria-label={title}
 			variants={sectionVariants}
 			initial="hidden"
 			whileInView="visible"
