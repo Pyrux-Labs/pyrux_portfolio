@@ -109,7 +109,7 @@ function ImageCarousel({
 			{hasArrows && canScrollLeft && (
 				<button
 					onClick={() => scroll("left")}
-					className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-card-strong text-coral cursor-pointer transition-colors duration-200 hover:bg-coral hover:text-white"
+					className="absolute left-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-coral text-white cursor-pointer transition-transform duration-150 hover:scale-110 origin-center"
 					aria-label={prevLabel}>
 					<ChevronLeft size={14} />
 				</button>
@@ -117,7 +117,7 @@ function ImageCarousel({
 			{hasArrows && canScrollRight && (
 				<button
 					onClick={() => scroll("right")}
-					className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-card-strong text-coral cursor-pointer transition-colors duration-200 hover:bg-coral hover:text-white"
+					className="absolute right-0 top-1/2 -translate-y-1/2 w-7 h-7 grid place-items-center rounded-full border border-coral bg-coral text-white cursor-pointer transition-transform duration-150 hover:scale-110 origin-center"
 					aria-label={nextLabel}>
 					<ChevronRight size={14} />
 				</button>
