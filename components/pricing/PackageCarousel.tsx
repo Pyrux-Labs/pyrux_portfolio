@@ -27,12 +27,6 @@ export default function PackageCarousel({
 	animKey,
 }: PackageCarouselProps) {
 	const carouselRef = useRef<HTMLDivElement>(null);
-	const touchStartX = useRef(0);
-	const selectedPkgRef = useRef(selectedPkg);
-
-	useEffect(() => {
-		selectedPkgRef.current = selectedPkg;
-	}, [selectedPkg]);
 
 	// Scroll to card when selectedPkg changes (dot tap) — skip if already there
 	useEffect(() => {
@@ -46,42 +40,46 @@ export default function PackageCarousel({
 		el.scrollTo({ left: targetLeft, behavior: "smooth" });
 	}, [selectedPkg]);
 
-	// Touch handlers: always move exactly one card per swipe
+	// Detect swipe end via scrollend (+ debounce fallback for older browsers)
 	useEffect(() => {
 		const el = carouselRef.current;
 		if (!el) return;
+		const fallbackTimer = { current: null as ReturnType<typeof setTimeout> | null };
 
-		function scrollToIndex(idx: number) {
+		function detectCard() {
 			if (!el) return;
-			const card = el.children[idx] as HTMLElement;
-			if (!card) return;
-			const target = card.offsetLeft - el.offsetLeft;
-			// Freeze current position to cancel momentum, then smooth scroll to target
-			el.scrollLeft = el.scrollLeft;
-			el.scrollTo({ left: target, behavior: "smooth" });
+			const { scrollLeft, clientWidth } = el;
+			const children = Array.from(el.children) as HTMLElement[];
+			let idx = 0;
+			for (let i = 0; i < children.length; i++) {
+				if ((children[i] as HTMLElement).offsetLeft <= scrollLeft + clientWidth / 2) idx = i;
+			}
+			onSelect(idx);
 		}
 
-		function onTouchStart(e: TouchEvent) {
-			touchStartX.current = e.touches[0].clientX;
+		function clearFallback() {
+			if (fallbackTimer.current) {
+				clearTimeout(fallbackTimer.current);
+				fallbackTimer.current = null;
+			}
 		}
 
-		function onTouchEnd(e: TouchEvent) {
-			const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-			const threshold = 30;
-			const count = el!.children.length;
-			const current = selectedPkgRef.current;
-			let next = current;
-			if (deltaX < -threshold) next = Math.min(current + 1, count - 1);
-			else if (deltaX > threshold) next = Math.max(current - 1, 0);
-			scrollToIndex(next);
-			onSelect(next);
+		function onScrollEnd() {
+			clearFallback();
+			detectCard();
 		}
 
-		el.addEventListener("touchstart", onTouchStart, { passive: true });
-		el.addEventListener("touchend", onTouchEnd, { passive: true });
+		function onScroll() {
+			clearFallback();
+			fallbackTimer.current = setTimeout(onScrollEnd, 500);
+		}
+
+		el.addEventListener("scrollend", onScrollEnd);
+		el.addEventListener("scroll", onScroll);
 		return () => {
-			el.removeEventListener("touchstart", onTouchStart);
-			el.removeEventListener("touchend", onTouchEnd);
+			el.removeEventListener("scrollend", onScrollEnd);
+			el.removeEventListener("scroll", onScroll);
+			clearFallback();
 		};
 	}, [onSelect]);
 
