@@ -19,7 +19,7 @@ export default function Badge({
 		default:
 			"border-border bg-card text-secondary hover:border-coral hover:text-coral",
 		coral: "border-border-accent bg-coral-soft-bg text-coral",
-		cyan: "border-cyan-mid/30 bg-cyan-soft-bg text-cyan",
+		cyan: "border-gold-mid/30 bg-gold-soft-bg text-gold",
 	};
 
 	return (

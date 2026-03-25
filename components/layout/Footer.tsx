@@ -57,7 +57,7 @@ export default function Footer() {
 								key={link.label}
 								{...extraProps}
 								onClick={() => handleClick(link)}
-								className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-cyan cursor-pointer">
+								className="text-coral no-underline transition-colors duration-200 ease-in-out hover:text-gold cursor-pointer">
 								{link.label}
 							</Component>
 						);

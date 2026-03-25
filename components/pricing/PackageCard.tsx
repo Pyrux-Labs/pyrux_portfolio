@@ -28,7 +28,7 @@ const colorTokens: Record<
 		border: "border-coral",
 		shadow: "shadow-[0_0_30px_var(--shadow-coral-soft)]",
 		text: "text-coral",
-		bg: "bg-[var(--color-coral-soft-bg)]",
+		bg: "bg-[var(--color-gold-tint)]",
 		borderHover: "hover:border-coral/40",
 	},
 	business: {

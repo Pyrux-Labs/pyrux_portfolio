@@ -119,7 +119,7 @@ export default function FeaturedWork() {
 					{...clientsSwipe}>
 					<Link
 						href="/clients"
-						className="hidden min-[481px]:inline text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-cyan">
+						className="hidden min-[481px]:inline text-[0.9rem] text-coral no-underline font-medium transition-colors duration-200 ease-in-out hover:text-gold">
 						{t("viewAll")} <span aria-hidden="true">→</span>
 					</Link>
 					<h2 className="font-display text-[1.4rem] font-semibold flex items-center gap-2.5 ml-auto">

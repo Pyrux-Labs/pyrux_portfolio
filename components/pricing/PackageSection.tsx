@@ -23,7 +23,7 @@ const ctaColorTokens: Record<PlanColor, { text: string; border: string; bg: stri
 	pro: {
 		text: "text-coral",
 		border: "border-coral",
-		bg: "bg-[var(--color-coral-soft-bg)]",
+		bg: "bg-[var(--color-gold-tint)]",
 	},
 	business: {
 		text: "text-[var(--pkg-business)]",
