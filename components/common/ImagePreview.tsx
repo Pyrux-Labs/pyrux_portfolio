@@ -132,7 +132,7 @@ export default function ImagePreview({
         if (!el) return;
         el.addEventListener("touchmove", handleTouchMove, { passive: false });
         return () => el.removeEventListener("touchmove", handleTouchMove);
-    }, [handleTouchMove]);
+    }, [handleTouchMove, index]);
 
     return (
         <AnimatePresence>
