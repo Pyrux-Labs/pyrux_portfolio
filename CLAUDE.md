@@ -315,25 +315,6 @@ Definidas en `app/globals.css`. Se usan via Tailwind (`text-coral`, `bg-elevated
 - `vercel.json` redirige `/` → `/es`
 - Build genera `out/`
 
----
-
-## TODOLIST
-
-### Fase 11 — Accesibilidad
-
-- [ ] **Color contrast**: verificar ratios dark y light (mínimo 4.5:1) con Lighthouse o axe
-
-### Fase 12 — Pre-deploy & Calidad
-
-- [ ] **Open Graph test**: verificar og-image con Meta Sharing Debugger y Twitter Card Validator antes de lanzar
-- [ ] **Rich Results Test**: validar structured data (FAQPage, Service, Person, Review) en Google Rich Results Test
-- [ ] **PageSpeed Insights**: objetivo > 90 en mobile; identificar y corregir lo que baje el score
-- [ ] **Cross-browser**: Chrome, Firefox, Safari desktop, Edge
-- [ ] **Mobile físico**: iOS Safari + Android Chrome, especialmente 350px de ancho
-- [ ] **Privacy Policy**: crear página `/es/terms` y verificar que `/privacy.html` esté completa y actualizada
-
----
-
 ## Anti-patrones
 
 - ❌ `any`, `as any`, `@ts-ignore`
