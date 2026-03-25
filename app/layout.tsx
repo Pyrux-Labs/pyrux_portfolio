@@ -20,10 +20,13 @@ const organizationSchema = {
 	image: `${BASE_URL}/og-image.png`,
 	description:
 		"We build modern websites, custom systems and automations to take your business to the next level.",
+	telephone: "+54 9 341 694 1225",
 	address: {
 		"@type": "PostalAddress",
+		streetAddress: "San Luis 2267",
 		addressLocality: "Rosario",
 		addressRegion: "Santa Fe",
+		postalCode: "2000",
 		addressCountry: "AR",
 	},
 	areaServed: [

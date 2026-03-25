@@ -61,6 +61,8 @@ export default async function LocaleHomePage({ params }: HomePageProps) {
 		"@context": "https://schema.org",
 		"@type": "Organization",
 		"@id": `${BASE_URL}/#organization`,
+		name: "Pyrux",
+		url: BASE_URL,
 		review: companies[locale as Locale]
 			.filter((c) => c.testimonial)
 			.map((c) => ({
