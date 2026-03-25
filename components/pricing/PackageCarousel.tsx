@@ -102,7 +102,7 @@ export default function PackageCarousel({
 						key={idx}
 						onClick={() => onSelect(idx)}
 						aria-label={pkg.name}
-						className="px-1.5 py-2 cursor-pointer flex items-center justify-center">
+						className="px-2 py-2 cursor-pointer flex items-center justify-center">
 						<span className={`block rounded-full transition-all duration-200 ${
 							selectedPkg === idx
 								? `w-5 h-2 ${ctaColorTokens[pkg.planColor].bg} border ${ctaColorTokens[pkg.planColor].border}`

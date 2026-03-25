@@ -69,7 +69,7 @@ export default function PackageSection() {
 						key={tab.id}
 						onClick={() => handleCategoryChange(tab.id)}
 						className={`px-4 py-1.5 rounded-lg text-[0.85rem] font-medium transition-all duration-200 cursor-pointer
-							${selectedCategory === tab.id ? "bg-coral text-white shadow-sm" : "text-primary hover:text-white hover:bg-coral/20"}`}>
+							${selectedCategory === tab.id ? "bg-coral text-white shadow-sm" : "text-primary hover:bg-coral/10"}`}>
 						{tab.label}
 					</button>
 				))}
