@@ -4,6 +4,16 @@
       "source": "/",
       "destination": "/es",
       "permanent": false
+    },
+    {
+      "source": "/es/terms",
+      "destination": "/privacy.html",
+      "permanent": false
+    },
+    {
+      "source": "/en/terms",
+      "destination": "/privacy.html",
+      "permanent": false
     }
   ],
   "headers": [
