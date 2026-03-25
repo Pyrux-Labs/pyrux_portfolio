@@ -17,7 +17,7 @@ interface ImagePreviewProps {
     onClose: () => void;
 }
 
-function dist(t: React.Touch, u: React.Touch) {
+function dist(t: { clientX: number; clientY: number }, u: { clientX: number; clientY: number }) {
     return Math.hypot(t.clientX - u.clientX, t.clientY - u.clientY);
 }
 
@@ -33,8 +33,6 @@ export default function ImagePreview({
     // ── zoom / pan state ──────────────────────
     const [scale, setScale] = useState(1);
     const [offset, setOffset] = useState({ x: 0, y: 0 });
-
-    // refs for touch tracking (avoid stale closures in handlers)
     const scaleRef = useRef(1);
     const offsetRef = useRef({ x: 0, y: 0 });
     const pinchStartDist = useRef<number | null>(null);
@@ -42,7 +40,7 @@ export default function ImagePreview({
     const panStart = useRef<{ x: number; y: number } | null>(null);
     const panStartOffset = useRef({ x: 0, y: 0 });
     const lastTap = useRef(0);
-    const imageContainerRef = useRef<HTMLDivElement>(null);
+    const imageWrapRef = useRef<HTMLDivElement>(null);
 
     const resetZoom = useCallback(() => {
         scaleRef.current = 1;
@@ -88,7 +86,6 @@ export default function ImagePreview({
             pinchStartScale.current = scaleRef.current;
             panStart.current = null;
         } else if (e.touches.length === 1) {
-            // double-tap to reset
             const now = Date.now();
             if (now - lastTap.current < 300) {
                 resetZoom();
@@ -96,7 +93,6 @@ export default function ImagePreview({
                 return;
             }
             lastTap.current = now;
-
             if (scaleRef.current > 1) {
                 panStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
                 panStartOffset.current = { ...offsetRef.current };
@@ -106,7 +102,6 @@ export default function ImagePreview({
 
     const handleTouchMove = useCallback((e: TouchEvent) => {
         e.preventDefault();
-
         if (e.touches.length === 2 && pinchStartDist.current !== null) {
             const newDist = dist(e.touches[0], e.touches[1]);
             const newScale = Math.min(4, Math.max(1, pinchStartScale.current * (newDist / pinchStartDist.current)));
@@ -131,15 +126,13 @@ export default function ImagePreview({
         if (scaleRef.current <= 1) resetZoom();
     }, [resetZoom]);
 
-    // Register touchmove with passive:false so preventDefault() works
+    // passive:false so preventDefault() works
     useEffect(() => {
-        const el = imageContainerRef.current;
+        const el = imageWrapRef.current;
         if (!el) return;
         el.addEventListener("touchmove", handleTouchMove, { passive: false });
         return () => el.removeEventListener("touchmove", handleTouchMove);
     }, [handleTouchMove]);
-
-    const zoomed = scale > 1;
 
     return (
         <AnimatePresence>
@@ -157,7 +150,7 @@ export default function ImagePreview({
                     aria-hidden="true"
                 />
 
-                {/* Close button */}
+                {/* Close button — static, always on top */}
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 z-10 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color,color] duration-200 hover:border-coral hover:text-coral cursor-pointer"
@@ -166,8 +159,8 @@ export default function ImagePreview({
                     <X size={18} />
                 </button>
 
-                {/* Prev button */}
-                {hasMultiple && !zoomed && (
+                {/* Prev button — static */}
+                {hasMultiple && (
                     <button
                         onClick={prev}
                         className="absolute left-4 z-10 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color,color] duration-200 hover:border-coral hover:text-coral cursor-pointer"
@@ -177,35 +170,42 @@ export default function ImagePreview({
                     </button>
                 )}
 
-                {/* Image */}
+                {/* Image container — entry animation only, no zoom transform here */}
                 <motion.div
                     key={index}
-                    ref={imageContainerRef}
-                    className="relative z-10 max-w-[90vw] max-h-[90vh] touch-none select-none"
-                    style={{
-                        transform: `scale(${scale}) translate(${offset.x / scale}px, ${offset.y / scale}px)`,
-                        cursor: zoomed ? "grab" : "default",
-                    }}
+                    className="relative z-10 max-w-[90vw] max-h-[90vh] overflow-hidden rounded-xl"
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                    onTouchStart={handleTouchStart}
-                    onTouchEnd={handleTouchEnd}
                 >
-                    <Image
-                        src={cdnFull(images[index])}
-                        alt={`${alt} ${index + 1}`}
-                        width={1920}
-                        height={1080}
-                        className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain rounded-xl border border-border shadow-2xl pointer-events-none"
-                        priority
-                        draggable={false}
-                    />
+                    {/* Inner wrapper — zoom/pan transform applied here */}
+                    <div
+                        ref={imageWrapRef}
+                        className="touch-none select-none"
+                        style={{
+                            transform: `scale(${scale}) translate(${offset.x / scale}px, ${offset.y / scale}px)`,
+                            transformOrigin: "center",
+                            cursor: scale > 1 ? "grab" : "default",
+                            willChange: "transform",
+                        }}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
+                    >
+                        <Image
+                            src={cdnFull(images[index])}
+                            alt={`${alt} ${index + 1}`}
+                            width={1920}
+                            height={1080}
+                            className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain border border-border shadow-2xl pointer-events-none"
+                            priority
+                            draggable={false}
+                        />
+                    </div>
                 </motion.div>
 
-                {/* Next button */}
-                {hasMultiple && !zoomed && (
+                {/* Next button — static */}
+                {hasMultiple && (
                     <button
                         onClick={next}
                         className="absolute right-4 z-10 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color,color] duration-200 hover:border-coral hover:text-coral cursor-pointer"
@@ -215,7 +215,7 @@ export default function ImagePreview({
                     </button>
                 )}
 
-                {/* Counter */}
+                {/* Counter — static */}
                 {hasMultiple && (
                     <p className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-xs text-secondary bg-card border border-border rounded-full px-3 py-1">
                         {index + 1} / {images.length}
