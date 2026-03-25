@@ -119,7 +119,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="es" data-theme="light" data-scroll-behavior="smooth" suppressHydrationWarning className={manrope.variable}>
+		<html lang="es" data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning className={manrope.variable}>
 			<head>
 				{/* Prevenir FOUC: aplicar tema antes del primer render */}
 				<script
