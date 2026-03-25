@@ -4,7 +4,7 @@
 
 "use client";
 
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -17,6 +17,10 @@ interface ImagePreviewProps {
     onClose: () => void;
 }
 
+function dist(t: React.Touch, u: React.Touch) {
+    return Math.hypot(t.clientX - u.clientX, t.clientY - u.clientY);
+}
+
 export default function ImagePreview({
     images,
     initialIndex,
@@ -25,6 +29,29 @@ export default function ImagePreview({
 }: ImagePreviewProps) {
     const [index, setIndex] = useState(initialIndex);
     const hasMultiple = images.length > 1;
+
+    // ── zoom / pan state ──────────────────────
+    const [scale, setScale] = useState(1);
+    const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+    // refs for touch tracking (avoid stale closures in handlers)
+    const scaleRef = useRef(1);
+    const offsetRef = useRef({ x: 0, y: 0 });
+    const pinchStartDist = useRef<number | null>(null);
+    const pinchStartScale = useRef(1);
+    const panStart = useRef<{ x: number; y: number } | null>(null);
+    const panStartOffset = useRef({ x: 0, y: 0 });
+    const lastTap = useRef(0);
+
+    const resetZoom = useCallback(() => {
+        scaleRef.current = 1;
+        offsetRef.current = { x: 0, y: 0 };
+        setScale(1);
+        setOffset({ x: 0, y: 0 });
+    }, []);
+
+    // reset zoom when image changes
+    useEffect(() => { resetZoom(); }, [index, resetZoom]);
 
     const prev = useCallback(
         () => setIndex((i) => (i - 1 + images.length) % images.length),
@@ -53,6 +80,58 @@ export default function ImagePreview({
         };
     }, [handleKeyDown]);
 
+    // ── touch handlers ────────────────────────
+    const handleTouchStart = useCallback((e: React.TouchEvent) => {
+        if (e.touches.length === 2) {
+            pinchStartDist.current = dist(e.touches[0], e.touches[1]);
+            pinchStartScale.current = scaleRef.current;
+            panStart.current = null;
+        } else if (e.touches.length === 1) {
+            // double-tap to reset
+            const now = Date.now();
+            if (now - lastTap.current < 300) {
+                resetZoom();
+                lastTap.current = 0;
+                return;
+            }
+            lastTap.current = now;
+
+            if (scaleRef.current > 1) {
+                panStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                panStartOffset.current = { ...offsetRef.current };
+            }
+        }
+    }, [resetZoom]);
+
+    const handleTouchMove = useCallback((e: React.TouchEvent) => {
+        e.preventDefault();
+
+        if (e.touches.length === 2 && pinchStartDist.current !== null) {
+            const newDist = dist(e.touches[0], e.touches[1]);
+            const newScale = Math.min(4, Math.max(1, pinchStartScale.current * (newDist / pinchStartDist.current)));
+            scaleRef.current = newScale;
+            if (newScale === 1) offsetRef.current = { x: 0, y: 0 };
+            setScale(newScale);
+            setOffset({ ...offsetRef.current });
+        } else if (e.touches.length === 1 && panStart.current && scaleRef.current > 1) {
+            const dx = e.touches[0].clientX - panStart.current.x;
+            const dy = e.touches[0].clientY - panStart.current.y;
+            offsetRef.current = {
+                x: panStartOffset.current.x + dx,
+                y: panStartOffset.current.y + dy,
+            };
+            setOffset({ ...offsetRef.current });
+        }
+    }, []);
+
+    const handleTouchEnd = useCallback(() => {
+        pinchStartDist.current = null;
+        panStart.current = null;
+        if (scaleRef.current <= 1) resetZoom();
+    }, [resetZoom]);
+
+    const zoomed = scale > 1;
+
     return (
         <AnimatePresence>
             <motion.div
@@ -79,7 +158,7 @@ export default function ImagePreview({
                 </button>
 
                 {/* Prev button */}
-                {hasMultiple && (
+                {hasMultiple && !zoomed && (
                     <button
                         onClick={prev}
                         className="absolute left-4 z-10 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color,color] duration-200 hover:border-coral hover:text-coral cursor-pointer"
@@ -92,24 +171,32 @@ export default function ImagePreview({
                 {/* Image */}
                 <motion.div
                     key={index}
-                    className="relative z-10 max-w-[90vw] max-h-[90vh]"
+                    className="relative z-10 max-w-[90vw] max-h-[90vh] touch-none select-none"
+                    style={{
+                        transform: `scale(${scale}) translate(${offset.x / scale}px, ${offset.y / scale}px)`,
+                        cursor: zoomed ? "grab" : "default",
+                    }}
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
                 >
                     <Image
                         src={cdnFull(images[index])}
                         alt={`${alt} ${index + 1}`}
                         width={1920}
                         height={1080}
-                        className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain rounded-xl border border-border shadow-2xl"
+                        className="max-w-[90vw] max-h-[90vh] w-auto h-auto object-contain rounded-xl border border-border shadow-2xl pointer-events-none"
                         priority
+                        draggable={false}
                     />
                 </motion.div>
 
                 {/* Next button */}
-                {hasMultiple && (
+                {hasMultiple && !zoomed && (
                     <button
                         onClick={next}
                         className="absolute right-4 z-10 w-9 h-9 grid place-items-center rounded-full border border-border bg-card text-secondary transition-[border-color,color] duration-200 hover:border-coral hover:text-coral cursor-pointer"

@@ -315,16 +315,48 @@ Definidas en `app/globals.css`. Se usan via Tailwind (`text-coral`, `bg-elevated
 
 ## TODOLIST
 
-### Fase 6 — Accesibilidad
+### Fase 6 — Bugs críticos
 
-- [ ] **Color contrast**: verificar ratios dark y light (mínimo 4.5:1)
-- [ ] **Skip navigation link**: "Saltar al contenido"
 
-### Fase 7 — Testing
+### Fase 7 — Contenido urgente
 
-- [ ] **PageSpeed Insights**: objetivo > 90 en mobile
-- [ ] **Cross-browser**: Chrome, Firefox, Safari, Edge
-- [ ] **Mobile**: iOS Safari + Android Chrome, especialmente 350px
+- [ ] **Proceso paso 1**: cambiar "presupuesto en 72hs" → "24hs" en `data/steps.ts` (es + en)
+- [ ] **FAQ redacción**: "En Pyrux, asegurás" → "te asegurás" + revisar todo el bloque de FAQs por errores similares (es y en)
+- [ ] **Comentario MedMind**: resumir a máximo 2–3 líneas concisas manteniendo el tono. Texto nuevo: *"Desde el primer contacto demostraron ser un equipo profesional y comprometido. Cumplieron los tiempos, comunicaron claro y el resultado superó nuestras expectativas. Los recomendamos sin dudarlo."*
+- [ ] **Subtítulos /projects y /clients**: ampliar el subtítulo de `PageHeading`, actualmente demasiado corto
+
+### Fase 8 — UI Polish
+
+- [ ] **Pack Personalizado**: padding incorrecto en la lista de beneficios (primer ítem pegado a la línea divisoria)
+- [ ] **Modal clientes**: subtítulo descentrado; máx. 3 líneas descripción empresa, máx. 2 líneas trabajo realizado; comentario centrado en su contenedor; alinear distancia superior al estilo del modal de proyectos
+- [ ] **Unificar modal clientes**: la página `/clients` usa una variante distinta del modal — reemplazarla por el mismo `CompanyModal` del carousel y eliminar la variante duplicada
+
+### Fase 9 — Copy & Textos
+
+- [ ] **Cards "Qué hacemos"**: reescribir los 6 servicios con tono más profesional y orientado al cliente objetivo (dueño de PyME). Pedir contexto antes de hacer cambios.
+- [ ] **FAQ — tono de empresa**: pulir preguntas/respuestas para que se alineen con la voz de Pyrux. Pedir contexto antes.
+- [ ] **Descripciones de proyectos y empresas**: mejorar `description`, `shortDescription` y `workDescription` en `data/projects.ts` y `data/companies.ts`. Pedir contexto antes.
+
+### Fase 10 — TechStack
+
+- [ ] **SVGs faltantes**: agregar íconos a las tecnologías que no los tienen en `data/technologies.ts`
+- [ ] **Tecnologías adicionales**: sugerir qué agregar (Docker, PostgreSQL, Supabase, Prisma, Node.js, etc.)
+- [ ] **Orden**: reorganizar el stack por relevancia y frecuencia de uso
+
+### Fase 11 — Accesibilidad
+
+- [ ] **Color contrast**: verificar ratios dark y light (mínimo 4.5:1) con Lighthouse o axe
+- [ ] **Skip navigation link**: link oculto "Saltar al contenido" al inicio del `<body>`
+
+### Fase 12 — Pre-deploy & Calidad
+
+- [ ] **Security headers**: agregar en `vercel.json` — `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`
+- [ ] **Open Graph test**: verificar og-image con Meta Sharing Debugger y Twitter Card Validator antes de lanzar
+- [ ] **Rich Results Test**: validar structured data (FAQPage, Service, Person, Review) en Google Rich Results Test
+- [ ] **PageSpeed Insights**: objetivo > 90 en mobile; identificar y corregir lo que baje el score
+- [ ] **Cross-browser**: Chrome, Firefox, Safari desktop, Edge
+- [ ] **Mobile físico**: iOS Safari + Android Chrome, especialmente 350px de ancho
+- [ ] **Privacy Policy**: crear página `/es/terms` y verificar que `/privacy.html` esté completa y actualizada
 
 ---
 
