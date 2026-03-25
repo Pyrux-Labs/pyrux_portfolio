@@ -61,7 +61,7 @@ export default function Section({
 			initial="hidden"
 			whileInView="visible"
 			viewport={{ once: true, amount: 0.15 }}
-			className={`scroll-mt-[30vh] ${className}`}>
+			className={`scroll-mt-6 sm:scroll-mt-[30vh] ${className}`}>
 			{hasTitle && (
 				<div
 					className={`flex items-center mb-5 gap-2.5 ${
