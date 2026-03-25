@@ -2,14 +2,17 @@
 
 import { ArrowLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
+import { useRouter } from "next/navigation";
 
 export default function BackLink() {
 	const t = useTranslations("Navigation");
+	const router = useRouter();
 	return (
-		<Link href="/" className="inline-flex items-center gap-2 text-[0.9rem] text-coral no-underline mb-4 hover:text-gold">
+		<button
+			onClick={() => router.back()}
+			className="inline-flex items-center gap-2 text-[0.9rem] text-coral mb-4 hover:text-gold cursor-pointer bg-transparent border-none p-0">
 			<ArrowLeft size={16} />
 			{t("backToHome")}
-		</Link>
+		</button>
 	);
 }

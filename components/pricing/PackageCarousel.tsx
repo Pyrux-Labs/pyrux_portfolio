@@ -27,7 +27,12 @@ export default function PackageCarousel({
 	animKey,
 }: PackageCarouselProps) {
 	const carouselRef = useRef<HTMLDivElement>(null);
-	const fallbackTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+	const touchStartX = useRef(0);
+	const selectedPkgRef = useRef(selectedPkg);
+
+	useEffect(() => {
+		selectedPkgRef.current = selectedPkg;
+	}, [selectedPkg]);
 
 	// Scroll to card when selectedPkg changes (dot tap) — skip if already there
 	useEffect(() => {
@@ -37,50 +42,45 @@ export default function PackageCarousel({
 		const card = children[selectedPkg];
 		if (!card) return;
 		const targetLeft = card.offsetLeft - el.offsetLeft;
-		if (Math.abs(el.scrollLeft - targetLeft) < 1) return; // already at target
+		if (Math.abs(el.scrollLeft - targetLeft) < 1) return;
 		el.scrollTo({ left: targetLeft, behavior: "smooth" });
 	}, [selectedPkg]);
 
-	// Detect swipe end via scrollend (+ debounce fallback for older browsers)
+	// Touch handlers: always move exactly one card per swipe
 	useEffect(() => {
 		const el = carouselRef.current;
 		if (!el) return;
 
-		function detectCard() {
+		function scrollToIndex(idx: number) {
 			if (!el) return;
-			const { scrollLeft, clientWidth } = el;
-			const children = Array.from(el.children) as HTMLElement[];
-			let idx = 0;
-			for (let i = 0; i < children.length; i++) {
-				if ((children[i] as HTMLElement).offsetLeft <= scrollLeft + clientWidth / 2) idx = i;
-			}
-			onSelect(idx);
+			const card = el.children[idx] as HTMLElement;
+			if (!card) return;
+			const target = card.offsetLeft - el.offsetLeft;
+			// Assign scrollLeft directly to cancel iOS momentum scroll immediately
+			el.scrollLeft = target;
 		}
 
-		function clearFallback() {
-			if (fallbackTimer.current) {
-				clearTimeout(fallbackTimer.current);
-				fallbackTimer.current = null;
-			}
+		function onTouchStart(e: TouchEvent) {
+			touchStartX.current = e.touches[0].clientX;
 		}
 
-		function onScrollEnd() {
-			clearFallback();
-			detectCard();
+		function onTouchEnd(e: TouchEvent) {
+			const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+			const threshold = 30;
+			const count = el!.children.length;
+			const current = selectedPkgRef.current;
+			let next = current;
+			if (deltaX < -threshold) next = Math.min(current + 1, count - 1);
+			else if (deltaX > threshold) next = Math.max(current - 1, 0);
+			scrollToIndex(next);
+			onSelect(next);
 		}
 
-		function onScroll() {
-			clearFallback();
-			// Long timeout so momentum scroll fully settles before detecting card
-			fallbackTimer.current = setTimeout(onScrollEnd, 500);
-		}
-
-		el.addEventListener("scrollend", onScrollEnd);
-		el.addEventListener("scroll", onScroll);
+		el.addEventListener("touchstart", onTouchStart, { passive: true });
+		el.addEventListener("touchend", onTouchEnd, { passive: true });
 		return () => {
-			el.removeEventListener("scrollend", onScrollEnd);
-			el.removeEventListener("scroll", onScroll);
-			clearFallback();
+			el.removeEventListener("touchstart", onTouchStart);
+			el.removeEventListener("touchend", onTouchEnd);
 		};
 	}, [onSelect]);
 
@@ -91,7 +91,7 @@ export default function PackageCarousel({
 					ref={carouselRef}
 					className="-mx-4 px-4 pr-[10vw] flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
 					{visiblePackages.map((pkg, idx) => (
-						<div key={`${pkg.category}-${pkg.number}`} className="snap-center shrink-0 w-[85vw]">
+						<div key={`${pkg.category}-${pkg.number}`} className="snap-center snap-always shrink-0 w-[85vw]">
 							<PackageCard pkg={pkg} isSelected={selectedPkg === idx} onClick={() => onSelect(idx)} />
 						</div>
 					))}
