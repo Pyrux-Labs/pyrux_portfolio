@@ -56,8 +56,9 @@ export default function PackageCarousel({
 			const card = el.children[idx] as HTMLElement;
 			if (!card) return;
 			const target = card.offsetLeft - el.offsetLeft;
-			// Assign scrollLeft directly to cancel iOS momentum scroll immediately
-			el.scrollLeft = target;
+			// Freeze current position to cancel momentum, then smooth scroll to target
+			el.scrollLeft = el.scrollLeft;
+			el.scrollTo({ left: target, behavior: "smooth" });
 		}
 
 		function onTouchStart(e: TouchEvent) {
