@@ -15,6 +15,7 @@ interface CompanyCardProps {
 	company: Company;
 	onClick?: () => void;
 	priority?: boolean;
+	headingLevel?: 2 | 3;
 }
 
 function CompanyLogo({ company, size, priority = false }: { company: Company; size: number; priority?: boolean }) {
@@ -63,7 +64,8 @@ function Testimonial({ text, wrapClass, textClass }: { text: string; wrapClass: 
 	);
 }
 
-export default function CompanyCard({ company, onClick, priority = false }: CompanyCardProps) {
+export default function CompanyCard({ company, onClick, priority = false, headingLevel = 3 }: CompanyCardProps) {
+	const Heading = `h${headingLevel}` as "h2" | "h3";
 	const t = useTranslations("CompanyCard");
 
 	const motionProps = {
@@ -96,9 +98,9 @@ export default function CompanyCard({ company, onClick, priority = false }: Comp
 			{...motionProps}>
 			<div className="flex items-start gap-3 flex-1 mt-2">
 				<div className="flex flex-col gap-1.5 min-w-0 flex-1">
-					<h3 className="font-display text-[0.95rem] font-semibold text-primary leading-tight line-clamp-1">
+					<Heading className="font-display text-[0.95rem] font-semibold text-primary leading-tight line-clamp-1">
 						{company.name}
-					</h3>
+					</Heading>
 					<p className="text-[0.8rem] text-secondary leading-relaxed line-clamp-2">{company.summary}</p>
 					<p className="text-[0.7rem] text-muted italic leading-normal line-clamp-1">{company.workDescription}</p>
 				</div>
