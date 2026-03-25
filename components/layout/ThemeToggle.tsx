@@ -6,9 +6,9 @@ export default function ThemeToggle() {
 	// Lazy initializer reads localStorage on the client; returns "dark" during SSR.
 	// suppressHydrationWarning on button + span handles the server/client mismatch.
 	const [theme, setTheme] = useState<"dark" | "light">(() => {
-		if (typeof window === "undefined") return "dark";
+		if (typeof window === "undefined") return "light";
 		const saved = localStorage.getItem("oc-theme");
-		return saved === "light" || saved === "dark" ? saved : "dark";
+		return saved === "light" || saved === "dark" ? saved : "light";
 	});
 
 	useEffect(() => {
