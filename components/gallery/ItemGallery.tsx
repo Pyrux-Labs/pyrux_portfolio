@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useLocale } from "@/i18n/locale-provider";
-import { projects, getProjectsByCreator } from "@/data/projects";
+import { getAllProjects, getProjectsByCreator } from "@/data/projects";
 import { companies } from "@/data/companies";
 import ProjectCard from "@/components/common/ProjectCard";
 import ProjectModal from "@/components/common/ProjectModal";
@@ -21,7 +21,7 @@ export default function ItemGallery({ type, creatorId }: ItemGalleryProps) {
 	const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
 	if (type === "projects") {
-		const displayProjects = creatorId ? getProjectsByCreator(creatorId, locale) : projects[locale];
+		const displayProjects = creatorId ? getProjectsByCreator(creatorId, locale) : getAllProjects(locale);
 		return (
 			<div className="mt-6">
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
