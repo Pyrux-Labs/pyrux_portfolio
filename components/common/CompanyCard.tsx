@@ -35,7 +35,7 @@ function CompanyLogo({ company, size, priority = false }: { company: Company; si
 		<div
 			className="rounded-full border-2 border-border bg-elevated flex items-center justify-center shrink-0 overflow-hidden"
 			style={{ width: size, height: size }}>
-			{logos.map(({ src, className }) => (
+			{logos.map(({ src, className }, i) => (
 				<Image
 					key={src}
 					src={src}
@@ -44,7 +44,8 @@ function CompanyLogo({ company, size, priority = false }: { company: Company; si
 					height={size}
 					className={className}
 					sizes={`${size}px`}
-					priority={priority}
+					priority={i === 0 ? priority : undefined}
+					loading={i === 0 ? undefined : "eager"}
 					onError={!company.logoDark ? handleError : undefined}
 				/>
 			))}

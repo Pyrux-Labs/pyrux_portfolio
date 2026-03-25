@@ -24,7 +24,7 @@ interface ProjectModalProps {
 	onClose: () => void;
 }
 
-function CarouselImage({ src, alt, onClick }: { src: string; alt: string; onClick: () => void }) {
+function CarouselImage({ src, alt, onClick, eager }: { src: string; alt: string; onClick: () => void; eager?: boolean }) {
 	const [loaded, setLoaded] = useState(false);
 	const handleLoad = useCallback(() => setLoaded(true), []);
 
@@ -39,7 +39,7 @@ function CarouselImage({ src, alt, onClick }: { src: string; alt: string; onClic
 				src={src}
 				alt={alt}
 				className="w-full h-full object-cover"
-				loading="lazy"
+				loading={eager ? "eager" : "lazy"}
 				width={224}
 				height={160}
 				sizes="(min-width: 1536px) 224px, 160px"
@@ -101,6 +101,7 @@ function ImageCarousel({
 							src={cdnThumb(img)}
 							alt={imageAltFn(i + 1)}
 							onClick={() => onImageClick(i)}
+							eager={i === 0}
 						/>
 					))}
 				</div>
