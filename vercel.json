@@ -2,12 +2,16 @@
   "rewrites": [
     {
       "source": "/",
-      "has": [{ "type": "header", "key": "Accept-Language", "value": "es.*" }],
-      "destination": "/es"
+      "has": [{ "type": "header", "key": "Accept-Language", "value": "en.*" }],
+      "destination": "/en"
     },
     {
       "source": "/",
-      "destination": "/en"
+      "destination": "/es"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/es/:path*"
     }
   ],
   "redirects": [
@@ -20,6 +24,16 @@
       "source": "/en/terms",
       "destination": "/privacy.html",
       "permanent": false
+    },
+    {
+      "source": "/es",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/es/:path*",
+      "destination": "/:path*",
+      "permanent": true
     }
   ],
   "headers": [

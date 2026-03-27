@@ -19,7 +19,7 @@ const BASE_URL = "https://www.pyrux.com.ar";
 export async function generateMetadata({ params }: HomePageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const isEs = locale === "es";
-	const url = `${BASE_URL}/${locale}`;
+	const url = isEs ? BASE_URL : `${BASE_URL}/${locale}`;
 
 	return {
 		title: isEs
@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 		alternates: {
 			canonical: url,
 			languages: {
-				es: `${BASE_URL}/es`,
+				es: BASE_URL,
 				en: `${BASE_URL}/en`,
-				"x-default": `${BASE_URL}/es`,
+				"x-default": BASE_URL,
 			},
 		},
 		openGraph: {
