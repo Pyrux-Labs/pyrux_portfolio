@@ -1,10 +1,16 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/",
-      "destination": "/es",
-      "permanent": false
+      "has": [{ "type": "header", "key": "Accept-Language", "value": "es.*" }],
+      "destination": "/es"
     },
+    {
+      "source": "/",
+      "destination": "/en"
+    }
+  ],
+  "redirects": [
     {
       "source": "/es/terms",
       "destination": "/privacy.html",
