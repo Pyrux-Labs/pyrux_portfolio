@@ -19,7 +19,7 @@ const organizationSchema = {
 	logo: `${BASE_URL}/Pyrux-logo.svg`,
 	image: `${BASE_URL}/og-image.png`,
 	description:
-		"We build modern websites, custom systems and automations to take your business to the next level.",
+		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
 	telephone: "+54 9 341 694 1225",
 	address: {
 		"@type": "PostalAddress",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL(BASE_URL),
 	title: "Pyrux — Desarrollo web y soluciones digitales",
 	description:
-		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel. Portfolio de Pyrux.",
+		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
 	keywords: [
 		"desarrollo web",
 		"software a medida",
