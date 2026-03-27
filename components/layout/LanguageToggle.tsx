@@ -2,16 +2,16 @@
 
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/i18n/locale-provider";
-import { usePathname } from "@/i18n/navigation";
+import { useRouter, usePathname } from "@/i18n/navigation";
 
 export default function LanguageToggle() {
 	const t = useTranslations("LanguageToggle");
 	const { locale } = useLocale();
+	const router = useRouter();
 	const pathname = usePathname();
 
 	const handleToggle = () => {
-		const newLocale = locale === "es" ? "en" : "es";
-		window.location.href = newLocale === "en" ? `/en${pathname}` : pathname;
+		router.replace(pathname, { locale: locale === "es" ? "en" : "es" });
 	};
 
 	return (

@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: CreatorPageProps): Promise<Me
 	const isEs = locale === "es";
 	const title = creator ? `${creator.name} — Pyrux` : isEs ? "Creador no encontrado — Pyrux" : "Creator not found — Pyrux";
 	const description = creator?.bio ?? (isEs ? "Perfil de creador en Pyrux" : "Creator profile at Pyrux");
-	const url = isEs ? `${BASE_URL}/creator/${id}` : `${BASE_URL}/${locale}/creator/${id}`;
+	const url = `${BASE_URL}/${locale}/creator/${id}`;
 
 	const ogImage = creator
 		? { url: `${BASE_URL}${creator.image}`, type: "image/webp", width: 800, height: 800, alt: creator.name }
@@ -41,9 +41,9 @@ export async function generateMetadata({ params }: CreatorPageProps): Promise<Me
 		alternates: {
 			canonical: url,
 			languages: {
-				es: `${BASE_URL}/creator/${id}`,
+				es: `${BASE_URL}/es/creator/${id}`,
 				en: `${BASE_URL}/en/creator/${id}`,
-				"x-default": `${BASE_URL}/creator/${id}`,
+				"x-default": `${BASE_URL}/es/creator/${id}`,
 			},
 		},
 		openGraph: {
@@ -68,8 +68,7 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 	const creator = creators[locale as Locale]?.find((c) => c.id === id);
 	if (!creator) notFound();
 
-	const url = isEs ? `${BASE_URL}/creator/${id}` : `${BASE_URL}/${locale}/creator/${id}`;
-	const homeUrl = isEs ? BASE_URL : `${BASE_URL}/${locale}`;
+	const url = `${BASE_URL}/${locale}/creator/${id}`;
 
 	const personSchema = JSON.stringify({
 		"@context": "https://schema.org",
@@ -87,7 +86,7 @@ export default async function CreatorPage({ params }: CreatorPageProps) {
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
 		itemListElement: [
-			{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: homeUrl },
+			{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: `${BASE_URL}/${locale}` },
 			{ "@type": "ListItem", position: 2, name: creator.name, item: url },
 		],
 	});

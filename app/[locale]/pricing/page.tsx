@@ -21,7 +21,7 @@ const BASE_URL = "https://www.pyrux.com.ar";
 export async function generateMetadata({ params }: PricingPageProps): Promise<Metadata> {
 	const { locale } = await params;
 	const isEs = locale === "es";
-	const url = isEs ? `${BASE_URL}/pricing` : `${BASE_URL}/${locale}/pricing`;
+	const url = `${BASE_URL}/${locale}/pricing`;
 
 	return {
 		title: isEs ? "Precios y Paquetes — Pyrux" : "Pricing & Packages — Pyrux",
@@ -31,9 +31,9 @@ export async function generateMetadata({ params }: PricingPageProps): Promise<Me
 		alternates: {
 			canonical: url,
 			languages: {
-				es: `${BASE_URL}/pricing`,
+				es: `${BASE_URL}/es/pricing`,
 				en: `${BASE_URL}/en/pricing`,
-				"x-default": `${BASE_URL}/pricing`,
+				"x-default": `${BASE_URL}/es/pricing`,
 			},
 		},
 		openGraph: {
@@ -59,14 +59,13 @@ export async function generateMetadata({ params }: PricingPageProps): Promise<Me
 export default async function PricingPage({ params }: PricingPageProps) {
 	const { locale } = await params;
 	const isEs = locale === "es";
-	const url = isEs ? `${BASE_URL}/pricing` : `${BASE_URL}/${locale}/pricing`;
-	const homeUrl = isEs ? BASE_URL : `${BASE_URL}/${locale}`;
+	const url = `${BASE_URL}/${locale}/pricing`;
 
 	const breadcrumb = JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
 		itemListElement: [
-			{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: homeUrl },
+			{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: `${BASE_URL}/${locale}` },
 			{ "@type": "ListItem", position: 2, name: isEs ? "Precios" : "Pricing", item: url },
 		],
 	});

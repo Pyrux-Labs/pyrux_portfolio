@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: GalleryPageProps): Promise<Me
 
 	const lang = locale === "es" ? "es" : "en";
 	const { title, description, short } = meta[type][lang];
-	const url = locale === "es" ? `${BASE_URL}/${type}` : `${BASE_URL}/${locale}/${type}`;
+	const url = `${BASE_URL}/${locale}/${type}`;
 
 	return {
 		title,
@@ -66,9 +66,9 @@ export async function generateMetadata({ params }: GalleryPageProps): Promise<Me
 		alternates: {
 			canonical: url,
 			languages: {
-				es: `${BASE_URL}/${type}`,
+				es: `${BASE_URL}/es/${type}`,
 				en: `${BASE_URL}/en/${type}`,
-				"x-default": `${BASE_URL}/${type}`,
+				"x-default": `${BASE_URL}/es/${type}`,
 			},
 		},
 		openGraph: {
@@ -95,15 +95,13 @@ export default async function GalleryPage({ params }: GalleryPageProps) {
 	const lang = locale === "es" ? "es" : "en";
 	const namespace = galleryType === "projects" ? "ProjectsPage" : "ClientsPage";
 	const t = await getTranslations({ locale, namespace });
-	const isEs = locale === "es";
-	const url = isEs ? `${BASE_URL}/${type}` : `${BASE_URL}/${locale}/${type}`;
-	const homeUrl = isEs ? BASE_URL : `${BASE_URL}/${locale}`;
+	const url = `${BASE_URL}/${locale}/${type}`;
 
 	const breadcrumb = JSON.stringify({
 		"@context": "https://schema.org",
 		"@type": "BreadcrumbList",
 		itemListElement: [
-			{ "@type": "ListItem", position: 1, name: isEs ? "Inicio" : "Home", item: homeUrl },
+			{ "@type": "ListItem", position: 1, name: locale === "es" ? "Inicio" : "Home", item: `${BASE_URL}/${locale}` },
 			{ "@type": "ListItem", position: 2, name: meta[galleryType][lang].breadcrumb, item: url },
 		],
 	});
