@@ -13,14 +13,15 @@ const BASE_URL = "https://www.pyrux.com.ar";
 
 const organizationSchema = {
 	"@context": "https://schema.org",
-	"@type": ["Organization", "LocalBusiness"],
+	"@type": ["LocalBusiness", "ProfessionalService"],
 	name: "Pyrux",
 	url: BASE_URL,
 	logo: `${BASE_URL}/Pyrux-logo.svg`,
 	image: `${BASE_URL}/og-image.png`,
 	description:
-		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+		"Desarrollamos software a medida en Rosario: sitios web, sistemas de gestión, automatizaciones e integraciones. Código real, resultados concretos.",
 	telephone: "+54 9 341 694 1225",
+	serviceType: "Desarrollo de Software",
 	address: {
 		"@type": "PostalAddress",
 		streetAddress: "San Luis 2267",
@@ -38,7 +39,21 @@ const organizationSchema = {
 		"https://linkedin.com/company/pyrux",
 	],
 	priceRange: "$$",
-	knowsAbout: ["web development", "web design", "custom software", "Next.js", "React"],
+	knowsAbout: [
+		"software development",
+		"fullstack development",
+		"web development",
+		"custom software",
+		"web applications",
+		"system design",
+		"Next.js",
+		"React",
+		"Node.js",
+		"TypeScript",
+		"API development",
+		"database design",
+		"e-commerce development",
+	],
 };
 
 const websiteSchema = {
@@ -51,28 +66,32 @@ const websiteSchema = {
 
 export const metadata: Metadata = {
 	metadataBase: new URL(BASE_URL),
-	title: "Pyrux — Desarrollo web y soluciones digitales",
+	title: "Pyrux — Desarrollo de Software | Rosario, Argentina",
 	description:
-		"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+		"Desarrollamos software a medida en Rosario: sitios web, sistemas de gestión, automatizaciones e integraciones. Código real, resultados concretos.",
 	keywords: [
-		"desarrollo web",
+		"desarrollo de software",
 		"software a medida",
+		"desarrollo fullstack",
+		"software factory",
+		"ingeniería de software",
+		"empresa de software Rosario",
+		"desarrollo web",
 		"diseño web",
 		"automatización",
 		"Next.js",
 		"React",
 		"TypeScript",
 		"Pyrux",
-		"agencia web Argentina",
+		"desarrollo de software Argentina",
 		"páginas web profesionales",
 		"desarrollo web Rosario",
-		"agencia web Rosario",
 	],
 	authors: [{ name: "Pyrux", url: BASE_URL }],
 	openGraph: {
-		title: "Pyrux — Desarrollo web y soluciones digitales",
+		title: "Pyrux — Desarrollo de Software | Rosario, Argentina",
 		description:
-			"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+			"Desarrollamos software a medida en Rosario: sitios web, sistemas de gestión, automatizaciones e integraciones. Código real, resultados concretos.",
 		type: "website",
 		url: BASE_URL,
 		locale: "es_AR",
@@ -83,15 +102,15 @@ export const metadata: Metadata = {
 				type: "image/png",
 				width: 1200,
 				height: 630,
-				alt: "Pyrux — Desarrollo web y soluciones digitales",
+				alt: "Pyrux — Desarrollo de Software | Rosario, Argentina",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Pyrux — Desarrollo web y soluciones digitales",
+		title: "Pyrux — Desarrollo de Software | Rosario, Argentina",
 		description:
-			"Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel.",
+			"Desarrollamos software a medida en Rosario: sitios web, sistemas de gestión, automatizaciones e integraciones. Código real, resultados concretos.",
 		images: [`${BASE_URL}/og-image.png`],
 	},
 	icons: {

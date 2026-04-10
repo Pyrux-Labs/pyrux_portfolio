@@ -23,11 +23,11 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 
 	return {
 		title: isEs
-			? "Pyrux — Desarrollo web y soluciones digitales"
-			: "Pyrux — Web Development & Digital Solutions",
+			? "Pyrux — Desarrollo de Software | Rosario, Argentina"
+			: "Pyrux — Custom Software Development | Rosario, Argentina",
 		description: isEs
-			? "Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel."
-			: "We build modern websites, custom systems and automations to take your business to the next level.",
+			? "Desarrollamos software a medida en Rosario: sitios web, sistemas de gestión, automatizaciones e integraciones. Código real, resultados concretos."
+			: "We develop custom software in Rosario: websites, management systems, automations and integrations. Real code, concrete results.",
 		alternates: {
 			canonical: url,
 			languages: {
@@ -38,11 +38,11 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 		},
 		openGraph: {
 			title: isEs
-				? "Pyrux — Desarrollo web y soluciones digitales"
-				: "Pyrux — Web Development & Digital Solutions",
+				? "Pyrux — Desarrollo de Software | Rosario, Argentina"
+				: "Pyrux — Custom Software Development | Rosario, Argentina",
 			description: isEs
-				? "Creamos páginas web modernas, sistemas a medida y automatizaciones para llevar tu negocio al siguiente nivel."
-				: "We build modern websites, custom systems and automations to take your business to the next level.",
+				? "Desarrollamos software a medida en Rosario: sitios web, sistemas de gestión, automatizaciones e integraciones. Código real, resultados concretos."
+				: "We develop custom software in Rosario: websites, management systems, automations and integrations. Real code, concrete results.",
 			url,
 			locale: isEs ? "es_AR" : "en_US",
 			images: [{ url: `${BASE_URL}/og-image.png`, type: "image/png", width: 1200, height: 630 }],
